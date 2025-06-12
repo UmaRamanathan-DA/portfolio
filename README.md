@@ -1,6 +1,6 @@
 # 🌐 Personal Portfolio
 
-Welcome to my portfolio! This repository showcases a collection of my projects, highlighting my work in data analysis, web development, and emerging technologies like Generative AI.
+Welcome to my portfolio! This repository showcases a collection of my projects, highlighting my work in data analysis, web development, machine learning and emerging technologies like Generative AI.
 
 Each project includes a brief description and a link to view or explore the work in detail.
 
@@ -10,11 +10,9 @@ Each project includes a brief description and a link to view or explore the work
 
 This portfolio includes:
 
-- ✅ Completed projects with live demos or GitHub links  
-- 📊 Data analytics dashboards and visualizations  
-- 💡 AI/ML experiments and prototypes  
-- 🌍 Web applications and interactive tools  
-- 📄 Case studies and documentation for each project  
+- ✅ Completed projects with GitHub links  
+- 📊 Data analytics and visualizations  
+- 📄 Case studies and documentation for project  
 
 ---
 
@@ -41,7 +39,7 @@ This portfolio includes:
 
 ## 👤 About Me
 
-I'm passionate about building data-driven and user-focused solutions. With experience in data analytics, UI/UX design, and AI integration, I enjoy turning ideas into real-world tools and insights.
+I'm an active leaner in this space of tech, aiming to build data-driven and user-focused solutions, using data analytics, UI/UX design, and AI integration, I enjoy turning ideas into real-world tools and insights.
 
 ---
 
