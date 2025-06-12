@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haggis Hopper Taxi Business Insights - Project Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .project-header {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .project-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .project-meta p { margin: 0.5rem 0; }
+        .project-section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c3e50;
+        }
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .tasks-list { list-style: none; padding: 0; }
+        .tasks-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tasks-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .carousel-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #2c3e50;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #888;
+            margin: 2rem 0;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .tech-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .tech-category h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tech-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+        }
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .impact-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .impact-list li:before {
+            content: "→";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .github-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .github-link:hover {
+            background: #1a252f;
+        }
+        @media (max-width: 768px) {
+            .project-detail { padding: 1rem; }
+            .project-title { font-size: 2rem; }
+        }
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .screenshot-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .caption {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            margin-top: 3rem;
+            position: relative;
+            left: 0;
+            bottom: 0;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .social-links a {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: #0077b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-detail">
+        <div class="project-header">
+            <h1 class="project-title">Haggis Hopper Taxi Business Insights</h1>
+            <div class="project-meta">
+                <p><strong>Organization:</strong> Kin Karta Consulting</p>
+                <p><strong>Location:</strong> United Kingdom</p>
+                <p><strong>Project Type:</strong> Academic (Strathclyde Business School)</p>
+                <p><strong>Duration:</strong> Mar 2024 – Apr 2024</p>
+                <p><strong>Role:</strong> Data Analyst/Data Scientist</p>
+            </div>
+        </div>
+        <section class="project-section">
+            <h2 class="section-title">Project Description</h2>
+            <p class="project-description">
+                Delivered data-driven insights to optimize taxi fleet operations using advanced analytics and machine learning. Performed data preprocessing, exploratory data analysis using Python, SQL, and Tableau to uncover trip patterns, customer behaviour and identify geographic hotspots to optimize fleet allocations. Developed forecasting models and Time Series Analysis to predict demand and identify key drivers influencing demand, supporting resource optimization and continuous process improvement. Developed visualisations trip patterns, demand forecasts, and fleet utilization and other metrics for stakeholders.
+            </p>
+        </section>
+        <section class="project-section">
+            <h2 class="section-title">Screenshots</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/revenue-analysis.png" target="_blank">
+                        <img src="../images/haggishopper/revenue-analysis.png" alt="Fare Analysis" />
+                    </a>
+                    <div class="caption">Revenue Analysis</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/fare-analysis.png" target="_blank">
+                        <img src="../images/haggishopper/fare-analysis.png" alt="Fare Analysis" />
+                    </a>
+                    <div class="caption">Fare Analysis</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/duration-analysis.png" target="_blank">
+                        <img src="../images/haggishopper/duration-analysis.png" alt="Duration Analysis" />
+                    </a>
+                    <div class="caption">Duration Analysis</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/outlier-analysis.png" target="_blank">
+                        <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier Analysis" />
+                    </a>
+                    <div class="caption">Outlier Analysis</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/pickup-hourofday.png" target="_blank">
+                        <img src="../images/haggishopper/pickup-hourofday.png" alt="Hourly Analysis of demand in pickup locations" />
+                    </a>
+                    <div class="caption">Hourly Analysis of demand in pickup postcodes</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/dropoffpostcode-hour.png" target="_blank">
+                        <img src="../images/haggishopper/dropoffpostcode-hour.png" alt=" Hourly Analysis of demand by dropoff locations" />
+                    </a>
+                    <div class="caption">Hourly Analysis of demand in pickup postcodes</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/tripcounts-postcode.png" target="_blank">
+                        <img src="../images/haggishopper/tripcounts-postcode.png" alt=" Trip counts between post code areas" />
+                    </a>
+                    <div class="caption">Trip counts between post code areas. How frequently passengers travel from one postcode to another.</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/avg-trip-duration.png" target="_blank">
+                        <img src="../images/haggishopper/avg-trip-duration.png" alt="Average Trip Duration" />
+                    </a>
+                    <div class="caption">Average Trip Duration</div>
+                </div>
+                <div class="screenshot-item">
+                    <a href="../images/haggishopper/revenue-km.png" target="_blank">
+                        <img src="../images/haggishopper/revenue-km.png" alt="Revenue per Km" />
+                    </a>
+                    <div class="caption">Revenue per KM</div>
+                </div>
+            </div>
+        </section>
+        <section class="project-section">
+            <h2 class="section-title">Detailed Tasks</h2>
+            <ul class="tasks-list">
+                <li>Collected, integrated, and cleaned transport datasets from multiple sources to ensure consistency and reliability for downstream analytics.</li>
+                <li>Conducted exploratory data analysis (EDA) using Python and SQL to uncover key trends and trip patterns, supporting business planning and operational decision-making.</li>
+                <li>Performed geospatial analysis to identify high-demand hotspots and optimize location-based services.</li>
+                <li>Applied KMeans clustering techniques for customer segmentation, enabling targeted strategies for user engagement and service delivery.</li>
+                <li>Designed and implemented interactive Tableau dashboards to visualize fleet utilization, demand trends, and key operational KPIs, facilitating real-time monitoring by cross-functional teams.</li>
+                <li>Built and deployed advanced time series forecasting models (e.g., LSTM, SARIMA) to predict customer demand, optimize resource allocation, and enable automated forecasting workflows.</li>
+                <li>Conducted statistical analyses (e.g., correlation analysis, hypothesis testing) to identify drivers of demand fluctuations and operational inefficiencies, delivering actionable insights to stakeholders.</li>
+                <li>Translated complex analytical findings into clear visual narratives and recommendations, enhancing communication with technical and non-technical stakeholders.</li>
+            </ul>
+        </section>
+        <section class="project-section">
+            <h2 class="section-title">Core Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Data Analysis</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">Excel</div>
+                <div class="skill-item">Tableau</div>
+                <div class="skill-item">Geospatial Analysis</div>
+                <div class="skill-item">K-Means Clustering</div>
+                <div class="skill-item">LSTM Models</div>
+                <div class="skill-item">Holts Winter Models</div>
+                <div class="skill-item">Forecasting</div>
+                <div class="skill-item">Exploratory Data Analysis</div>
+                <div class="skill-item">Data Preprocessing</div>
+                <div class="skill-item">Correlation Analysis</div>
+                <div class="skill-item">Python Libraries (e.g., Pandas, NumPy, Matplotlib, Seaborn)</div>
+            </div>
+        </section>
+        <section class="project-section">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h4>Programming & Tools</h4>
+                    <ul class="tech-list">
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>Excel</li>
+                        <li>Tableau</li>
+                        <li>Python Libraries (e.g., Pandas, NumPy, Matplotlib, Seaborn)</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Data Analysis</h4>
+                    <ul class="tech-list">
+                        <li>Exploratory Data Analysis</li>
+                        <li>Data Preprocessing</li>
+                        <li>Geospatial Analysis</li>
+                        <li>Time Series Analysis</li>
+                        <li>Correlation Analysis</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Machine Learning</h4>
+                    <ul class="tech-list">
+                        <li>K-Means Clustering</li>
+                        <li>LSTM Models</li>
+                        <li>Holts Winter Models</li>
+                        <li>Forecasting</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="project-section">
+            <h2 class="section-title">Business Impact</h2>
+            <ul class="impact-list">
+                <li>Improved fleet utilization by 25% through optimized allocation</li>
+                <li>Reduced operational costs by 15% through better resource planning</li>
+                <li>Enhanced customer satisfaction through better service availability</li>
+                <li>Developed predictive models with 85% accuracy for demand forecasting</li>
+            </ul>
+        </section>
+        <section class="project-section">
+            <h2 class="section-title">Expected Project Outcome</h2>
+            <ul class="impact-list">
+                <li>Improved fleet utilization by 25% through optimized allocation and demand forecasting.</li>
+                <li>Enhanced customer satisfaction through better service availability and targeted engagement strategies.</li>
+            </ul>
+        </section>
+        <div class="project-links">
+            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="github-link" target="_blank">View on GitHub</a>
+        </div>
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ramanathan-uma" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Consulting Project - Digital Retail Bank Launch Strategy - Project Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .project-header {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .project-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+            text-align: right;
+            min-width: 220px;
+        }
+        .project-meta p { margin: 0.5rem 0; }
+        .project-section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c3e50;
+        }
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .carousel-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #2c3e50;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #888;
+            margin: 2rem 0;
+        }
+        .tasks-list { list-style: none; padding: 0; }
+        .tasks-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tasks-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .tech-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .tech-category h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tech-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+        }
+        .challenges-list {
+            list-style: none;
+            padding: 0;
+        }
+        .challenges-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .challenges-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .outcomes-list {
+            list-style: none;
+            padding: 0;
+        }
+        .outcomes-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .outcomes-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .impact-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .impact-list li:before {
+            content: "→";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .social-links a {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: #0077b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">Uma Ramanathan</div>
+                <ul class="nav-links">
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="project-detail">
+                <div class="project-header">
+                    <h1 class="project-title">Strategic Consulting Project - Digital Retail Bank Launch Strategy for Client X</h1>
+                    <div class="project-meta">
+                        <p><strong>Organization:</strong> Synpulse Consulting</p>
+                        <p><strong>Location:</strong> United Kingdom</p>
+                        <p><strong>Project Type:</strong> Academic (Strathclyde Business School)</p>
+                        <p><strong>Duration:</strong> Mar 2024 – Apr 2024</p>
+                        <p><strong>Role:</strong> Strategy Consultant</p>
+                    </div>
+                </div>
+                <section class="project-section">
+                    <h2 class="section-title">Project Description</h2>
+                    <p class="project-description">
+                        Supported vendor evaluation and go-to-market strategy for Client X's UK digital bank launch, focusing on BaaS selection, regulatory alignment, and digital-first product design.<br><br>
+                        Performed a comprehensive multi-criteria decision analysis (MCDA) to evaluate 8 Banking-as-a-Service (BaaS) vendors across 13 critical factors; recommended Thought Machine for its modular architecture and long-term strategic alignment. Designed a detailed go-to-market plan, including customer segmentation, product roadmap, and digital channel strategy tailored to UK regulatory frameworks (FCA, PRA, Open Banking). Proposed a cloud-native, API-first architecture to maximize agility, scalability, and compliance. Recommended digital capabilities such as AI-driven personal finance tools, Buy Now Pay Later (BNPL), embedded finance, and ESG-conscious offerings targeting urban professionals aged 25–55.
+                    </p>
+                </section>
+                
+                <section class="project-section">
+                    <h2 class="section-title">Detailed Tasks</h2>
+                    <ul class="tasks-list">
+                        <li>Conducted market research and competitor analysis to identify opportunities and threats in the UK digital banking sector.</li>
+                        <li>Developed a phased go-to-market strategy, including vendor evaluation and BaaS selection.</li>
+                        
+                           </ul>
+                  
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Core Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">Strategic Consulting</div>
+                        <div class="skill-item">Multi-Criteria Decision Analysis</div>
+                        <div class="skill-item">Vendor Evaluation</div>
+                        <div class="skill-item">Go-to-Market Strategy</div>
+                        <div class="skill-item">Regulatory Compliance</div>
+                        <div class="skill-item">Digital Banking</div>
+                        <div class="skill-item">Cloud Architecture</div>
+                        <div class="skill-item">Product Strategy</div>
+                    </div>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Tech Stack</h2>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Analysis & Strategy</h4>
+                            <ul class="tech-list">
+                                <li>MCDA Framework</li>
+                                <li>Vendor Assessment</li>
+                                <li>Market Analysis</li>
+                                <li>Regulatory Framework</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Digital Solutions</h4>
+                            <ul class="tech-list">
+                                <li>Cloud-Native Architecture</li>
+                                <li>API-First Design</li>
+                                <li>AI-Driven Tools</li>
+                                <li>Embedded Finance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Key Challenges & Solutions</h2>
+                    <ul class="challenges-list">
+                        <li><strong>Challenge:</strong> Navigating complex regulatory requirements for digital banking<br><strong>Solution:</strong> Developed a comprehensive compliance roadmap and engaged with legal experts to ensure alignment with UK regulations.</li>
+                        <li><strong>Challenge:</strong> Selecting the right BaaS and technology partners with long-term strategy and market positioning<br><strong>Solution:</strong> Conducted thorough vendor evaluation and scenario analysis to identify optimal partners for scalable growth.</li>
+                        <li><strong>Challenge:</strong> Achieving differentiation in a competitive market<br><strong>Solution:</strong> Designed unique digital-first product features and customer experience enhancements.</li>
+                    </ul>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Project Outcomes</h2>
+                    <ul class="outcomes-list">
+                        <li>Delivered a strategic go-to-market roadmap tailored for the UK digital banking sector, incorporating phased launch stages
+
+                           <li>Proposed a vendor evaluation framework for Banking-as-a-Service (BaaS) and fintech partners to support scalability and regulatory fit</ul>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Business Impact</h2>
+                    <ul class="impact-list">
+                        <li>Provided a strategic foundation for differentiated market entry through informed vendor selection, digital-first product design, and go-to-market planning.</li>
+                        <li>Enhanced customer experience and brand positioning by addressing unmet needs identified through market research.</li>
+                        </ul>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ramanathan-uma" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

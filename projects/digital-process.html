@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Process Improvement - Application UX Redesign - Project Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .project-header {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .project-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+            text-align: right;
+            min-width: 220px;
+        }
+        .project-meta p { margin: 0.5rem 0; }
+        .project-section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c3e50;
+        }
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .tasks-list { list-style: none; padding: 0; }
+        .tasks-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tasks-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .carousel-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #2c3e50;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #888;
+            margin: 2rem 0;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .screenshot-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .tech-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .tech-category h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tech-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+        }
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .impact-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .impact-list li:before {
+            content: "→";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .github-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .github-link:hover {
+            background: #1a252f;
+        }
+        @media (max-width: 768px) {
+            .project-detail { padding: 1rem; }
+            .project-title { font-size: 2rem; }
+            .project-header { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .project-meta { text-align: left; min-width: 0; }
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            margin-top: 3rem;
+            position: relative;
+            left: 0;
+            bottom: 0;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .social-links a {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: #0077b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="project-detail">
+                <div class="project-header">
+                    <h1>Digital Process Improvement - Application UX Redesign</h1>
+                    <p class="project-org">Organization: NoMoBo | Location: Remote | Type: Freelance</p>
+                </div>
+
+                <div class="project-content">
+                    <div class="project-overview">
+                        <h2>Project Overview</h2>
+                        <p>Led the redesign of a mobile application's user experience to improve usability and customer satisfaction. The project involved comprehensive user research, interface design, and implementation of new features to enhance the overall user experience and streamline digital processes.</p>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="skills-section">
+                            <h3>Core Skills</h3>
+                            <ul class="skills-list">
+                                <li>UX Design</li>
+                                <li>UI Design</li>
+                                <li>User Research</li>
+                                <li>Mobile Interface Design</li>
+                                <li>Process Improvement</li>
+                                <li>Stakeholder Management</li>
+                                <li>MVP Development</li>
+                                <li>Mobile Interface Design iOS | Android</li>
+                                <li>Wireframing</li>
+                                <li>Prototyping</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-stack-section">
+                            <h3>Tech Stack</h3>
+                            <div class="tech-categories">
+                                <div class="tech-category">
+                                    <h4>Design Tools</h4>
+                                    <ul>
+                                        <li>Figma</li>
+                                        <li>Adobe XD</li>
+                                        <li>Sketch</li>
+                                        <li>InVision</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-category">
+                                    <h4>Development</h4>
+                                    <ul>
+                                        <li>React Native</li>
+                                        <li>iOS Development</li>
+                                        <li>Android Development</li>
+                                        <li>Mobile UI Components</li>
+                                    </ul>
+                                </div>
+                                <div class="tech-category">
+                                    <h4>Methodologies</h4>
+                                    <ul>
+                                        <li>User-Centered Design</li>
+                                        <li>Agile Development</li>
+                                        <li>Design Thinking</li>
+                                        <li>Usability Testing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-challenges">
+                        <h3>Key Challenges & Solutions</h3>
+                        <ul>
+                            <li>
+                                <strong>Challenge:</strong> Complex user workflows
+                                <br>
+                                <strong>Solution:</strong> Implemented intuitive navigation and simplified user journeys
+                            </li>
+                            <li>
+                                <strong>Challenge:</strong> Cross-platform consistency
+                                <br>
+                                <strong>Solution:</strong> Developed unified design system for iOS and Android
+                            </li>
+                            <li>
+                                <strong>Challenge:</strong> Stakeholder alignment
+                                <br>
+                                <strong>Solution:</strong> Created interactive prototypes for clear communication
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="project-outcomes">
+                        <h3>Project Outcomes</h3>
+                        <ul>
+                            <li>Improved user satisfaction by 45%</li>
+                            <li>Reduced task completion time by 30%</li>
+                            <li>Increased user engagement by 50%</li>
+                            <li>Successfully launched MVP with positive user feedback</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-links">
+                    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ramanathan-uma" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

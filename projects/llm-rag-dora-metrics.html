@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered DORA Metrics Explorer - Project Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .project-header {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        
+        .project-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            display: inline-block;
+            text-align: left;
+            margin-right: auto;
+        }
+        
+        .project-meta {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+            text-align: right;
+            min-width: 220px;
+        }
+        
+        .project-meta p {
+            margin: 0.5rem 0;
+        }
+        
+        .project-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c3e50;
+        }
+        
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        
+        .tasks-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tasks-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .tasks-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .impact-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .impact-list li:before {
+            content: "→";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tech-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .tech-category h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .tech-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: #1a252f;
+        }
+        
+        @media (max-width: 768px) {
+            .project-detail {
+                padding: 1rem;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+            
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-meta {
+                text-align: left;
+                min-width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="project-detail">
+        <div class="project-header">
+            <h1 class="project-title">AI-Powered DORA Metrics Explorer</h1>
+            <div class="project-meta">
+                <p><strong>Organization:</strong> Personal Project</p>
+                <p><strong>Location:</strong> India </p>
+                <p><strong>Project Type:</strong> Individual</p>
+                <p><strong>Duration:</strong> Jun 2025</p>
+                <p><strong>Role:</strong> AI/ML Engineer</p>
+            </div>
+        </div>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Description</h2>
+            <p class="project-description">
+                <strong>Developing a web apps prototype using LLM-RAG architecture to analyze DORA metrics and provide actionable insights for stakeholders.</strong>
+                This tool is expected to process DORA metrics including deployment frequency, lead time, change failure rate, and time to restore service metrics to support analysis, to identify bottlenecks and improvement opportunities. It uses a sophisticated RAG system to provide context-aware recommendations based on industry best practices and historical data.
+            </p>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Detailed Tasks</h2>
+            <ul class="tasks-list">
+                <li>Designed a web app prototype using Python and Flask to provide a user-friendly interface for analyzing DORA metrics. Enable natural language input and display of LLM-generated insights</li>
+                <li>Implemented a basic RAG-based architecture for processing and analyzing DORA metrics</li>
+                
+            </ul>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Detailed Tasks (expected to be completed) </h2>
+            <ul class="tasks-list">
+                <li>Design and implement a full fledged RAG-based architecture for processing and analyzing DORA metrics and generating context-aware recommendations</li>
+                <li>Develop custom embeddings for technical documentation and best practices</li>
+                <li>Create an automated data pipeline for collecting and processing metrics from various sources</li>
+                <li>Implement a recommendation engine using LLM for generating actionable insights</li>
+                 </ul>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Core Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Gen AI</div>
+                <div class="skill-item">Large Language Models</div>
+                <div class="skill-item">Prompt Engineering</div>
+                <div class="skill-item">Machine Learning</div>
+                <div class="skill-item">Data Science</div>
+                <div class="skill-item">Retrieval Augmented Generation</div>
+                <div class="skill-item">LLM Development</div>
+                <div class="skill-item">RAG Architecture</div>
+                <div class="skill-item">Data Pipeline Development</div>
+                <div class="skill-item">Performance Optimization</div>
+                <div class="skill-item">CI/CD Integration</div>
+                <div class="skill-item">Dashboard Development</div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="tech-categories">
+                <div class="tech-category">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>Bootstrap</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Flask</li>
+                        <li>Flask Sessions</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Data & ML</h3>
+                    <ul>
+                        <li>Pandas</li>
+                        <li>CSV Processing</li>
+                        <li>Matplotlib</li>
+                        <li>Scikit-learn</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>LLM & Models</h3>
+                    <ul>
+                        <li>Ollama</li>
+                        <li>LLaMA 3</li>
+                        <li>Sentence Transformers</li>
+                        <li>RAG Architecture</li>
+                        <li>Context-Aware Processing</li>
+                        <li>Vector Embeddings</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Deployment</h3>
+                    <ul>
+                        <li>Flask Web App</li>
+                        <li>Render</li>
+                        <li>Railway</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Business Impact</h2>
+            <ul class="impact-list">
+                <li>Expected reduction in analysis time by 60% through automated DORA metrics processing</li>
+                <li>Enabled natural language data-driven decision making with context-aware insights and recommendations</li>
+            </ul>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Expected Project Outcome</h2>
+            <ul class="impact-list">
+                <li>Enhanced accuracy and efficiency in DORA metrics analysis through advanced LLM and RAG techniques.</li>
+                <li>Improved decision-making capabilities for stakeholders by providing actionable insights derived from complex data sets.</li>
+            </ul>
+        </section>
+
+        <div class="project-links">
+            <a href="https://github.com/UmaRamanathan-DA/AI-Powered-DORA-Metrics-Explorer" class="github-link" target="_blank">View on GitHub</a>
+        </div>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ramanathan-uma" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

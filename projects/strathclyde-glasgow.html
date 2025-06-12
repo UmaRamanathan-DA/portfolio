@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Advisory Consulting Proposal - Project Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .project-header {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .project-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+            text-align: right;
+            min-width: 220px;
+        }
+        .project-meta p { margin: 0.5rem 0; }
+        .project-section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c3e50;
+        }
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .tasks-list { list-style: none; padding: 0; }
+        .tasks-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tasks-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .carousel-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #2c3e50;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #888;
+            margin: 2rem 0;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .tech-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .tech-category h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tech-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+        }
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .impact-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .impact-list li:before {
+            content: "→";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .challenges-list {
+            list-style: none;
+            padding: 0;
+        }
+        .challenges-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .challenges-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .challenges-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        .github-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .github-link:hover {
+            background: #1a252f;
+        }
+        @media (max-width: 768px) {
+            .project-detail { padding: 1rem; }
+            .project-title { font-size: 2rem; }
+            .project-header { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .project-meta { text-align: left; min-width: 0; }
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            margin-top: 3rem;
+            position: relative;
+            left: 0;
+            bottom: 0;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .social-links a {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: #0077b5;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Uma Ramanathan</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="project-detail">
+                <div class="project-header">
+                    <h1 class="project-title">Strategic Advisory Consulting Proposal</h1>
+                    <div class="project-meta">
+                        <p><strong>Organization:</strong> University of Strathclyde,Sustainable Glasgow and Partners</p>
+                        <p><strong>Location:</strong> Glasgow, United Kingdom</p>
+                        <p><strong>Duration:</strong> Aug 2024 – Sep 2024</p>
+                        <p><strong>Type:</strong> Academic</p>
+                    </div>
+                </div>
+                <section class="project-section">
+                    <h2 class="section-title">Project Description</h2>
+                    <p class="project-description">
+                        Developed a strategic advisory proposal to accelerate District Heating Networks, aligning with Net Zero goals. Applied data-driven tools strategy modelling —including MCDA, scenario modelling, and probabilistic risk assessment—to prioritize projects and evaluate impact. Recommended governance models, performance monitoring frameworks, and investment appraisal methods (including causal mapping) to support evidence-based decision-making and long-term sustainability.
+                    </p>
+                    <ul class="tasks-list">
+                        <li>Worked on a strategic advisory proposal for Sustainable Glasgow and partners (including Glasgow City Council and University of Strathclyde) to accelerate District Heating Networks (DHNs) via the Green Infrastructure and Transport Hub (GITH) - aligning with Glasgow's Net Zero ambitions by addressing funding, infrastructure, and governance challenges.</li>
+                        <li>Proposed a phased methodology to assess and prioritize DHN projects based on technical, economic, and social factors.</li>
+                        <li>Recommended data-driven tools such as MCDA frameworks, scenario modelling (System Dynamics), and probabilistic risk assessments to evaluate acceleration potential. Advised on governance structures and stakeholder collaboration models to support coordinated public-private investment efforts.</li>
+                        <li>Suggested PESTEL and SWOT methods for strategic analysis to assess enabling conditions for DHNs in Glasgow.</li>
+                        <li>Suggested cost-benefit and investment appraisal approaches, including Discounted Cash Flow and causal mapping, to attract and de-risk funding sources. Provided strategic recommendations to improve performance monitoring and impact evaluation, supporting the client's long-term organizational objectives.</li>
+                    </ul>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Core Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">Strategic Advisory</div>
+                        <div class="skill-item">Multi-Criteria Decision Analysis (MCDA)</div>
+                        <div class="skill-item">Scenario Modeling</div>
+                        <div class="skill-item">Risk Assessment</div>
+                        <div class="skill-item">Governance Models</div>
+                        <div class="skill-item">Performance Monitoring</div>
+                        <div class="skill-item">Investment Appraisal</div>
+                        <div class="skill-item">Sustainability Planning</div>
+                    </div>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Tech Stack</h2>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Analysis & Modeling</h4>
+                            <ul class="tech-list">
+                                <li>MCDA Tools</li>
+                                <li>Scenario Analysis</li>
+                                <li>Probabilistic Risk Assessment</li>
+                                <li>Causal Mapping</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Business Impact</h4>
+                            <ul class="tech-list">
+                                <li>Governance Framework</li>
+                                <li>Performance Monitoring</li>
+                                <li>Investment Strategy</li>
+                                <li>Sustainability Goals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Key Challenges & Solutions</h2>
+                    <ul class="challenges-list">
+                        <li><strong>Challenge:</strong> Complex governance and stakeholder alignment for DHN acceleration<br><strong>Solution:</strong> Proposed clear governance models and collaborative frameworks to coordinate public-private investment and decision-making.</li>
+                        <li><strong>Challenge:</strong> Uncertainty in project prioritization and impact assessment<br><strong>Solution:</strong> Recommended MCDA, scenario modeling, and probabilistic risk assessment to enable data-driven prioritization and risk mitigation.</li>
+                        <li><strong>Challenge:</strong> Attracting and de-risking funding for large-scale infrastructure<br><strong>Solution:</strong> Recommended investment appraisal methods (including DCF and causal mapping) and cost-benefit analysis to support evidence-based funding decisions.</li>
+                        <li><strong>Challenge:</strong> Ensuring long-term sustainability and performance monitoring<br><strong>Solution:</strong> Proposed performance monitoring frameworks and sustainability planning tools to track progress and align with Net Zero goals.</li>
+                    </ul>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Business Impact</h2>
+                    <ul class="impact-list">
+                        <li>Informed Project Prioritization<br>→ The proposed use of MCDA and scenario modelling is expected to support transparent, data-driven prioritization of DHN projects based on technical, economic, and social factors.</li>
+                        <li>Improved Strategic Planning Under Uncertainty<br>→ Scenario analysis and probabilistic risk assessment are anticipated to help stakeholders plan adaptively, identify long-term risks, and explore viable acceleration pathways.</li>
+                        <li>Stronger Investment Readiness<br>→ Investment appraisal methodologies (e.g. DCF, causal mapping) are expected to support more credible funding strategies by clarifying value, risk, and return for potential investors.</li>
+                        <li>Alignment with Net Zero Goals<br>→ The proposed performance monitoring frameworks are intended to guide future implementation efforts, ensuring DHN initiatives stay aligned with Glasgow's Net Zero targets and deliver measurable impact.</li>
+                    </ul>
+                </section>      
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ramanathan-uma" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

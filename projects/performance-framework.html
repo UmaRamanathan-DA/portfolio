@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Management Framework - Project Details</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .project-header {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .project-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .project-meta {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+            text-align: right;
+            min-width: 220px;
+        }
+        .project-meta p { margin: 0.5rem 0; }
+        .project-section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2c3e50;
+        }
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .tasks-list { list-style: none; padding: 0; }
+        .tasks-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tasks-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .carousel-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #2c3e50;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #888;
+            margin: 2rem 0;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .skill-item {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .tech-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .tech-category h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tech-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+        }
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .impact-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .impact-list li:before {
+            content: "→";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .challenges-list {
+            list-style: none;
+            padding: 0;
+        }
+        .challenges-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .challenges-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .challenges-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        .github-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .github-link:hover {
+            background: #1a252f;
+        }
+        @media (max-width: 768px) {
+            .project-detail { padding: 1rem; }
+            .project-title { font-size: 2rem; }
+            .project-header { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .project-meta { text-align: left; min-width: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Uma Ramanathan</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="project-detail">
+                <div class="project-header">
+                    <h1 class="project-title">Performance Management Framework</h1>
+                    <div class="project-meta">
+                        <p><strong>Organization:</strong> NSAR Project Team, University of Strathclyde</p>
+                        <p><strong>Location:</strong> United Kingdom</p>
+                        <p><strong>Project Type:</strong> Dissertation (Strathclyde Business School)</p>
+                        <p><strong>Duration:</strong> Oct 2024 – December 2024</p>
+                        <p><strong>Role:</strong> Business Analyst / Researcher</p>
+                    </div>
+                </div>
+                <section class="project-section">
+                    <h2 class="section-title">Project Description</h2>
+                    <p class="project-description">
+                        Developed a comprehensive Performance Management System (PMS) for Nunavut Search and Rescue (NSAR) to evaluate and improve the effectiveness of recent SAR interventions. This system integrates logic models, metric causal maps (MCMs), and proposes Bayesian Networks for future expansion. The project aims to bridge traditional Inuit knowledge, operational efficiency, and strategic planning in Arctic SAR missions.
+</p>
+<p>
+                        This project developed a structured Performance Management System (PMS) for Nunavut Search and Rescue (NSAR) to evaluate the effectiveness of operational changes and support data-driven decision-making in Arctic SAR operations.
+
+The PMS is built on pathway-specific logic models that trace the journey from inputs and activities to measurable outcomes and long-term impacts across six critical SAR pathways—ranging from training and resource readiness to community engagement and incident response. By using Metric Causal Maps (MCMs), the framework visualizes relationships between metrics, enabling stakeholders to understand how different factors influence SAR performance.
+
+This pathway-driven approach allows for clear impact measurement, simplifies performance tracking, and helps identify leverage points for focused interventions. It ensures strategic alignment across teams and provides a foundation for advanced analytics, including future integration with Bayesian Networks for predictive modeling and scenario simulation.
+
+                    </p>
+                    <div class="project-links">
+                        <a href="../assets/my-dissertation.pdf" class="github-link" target="_blank">View Dissertation (PDF)</a>
+                    </div>
+                </section>
+
+                <section class="project-section">
+                    <h2 class="section-title">Detailed Tasks</h2>
+                    <ul class="tasks-list">
+                        <li>Researched literature review and stakeholder consultations to identify key NSAR changes expected to bring impact, key SAR goals and challenges.</li>
+                        <li>Designed six Logic Model pathways covering recruitment, training, engagement, interagency trust, resources, and incidents.</li>
+                        <li>Identified the key performance indicators (KPIs) for each pathway.</li>
+                        <li>Developed a hierarchical KPI framework to track and optimize operational inputs, activities, and outcomes.</li>
+                        <li>Developed a comprehensive Data Collection Strategy to gather performance data from various sources.</li>
+                        <li>Developed over 100 performance metrics categorized into Core, Inferred, Composite, and Impact.</li>
+                        <li>Built Metric Causal Maps (MCMs) to visualize dependencies and decision-making levers.</li>
+                        <li>Outlined the key future integrations for this project such as integrating Bayesian Networks for probabilistic forecasting.</li>
+                    </ul>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Core Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">Performance Metrics</div>
+                        <div class="skill-item">Strategic Analysis</div>
+                        <div class="skill-item">Process Optimization</div>
+                        <div class="skill-item">Data Modeling</div>
+                        <div class="skill-item">Bayesian Networks</div>
+                        <div class="skill-item">Business Intelligence</div>
+                        <div class="skill-item">Project Management</div>
+                        <div class="skill-item">Logic Models</div>
+                        <div class="skill-item">Causal Maps</div>
+                        <div class="skill-item">Hierarchical Metric Causal Map</div>
+                    </div>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Tech Stack</h2>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Analysis & Modeling</h4>
+                            <ul class="tech-list">
+                                <li>Bayesian Network Models</li>
+                                <li>Metrics Framework</li>
+                                <li>Process Mapping</li>
+                                <li>Logic Models</li>
+                                <li>Causal Maps</li>
+                                <li>Hierarchical Metric Causal Map</li>
+                                <li>KPI Frameworks</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Tools Used</h4>
+                            <ul class="tech-list">
+                                <li>Figma</li>
+                                <li>Miro</li>
+                                <li>Excel</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Business Impact</h4>
+                            <ul class="tech-list">
+                                <li>Performance Tracking</li>
+                                <li>Strategic Alignment</li>
+                                <li>Decision Support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-section">
+                    <div class="challenges-title">Key Challenges & Solutions</div>
+                    <ul class="challenges-list">
+                        <li><strong>Challenge:</strong> Aligning metrics across diverse SAR operational activities<br><strong>Solution:</strong> Created modular logic models tailored to each SAR pathway for clarity.</li>
+                        <li><strong>Challenge:</strong> Lack of centralized performance data<br><strong>Solution:</strong> Designed an integrated data collection strategy leveraging both primary (community feedback) and secondary (SAR logs) sources.</li>
+                        <li><strong>Challenge:</strong> Balancing traditional knowledge with modern analytics<br><strong>Solution:</strong> Embedded Inuit knowledge within environmental adaptation and training metrics.</li>
+                        <li><strong>Challenge:</strong> Anticipating future risks due to climate change<br><strong>Solution:</strong> Proposed Bayesian Network integration to model environmental variables and their impact on SAR readiness.</li>
+                    </ul>
+                </section>
+                <section class="project-section">
+                    <h2 class="section-title">Business Impact</h2>
+                    <ul class="impact-list">
+                        <li>The PMS enables NSAR to trace impact to specific pathways, measure cross-pathway performance, and identify leverage points through linked metrics and composite indicators.</li>
+                        <li>It supports focused, pathway-driven decision-making and simplifies the management of interventions by highlighting where strategic actions will have the most effect.</li>
+                        <li>It provides all stakeholders with clear visibility into how metrics are connected across pathways, ensuring shared understanding and alignment in performance evaluation and decision-making.</li>
+                        <li>These deliverables form a foundational layer for quantitative reasoning using Bayesian Network models, enabling future extension into predictive analysis, scenario simulation, and risk-informed planning.</li>
+                    </ul>
+                </section>
+                <div class="project-links">
+                    <a href="https://github.com/UmaRamanathan-DA/Performance-Management-Framework" class="github-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/ramanathan-uma" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 
