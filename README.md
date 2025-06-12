@@ -18,7 +18,7 @@ This portfolio includes:
 
 ## 🚀 How to Explore
 
-1. Open the [portfolio page]([https://your-username.github.io/your-portfolio-repo](https://umaramanathan-da.github.io/portfolio))  
+1. Open the [portfolio page]((https://umaramanathan-da.github.io/portfolio))  
 2. Click on any project card to view more details  
 3. Each project contains:
    - Description
