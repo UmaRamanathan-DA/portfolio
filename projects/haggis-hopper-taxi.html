@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haggis Hopper Taxi Business Insights - Project Details</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .project-detail {
             max-width: 1200px;
@@ -158,24 +159,87 @@
             gap: 2rem;
             margin: 2rem 0;
         }
-        .screenshot-item {
-            background: #f8f9fa;
+        .screenshots-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .research-section {
+            border: 2px solid #e9ecef;
             border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            text-align: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
-        .screenshot-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        .research-section:hover {
+            border-color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .caption {
-            font-size: 1rem;
+        .section-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease;
+        }
+        .section-header:hover {
+            background: #e9ecef;
+        }
+        .section-header h4 {
+            margin: 0;
             color: #2c3e50;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-header i {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        .expand-icon {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            transition: transform 0.3s ease;
+        }
+        .research-section.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .research-section.expanded .section-content {
+            max-height: 2000px;
+        }
+        .images-container {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .research-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .research-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
             margin-top: 0.5rem;
+            font-style: italic;
         }
         footer {
             width: 100%;
@@ -214,69 +278,165 @@
                 <p><strong>Role:</strong> Data Analyst/Data Scientist</p>
             </div>
         </div>
+        <div class="project-links" align="center" style="margin-bottom: 2rem;">
+            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" align="center" class="github-link" target="_blank">View on GitHub</a>
+            <a href="https://haggishopper-uramanathan.streamlit.app/" align="center" class="github-link" target="_blank" style="margin-left: 1rem;">View Analysis Dashboard</a>
+            <a href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&:origin=viz_share_link" align="center" class="github-link" target="_blank" style="margin-left: 1rem;">Interactive Tableau Dashboard</a>
+        </div>
+        <div class="project-links" align="center"></div>
         <section class="project-section">
+            
             <h2 class="section-title">Project Description</h2>
             <p class="project-description">
                 Delivered data-driven insights to optimize taxi fleet operations using advanced analytics and machine learning. Performed data preprocessing, exploratory data analysis using Python, SQL, and Tableau to uncover trip patterns, customer behaviour and identify geographic hotspots to optimize fleet allocations. Developed forecasting models and Time Series Analysis to predict demand and identify key drivers influencing demand, supporting resource optimization and continuous process improvement. Developed visualisations trip patterns, demand forecasts, and fleet utilization and other metrics for stakeholders.
-            </p>
+            
+           
+        </p>
         </section>
+       
         <section class="project-section">
-            <h2 class="section-title">Screenshots</h2>
+            <h2 class="section-title">Quantitative Research</h2>
+            <p class="project-description">
+                Conducted comprehensive quantitative analysis using advanced statistical methods and machine learning techniques to uncover patterns in taxi operations, customer behavior, and demand forecasting. The research involved extensive data preprocessing, exploratory data analysis, and predictive modeling to deliver actionable insights for business optimization.
+            </p>
             <div class="screenshots-grid">
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/revenue-analysis.png" target="_blank">
-                        <img src="../images/haggishopper/revenue-analysis.png" alt="Fare Analysis" />
-                    </a>
-                    <div class="caption">Revenue Analysis</div>
+                
+                
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-map-marker-alt"></i>Geospatial Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <div class="images-container">
+                            <!-- Geospatial analysis images will be added here -->
+                        </div>
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/fare-analysis.png" target="_blank">
-                        <img src="../images/haggishopper/fare-analysis.png" alt="Fare Analysis" />
-                    </a>
-                    <div class="caption">Fare Analysis</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-chart-area"></i>Demand Patterns</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <div class="images-container">
+                            <img src="../images/haggishopper/pickup-hourofday.png" alt="Hourly Analysis of demand in pickup locations" class="research-image">
+                            <img src="../images/haggishopper/dropoffpostcode-hour.png" alt="Hourly Analysis of demand by dropoff locations" class="research-image">
+                            <img src="../images/haggishopper/tripcounts-postcode.png" alt="Trip counts between post code areas" class="research-image">
+                        </div>
+                    </div>
+                </div>               
+                
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-table"></i>Descriptive Statistics</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/duration-analysis.png" target="_blank">
-                        <img src="../images/haggishopper/duration-analysis.png" alt="Duration Analysis" />
-                    </a>
-                    <div class="caption">Duration Analysis</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-map-pin"></i>Postcode Demand Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/outlier-analysis.png" target="_blank">
-                        <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier Analysis" />
-                    </a>
-                    <div class="caption">Outlier Analysis</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-chart-bar"></i>Demand Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/pickup-hourofday.png" target="_blank">
-                        <img src="../images/haggishopper/pickup-hourofday.png" alt="Hourly Analysis of demand in pickup locations" />
-                    </a>
-                    <div class="caption">Hourly Analysis of demand in pickup postcodes</div>
+   
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-exclamation-triangle"></i>Outlier Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <div class="images-container">
+                            <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier Analysis" class="research-image">
+                        </div>
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/dropoffpostcode-hour.png" target="_blank">
-                        <img src="../images/haggishopper/dropoffpostcode-hour.png" alt=" Hourly Analysis of demand by dropoff locations" />
-                    </a>
-                    <div class="caption">Hourly Analysis of demand in pickup postcodes</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-clock"></i>Temporal Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/tripcounts-postcode.png" target="_blank">
-                        <img src="../images/haggishopper/tripcounts-postcode.png" alt=" Trip counts between post code areas" />
-                    </a>
-                    <div class="caption">Trip counts between post code areas. How frequently passengers travel from one postcode to another.</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-hourglass-half"></i>Hourly Variations and Outliers in Key Taxi Metrics: Demand, Distance, Duration, Fare, Tip, and Total Amount</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/avg-trip-duration.png" target="_blank">
-                        <img src="../images/haggishopper/avg-trip-duration.png" alt="Average Trip Duration" />
-                    </a>
-                    <div class="caption">Average Trip Duration</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-chart-line"></i>Revenue & Fare Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <div class="images-container">
+                            <img src="../images/haggishopper/revenue-analysis.png" alt="Revenue Analysis" class="research-image">
+                            <img src="../images/haggishopper/fare-analysis.png" alt="Fare Analysis" class="research-image">
+                            <img src="../images/haggishopper/revenue-km.png" alt="Revenue per KM" class="research-image">
+                        </div>
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <a href="../images/haggishopper/revenue-km.png" target="_blank">
-                        <img src="../images/haggishopper/revenue-km.png" alt="Revenue per Km" />
-                    </a>
-                    <div class="caption">Revenue per KM</div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-clock"></i>Trip Duration Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <div class="images-container">
+                            <img src="../images/haggishopper/duration-analysis.png" alt="Duration Analysis" class="research-image">
+                            <img src="../images/haggishopper/avg-trip-duration.png" alt="Average Trip Duration" class="research-image">
+                        </div>
+                    </div>
                 </div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-object-group"></i>Clustering Analysis</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
+                </div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-forward"></i>Hour-Ahead Demand Forecasting</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
+                </div>
+                <div class="research-section">
+                    <div class="section-header">
+                        <h4><i class="fas fa-lightbulb"></i>Business Insights</h4>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="section-content">
+                        <!-- Content goes here -->
+                    </div>
+                </div>
+               
             </div>
         </section>
         <section class="project-section">
@@ -325,13 +485,30 @@
                     </ul>
                 </div>
                 <div class="tech-category">
+                    <h4>Quantitative Research</h4>
+                    <ul class="tech-list">
+                        <li>Descriptive Statistics</li>
+                        <li>Exploratory Data Analysis</li>
+                        <li>Feature Engineering</li>
+                        <li>Outlier Analysis</li>
+                        <li>Correlation Analysis</li>
+                        <li>Heatmaps</li>
+                        <li>Time Series Analysis</li>
+                        <li>Statistical Analysis</li>
+                        <li>Hypothesis Testing</li>
+
+                    </ul>
+                </div>
+                <div class="tech-category">
                     <h4>Data Analysis</h4>
                     <ul class="tech-list">
-                        <li>Exploratory Data Analysis</li>
                         <li>Data Preprocessing</li>
+                        <li>Exploratory Data Analysis</li>
                         <li>Geospatial Analysis</li>
+                        <li>Revenue & Fare Analysis</li>
+                        <li>Trip Duration Analysis</li>
                         <li>Time Series Analysis</li>
-                        <li>Correlation Analysis</li>
+                        <li>Correlation Analysis and Heat Maps</li>                    
                     </ul>
                 </div>
                 <div class="tech-category">
@@ -341,6 +518,8 @@
                         <li>LSTM Models</li>
                         <li>Holts Winter Models</li>
                         <li>Forecasting</li>
+                        <li>Clustering</li>
+                        <li>Regression</li>
                     </ul>
                 </div>
             </div>
@@ -361,9 +540,6 @@
                 <li>Enhanced customer satisfaction through better service availability and targeted engagement strategies.</li>
             </ul>
         </section>
-        <div class="project-links">
-            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="github-link" target="_blank">View on GitHub</a>
-        </div>
         <footer>
             <div class="social-links">
                 <a href="https://github.com/umaramanathan-DA" target="_blank"><i class="fab fa-github"></i></a>
@@ -372,5 +548,117 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Collapsible functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sectionHeaders = document.querySelectorAll('.section-header');
+            
+            sectionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const section = this.closest('.research-section');
+                    const isExpanded = section.classList.contains('expanded');
+                    
+                    // Close all other sections
+                    document.querySelectorAll('.research-section').forEach(s => {
+                        s.classList.remove('expanded');
+                    });
+                    
+                    // Toggle current section
+                    if (!isExpanded) {
+                        section.classList.add('expanded');
+                    }
+                });
+            });
+        });
+
+        // Fullscreen functionality for images
+        document.addEventListener('DOMContentLoaded', function() {
+            const researchImages = document.querySelectorAll('.research-image');
+            
+            researchImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openImageFullscreen(this.src, this.alt);
+                });
+            });
+        });
+
+        function openImageFullscreen(imageSrc, imageAlt) {
+            // Create fullscreen overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'fullscreen-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                cursor: pointer;
+            `;
+            
+            // Create close button
+            const closeBtn = document.createElement('div');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                background: rgba(0,0,0,0.5);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.3s ease;
+            `;
+            
+            // Create image
+            const image = document.createElement('img');
+            image.src = imageSrc;
+            image.alt = imageAlt;
+            image.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            `;
+            
+            // Add elements to overlay
+            overlay.appendChild(closeBtn);
+            overlay.appendChild(image);
+            document.body.appendChild(overlay);
+            
+            // Close functionality
+            const closeFullscreen = () => {
+                document.body.removeChild(overlay);
+                document.body.style.overflow = 'auto';
+            };
+            
+            closeBtn.addEventListener('click', closeFullscreen);
+            overlay.addEventListener('click', closeFullscreen);
+            
+            // Close on escape key
+            const handleEscape = (event) => {
+                if (event.key === 'Escape') {
+                    closeFullscreen();
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+    </script>
 </body>
 </html> 

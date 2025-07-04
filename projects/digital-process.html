@@ -100,26 +100,6 @@
             transform: translateY(-2px);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        .screenshot-item {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            text-align: center;
-        }
-        .screenshot-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-        }
         .tech-stack {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -161,6 +141,32 @@
             position: absolute;
             left: 0;
             font-weight: bold;
+        }
+        .challenges-list {
+            list-style: none;
+            padding: 0;
+        }
+        .challenges-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .challenges-list li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .challenges-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
         .github-link {
             display: inline-block;
@@ -204,9 +210,101 @@
         .social-links a:hover {
             color: #0077b5;
         }
+        .screenshots-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .research-section {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .research-section:hover {
+            border-color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .section-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease;
+        }
+        .section-header:hover {
+            background: #e9ecef;
+        }
+        .section-header h4 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-header i {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        .expand-icon {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            transition: transform 0.3s ease;
+        }
+        .research-section.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .research-section.expanded .section-content {
+            max-height: 2000px;
+        }
+        .images-container {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .research-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .research-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Uma Ramanathan</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <header>
             <nav>
@@ -217,107 +315,239 @@
                 </ul>
             </nav>
         </header>
-
         <main>
-            <section class="project-detail">
+            <div class="project-detail">
                 <div class="project-header">
-                    <h1>Digital Process Improvement - Application UX Redesign</h1>
-                    <p class="project-org">Organization: NoMoBo | Location: Remote | Type: Freelance</p>
-                </div>
-
-                <div class="project-content">
-                    <div class="project-overview">
-                        <h2>Project Overview</h2>
-                        <p>Led the redesign of a mobile application's user experience to improve usability and customer satisfaction. The project involved comprehensive user research, interface design, and implementation of new features to enhance the overall user experience and streamline digital processes.</p>
+                    <h1 class="project-title">Digital Process Improvement - Application UX Redesign</h1>
+                    <div class="project-meta">
+                        <p><strong>Organization:</strong> NoMoBo</p>
+                        <p><strong>Location:</strong> Remote</p>
+                        <p><strong>Project Type:</strong> Freelance</p>
+                        <p><strong>Role:</strong> UX/UI Designer & Consultant</p>
                     </div>
+                </div>
+                <section class="project-section">
+                    <h2 class="section-title">Project Description</h2>
+                    <p class="project-description">
+                        Led the redesign of a mobile application's user experience for both iPad and mobile interfaces to improve usability and boost user adoption. The project involved comprehensive user research, interface design, and implementation of new features to enhance the overall user experience and streamline digital processes across tablet and mobile devices.
+                    </p>
+                    <p class="project-description">
+                        The main objective of this design was to redesign the interface for iPad and mobile to boost user adoption. The project focused on transforming a complex mobile application into an intuitive, user-friendly platform optimized for both tablet and mobile interactions. Through extensive user research and iterative design processes, we identified pain points in the existing user journey and developed solutions that significantly improved user engagement and task completion rates. The redesign incorporated modern UX principles, accessibility standards, and platform-specific design patterns to deliver a seamless experience across iPad and mobile devices that encourages user adoption and retention.
+                    </p>
+                </section>
 
-                    <div class="project-details">
-                        <div class="skills-section">
-                            <h3>Core Skills</h3>
-                            <ul class="skills-list">
-                                <li>UX Design</li>
-                                <li>UI Design</li>
-                                <li>User Research</li>
-                                <li>Mobile Interface Design</li>
-                                <li>Process Improvement</li>
-                                <li>Stakeholder Management</li>
-                                <li>MVP Development</li>
-                                <li>Mobile Interface Design iOS | Android</li>
-                                <li>Wireframing</li>
-                                <li>Prototyping</li>
-                            </ul>
+                <section class="project-section">
+                    <h2 class="section-title">Detailed Tasks</h2>
+                    <ul class="tasks-list">
+                        <li>Conducted comprehensive user research including surveys, interviews, and usability testing to identify pain points and user needs</li>
+                        <li>Created detailed user personas and journey maps to understand user behavior and motivations</li>
+                        <li>Designed wireframes and interactive prototypes using Figma and Adobe XD</li>
+                        <li>Developed a unified design system ensuring consistency across iOS and Android platforms</li>
+                        <li>Implemented responsive design principles for optimal viewing across different screen sizes</li>
+                        <li>Conducted A/B testing to validate design decisions and optimize user flows</li>
+                        <li>Collaborated with development team to ensure design feasibility and smooth implementation</li>
+                        <li>Created comprehensive design documentation and style guides for future development</li>
+                    </ul>
+                </section>
+
+                <section class="project-section">
+                    <h2 class="section-title">Qualitative Research</h2>
+                    <p class="project-description">
+                        Conducted extensive qualitative research to understand user needs, pain points, and behavioral patterns. The research phase included user interviews, usability testing sessions, and ethnographic studies to gather deep insights into user motivations and challenges.
+                    </p>
+                    <div class="screenshots-grid">
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>User Interviews</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="path/to/user-interviews-screenshot.png" alt="User Interviews" class="research-image">
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="tech-stack-section">
-                            <h3>Tech Stack</h3>
-                            <div class="tech-categories">
-                                <div class="tech-category">
-                                    <h4>Design Tools</h4>
-                                    <ul>
-                                        <li>Figma</li>
-                                        <li>Adobe XD</li>
-                                        <li>Sketch</li>
-                                        <li>InVision</li>
-                                    </ul>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>User Personas</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="../images/OGP/Persona.png" alt="User Personas" class="research-image">
                                 </div>
-                                <div class="tech-category">
-                                    <h4>Development</h4>
-                                    <ul>
-                                        <li>React Native</li>
-                                        <li>iOS Development</li>
-                                        <li>Android Development</li>
-                                        <li>Mobile UI Components</li>
-                                    </ul>
+                            </div>
+                        </div>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>Journey Maps</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="../images/OGP/journeymaps_compliance_As-Is.jpg" alt="Journey Maps" class="research-image">
+                                    <img src="../images/OGP/journeymaps_compliance_To-Be.jpg" alt="Journey Maps" class="research-image">
                                 </div>
-                                <div class="tech-category">
-                                    <h4>Methodologies</h4>
-                                    <ul>
-                                        <li>User-Centered Design</li>
-                                        <li>Agile Development</li>
-                                        <li>Design Thinking</li>
-                                        <li>Usability Testing</li>
-                                    </ul>
+                            </div>
+                        </div>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>Empathy Maps</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="../images/OGP/Empathy Map.jpg" alt="Empathy Map 1" class="research-image">                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>User Flows</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="../images/OGP/UserFlowsNewSurvey.png" alt="User Flow 1" class="research-image">
+                                    <img src="../images/OGP/UserFlowsResumingDraftSurvey.jpg" alt="User Flow 2" class="research-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>Usability Testing</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="path/to/usability-testing-screenshot.png" alt="Usability Testing" class="research-image">
                                 </div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <div class="project-challenges">
-                        <h3>Key Challenges & Solutions</h3>
-                        <ul>
-                            <li>
-                                <strong>Challenge:</strong> Complex user workflows
-                                <br>
-                                <strong>Solution:</strong> Implemented intuitive navigation and simplified user journeys
-                            </li>
-                            <li>
-                                <strong>Challenge:</strong> Cross-platform consistency
-                                <br>
-                                <strong>Solution:</strong> Developed unified design system for iOS and Android
-                            </li>
-                            <li>
-                                <strong>Challenge:</strong> Stakeholder alignment
-                                <br>
-                                <strong>Solution:</strong> Created interactive prototypes for clear communication
-                            </li>
-                        </ul>
+                <section class="project-section">
+                    <h2 class="section-title">Design</h2>
+                    <p class="project-description">
+                        Based on the research insights, we developed comprehensive design solutions including wireframes, interactive prototypes, and final design shots that address user needs and improve the overall user experience.
+                    </p>
+                    <div class="screenshots-grid">
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>Wireframes</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="../images/OGP/balsymiq.png" alt="Wireframes" class="research-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>Interactive Prototypes</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="path/to/prototypes-screenshot.png" alt="Interactive Prototypes" class="research-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="research-section">
+                            <div class="section-header">
+                                <h4>Design Shots</h4>
+                                <i class="fas fa-chevron-down expand-icon"></i>
+                            </div>
+                            <div class="section-content">
+                                <div class="images-container">
+                                    <img src="../images/OGP/design-shot-1.jpg" alt="Design Shot 1" class="research-image">
+                                    <img src="../images/OGP/design-shot-2.jpg" alt="Design Shot 2" class="research-image">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </section>
 
-                    <div class="project-outcomes">
-                        <h3>Project Outcomes</h3>
-                        <ul>
-                            <li>Improved user satisfaction by 45%</li>
-                            <li>Reduced task completion time by 30%</li>
-                            <li>Increased user engagement by 50%</li>
-                            <li>Successfully launched MVP with positive user feedback</li>
-                        </ul>
+                <section class="project-section">
+                    <h2 class="section-title">Core Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">User Research</div>
+                        <div class="skill-item">Process Optimization</div>
+                        <div class="skill-item">Workflow Analysis</div>
+                        <div class="skill-item">Stakeholder Management</div>
+                        <div class="skill-item">UX Design</div>
+                        <div class="skill-item">Customer Journey Mapping</div>
+                        <div class="skill-item">Rapid Prototyping</div>
+                        <div class="skill-item">Lean UX</div>
                     </div>
-                </div>
+                </section>
 
-                <div class="project-links">
-                    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-                </div>
-            </section>
+                <section class="project-section">
+                    <h2 class="section-title">Tech Stack</h2>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>UX & Design</h4>
+                            <ul class="tech-list">
+                                <li>Figma</li>
+                                <li>Adobe XD</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Qualitative Research</h4>
+                            <ul class="tech-list">
+                                <li>User Interviews</li>
+                                <li>User Personas</li>
+                                <li>Journey Maps</li>
+                                <li>Empathy Maps</li>
+                                <li>User Flows</li>
+                                <li>Usability Testing</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>User Research Methods</h4>
+                            <ul class="tech-list">
+                                <li>Discovery Workshop</li>
+                                <li>Customer Journey Mapping</li>
+                                <li>Persona Development</li>
+                                <li>Rapid Prototyping</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Process & Methodology</h4>
+                            <ul class="tech-list">
+                                <li>Lean UX</li>
+                                <li>MVP Development</li>
+                                <li>Workshop Facilitation</li>
+                                <li>Process Redesign</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="project-section">
+                    <div class="challenges-title">Key Challenges & Solutions</div>
+                    <ul class="challenges-list">
+                        <li><strong>Challenge:</strong> Complex user workflows<br><strong>Solution:</strong> Implemented intuitive navigation and simplified user journeys through iterative design and user testing</li>
+                        <li><strong>Challenge:</strong> Cross-platform consistency<br><strong>Solution:</strong> Developed unified design system for iOS and Android with platform-specific adaptations</li>
+                        <li><strong>Challenge:</strong> Stakeholder alignment<br><strong>Solution:</strong> Created interactive prototypes for clear communication and gathered feedback throughout the process</li>
+                        <li><strong>Challenge:</strong> Technical constraints<br><strong>Solution:</strong> Collaborated closely with development team to ensure design feasibility and optimal implementation</li>
+                    </ul>
+                </section>
+
+                <section class="project-section">
+                    <h2 class="section-title">Business Impact</h2>
+                    <ul class="impact-list">
+                        <li>Improved user satisfaction by 45% through intuitive interface design and streamlined user flows</li>
+                        <li>Reduced task completion time by 30% by eliminating unnecessary steps and optimizing user journeys</li>
+                        <li>Increased user engagement by 50% through improved visual design and interactive elements</li>
+                        <li>Successfully launched MVP with positive user feedback and high adoption rates</li>
+                        <li>Established scalable design system for future feature development and maintenance</li>
+                    </ul>
+                </section>
+                
+            </div>
         </main>
 
         <footer>
@@ -328,5 +558,164 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Collapsible functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sectionHeaders = document.querySelectorAll('.section-header');
+            
+            sectionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const section = this.closest('.research-section');
+                    const isExpanded = section.classList.contains('expanded');
+                    
+                    // Close all other sections
+                    document.querySelectorAll('.research-section').forEach(s => {
+                        s.classList.remove('expanded');
+                    });
+                    
+                    // Toggle current section
+                    if (!isExpanded) {
+                        section.classList.add('expanded');
+                    }
+                });
+            });
+        });
+
+        // Fullscreen functionality for images
+        document.addEventListener('DOMContentLoaded', function() {
+            const researchImages = document.querySelectorAll('.research-image');
+            
+            researchImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openImageFullscreen(this.src, this.alt);
+                });
+            });
+        });
+
+        function openImageFullscreen(imageSrc, imageAlt) {
+            // Create fullscreen overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'fullscreen-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                cursor: pointer;
+            `;
+            
+            // Create close button
+            const closeBtn = document.createElement('div');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                background: rgba(0,0,0,0.5);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.3s ease;
+            `;
+            
+            // Create image
+            const image = document.createElement('img');
+            image.src = imageSrc;
+            image.alt = imageAlt;
+            image.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            `;
+            
+            // Add elements to overlay
+            overlay.appendChild(closeBtn);
+            overlay.appendChild(image);
+            document.body.appendChild(overlay);
+            
+            // Close functionality
+            const closeFullscreen = () => {
+                document.body.removeChild(overlay);
+                document.body.style.overflow = 'auto';
+            };
+            
+            closeBtn.addEventListener('click', closeFullscreen);
+            overlay.addEventListener('click', closeFullscreen);
+            
+            // Close on escape key
+            const handleEscape = (event) => {
+                if (event.key === 'Escape') {
+                    closeFullscreen();
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Legacy functions (keeping for compatibility)
+        function openFullscreen(imageType) {
+            // This function is kept for compatibility but not used in new layout
+            console.log('Legacy function called:', imageType);
+        }
+
+        function showMultipleImages(overlay, images, imageType) {
+            // This function is kept for compatibility but not used in new layout
+            console.log('Legacy function called:', images, imageType);
+        }
+
+        function changeImage(direction) {
+            // This function is kept for compatibility but not used in new layout
+            console.log('Legacy function called:', direction);
+        }
+
+        function closeFullscreen() {
+            // This function is kept for compatibility but not used in new layout
+            console.log('Legacy function called');
+        }
+
+        function getImageTitle(imageType) {
+            // This function is kept for compatibility but not used in new layout
+            const titles = {
+                'user-interviews': 'User Interviews & Feedback Analysis',
+                'personas': 'User Personas & Behavioral Patterns',
+                'journey-maps': 'User Journey Maps & Pain Points',
+                'usability-testing': 'Usability Testing Results',
+                'wireframes': 'Wireframes & Design Iterations',
+                'prototypes': 'Interactive Prototypes & User Flows'
+            };
+            return titles[imageType] || 'Research Screenshot';
+        }
+
+        function getImageDescription(imageType) {
+            // This function is kept for compatibility but not used in new layout
+            const descriptions = {
+                'user-interviews': 'Comprehensive user interviews conducted with target audience to understand needs, pain points, and expectations. Analysis revealed key insights that informed design decisions.',
+                'personas': 'Detailed user personas created based on research findings, including demographic information, goals, motivations, and behavioral patterns.',
+                'journey-maps': 'User journey maps showing the complete user experience from initial contact to task completion, highlighting pain points and opportunities for improvement.',
+                'usability-testing': 'Results from usability testing sessions showing user behavior, task completion rates, and areas requiring design optimization.',
+                'wireframes': 'Initial wireframes and design iterations showing the evolution of the interface design from concept to final implementation.',
+                'prototypes': 'Interactive prototypes demonstrating user flows, navigation patterns, and key interactions within the application.'
+            };
+            return descriptions[imageType] || 'Research and design documentation from the UX redesign project.';
+        }
+    </script>
 </body>
 </html> 
