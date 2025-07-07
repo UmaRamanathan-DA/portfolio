@@ -39,7 +39,7 @@ This portfolio includes:
 
 ## 👤 About Me
 
-I'm an active leaner in this space of tech, aiming to build data-driven and user-focused solutions, using data analytics, UI/UX design, and AI integration, I enjoy turning ideas into real-world tools and insights.
+I'm an active learner in this space of tech, aiming to build data-driven and user-focused solutions, using data analytics, UI/UX design, and AI integration, I enjoy turning ideas into real-world tools and insights.
 
 ---
 
