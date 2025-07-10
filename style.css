@@ -8,14 +8,14 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
+    color: #e5e7eb;
+    background-color: #111827;
 }
 
 /* Header and Navigation */
 .header {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #1f2937;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     position: fixed;
     width: 100%;
     top: 0;
@@ -34,7 +34,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2563eb;
+    color: #f9fafb;
 }
 
 .nav-links {
@@ -45,13 +45,13 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #d1d5db;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #2563eb;
+    color: #60a5fa;
 }
 
 /* Main content */
@@ -61,7 +61,7 @@ main {
 
 /* Hero section */
 .hero {
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: white;
     padding: 6rem 2rem;
     text-align: center;
@@ -88,6 +88,7 @@ main {
     text-align: center;
     margin-bottom: 3rem;
     font-size: 2.5rem;
+    color: #60a5fa;
 }
 
 .projects-grid {
@@ -101,10 +102,11 @@ main {
 
 .project-card {
     width: 100%;
-    background-color: #ffffff;
+    background-color: #1f2937;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    border: 1px solid #374151;
 }
 
 .project-card:hover {
@@ -115,7 +117,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 1rem;
+  padding: 1rem;
     width: 100%;
 }
 
@@ -151,26 +153,26 @@ main {
 
 .project-title {
     margin: 0 0 0.5rem 0;
-    font-size: 1.4rem;
-    color: #2c3e50;
+    font-size: 1.8rem;
+    color: #f9fafb;
 }
 
 .project-org {
     margin: 0 0 1rem 0;
     font-size: 0.9rem;
-    color: #666;
+    color: #9ca3af;
 }
 
 .project-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: #c0c4cd;
 }
 
 .project-description b {
     display: block;
     margin-bottom: 0.5rem;
-    color: #1e40af;
+    color: #60a5fa;
 }
 
 .project-image-carousel {
@@ -184,7 +186,7 @@ main {
     height: 400px;
     overflow: hidden;
     border-radius: 6px;
-    background-color: #f8f9fa;
+    background-color: #374151;
 }
 
 .carousel-slide {
@@ -196,7 +198,7 @@ main {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    background-color: #f8f9fa;
+    background-color: #374151;
 }
 
 .carousel-controls {
@@ -239,16 +241,16 @@ main {
 }
 
 .skills-section {
-    background-color: #f8fafc;
+    background-color: #16212f;
     padding: 0.75rem;
     border-radius: 6px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #4b5563;
 }
 
 .skills-section h4, .tech-stack-section h4 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: #1e40af;
+    color: #60a5fa;
 }
 
 .skills-list {
@@ -259,18 +261,18 @@ main {
 }
 
 .skills-list li {
-    background-color: #e5e7eb;
-    color: #374151;
+    background-color: #263143;
+    color: #e5e7eb;
     padding: 0.2rem 0.5rem;
     border-radius: 9999px;
     font-size: 0.8rem;
 }
 
 .tech-stack-section {
-    background-color: #f8fafc;
+    background-color: #16212f;
     padding: 0.75rem;
     border-radius: 6px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #4b5563;
 }
 
 .tech-categories {
@@ -280,16 +282,16 @@ main {
 }
 
 .tech-category {
-    background-color: #fff;
+    background-color: #16212f;
     padding: 0.5rem;
     border-radius: 4px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #6b7280;
 }
 
 .tech-category h5 {
     font-size: 0.9rem;
     margin-bottom: 0.35rem;
-    color: #1e40af;
+    color: #60a5fa;
 }
 
 .tech-category ul {
@@ -299,7 +301,7 @@ main {
 }
 
 .tech-category ul li {
-    color: #4b5563;
+    color: #d1d5db;
     font-size: 0.8rem;
     margin-bottom: 0.2rem;
     padding-left: 0.75rem;
@@ -318,32 +320,70 @@ main {
     gap: 0.75rem;
     margin-top: 0.75rem;
     padding-top: 0.75rem;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid #4b5563;
 }
 
 .project-link {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #2563eb;
-    color: white;
+    padding: 0.75rem 1.5rem;
+    background-color: #ffffff;
+    color: #1f2937;
     text-decoration: none;
     border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
 .project-link:hover {
-    background-color: #1e40af;
+    background-color: #f3f4f6;
+}
+
+/* View Details Link Styles */
+.view-details-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;  
+    border: none;
+}
+
+.view-details-link:hover {
+    background-color: #f3f4f6;
+}
+
+/* GitHub Link Styles */
+.github-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #3d66a7;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.github-link:hover {
+    background-color: #224081;
 }
 
 /* About section */
 .about {
     text-align: center;
     padding: 4rem 2rem;
-    background-color: #f8f9fa;
+    background-color: #1f2937;
 }
 
 .about h2 {
-    color: #1e40af;
+    color: #60a5fa;
     margin-bottom: 2rem;
     font-size: 2rem;
     font-weight: 600;
@@ -354,11 +394,11 @@ main {
     margin: 2rem auto;
     line-height: 1.8;
     font-size: 1.1rem;
-    color: #4b5563;
-    background-color: #ffffff;
+    color: #d1d5db;
+    background-color: #374151;
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .about-content p {
@@ -368,7 +408,7 @@ main {
 /* Contact section */
 .contact {
     padding: 4rem 2rem;
-    background-color: #f8f9fa;
+    background-color: #1f2937;
 }
 
 .contact-content {
@@ -380,7 +420,7 @@ main {
 .contact-section {
     text-align: center;
     padding: 4rem 2rem;
-    background-color: #f8f9fa;
+    background-color: #1f2937;
 }
 
 .contact-info {
@@ -396,24 +436,24 @@ main {
 }
 
 .contact-info a {
-    color: #2563eb;
+    color: #60a5fa;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
-    color: #1e40af;
+    color: #3b82f6;
     text-decoration: underline;
 }
 
 .contact-info strong {
-    color: #1e40af;
+    color: #60a5fa;
     margin-right: 0.5rem;
 }
 
 /* Footer */
 .footer {
-    background-color: #1e40af;
+    background-color: #111827;
     color: white;
     text-align: center;
     padding: 2rem;
@@ -469,7 +509,7 @@ main {
 
 /* Common section styles */
 section h2 {
-    color: #000000;
+    color: #f9fafb;
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 2rem;
@@ -479,7 +519,7 @@ section h2 {
 .projects h2,
 .about h2,
 .contact-section h2 {
-    color: #000000;
+    color: #f9fafb;
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 2rem;
@@ -497,8 +537,8 @@ section h2 {
 
 .project-nav {
     padding: 4rem 2rem;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    background-color: #1f2937;
+    border-bottom: 1px solid #374151;
 }
 
 .nav-grid {
@@ -510,14 +550,14 @@ section h2 {
 }
 
 .nav-item {
-    background-color: #f8f9fa;
+    background-color: #374151;
     padding: 2rem;
     border-radius: 1rem;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #4b5563;
     position: relative;
     overflow: hidden;
 }
@@ -529,14 +569,14 @@ section h2 {
     left: 0;
     width: 4px;
     height: 100%;
-    background-color: #1e40af;
+    background-color: #60a5fa;
     transition: width 0.3s ease;
 }
 
 .nav-item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-color: #1e40af;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-color: #60a5fa;
 }
 
 .nav-item:hover::before {
@@ -544,7 +584,7 @@ section h2 {
 }
 
 .nav-item h3 {
-    color: #1e40af;
+    color: #60a5fa;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
@@ -553,7 +593,7 @@ section h2 {
 }
 
 .nav-item p {
-    color: #4b5563;
+    color: #d1d5db;
     font-size: 1rem;
     margin: 0;
     padding-left: 1rem;
@@ -582,21 +622,21 @@ section h2 {
 .business-impact {
     margin-top: 1.25rem;
     padding: 1rem 0 1rem 1.25rem;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    background: linear-gradient(145deg, rgba(96, 165, 250, 0.1), rgba(59, 130, 246, 0.05));
     border-radius: 8px;
-    border: 1px solid rgba(76, 175, 80, 0.18);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     position: relative;
     overflow: visible;
     width: 100%;
-    max-width: 100%;
+  max-width: 100%;
     box-sizing: border-box;
     display: block;
 }
 
 .business-impact h4 {
-    color: #4CAF50;
+    color: #60a5fa;
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
     font-weight: 600;
@@ -612,7 +652,7 @@ section h2 {
 }
 
 .business-impact li {
-    color: #333333;
+    color: #d1d5db;
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 0.5rem;
@@ -623,7 +663,7 @@ section h2 {
 
 .business-impact li:before {
     content: "→";
-    color: #4CAF50;
+    color: #60a5fa;
     position: absolute;
     left: 0;
     font-weight: bold;
