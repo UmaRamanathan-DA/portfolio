@@ -3,698 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Uma Ramanathan</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Uma Ramanathan - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project_pages/UX_project_card.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">Uma Ramanathan</div>
-            <ul class="nav-links">
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero" id="projects">
-            <div class="hero-content">
-                <h1>View my projects</h1>
-                <p>Aspiring AI/ML Engineer | Data Scientist | AI Product Manager</p>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="images/profile pic 1.jpg" alt="Uma Ramanathan">
+                </div>
+                <h1 class="name">Uma Ramanathan</h1>
+                <p class="title">Aspiring Product Manager, Generative AI</p>
             </div>
-        </section>
 
-        <section class="project-nav">
-            <div class="nav-grid">
-                <a href="#gen-ai-projects" class="nav-item">
-                    <h3>Gen AI Projects</h3>
-                    <p>AI, Large Language Models, RAG & Machine Learning</p>
-                </a>
-                <a href="#data-projects" class="nav-item">
-                    <h3>Data Analysis & Science</h3>
-                    <p>Analytics & ML Projects</p>
-                </a>
-                <a href="#consulting-projects" class="nav-item">
-                    <h3>Consulting Projects</h3>
-                    <p>Strategic Advisory</p>
-                </a>
-                <a href="#product-projects" class="nav-item">
-                    <h3>Product | Digital | User Experience Design</h3>
-                    <p>Product, Process, User Experience, Rapid Prototyping Projects</p>
-                </a>
+            <div class="social-links">                
+                <a alt="LinkedIn" title="LinkedIn" href="https://www.linkedin.com/in/ramanathan-uma" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a alt="GitHub" title="GitHub" href="https://github.com/umaramanathan-DA" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                <a alt="Behance" title="Behance" href="#" class="social-link"><i class="fab fa-behance"></i></a>
             </div>
-        </section>
 
-        <section id="gen-ai-projects" class="projects">
-            <h2 style="color: #60a5fa;">Gen AI Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-thumbnail">
-                                <img src="images/llm-dora-thumbnail-1.png" alt="LLM DORA Explorer Thumbnail" class="thumbnail-image">
-                            </div>
-                            <div class="project-info">
-                                <h3 class="project-title">AI-Powered DORA Metrics Analyzer</h3>
-                                <p class="project-org">DevOps Analytics | Personal Project</p>
-                                <div class="project-description">
-                                    <p><strong>Developing a web apps prototype using LLM-RAG architecture in Python, Flask to enable analysis of DORA metrics using natural language input and prompts and provide actionable insights for stakeholders.</strong> Aiming to use RAG-LLM models to provide context-aware recommendations based on industry best practices and historical data.</p>
-                                </div>
-                            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link"><i class="fas fa-home"></i> About Me </a></li>
+                    <li><a href="#services" class="nav-link"><i class="fas fa-briefcase"></i> My Area of Expertise</a></li>
+                    <li><a href="#work" class="nav-link"><i class="fas fa-code"></i> My Work</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>           
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section id="hero" class="hero-section">
+                <div class="hero-content">                    
+                    <h2 class="hero-subtitle">Aspiring Product Manager, Generative AI, Data Science, Machine Learning | Data Visualisation | UX</h2>
+                    <p class="hero-description">
+                        With a background in data management and analysis, product and UX, I want to pivot in AI with focus in Generative, Explainable AI, and Agent Worflows driven products. I am actively learning in this space and have hands-on projects in machine learning, and data science. I enjoy building practical tools that combine data insights with emerging technologies like Generative AI. I'm working in Python, Analytics, Generative AI and LLM integrations, creating prototypes and solutions that are both user-friendly and impactful.
+                    </p>
+                </div>                
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="services-section">
+                <div class="section-header">
+                    <h2>My Area of Expertise and Skills</h2>
+                    <p>My core skills are in data science, product and UI/UX design, and rapid prototyping. Below listed projects are a mix of these skills.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
                         </div>
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Gen AI</li>
-                                    <li>Large Language Models</li>
-                                    <li>Prompt Engineering</li>
-                                    <li>Machine Learning</li>
-                                    <li>Data Science</li>
-                                    <li>Retrieval Augmented Generation</li>
-                                    <li>LLM Development</li>
-                                    <li>RAG Architecture</li>
-                                    <li>Data Pipeline Development</li>
-                                    <li>Performance Optimization</li>
-                                    <li>CI/CD Integration</li>
-                                    <li>Dashboard Development</li>
-                                </ul>
-                            </div>
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Frontend</h5>
-                                        <ul>
-                                            <li>HTML5</li>
-                                            <li>CSS3</li>
-                                            <li>Bootstrap</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Backend</h5>
-                                        <ul>
-                                            <li>Python</li>
-                                            <li>Flask</li>
-                                            <li>Flask Sessions</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Data & ML</h5>
-                                        <ul>
-                                            <li>Pandas</li>
-                                            <li>CSV Processing</li>
-                                            <li>Matplotlib</li>
-                                            <li>Scikit-learn</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>LLM & Models</h5>
-                                        <ul>
-                                            <li>Ollama</li>
-                                            <li>LLaMA 3</li>
-                                            <li>Sentence Transformers</li>
-                                            <li>RAG Architecture</li>
-                                            <li>Context-Aware Processing</li>
-                                            <li>Vector Embeddings</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Deployment</h5>
-                                        <ul>
-                                            <li>Flask Web App</li>
-                                            <li>Render</li>
-                                            <li>Railway</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3>Data Science</h3>
+                        <p>Python, Machine Learning, Forecasting Methods, Time Series Analysis</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-desktop"></i>
                         </div>
-                        
-                        <div class="project-links">
-                            <a href="projects/llm-rag-dora-metrics.html" class="view-details-link" target="_blank">View Details</a>
+                        <h3>UX Design and Product Ideation</h3>
+                        <p>Design Thinking, Figma, Rapid Prototyping, Mobile App, Website Design</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-desktop"></i>
                         </div>
+                        <h3>Rapid Prototyping</h3>
+                        <p>Mobile App, Website Design</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>Data Analysis</h3>
+                        <p>Exploratory Data Analysis, Statistical Analysis, Machine Learning</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Data Visualisation</h3>
+                        <p>Building interactive Dashboards, Tableau</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Advisory Consulting</h3>
+                        <p>Performance Frameworks, Product Management</p>
                     </div>
                 </div>
+            </section>
+
+            <!-- My Work Section -->
+            <section id="work" class="my-work-section">
+                <div class="section-header">
+                    <h2>My Work</h2>
+                    <p>Combination of academic assignments, capstone projects and hands-on practice projects focusing on Data Science and AI</p>
+                </div>
+                
+            <!-- Project Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="data-science">Data Science & Analytics</button>
+                <button class="filter-btn" data-filter="data-viz">Data Visualisation</button>
+                <button class="filter-btn" data-filter="gen-ai">Generative AI</button>
+                <button class="filter-btn" data-filter="teardown">Website Teardown & UX Audit</button>
+                <button class="filter-btn" data-filter="product">Product</button>                
+                <button class="filter-btn" data-filter="consulting">Consulting</button>
             </div>
-        </section>
-
-        <section id="data-projects" class="projects">
-            <h2 style="color: #60a5fa;">Data Analysis & Data Science Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-thumbnail">
-                                <img src="images/haggishopper/haggis-hopper-thumbnail.png" alt="Haggis Hopper Taxi Insights Thumbnail" class="thumbnail-image">
-                            </div>
-                            <div class="project-info">
-                                <h3 class="project-title">Haggis Hopper Taxi Business Insights</h3>
-                                <p class="project-org">Kin Karta Consulting | Urban Transportation Analytics | United Kingdom | Academic Project (Strathclyde Business School)</p>
-                                <div class="project-description">
-                                    <p><strong>Delivered data-driven insights to optimize taxi fleet operations using advanced analytics and machine learning.</strong>
-                                    Performed data preprocessing, exploratory data analysis using Python, SQL, and Tableau to uncover trip patterns, customer behaviour and identify geographic hotspots to optimize fleet allocations. 
-                                       Developed forecasting models and Time Series Analysis to predict demand and identify key drivers influencing demand, supporting resource optimization and continuous process improvement. Developed visualisations trip patterns, demand forecasts, and fleet utilization and other metrics for stakeholders.</p>
-                                </div>
-                            </div>
+                <div class="work-grid">
+                    <div class="work-card" data-category="data-science data-viz">
+                        <div class="work-header">
+                            <h3>Haggis Hopper Taxi Business Insights</h3>
+                            <span class="work-company">Kin Karta Consulting . Urban Transport . Strathclyde University . Group Project . United Kingdom</span>                                                  
                         </div>
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Data Analysis</li>
-                                    <li>Time Series Analysis</li>
-                                    <li>Machine Learning</li>
-                                    <li>Data Visualization</li>
-                                    <li>SQL</li>
-                                    <li>Python</li>
-                                    <li>Tableau</li>
-                                    <li>Geospatial Analysis</li>
-                                    <li>K-Means Clustering</li>
-                                    <li>LSTM Models</li>
-                                    <li>Holts Winter Models</li>
-                                    <li>Forecasting</li>
-                                    <li>Exploratory Data Analysis</li>
-                                    <li>Data Preprocessing</li>
-                                    <li>Correlation Analysis</li>
-                                </ul>
-                            </div>
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Programming & Tools</h5>
-                                        <ul>
-                                            <li>Python</li>
-                                            <li>SQL</li>
-                                            <li>Excel</li>
-                                            <li>Tableau</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Data Analysis</h5>
-                                        <ul>
-                                            <li>Exploratory Data Analysis</li>
-                                            <li>Data Preprocessing</li>
-                                            <li>Geospatial Analysis</li>
-                                            <li>Time Series Analysis</li>
-                                            <li>Correlation Analysis</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Machine Learning</h5>
-                                        <ul>
-                                            <li>K-Means Clustering</li>
-                                            <li>LSTM Models</li>
-                                            <li>Holts Winter Models</li>
-                                            <li>Forecasting</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Optimized taxi fleet operations by uncovering demand patterns, customer behavior, and geographic hotspots using advanced analytics.
+                                Built forecasting models and performed time series analysis to predict demand and drive data-informed resource allocation.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/haggis-hopper-taxi.html" class="view-details-link" target="_blank">View Details</a>
-                            <a href="https://haggishopper-uramanathan.streamlit.app/" class="view-details-link" align="center" class="github-link" target="_blank" style="margin-left: 1rem;">View Analysis Dashboard</a>
-                            <a href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&:origin=viz_share_link" class="view-details-link" align="center" class="github-link" target="_blank" style="margin-left: 1rem;">Interactive Tableau Dashboard</a>
+                        <div class="work-actions">
+                            <a href="project_pages/haggis-hopper.html" target="_blank" class="work-btn">View Details</a>                            
                         </div>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-thumbnail">
-                                <img src="images/loantap/credit-risk-thumbnail.png" alt="Credit Risk Prediction Thumbnail" class="thumbnail-image">
-                            </div>
-                            <div class="project-info">
-                                <h3 class="project-title">Credit Risk Prediction</h3>
-                                <p class="project-org">Loan Tap | Fintech Industry | Academic Project (Scaler)</p>
-                                <div class="project-description">
-                                    <p><strong>Developed a machine learning model to predict credit risk and optimize loan approval processes.</strong> The system analyzes customer data, credit history, and market trends to assess default risk and streamline loan approval decisions. It helps financial institutions reduce risk while improving customer experience.</p>
-                                </div>
-                            </div>
+                    
+                    <div class="work-card" data-category="data-science">
+                        <div class="work-header">
+                            <h3>Credit Risk Prediction</h3>
+                            <span class="work-company">Loan Tap . Fintech Industry . Scaler Academy . Individual Assignment </span>                            
                         </div>
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Machine Learning</li>
-                                    <li>Feature Engineering</li>
-                                    <li>Risk Assessment</li>
-                                    <li>Logistic Regression</li>
-                                    <li>Model Evaluation</li>
-                                    <li>Data Analysis</li>
-                                    <li>Python</li>
-                                    <li>Statistical Analysis</li>
-                                    
-                                    <li>Classification Models</li>
-                                    <li>Data Preprocessing</li>
-                                    <li>Model Validation</li>
-                                    <li>Business Intelligence</li>
-                                </ul>
-                            </div>
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Programming & Tools</h5>
-                                        <ul>
-                                            <li>Python</li>
-                                            <li>SQL</li>
-                                            <li>Excel</li>
-                                            
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Data Analysis</h5>
-                                        <ul>
-                                            <li>Exploratory Data Analysis</li>
-                                            <li>Data Preprocessing</li>
-                                            <li>Statistical Analysis</li>
-                                            <li>Feature Engineering</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Machine Learning</h5>
-                                        <ul>
-                                            <li>Classification Models</li>
-                                            <li>Model Validation</li>
-                                            <li>Credit Scoring</li>
-                                            <li>Risk Assessment</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Developed a machine learning model to predict credit risk and optimize loan approval processes. The system analyzes customer data, credit history, and market trends to assess default risk and streamline loan approval decisions. It helps financial institutions reduce risk while improving customer experience.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/credit-risk-prediction.html" class="view-details-link" target="_blank">View Details</a>
+                        <div class="work-actions">
+                            <a href="project_pages/credit-risk.html" target="_blank" class="work-btn">View Details</a>
+                            
                         </div>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-thumbnail">
-                                <img src="images/walmartblackfriday/walmart_thumbnail.png" alt="Walmart Black Friday Analysis Thumbnail" class="thumbnail-image">
-                            </div>
-                            <div class="project-info">
-                                <h3 class="project-title">Walmart Black Friday Sales Analysis</h3>
-                                <p class="project-org">Walmart | Ecommerce Industry | Academic Project (Scaler)</p>
-                                <div class="project-description">
-                                    <p><strong>Conducted comprehensive analysis of Walmart's Black Friday sales data to identify purchasing patterns, customer behavior, and revenue optimization opportunities.</strong> Performed exploratory data analysis to uncover key insights about product categories, customer demographics, and sales trends. Developed interactive visualizations and dashboards to present findings to stakeholders, enabling data-driven decision making for future marketing campaigns and inventory planning.</p>
-                                </div>
-                            </div>
+                    
+                    <div class="work-card" data-category="data-science">
+                        <div class="work-header">
+                            <h3>Walmart Black Friday Sales Analysis</h3>
+                            <span class="work-company">Scaler Academy . Individual Assignment  </span>
+                            <span class="work-details">Walmart . Ecommerce Industry</span>                            
                         </div>
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Data Analysis</li>
-                                    <li>Exploratory Data Analysis</li>
-                                    <li>Data Visualization</li>
-                                    <li>Statistical Analysis</li>
-                                    <li>Python</li>
-                                    <li>Pandas</li>
-                                    <li>Matplotlib</li>
-                                    <li>Seaborn</li>
-                                    <li>Customer Behavior Analysis</li>
-                                    <li>Sales Analytics</li>
-                                    <li>Business Intelligence</li>
-                                    <li>Dashboard Development</li>
-                                </ul>
-                            </div>
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Programming & Tools</h5>
-                                        <ul>
-                                            <li>Python</li>
-                                            <li>Jupyter Notebook</li>
-                                            <li>Pandas</li>
-                                            <li>NumPy</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Data Visualization</h5>
-                                        <ul>
-                                            <li>Matplotlib</li>
-                                            <li>Seaborn</li>
-                                            <li>Plotly</li>
-                                            <li>Interactive Dashboards</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Analysis</h5>
-                                        <ul>
-                                            <li>Exploratory Data Analysis</li>
-                                            <li>Statistical Analysis</li>
-                                            <li>Customer Segmentation</li>
-                                            <li>Sales Analytics</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Conducted comprehensive analysis of Walmart's Black Friday sales data to identify purchasing patterns, customer behavior, and revenue optimization opportunities. Performed exploratory data analysis to uncover key insights about product categories, customer demographics, and sales trends. Developed interactive visualizations and dashboards to present findings to stakeholders, enabling data-driven decision making for future marketing campaigns and inventory planning.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/walmart_project.html" class="view-details-link" target="_blank">View Details</a>
-                            <a href="https://github.com/UmaRamanathan-DA/walmartblackfriday" class="view-details-link" target="_blank">View on GitHub</a>
-                            <a href="https://walmartblackfriday-umaramanathan.streamlit.app/" class="view-details-link" target="_blank" style="margin-left: 1rem;">View Analysis Dashboard</a>
+                        <div class="work-actions">
+                            <a href="project_pages/walmart-analysis.html" target="_blank" class="work-btn">View Details</a>                            
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="consulting-projects" class="projects">
-            <h2 style="color: #60a5fa;">Consulting Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-info" style="width: 100%;">
-                                <h3 class="project-title">Performance Management System for measuring the Impact of NSAR Changes in SAR Operations for Nunavut Search and Rescue</h3>
-                                <p class="project-org">NSAR Academic Project Team | United Kingdom | Academic Project (Strathclyde Business School)</p>
-                                <div class="project-description">
-                                    <p><strong>Translated the NSAR client's causal maps into a structured, pathway-based metrics framework aligning operational processes with strategic objectives.</strong> Developed hierarchical metrics including core operational indicators, inferred/composite measures, and high-level impact metrics to enable further quantitative analysis using Bayesian Network models and comprehensive process and impact measurement across key SAR operational domains. This approach facilitated targeted performance tracking and data-driven decision-making.</p>
-                                </div>
-                            </div>
+                    
+                    <div class="work-card" data-category="gen-ai">
+                        <div class="work-header">
+                            <h3>AI-Powered DORA Metrics Analyzer: DevOps Analytics</h3>
+                            <span class="work-company">Personal Project</span>
+                            <span class="work-details">Software Engineering . DevOps . Personal Project</span>                            
                         </div>
-
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Performance Metrics</li>
-                                    <li>Strategic Analysis</li>
-                                    <li>Process Optimization</li>
-                                    <li>Data Modeling</li>
-                                    <li>Bayesian Networks</li>
-                                    <li>Business Intelligence</li>
-                                    <li>Project Management</li>
-                                    <li>Logic Models</li>
-                                    <li>Causal Maps</li>
-                                    <li>Hierarchical Metric Causal Map</li>
-                                </ul>
-                            </div>
-
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Analysis & Modeling</h5>
-                                        <ul>
-                                            <li>Bayesian Network Models</li>
-                                            <li>Metrics Framework</li>
-                                            <li>Process Mapping</li>
-                                            <li>Logic Models</li>
-                                            <li>Causal Maps</li>
-                                            <li>Hierarchical Metric Causal Map</li>
-                                            <li>KPI Frameworks</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Business Impact</h5>
-                                        <ul>
-                                            <li>Performance Tracking</li>
-                                            <li>Strategic Alignment</li>
-                                            <li>Decision Support</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Developing a web apps prototype using LLM-RAG architecture in Python, Flask to enable analysis of DORA metrics using natural language input and prompts and provide actionable insights for stakeholders. Aiming to use RAG-LLM models to provide context-aware recommendations based on industry best practices and historical data.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/performance-framework.html" class="view-details-link" target="_blank">View Details</a>
+                        <div class="work-actions">
+                            <a href="project_pages/dora-metrics.html" target="_blank" class="work-btn">View Details</a>                            
                         </div>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-info" style="width: 100%;">
-                                <h3 class="project-title">Strategic Advisory Consulting Proposal to accelerate District Heating Networks</h3>
-                                <p class="project-org">Sustainable Glasgow | Glasgow, UK | Academic Project (Strathclyde Business School)</p>
-                                <div class="project-description">
-                                    <p><strong>Developed a strategic advisory proposal to accelerate District Heating Networks, aligning with Net Zero goals.</strong> Applied data-driven tools strategy modelling  including MCDA, scenario modelling, and probabilistic risk assessment to prioritize projects and evaluate impact. Recommended governance models, performance monitoring frameworks, and investment appraisal methods (including causal mapping) to support evidence-based decision-making and long-term sustainability.</p>
-                                </div>
-                            </div>
+                    
+                    <div class="work-card" data-category="data-science">
+                        <div class="work-header">
+                            <h3>Performance Management System for NSAR Operations</h3>
+                            <span class="work-company">NSAR Academic Project Team</span>    
+                            <span class="work-details">University of Strathclyde . Capstone Project . United Kingdom</span>                            
                         </div>
-
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Strategic Advisory</li>
-                                    <li>Multi-Criteria Decision Analysis (MCDA)</li>
-                                    <li>Scenario Modeling</li>
-                                    <li>Risk Assessment</li>
-                                    <li>Governance Models</li>
-                                    <li>Performance Monitoring</li>
-                                    <li>Investment Appraisal</li>
-                                    <li>Sustainability Planning</li>
-                                </ul>
-                            </div>
-
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Analysis & Modeling</h5>
-                                        <ul>
-                                            <li>MCDA Tools</li>
-                                            <li>Scenario Analysis</li>
-                                            <li>Probabilistic Risk Assessment</li>
-                                            <li>Causal Mapping</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Business Impact</h5>
-                                        <ul>
-                                            <li>Governance Framework</li>
-                                            <li>Performance Monitoring</li>
-                                            <li>Investment Strategy</li>
-                                            <li>Sustainability Goals</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Translated the NSAR client's causal maps into a structured, pathway-based metrics framework aligning operational processes with strategic objectives. Developed hierarchical metrics including core operational indicators, inferred/composite measures, and high-level impact metrics to enable further quantitative analysis using Bayesian Network models and comprehensive process and impact measurement across key SAR operational domains. This approach facilitated targeted performance tracking and data-driven decision-making.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/strathclyde-glasgow.html" class="view-details-link" target="_blank">View Details</a>
+                        <div class="work-actions">
+                            <a href="project_pages/nsar-operations.html" target="_blank" class="work-btn">View Details</a>                            
                         </div>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-info" style="width: 100%;">
-                                <h3 class="project-title">Strategic Consulting Project - Digital Retail Bank Launch Strategy</h3>
-                                <p class="project-org">Organization: Synpulse Consulting | United Kingdom | Academic (Strathclyde Business School)    </p>
-                                <div class="project-description">
-                                    <p><strong>Supported vendor evaluation and go-to-market strategy for Client X's UK digital bank launch, focusing on BaaS selection, regulatory alignment, and digital-first product design.</strong></p>
-                                    <p> Performed a comprehensive multi-criteria decision analysis (MCDA) to evaluate 8 Banking-as-a-Service (BaaS) vendors across 13 critical factors; recommended Thought Machine for its modular architecture and long-term strategic alignment. Designed a detailed go-to-market plan, including customer segmentation, product roadmap, and digital channel strategy tailored to UK regulatory frameworks (FCA, PRA, Open Banking). Proposed a cloud-native, API-first architecture to maximize agility, scalability, and compliance. Recommended digital capabilities such as AI-driven personal finance tools, Buy Now Pay Later (BNPL), embedded finance, and ESG-conscious offerings targeting urban professionals aged 25–55.</p>
-                                </div>
-                            </div>
+                    
+                    <div class="work-card" data-category="consulting">
+                        <div class="work-header">
+                            <h3>Strategic Advisory Consulting Proposal for District Heating Networks</h3>
+                            <span class="work-company">Sustainable Glasgow</span>
+                            <span class="work-details">University of Strathclyde . Capstone Consulting Project . United Kingdom</span>                            
                         </div>
-
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Strategic Consulting</li>
-                                    <li>Multi-Criteria Decision Analysis</li>
-                                    <li>Vendor Evaluation</li>
-                                    <li>Go-to-Market Strategy</li>
-                                    <li>Regulatory Compliance</li>
-                                    <li>Digital Banking</li>
-                                    <li>Cloud Architecture</li>
-                                    <li>Product Strategy</li>
-                                </ul>
-                            </div>
-
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>Analysis & Strategy</h5>
-                                        <ul>
-                                            <li>MCDA Framework</li>
-                                            <li>Vendor Assessment</li>
-                                            <li>Market Analysis</li>
-                                            <li>Regulatory Framework</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Digital Solutions</h5>
-                                        <ul>
-                                            <li>Cloud-Native Architecture</li>
-                                            <li>API-First Design</li>
-                                            <li>AI-Driven Tools</li>
-                                            <li>Embedded Finance</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Developed a strategic advisory proposal to accelerate District Heating Networks, aligning with Net Zero goals. Applied data-driven tools strategy modelling including MCDA, scenario modelling, and probabilistic risk assessment to prioritize projects and evaluate impact. Recommended governance models, performance monitoring frameworks, and investment appraisal methods (including causal mapping) to support evidence-based decision-making and long-term sustainability.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/digital-bank-strategy.html" class="view-details-link" target="_blank">View Details</a>
+                        <div class="work-actions">
+                            <a href="project_pages/district-heating.html" target="_blank" class="work-btn">View Details</a>                            
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="product-projects" class="projects">
-            <h2 style="color: #60a5fa;">Product | Digital | User Experience Design Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-info" style="width: 100%;">
-                                <h3 class="project-title">Digital Process Improvement - Application UX Redesign</h3>
-                                <p class="project-org">Organization: NoMoBo | Location: Remote | Type: Freelance</p>
-                                <div class="project-description">
-                                    <p><strong>Advised an enterprise client on optimizing compliance management processes by conducting in-depth user research, workflow analysis, and stakeholder interviews to uncover operational pain points and inefficiencies.</strong> Developed strategic recommendations for process redesign, resulting in a 50% increase in user adoption and significant improvements in operational efficiency for iPad-based compliance tools. Facilitated discovery workshops and collaborative sessions with cross-functional teams to align business requirements with user needs, ensuring solutions were both practical and technically feasible. Delivered actionable insights through customer journey mapping, persona development, and rapid prototyping, enabling the client to accelerate product delivery by 35% using Lean UX and MVP methodologies. Presented usability improvements and design concepts to client stakeholders.</p>
-                                </div>
-                            </div>
+                    
+                    <div class="work-card" data-category="consulting">
+                        <div class="work-header">
+                            <h3>Digital Retail Bank Launch Strategy leveraging BaaS (Banking-as-a-Service)</h3>
+                            <span class="work-company">Synpulse Consulting</span>
+                            <span class="work-details">University of Strathclyde . Consulting . Group Project . United Kingdom</span>                            
                         </div>
-
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>User Research</li>
-                                    <li>Process Optimization</li>
-                                    <li>Workflow Analysis</li>
-                                    <li>Stakeholder Management</li>
-                                    <li>UX Design</li>
-                                    <li>Customer Journey Mapping</li>
-                                    <li>Rapid Prototyping</li>
-                                    <li>Lean UX</li>
-                                </ul>
-                            </div>
-
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>UX & Design</h5>
-                                        <ul>
-                                            <li>User Research Methods</li>
-                                            <li>Customer Journey Mapping</li>
-                                            <li>Persona Development</li>
-                                            <li>Rapid Prototyping</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Process & Methodology</h5>
-                                        <ul>
-                                            <li>Lean UX</li>
-                                            <li>MVP Development</li>
-                                            <li>Workshop Facilitation</li>
-                                            <li>Process Redesign</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work-description">
+                            <p>Supported vendor evaluation and go-to-market strategy for Client X's UK digital bank launch, focusing on BaaS selection, regulatory alignment, and digital-first product design. Performed comprehensive multi-criteria decision analysis (MCDA) to evaluate 8 Banking-as-a-Service vendors across 13 critical factors, recommending Thought Machine for its modular architecture and strategic alignment.</p>
                         </div>
-                        <div class="project-links">
-                            <a href="projects/digital-process.html" class="view-details-link" target="_blank">View Details</a>
+                        <div class="work-actions">
+                            <a href="project_pages/digital-bank-strategy.html" target="_blank" class="work-btn">View Details</a>                            
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-content-wrapper">
-                        <div class="project-header">
-                            <div class="project-info" style="width: 100%;">
-                                <h3 class="project-title">Product Strategy & User Experience Consultant</h3>
-                                <p class="project-org">Organization: NoMoBo | Location: Remote | Type: Freelance</p>
-                                <div class="project-description">
-                                    <p><strong>Engaged with a technology client to assess and enhance the user experience of a cross-platform audio player, employing user research and journey mapping to identify strategic opportunities for improvement.</strong> Provided data-driven recommendations for responsive UX design across mobile, desktop, and embedded platforms, ensuring a seamless and consistent user experience. Led the creation of personas, empathy maps, and journey maps to inform product strategy and guide design decisions, contributing to the development of a platform-agnostic MVP. Collaborated with stakeholders to validate design concepts and prioritize features, supporting the client's product development roadmap.</p>
-                                </div>
-                            </div>
+                    <div class="work-card" data-category="product">
+                        <div class="work-header">
+                            <h3>Proof Space</h3>
+                            <span class="work-details">Product Ideation . Personal Project</span>                            
                         </div>
+                        <div class="work-description">
+                            <p>Revolutionizing tech hiring by prioritizing verifiable technical contributions over social engagement, creating a platform where developers trade performance metrics for visibility and recruiters discover talent based on impact rather than activity.</p>
+                        </div>
+                        <div class="work-actions">
+                            <a href="project_pages/Product_Ideation/Proof Space.html" target="_blank" class="work-btn">View Details</a>                            
+                        </div>
+                    </div>                  
+                    
+                    <div class="work-card" data-category="product">
+                        <div class="work-header">
+                            <h3>Website Teardown & UX Audit: Product Space PM Fellowship Website</h3>
+                            <span class="work-company">Product Space</span>
+                            <span class="work-details">Product Analyst . UX Strategist . UX Research </span>                            
+                        </div>
+                        <div class="work-description">
+                            <p>Conducted comprehensive UX audit and strategic redesign recommendations for Product Space PM Fellowship website to improve clarity, trust, and conversion. Performed website teardown analysis covering homepage, fellowship overview, curriculum, pricing, CTAs, and placement information. Applied multiple evaluation methods including friction point identification, heuristic evaluation, competitor benchmarking, and microcopy and information architecture review to deliver actionable insights for website optimization.</p>
+                        </div>
+                        <div class="work-actions">
+                            <a href="project_pages/website-teardown.html" target="_blank" class="work-btn">View Details</a>                            
+                        </div>
+                    </div>
 
-                        <div class="project-details">
-                            <div class="skills-section">
-                                <h4>Skills Used:</h4>
-                                <ul class="skills-list">
-                                    <li>Product Strategy</li>
-                                    <li>User Experience Design</li>
-                                    <li>Cross-Platform Design</li>
-                                    <li>User Research</li>
-                                    <li>Journey Mapping</li>
-                                    <li>Persona Development</li>
-                                    <li>Stakeholder Management</li>
-                                    <li>MVP Development</li>
-                                    <li>Mobile Interface Design iOS | Android</li>
-                                </ul>
-                            </div>
+                    <div class="project-showcase-card cafe" style="background: #bababa; vertical-align: top;" data-category="product">
+                        <div class="project-images">
+                          <img src="images\Assessments\Dashboard thumbnail-2.png" alt="Tablet UI" class="tablet-img">
+                        </div>
+                        <div class="project-info" >
+                          <h3 style="color:#333">Compliance Management System</h3>
+                          <span class="work-company">Client Project</span>
+                          <span class="work-details"> Application UX Redesign . Product Ideation . Mobile App . iPad . iOS · UX-UI Concept</span>
+                          <div class="project-desc" >
+                            <br>
+                            <p style="color:#333">
+                                Redesign concept for an organization's outdated Compliance Management System, aimed at improving usability and enabling assessment recording via iPads and iPhones for field accessors.
+                            </p>
+                          </div>
+                          <a href="project_pages/Assessments.html" class="view-project-btn">View Details</a>      
+                        </div>
+                    </div>
 
-                            <div class="tech-stack-section">
-                                <h4>Tech Stack:</h4>
-                                <div class="tech-categories">
-                                    <div class="tech-category">
-                                        <h5>UX & Design</h5>
-                                        <ul>
-                                            <li>Responsive Design</li>
-                                            <li>Cross-Platform UX</li>
-                                            <li>User Research</li>
-                                            <li>Journey Mapping</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tech-category">
-                                        <h5>Product Strategy</h5>
-                                        <ul>
-                                            <li>Platform-Agnostic MVP</li>
-                                            <li>Feature Prioritization</li>
-                                            <li>Stakeholder Collaboration</li>
-                                            <li>Product Roadmap</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="project-showcase-card cafe" style="background: #82b8bc;" data-category="product">                       
+                        <div class="project-images">
+                            <img src="images\PetMe\petme_thumbnail_1.png" alt="Tablet UI" class="tablet-img">
+                          </div>
+                        <div class="project-info">
+                          <h3 style="color:#111">Pet Me</h3>
+                          <span class="work-company">Personal Project</span>
+                          <span class="work-details">Product Ideation . Mobile App · Hybrid . UX-UI Concept</span>
+                          <div class="project-desc">
+                            <br>
+                            <p style="color:#111">
+                                Designed a mobile app concept for streamlined pet care management for pet owners and pet care service providers, enabling pet owners manage grooming, adoption, and scheduling.
+                            </p>
+                          </div>
+                          <a href="#" class="view-project-btn">View Details</a>      
                         </div>                       
+                    </div>       
+
+                    <div class="project-showcase-card cafe" style="background: #b9a291;" data-category="product">
+                        <div class="project-images">
+                          <img src="images\BobaBean cafe\device_tablet.png" alt="Tablet UI" class="tablet-img">
+                        </div>
+                        <div class="project-info">
+                          <h3 style="color:#111">BobaBean</h3>
+                          <span class="work-company">Personal Project . Fun UI Exploration . Figma Practice</span>
+                          <span class="work-details">Product Ideation . Mobile App · Hybrid | Tablet</span>
+                          <div class="project-desc">
+                            <br>
+                            <p style="color:#333">
+                                BobaBean is a mobile app concept for a boutique vegan café, designed to let coffee lovers customize their brew soul-deep. It recreates the cozy, intuitive feel of in-store ordering through playful layouts and tactile interactions. A fun UI exploration and Figma practice, the project reflects the café’s warm personality.
+                            </p>
+                          </div>
+                          <a href="#" class="view-project-btn">View Details</a>      
+                        </div>
+                    </div>                          
+                
+                    <div class="project-showcase-card cafe" style="background: #f7d8d8;" data-category="product">
+                        <div class="project-images">
+                          <img src="images\Boards and Paddles\boardspaddles_thumbnail.png" alt="Tablet UI" class="tablet-img">
+                        </div>
+                        <div class="project-info" >
+                          <h3 style="color:#333">Boards and Paddles</h3>
+                          <span class="work-company">Personal Project</span>
+                          <span class="work-details">Product Ideation . Mobile App · Hybrid</span>
+                          <div class="project-desc" >
+                            <br>
+                            <p style="color:#333">
+                                Designed and developed a mobile app concept for streamlined pet care management, enabling pet owners manage grooming, adoption, and scheduling in one unified platform.
+                            </p>
+                          </div>
+                          <a href="#" class="view-project-btn">View Details</a>      
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="about" class="about">
-            <h2 style="color: #60a5fa;">About Me</h2>
-            <div class="about-content">
-                <p>
-                    With a background in data management and analysis, product strategy and digital innovation, I am actively learning Gen AI, machine learning, and data science through hands-on projects. I enjoy building practical tools that combine data insights with emerging technologies like Generative AI. 
-                    I'm working in Python, Analytics, Generative AI and LLM integrations, creating prototypes and solutions that are both user-friendly and impactful.
-                </p>
-            </div>
-        </section>
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <div class="section-header">
+                    <h2>Get in touch</h2>                    
+                </div>
+                <div class="contact-socials" style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 2rem;">
+  <a href="https://www.linkedin.com/in/ramanathan-uma" target="_blank" class="contact-social-link" style="font-size: 2rem; color: #0077b5; text-decoration: none;">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a href="https://github.com/umaramanathan-DA" target="_blank" class="contact-social-link" style="font-size: 2rem; color: #333; text-decoration: none;">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-aenvelope" style="color: #333;"></i>
+                            <span>umaramanathan54@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone" style="color: #333;"></i>
+                            <span>+91 89396 33321</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt" style="color: #333;"></i>
+                            <span>Chennai, India</span>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+        </main>
 
-        <section id="contact" class="contact-section">
-            <h2 style="color: #60a5fa;">Get in Touch</h2>
-                        
-            <ul class="contact-info">
-              <li><strong>GitHub:</strong> <a href="https://github.com/umaramanathan-DA" target="_blank">github.com/umaramanathan-DA</a></li>
-            </ul>
-          </section>
-          
-    </main>
+        <!-- Decorative Shapes -->
+        <div class="decorative-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 Uma Ramanathan. All rights reserved.</p>
-    </footer>
-
-
+    <script src="script.js"></script>
+    <style>
+.project-filters {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.filter-btn {
+  background: #fff;
+  border: 2px solid #FFD700;
+  color: #333;
+  padding: 1rem 2.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: background 0.2s, color 0.2s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: #FFD700;
+  color: #222;
+}
+    </style>
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-filter');
+            document.querySelectorAll('.work-card').forEach(card => {
+              const categories = card.getAttribute('data-category').split(' ');
+              if (filter === 'all' || categories.includes(filter)) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+    </script>
 </body>
-</html>
+</html> 

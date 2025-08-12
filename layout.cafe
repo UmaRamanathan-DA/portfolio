@@ -1,0 +1,129 @@
+<style>
+.project-showcase-card.cafe {
+  display: flex;
+  align-items: center;
+  background: #3a3633;
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 2rem 0;
+  min-height: 350px;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.project-showcase-card.cafe .project-images {
+  width: 50%;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  height: 100%;
+  padding: 2rem 0;
+}
+.project-showcase-card.cafe .tablet-img {
+  width: 80%;
+  max-width: 350px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  z-index: 2;
+  position: relative;
+}
+.project-showcase-card.cafe .project-info {
+  width: 50%;
+  color: #fff;
+  padding: 2.5rem 2.5rem 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.project-showcase-card.cafe .project-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.project-showcase-card.cafe .project-meta {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+}
+.project-showcase-card.cafe .project-desc {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+}
+.project-showcase-card.cafe .view-project-btn {
+  background: #FFD700;
+  color: #222;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 2.2rem;
+}
+.project-showcase-card.cafe .view-project-btn:hover {
+  background: #e6c200;
+}
+
+/* Mobile UI Row */
+.mobile-ui-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  min-height: 96px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+}
+.mobile-ui-img {
+  width: 48px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  transform: rotate(45deg) translateY(60px);
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(.4,2,.3,1);
+  background: #222;
+}
+/* Slide in on hover */
+.project-showcase-card.cafe:hover .mobile-ui-img {
+  opacity: 1;
+  transform: rotate(45deg) translateY(0);
+}
+@media (max-width: 900px) {
+  .project-showcase-card.cafe {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .project-showcase-card.cafe .project-images, .project-showcase-card.cafe .project-info {
+    width: 100%;
+    padding: 1.5rem;
+  }
+  .mobile-ui-row {
+    justify-content: center;
+  }
+}
+</style>
+
+<div class="project-showcase-card cafe">
+  <div class="project-images">
+    <img src="tablet-placeholder.png" alt="Tablet UI" class="tablet-img">
+  </div>
+  <div class="project-info">
+    <h2 class="project-title">Bobacafe</h2>
+    <div class="project-meta">MOBILE · Hybrid | Tablet</div>
+    <p class="project-desc">
+      Bobacafe is a boutique vegan restaurant in ideation that lets you customize your coffee soul deep, when you order. A feature sure to delight true coffee lovers. Did a design concept for a mobile app to give an experience as familiar as buying in a physical store.
+    </p>
+    <a href="#" class="view-project-btn">View Project</a>
+    <div class="mobile-ui-row">
+      <img src="mobile1-placeholder.png" alt="Mobile UI 1" class="mobile-ui-img">
+      <img src="mobile2-placeholder.png" alt="Mobile UI 2" class="mobile-ui-img">
+      <img src="mobile3-placeholder.png" alt="Mobile UI 3" class="mobile-ui-img">
+    </div>
+  </div>
+</div> 

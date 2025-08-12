@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+            min-height: 100vh;
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #FFD700;
+        }
+        
+        .project-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+        
+        .meta-item i {
+            color: #FFD700;
+        }
+        
+        .project-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .project-description {
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .project-description h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .project-description p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            height: fit-content;
+        }
+        
+        .skills-section, .tech-section {
+            margin-bottom: 2rem;
+        }
+        
+        .skills-section h4, .tech-section h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #FFD700;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #FFD700;
+            color: #333;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="project-detail-container">
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Portfolio
+        </a>
+        
+        <div class="project-header">
+            <h1 class="project-title">PROJECT_TITLE</h1>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-building"></i>
+                    <span>PROJECT_COMPANY</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>PROJECT_LOCATION</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>PROJECT_DATE</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project-content">
+            <div class="project-description">
+                <h3>Project Overview</h3>
+                <p>PROJECT_DESCRIPTION</p>
+                
+                <h3>Key Responsibilities</h3>
+                <p>PROJECT_RESPONSIBILITIES</p>
+                
+                <h3>Methodology & Approach</h3>
+                <p>PROJECT_METHODOLOGY</p>
+                
+                <h3>Results & Impact</h3>
+                <p>PROJECT_RESULTS</p>
+            </div>
+            
+            <div class="project-sidebar">
+                <div class="skills-section">
+                    <h4>Skills Used</h4>
+                    <div class="skill-tags">
+                        PROJECT_SKILLS
+                    </div>
+                </div>
+                
+                <div class="tech-section">
+                    <h4>Tech Stack</h4>
+                    <div class="skill-tags">
+                        PROJECT_TECH_STACK
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

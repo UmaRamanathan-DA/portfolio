@@ -1,0 +1,687 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Website Teardown: Product Space Product Management Fellowship Website UX Audit &amp; Redesign</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="238db492-574d-8052-94a1-d92cb6ed2a3a" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><h1 class="page-title">Website Teardown: Product Space Product Management Fellowship Website UX Audit &amp; Redesign</h1><p class="page-description"></p></header><div class="page-body"><p id="238db492-574d-8026-bff6-e630871aa3b0" class="">
+</p><p id="238db492-574d-80f7-b490-cb0f5e272594" class=""><strong>Role: </strong>Product Analyst | UX Strategist | UX Research</p><p id="238db492-574d-8081-a04f-c08cfbcbb763" class=""><strong>Duration: </strong>2 Days, Jul 2025    <strong>Submitted on</strong>: 22 Jul 2025</p><p id="238db492-574d-8071-a241-eee34b032f60" class=""><strong>Goal: </strong>Improve clarity, trust, and conversion on the Product Space PM Fellowship page through UX evaluation and strategic redesign recommendations.</p><p id="238db492-574d-805e-b35a-f9ee51820c1a" class=""><strong>Scope:</strong> Homepage, Fellowship overview, Curriculum, Pricing, CTAs, Placement info</p><p id="238db492-574d-8051-93d8-c40b9da5e79a" class=""><strong>Methods Used:</strong><div class="indented"><ul id="238db492-574d-8044-8fd1-e5a55954a95f" class="bulleted-list"><li style="list-style-type:disc">Teardown</li></ul><ul id="238db492-574d-8046-86d0-e7c0a2135d69" class="bulleted-list"><li style="list-style-type:disc">Identifying Friction Points</li></ul><ul id="238db492-574d-807f-a0ef-f6998b7de167" class="bulleted-list"><li style="list-style-type:disc">Heuristic Evaluation</li></ul><ul id="238db492-574d-8002-b618-fe7abbf0cb6e" class="bulleted-list"><li style="list-style-type:disc">Competitor Benchmarking (Next leap’s PM School, NextLeap, GrowthX)</li></ul><ul id="238db492-574d-80af-b461-e1f4e2d00306" class="bulleted-list"><li style="list-style-type:disc">Microcopy and Information Architecture Review</li></ul></div></p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">1. Page Teardown &amp; UX Critique</summary><div class="indented"><p id="238db492-574d-80cb-acad-c5daa9cafa00" class="">Breakdown of the PM Fellowship webpage into sections with critique and suggestions.</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">🎯Hero Section</summary><div class="indented"><p id="238db492-574d-8046-b0ed-ec766d696259" class=""><strong>What’s Working:</strong></p><p id="238db492-574d-80af-bd91-eebc8a527f4a" class="">Cohort dates, CTA visibility, and fellowship duration are presented upfront.</p><p id="238db492-574d-80f2-b51a-c301a1db2431" class=""><strong>Friction Points:</strong></p><ul id="238db492-574d-8059-92fd-e6fd77ec65e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Unclear value proposition, UX Writing:</strong> Caption “Learn to build 0 to 1 products using AI and excel…” is vague and confusing. Eg..“Become a Product Manager in 8 Weeks - Learn from Industry Experts, Build Real Products, and Land Your Dream Role.</li></ul><ul id="238db492-574d-8015-8775-f126e31c1705" class="bulleted-list"><li style="list-style-type:disc"><strong>Visual Clarity:</strong> Icons for &quot;10 weeks&quot;, &quot;50+ hours&quot; resemble a countdown banner.</li></ul><ul id="238db492-574d-805e-a82b-cad7da82500c" class="bulleted-list"><li style="list-style-type:disc"><strong>CTA Weakness:</strong> &quot;Enrol Now&quot; lacks urgency and trust.</li></ul><ul id="238db492-574d-80db-93eb-c57702a441be" class="bulleted-list"><li style="list-style-type:disc"><strong>Visuals:</strong> Background image is generic. no social proof or relevance to learners.</li></ul><ul id="238db492-574d-80db-adcf-cb17d36e847a" class="bulleted-list"><li style="list-style-type:disc"><strong>Missing CTA: </strong>No ways to express interest in upcoming cohorts.</li></ul><ul id="238db492-574d-80b8-9098-c753eb232e72" class="bulleted-list"><li style="list-style-type:disc">Missing information on current cohort status, its member profiles. Eg median work experience, median age, demographics etc.</li></ul><p id="238db492-574d-80ae-9437-eb9947b5258d" class=""><strong>Suggested Improvements:</strong></p><ul id="238db492-574d-80e0-a284-c6d192ee9efa" class="bulleted-list"><li style="list-style-type:disc">Reword caption to be outcome-oriented, e.g., “Build real AI-powered products. Land your next PM job.”</li></ul><ul id="238db492-574d-80c2-9f19-c746f4c7974f" class="bulleted-list"><li style="list-style-type:disc">Make “Enrol Now” CTA more compelling with dynamic text (e.g., “Only 12 slots left!”, 12th cohort!!).</li></ul><ul id="238db492-574d-802c-a32d-f231deaccc67" class="bulleted-list"><li style="list-style-type:disc">Add learner testimonials or fellow faces to the hero background.</li></ul><ul id="238db492-574d-801d-a0da-e13265a95c8c" class="bulleted-list"><li style="list-style-type:disc">Add member profiles stats to improve trust - current cohort status, its member profiles. Eg median work experience, median age, demographics etc.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">💰Pricing/Fees</summary><div class="indented"><p id="238db492-574d-80ec-a4d4-cac17ee577a4" class=""><strong>What’s working:</strong></p><p id="238db492-574d-809a-96b7-da7a23d60568" class="">Prices, Discounts, Services and benefits</p><p id="238db492-574d-8006-bb9e-ec25a0be7f85" class=""><strong>Friction Points:</strong></p><ul id="238db492-574d-80b2-b950-c636841e4891" class="bulleted-list"><li style="list-style-type:disc">Dynamic Pricing Discounts are applied for the same cohort without any justification, which means different users in the <em>same cohort</em> discover price differences which can lead to distrust and dissatisfaction. Destroys perceived fairness and brand equity. However pricing discounts can be considered based on user segments such as students, long timers or alumni, or early bird pricing.</li></ul><ul id="238db492-574d-8034-bf46-cc8b39b3c207" class="bulleted-list"><li style="list-style-type:disc"><strong>Transparency Issue:</strong> Users in the <em>same cohort</em> discover different discounts. Erodes trust.</li></ul><ul id="238db492-574d-80aa-8a1a-d731523b1db8" class="bulleted-list"><li style="list-style-type:disc">No visible ROI metrics or scholarship clarity.</li></ul><ul id="238db492-574d-80ec-8cd5-cdfd048a7b45" class="bulleted-list"><li style="list-style-type:disc">No options to express interest in future cohorts.</li></ul><p id="238db492-574d-805a-b819-c9d2212a5fda" class=""><strong>Suggestions:</strong></p><ul id="238db492-574d-807c-8865-d6e5ab7d0eb2" class="bulleted-list"><li style="list-style-type:disc">Need for more transparent pricing with justification. Eg. Number of Cohorts</li></ul><ul id="238db492-574d-806a-b031-e1678296a2d6" class="bulleted-list"><li style="list-style-type:disc">Avoid dynamic pricing for identical cohorts unless tied to <strong>clear user segments</strong> (e.g., students, alumni).</li></ul><ul id="238db492-574d-80bd-9b4a-ef98fbb8fba2" class="bulleted-list"><li style="list-style-type:disc">Include ROI visuals: “Average salary uplift,” or “Placement within X weeks.”</li></ul><ul id="238db492-574d-8075-88bd-d7cd97249b1b" class="bulleted-list"><li style="list-style-type:disc">ROI visuals could be included if possible.</li></ul><ul id="238db492-574d-8011-b824-e8376d84f1f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Sticky CTA for Unavailable Cohorts: </strong>Add a CTA to express interest in upcoming cohorts. </li></ul><p id="238db492-574d-8096-bdb3-f0f029956d6c" class=""><em>“Cohort Full - Join Waitlist”</em> or <em>“Applications Closed - Get Notified for Next Cohort”</em></p><ul id="238db492-574d-8001-b313-f9e9c2870886" class="bulleted-list"><li style="list-style-type:disc"><strong>Capture Info for Future Outreach:</strong><p id="238db492-574d-8046-8114-fb7ddf953e95" class="">Email + optional interests → personalize later communication.</p></li></ul><ul id="238db492-574d-809e-aa76-d62eb9a7cbcc" class="bulleted-list"><li style="list-style-type:disc"><strong>Tooltip or Microcopy:</strong><p id="238db492-574d-806e-8c65-ed8faf8c2cde" class="">E.g., <em>“We’ll notify you when the next batch opens”</em> to set expectations.</p></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">📚Fellowship Overview, Learners and Testimonials</summary><div class="indented"><p id="238db492-574d-8010-a490-e61b637cd04b" class=""><strong>What’s Working:</strong></p><ul id="238db492-574d-80d4-ba76-f1c43ffe9e91" class="bulleted-list"><li style="list-style-type:disc">Comprehensive info on curriculum, projects, and tools.</li></ul><p id="238db492-574d-80bd-b7e5-ce924fc737b2" class=""><strong>Friction Points:</strong></p><ul id="238db492-574d-80f3-855f-c41463aebc55" class="bulleted-list"><li style="list-style-type:disc">Dense and poorly grouped content-hard to scan.</li></ul><ul id="238db492-574d-80d4-b624-cea13f706d54" class="bulleted-list"><li style="list-style-type:disc">Testimonials lack user context (cohort, background, expertise).</li></ul><ul id="238db492-574d-8001-9309-e00bb19c192d" class="bulleted-list"><li style="list-style-type:disc">Brochure not easily discoverable.</li></ul><ul id="238db492-574d-808f-93e5-c5ee535ac018" class="bulleted-list"><li style="list-style-type:disc">Placement stats, testimonials, success stories summaries and proof-of-work examples of learners are scattered.</li></ul><p id="238db492-574d-8070-ac10-ef29487903ed" class=""><strong>Suggested improvements:</strong></p><ul id="238db492-574d-80ef-8bbe-cd0d57b6d48d" class="bulleted-list"><li style="list-style-type:disc">Move “Download Brochure” to hero or sticky footer.</li></ul><ul id="238db492-574d-80eb-9986-ca17c9b05753" class="bulleted-list"><li style="list-style-type:disc">Group “Proof of Work,” “Success Stories,” and “Placement Stats” together.</li></ul><ul id="238db492-574d-8078-99f8-e68aff9f3aac" class="bulleted-list"><li style="list-style-type:disc">Clear intent for “learner outcomes” from “actual course content and values” </li></ul><ul id="238db492-574d-8092-aadc-da3d60dfe3cf" class="bulleted-list"><li style="list-style-type:disc">Include alumni background, cohort and outcomes in testimonials to improve trust.</li></ul><ul id="238db492-574d-801f-88ac-def705c613d6" class="bulleted-list"><li style="list-style-type:disc">Highlight time-to-placement as a success metric.</li></ul><ul id="238db492-574d-808f-b25d-cdefeeefad0f" class="bulleted-list"><li style="list-style-type:disc">Display ongoing discount in sticky footer near Enrol Now CTA.</li></ul><ul id="238db492-574d-8071-9174-f4768f5c34e3" class="bulleted-list"><li style="list-style-type:disc">Display cohort number in sticky footer near Enrol Now CTA to improve urgency and trust.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">🧭Course Modules and Weekly Schedules</summary><div class="indented"><p id="238db492-574d-80b3-a454-c8774bcfdcc8" class=""><strong>What’s Working:</strong></p><ul id="238db492-574d-80a5-b6dc-f35647acaa63" class="bulleted-list"><li style="list-style-type:disc">Module level information and Weekly learning plans and tools are introduced.</li></ul><p id="238db492-574d-806c-917b-d4ac71ff4bd9" class=""><strong>Friction Points:</strong></p><ul id="238db492-574d-80b8-9519-de751dcad4fa" class="bulleted-list"><li style="list-style-type:disc">Visual clutter with multiple headings and bullet points.</li></ul><ul id="238db492-574d-80c1-81a3-cae4d42a55bf" class="bulleted-list"><li style="list-style-type:disc">No clear timelines per module.</li></ul><ul id="238db492-574d-8046-8b44-f7e70c269f33" class="bulleted-list"><li style="list-style-type:disc">Hard-to-read tool images.</li></ul><ul id="238db492-574d-80e2-80d9-c427376cf7d5" class="bulleted-list"><li style="list-style-type:disc">Weekly schedule is isolated and redundant.</li></ul><ul id="238db492-574d-8087-b063-c83c6a24abdd" class="bulleted-list"><li style="list-style-type:disc">Typography readability issues.</li></ul><p id="238db492-574d-8017-8312-e41243de487e" class=""><strong>Suggested Improvements:</strong></p><ul id="238db492-574d-8003-9b5a-db85f26a294c" class="bulleted-list"><li style="list-style-type:disc">Merge weekly schedule into curriculum flow.</li></ul><ul id="238db492-574d-8085-b957-d4e3b4bfdbbb" class="bulleted-list"><li style="list-style-type:disc">Use compact timeline slider for modules.</li></ul><ul id="238db492-574d-8000-b362-ef27fd9753f1" class="bulleted-list"><li style="list-style-type:disc">Improve prominence of module titles and minimize clutter.</li></ul><ul id="238db492-574d-8026-b4b7-ea11d4125074" class="bulleted-list"><li style="list-style-type:disc">Clarify learning outcomes per module.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">🧑‍🏫Mentors</summary><div class="indented"><p id="238db492-574d-8021-9943-fa962c60cd38" class=""><strong>What’s Working:</strong></p><ul id="238db492-574d-80c4-94b2-f9f979bcfc64" class="bulleted-list"><li style="list-style-type:disc">Relevant mentor information included.</li></ul><p id="238db492-574d-804e-9512-e5cb6f9d6dea" class=""><strong>Suggested Improvements:</strong></p><ul id="238db492-574d-80ae-be73-cec34ccdbea7" class="bulleted-list"><li style="list-style-type:disc">Include background, area of expertise and success metrics.</li></ul><ul id="238db492-574d-80c8-a74a-d0763f766622" class="bulleted-list"><li style="list-style-type:disc">Move LinkedIn icons to bottom of cards for better readability.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">📈Placements</summary><div class="indented"><p id="238db492-574d-800d-a8af-c5f3636be95c" class=""><strong>What’s working:</strong></p><p id="238db492-574d-8086-814b-f382b40a54b0" class="">Information and stats about placements and supporting success stories.</p><p id="238db492-574d-80ff-a038-c99a5dea92ed" class=""><strong>Friction Points:</strong></p><ul id="238db492-574d-80a9-ab5c-f04e710a5664" class="bulleted-list"><li style="list-style-type:disc">Content redundant</li></ul><ul id="238db492-574d-808f-8126-dbd79b848b1d" class="bulleted-list"><li style="list-style-type:disc">Inconsistent typography and readability issues</li></ul><p id="238db492-574d-8042-bc85-cbfa5d7e7571" class=""><strong>Suggested Improvements:</strong></p><ul id="238db492-574d-80ce-9d4d-db388e1f1ec5" class="bulleted-list"><li style="list-style-type:disc">Combine “Placements,” “Success Stories,” and “Stats” into one consolidated section.</li></ul><ul id="238db492-574d-80b8-91a4-f5431f85e68a" class="bulleted-list"><li style="list-style-type:disc">Improve carousel readability (fonts and contrast).</li></ul></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">2. Design/UX and Heuristic Evaluation</summary><div class="indented"><p id="238db492-574d-80f4-9229-c461f130e5d7" class="">
+</p><table id="238db492-574d-80af-a67e-ef2ccd40229c" class="simple-table"><thead class="simple-table-header"><tr id="238db492-574d-80c2-b7f2-f8cd9d7ac0b2"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Issue</strong></th><th id="`u=x" class="simple-table-header-color simple-table-header"><strong>Description</strong></th><th id="HnEe" class="simple-table-header-color simple-table-header"><strong>Heuristic Violated</strong></th><th id="rTH`" class="simple-table-header-color simple-table-header"><strong>Impact</strong></th><th id="VfsY" class="simple-table-header-color simple-table-header" style="width:181px"><strong>Recommendations</strong></th><th id="&gt;k&lt;;" class="simple-table-header-color simple-table-header">Section</th></tr></thead><tbody><tr id="238db492-574d-802e-891e-e3f9a2a3d3a5"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px">Missing Career Outcomes, Potential Job Titles, Potential Salary hikes</th><td id="`u=x" class="">The site does not communicate expected job roles (e.g., APM, PM) or long -term career paths after the fellowship.</td><td id="HnEe" class="">Match between system and real world. Recognition rather than recall</td><td id="rTH`" class="">Users can’t assess alignment with their career goals, reducing motivation to apply or trust in outcomes.</td><td id="VfsY" class="" style="width:181px">Add a “Career Outcomes” section:✔ List typical roles post-fellowship: Associate PM, Product Analyst, Junior PM✔ Add a simple pathway visual (APM → PM → Sr. PM → Product Lead)✔ Use alumni quotes mapped to job titles and companies who have transitioned similar paths.</td><td id="&gt;k&lt;;" class="">Career Outcome</td></tr><tr id="238db492-574d-805d-bfdf-eba9eb02daa4"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px">Who is this for? low Audience clarity, prerequisites</th><td id="`u=x" class="">As a first-time visitor, it&#x27;s unclear who the PM Fellowship is <em>best suited for</em> - students, working professionals, career switchers, or experienced PMs.</td><td id="HnEe" class=""><strong>Match between system and real world</strong>(Nielsen Heuristic #2)</td><td id="rTH`" class="">Users may feel confused or unsure if they’re the right fit, leading to hesitation, drop-offs, or misaligned applications.</td><td id="VfsY" class="" style="width:181px">Add a concise audience definition section in the hero or overview:✔ “For early-career professionals &amp; career switchers.”✔ Use icons or personas to show target segments.✔ Consider FAQ item: “Is this right for me?”</td><td id="&gt;k&lt;;" class="">Audience</td></tr><tr id="238db492-574d-8068-9927-df4b83ee117b"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Visual Hierarchy</strong></th><td id="`u=x" class="">Overloaded text blocks in overview and benefits. No headings, no grouping.</td><td id="HnEe" class=""><strong>Aesthetic &amp; Minimalist Design Fitts’ Law</strong></td><td id="rTH`" class="">High cognitive load. Hard to skim</td><td id="VfsY" class="" style="width:181px">Break into cards with headings and icons. Use typography to highlight key info</td><td id="&gt;k&lt;;" class="">General</td></tr><tr id="238db492-574d-80a4-b51c-d7211d4253db"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>CTA Weakness, Urgency missing</strong></th><td id="`u=x" class="">Primary CTA (e.g., “Enrol Now”) lacks urgency, emotional appeal, and contextual clarity. No trust drivers like countdown, batch cap, or limited slots.</td><td id="HnEe" class=""><strong>Recognition vs. Recall, Aesthetic &amp; Minimalist Design, Fitts’ Law, Consistency &amp; Standards</strong></td><td id="rTH`" class="">Low motivation to convert. CTA doesn’t differentiate from rest of content. Users may scroll without taking action</td><td id="VfsY" class="" style="width:181px">Use high-converting CTA copy like “Secure Your Spot – 12 Seats Left”. Add urgency (timer, deadline), use sticky/floating CTA on scroll, and consider adding trust markers (e.g., “1000+ fellows placed”)</td><td id="&gt;k&lt;;" class="">CTA</td></tr><tr id="238db492-574d-80ff-a48c-c6688812cf16"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Trust Signals Missing</strong></th><td id="`u=x" class="">No alumni logos, success metrics, expertise for mentors. No success metrics for testimonials and success stories.</td><td id="HnEe" class=""><strong>Recognition &amp; Trust AIDA Model</strong></td><td id="rTH`" class="">Low credibility for new users. Users bounce to competitors</td><td id="VfsY" class="" style="width:181px">Add “Where alumni work” section with logos. Highlight cohort stats and placement numbers</td><td id="&gt;k&lt;;" class="">Mentors, Alumni</td></tr><tr id="238db492-574d-8079-aa41-f27116c0f818"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Hick’s Law Overload, Dense Content</strong></th><td id="`u=x" class="">Dense FAQ and Curriculum sections with too much info shown at once</td><td id="HnEe" class=""><strong>Hick’s Law</strong></td><td id="rTH`" class="">Users overwhelmed. Drop before action</td><td id="VfsY" class="" style="width:181px">Use progressive reveal in curriculum. Summarize long FAQs into themes</td><td id="&gt;k&lt;;" class="">Modules, FAQ</td></tr><tr id="238db492-574d-807a-880d-f4dc849a6ede"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Lack of Pricing Transparency</strong></th><td id="`u=x" class="">Users in the same cohort encounter different pricing without explanation. Discounts appear arbitrary.</td><td id="HnEe" class=""><strong>Consistency &amp; Standards, Match Between System and Real World, Trust &amp; Credibility</strong></td><td id="rTH`" class="">Users feel misled or unfairly treated, leading to distrust, dissatisfaction, and drop-offs. Hurts brand equity.</td><td id="VfsY" class="" style="width:181px">Use segment-based pricing (e.g., student/alumni/early bird). Clearly communicate eligibility. Show “original price” vs “discounted price” with reasons.</td><td id="&gt;k&lt;;" class="">Pricing</td></tr><tr id="238db492-574d-80a1-acba-e01f683dd583"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>No ROI Metrics or Benefits Visualization</strong></th><td id="`u=x" class="">Pricing is shown, but value justification is missing.</td><td id="HnEe" class=""><strong>Recognition vs. Recall, Visibility of System Status, Help Users Evaluate</strong></td><td id="rTH`" class="">Users struggle to perceive value. <strong>Conversion suffers</strong> when benefits aren’t reinforced.</td><td id="VfsY" class="" style="width:181px">Show ROI: “Avg. salary uplift,” “Placement within 3 months,” “ROI: 4x your fee.” Use infographics, alumni success metrics.</td><td id="&gt;k&lt;;" class="">Pricing</td></tr><tr id="238db492-574d-8019-89da-f530b08cc87c"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>No Scholarship Clarity</strong></th><td id="`u=x" class="">Scholarships or financial aid options are not mentioned or explained.</td><td id="HnEe" class=""><strong>Help &amp; Documentation</strong>, <strong>Error Prevention</strong></td><td id="rTH`" class="">Users who can’t afford the fee may silently drop without checking options.</td><td id="VfsY" class="" style="width:181px">Highlight available scholarships, eligibility, and how to apply. Add FAQ on pricing page or pricing modal.</td><td id="&gt;k&lt;;" class="">Pricing</td></tr><tr id="238db492-574d-803b-8f35-cc8dd17c81f4"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Content Redundancy</strong></th><td id="`u=x" class="">“Placements,” “Success Stories,” and “Stats” are split into disjointed blocks with overlapping content.</td><td id="HnEe" class="">Aesthetic and Minimalist Design, Recognition Over Recall, Flexibility and Efficiency of Use</td><td id="rTH`" class="">Users may experience cognitive overload and miss key proof points due to fragmented layout.</td><td id="VfsY" class="" style="width:181px">Consolidate into a single “Career Outcomes” or “Alumni Success” section. Use a modular layout for stats, logos, and success stories.</td><td id="&gt;k&lt;;" class="">Placements, Success Stories, Proof of Work</td></tr><tr id="238db492-574d-8039-8f45-e641f49cd695"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Inconsistent Typography &amp; Readability</strong></th><td id="`u=x" class="">Carousel text uses small fonts and lacks visual contrast. Difficult to read on mobile.</td><td id="HnEe" class=""><strong>Visibility of System Status</strong>, <strong>Aesthetic and Minimalist Design</strong>, <strong>Accessibility (WCAG)</strong></td><td id="rTH`" class="">Poor readability reduces credibility and <strong>engagement with success stories</strong>.</td><td id="VfsY" class="" style="width:181px">Improve <strong>font size, color contrast</strong>, and padding. Add emphasis to job roles, companies, and outcomes. Make the carousel <strong>autoplay optional</strong> or allow manual scroll.</td><td id="&gt;k&lt;;" class="">General</td></tr><tr id="238db492-574d-8063-868b-f268f6d467f4"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Visual Clutter &amp; Hierarchy Confusion</strong></th><td id="`u=x" class="">Too many headings and bullet points make scanning difficult. Module titles don’t stand out.</td><td id="HnEe" class=""><strong>Aesthetic and Minimalist Design</strong>, <strong>Recognition over Recall</strong>, <strong>Visual Hierarchy</strong></td><td id="rTH`" class="">Users feel overwhelmed. Hard to quickly understand structure and flow.</td><td id="VfsY" class="" style="width:181px">Use <strong>visual grouping</strong> with proper spacing and hierarchy. Make module titles prominent. Reduce bullet overload with collapsible summaries or icons.</td><td id="&gt;k&lt;;" class="">Course Modules and Schedules</td></tr><tr id="238db492-574d-8025-b68f-d353ed4e3e85"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>No Clear Timelines per Module</strong></th><td id="`u=x" class="">Weekly schedule is disconnected and does not indicate timeline per module.</td><td id="HnEe" class=""><strong>Match Between System and Real World</strong>, <strong>Visibility of System Status</strong></td><td id="rTH`" class="">Users can’t plan their time or understand how the course progresses.</td><td id="VfsY" class="" style="width:181px">Introduce a <strong>timeline view or progress slider</strong> to show module duration and order. Integrate weekly schedule directly into the curriculum layout.</td><td id="&gt;k&lt;;" class="">Course Modules and Schedules</td></tr><tr id="238db492-574d-8072-90a2-c50332568c6f"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Low-Quality Tool Imagery</strong></th><td id="`u=x" class="">Tool icons/images are small, pixelated or inconsistent in visual quality.</td><td id="HnEe" class=""><strong>Aesthetic &amp; Minimalist Design</strong>, <strong>Help Users Recognize not Recall</strong></td><td id="rTH`" class="">Weakens perception of tool relevance or quality of program.</td><td id="VfsY" class="" style="width:181px">Replace with <strong>high-resolution icons/logos</strong> of tools used. Add tooltips or hover descriptions for clarity.</td><td id="&gt;k&lt;;" class="">Course Modules and Schedules</td></tr><tr id="238db492-574d-8096-89a1-dbeebb707eb2"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px"><strong>Redundant Weekly Schedule</strong></th><td id="`u=x" class="">Weekly schedule appears isolated or overlaps with module info.</td><td id="HnEe" class=""><strong>Efficiency of Use</strong>, <strong>Recognition Over Recall</strong></td><td id="rTH`" class="">Creates confusion about structure and may seem repetitive.</td><td id="VfsY" class="" style="width:181px">Merge with curriculum section. Use a <strong>unified flow</strong>, e.g., “Week 1 - Module Name - Learning Goals.”</td><td id="&gt;k&lt;;" class="">Course Modules and Schedules</td></tr><tr id="238db492-574d-8080-8070-ff2c0dbbcb29"><th id="kW~m" class="simple-table-header-color simple-table-header" style="width:111.53125px">No CTA to Express Interest</th><td id="`u=x" class="">No option for users to express interest if a cohort is full or applications are closed.</td><td id="HnEe" class=""><strong>User Control &amp; Freedom Visibility of System Status Recognition over Recall</strong></td><td id="rTH`" class="">Users may leave the page due to lack of direction. Creates friction for future cohort engagement.</td><td id="VfsY" class="" style="width:181px">Add a visible CTA like “Join Waitlist” or “Get Notified” for closed or upcoming cohorts.</td><td id="&gt;k&lt;;" class=""><strong>Sticky CTA for Unavailable Cohorts: </strong><em>“Cohort Full - Join Waitlist”</em> or <em>“Applications Closed - Get Notified for Next Cohort”</em></td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">3. Competitor Benchmarking</summary><div class="indented"><p id="238db492-574d-8050-b876-e64feb2db322" class="">
+</p><p id="238db492-574d-809b-b8a7-cf17ad2041eb" class="">We benchmarked the <strong>Product Space PM Fellowship</strong> page against three notable cohort-based Product Management programs: <strong>PM School</strong>, <strong>NextLeap</strong>, and <strong>GrowthX</strong>. The comparison evaluates key UX and product communication dimensions relevant to conversion and user trust.</p><h3 id="238db492-574d-806d-806f-ff63ed99c06a" class="">✅ Key Dimensions Evaluated:</h3><ul id="238db492-574d-80ed-8798-ed62fe99ba3e" class="bulleted-list"><li style="list-style-type:disc"><strong>UX Clarity:</strong> How intuitive and easy-to-navigate the page is.</li></ul><ul id="238db492-574d-800c-9263-d0e2e253e837" class="bulleted-list"><li style="list-style-type:disc"><strong>Credibility:</strong> Trust-building elements like mentor profiles, alumni success, logos, or press coverage.</li></ul><ul id="238db492-574d-8008-8864-dbe8e66114f3" class="bulleted-list"><li style="list-style-type:disc"><strong>Info Structure:</strong> Logical flow and organization of content from top to bottom.</li></ul><ul id="238db492-574d-80b0-9b05-ebf35cbd331f" class="bulleted-list"><li style="list-style-type:disc"><strong>CTA Strength:</strong> How compelling, visible, and clear the Calls to Action are.</li></ul><ul id="238db492-574d-80df-83ee-c416547d37e0" class="bulleted-list"><li style="list-style-type:disc"><strong>Pricing Transparency:</strong> Clarity around pricing, discounts, scholarships, or refund policies.</li></ul><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">📊 Comparison Table (UX Clarity x Credibility x IA x CTA Strength x Pricing Transparency)</summary><div class="indented"><table id="238db492-574d-8003-ac58-eefa68a53d2e" class="simple-table"><thead class="simple-table-header"><tr id="238db492-574d-8077-8aaf-f3801dc12d08"><th id="sJ[A" class="simple-table-header-color simple-table-header">Program</th><th id="EjKc" class="simple-table-header-color simple-table-header">Value Proposition</th><th id="?Qzd" class="simple-table-header-color simple-table-header">UX Clarity</th><th id="t:qJ" class="simple-table-header-color simple-table-header">Credibility</th><th id="~eO@" class="simple-table-header-color simple-table-header">Info Structure</th><th id="|inE" class="simple-table-header-color simple-table-header">CTA Strength</th><th id="l\Kw" class="simple-table-header-color simple-table-header">Pricing Transparency</th><th id="g_Ta" class="simple-table-header-color simple-table-header">Placement</th></tr></thead><tbody><tr id="238db492-574d-808a-a343-fb7255924f22"><td id="sJ[A" class=""><strong>Product Space</strong></td><td id="EjKc" class="">Low</td><td id="?Qzd" class="">Medium</td><td id="t:qJ" class="">Medium (needs value benefits in hero)</td><td id="~eO@" class="">Low-Medium</td><td id="|inE" class="">Medium (needs call back and interest form)</td><td id="l\Kw" class="">Medium</td><td id="g_Ta" class="">Low</td></tr><tr id="238db492-574d-80cd-8394-e82647df0bda"><td id="sJ[A" class=""><strong>NextLeap</strong></td><td id="EjKc" class="">Medium</td><td id="?Qzd" class="">High</td><td id="t:qJ" class="">Medium-High (Cohort profile ratios and stats, value benefits in hero)</td><td id="~eO@" class="">High (Program timeline clarity)</td><td id="|inE" class="">High (call back, message)</td><td id="l\Kw" class="">High (has scholarships)</td><td id="g_Ta" class="">High (Interview prep</td></tr><tr id="238db492-574d-8006-8ce4-fc1098e221c5"><td id="sJ[A" class=""><strong>GrowthX</strong></td><td id="EjKc" class="">High</td><td id="?Qzd" class="">Medium</td><td id="t:qJ" class="">High</td><td id="~eO@" class="">Medium-High</td><td id="|inE" class="">Medium</td><td id="l\Kw" class="">Low</td><td id="g_Ta" class=""></td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">📦 Feature / Service Offering Comparison</summary><div class="indented"><table id="238db492-574d-80f5-a33f-f3e5a42ef096" class="simple-table"><thead class="simple-table-header"><tr id="238db492-574d-8084-9ca9-f2125d633f38"><th id=";=CM" class="simple-table-header-color simple-table-header">Feature / Service</th><th id="p?&gt;U" class="simple-table-header-color simple-table-header">Product Space</th><th id="i{jJ" class="simple-table-header-color simple-table-header">NextLeap</th><th id="kY_?" class="simple-table-header-color simple-table-header">GrowthX</th></tr></thead><tbody><tr id="238db492-574d-80a3-bb7c-f868f975ec30"><td id=";=CM" class=""><strong>Live Sessions</strong></td><td id="p?&gt;U" class="">✅ Yes</td><td id="i{jJ" class="">✅ Yes</td><td id="kY_?" class="">✅ Yes</td></tr><tr id="238db492-574d-8037-8d02-c9d2ccf28e3c"><td id=";=CM" class=""><strong>Mentorship Access</strong></td><td id="p?&gt;U" class="">✅ Yes</td><td id="i{jJ" class="">✅ Yes</td><td id="kY_?" class="">✅ Yes</td></tr><tr id="238db492-574d-8002-9248-d8cbfea52281"><td id=";=CM" class=""><strong>Career Support / Placements</strong></td><td id="p?&gt;U" class="">⚠️ Partial</td><td id="i{jJ" class="">✅ Yes</td><td id="kY_?" class="">⚠️ Limited</td></tr><tr id="238db492-574d-8038-b08c-e3985ca892f9"><td id=";=CM" class=""><strong>Alumni Network</strong></td><td id="p?&gt;U" class="">⚠️ Emerging</td><td id="i{jJ" class="">✅ Strong</td><td id="kY_?" class="">✅ Strong</td></tr><tr id="238db492-574d-8037-a9ff-e3c205e41e7e"><td id=";=CM" class=""><strong>Industry Projects</strong></td><td id="p?&gt;U" class="">✅ Included</td><td id="i{jJ" class="">✅ Included</td><td id="kY_?" class="">⚠️ Unclear</td></tr><tr id="238db492-574d-80a7-b5ba-d8fd1f6c1f4b"><td id=";=CM" class=""><strong>Certification</strong></td><td id="p?&gt;U" class="">✅ Provided</td><td id="i{jJ" class="">✅ Provided</td><td id="kY_?" class="">✅ Provided</td></tr><tr id="238db492-574d-80ee-8e42-d5de3f4d9972"><td id=";=CM" class=""><strong>Scholarships / Discounts</strong></td><td id="p?&gt;U" class="">⚠️ Dynamic (Unclear logic)</td><td id="i{jJ" class="">✅ Transparent</td><td id="kY_?" class="">❌ Not mentioned</td></tr><tr id="238db492-574d-8086-aae4-c5558fc618b5"><td id=";=CM" class=""><strong>Pricing Transparency</strong></td><td id="p?&gt;U" class="">⚠️ Medium</td><td id="i{jJ" class="">✅ High</td><td id="kY_?" class="">❌ Low</td></tr><tr id="238db492-574d-8086-87ca-c9cca51da198"><td id=";=CM" class=""><strong>Job Board / Openings</strong></td><td id="p?&gt;U" class="">✅ Available</td><td id="i{jJ" class="">✅ Available</td><td id="kY_?" class="">⚠️ Community-driven</td></tr><tr id="238db492-574d-804d-9839-f32bbeaddd89"><td id=";=CM" class=""><strong>Curriculum Depth</strong></td><td id="p?&gt;U" class="">✅ Good</td><td id="i{jJ" class="">✅ Strong</td><td id="kY_?" class="">✅ Strong</td></tr><tr id="238db492-574d-8065-9690-e9fb2f1e43ef"><td id=";=CM" class=""><strong>Microlearning Content</strong></td><td id="p?&gt;U" class="">⚠️ Limited</td><td id="i{jJ" class="">✅ Rich</td><td id="kY_?" class="">✅ Rich</td></tr><tr id="238db492-574d-80cb-b7c1-d459e5803552"><td id=";=CM" class=""><strong>Community Engagement</strong></td><td id="p?&gt;U" class="">✅ WhatsApp and Discord</td><td id="i{jJ" class="">✅ Discord</td><td id="kY_?" class="">✅ Community</td></tr><tr id="238db492-574d-807c-bbc4-c4c65afe52b8"><td id=";=CM" class=""><strong>Tools Introduced (Figma, Jira etc.)</strong></td><td id="p?&gt;U" class="">✅ Yes</td><td id="i{jJ" class="">✅ Yes</td><td id="kY_?" class="">⚠️ Not Prominent</td></tr><tr id="238db492-574d-805b-a270-c7c033c7a705"><td id=";=CM" class=""><strong>Waitlist / Express Interest CTA</strong></td><td id="p?&gt;U" class="">❌ Missing</td><td id="i{jJ" class="">✅ Yes</td><td id="kY_?" class="">✅ Yes</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">📌 Summary Observations</summary><div class="indented"><ul id="238db492-574d-8082-82ce-e6b3c96abaa9" class="bulleted-list"><li style="list-style-type:disc"><strong>Product Space</strong> covers the fundamentals but needs to strengthen placement visibility, alumni support, pricing clarity, and waitlist CTAs, structured information flow and visual hierarchy. Some trust signals (mentor credibility, alumni outcomes) are present but underutilized.</li></ul><ul id="238db492-574d-80b5-80d5-d58929d21fdc" class="bulleted-list"><li style="list-style-type:disc"><strong>NextLeap</strong> has a solid hero page. Balances detailed content with CTA optimization. They communicate outcomes and curriculum structure clearly, which increases clarity and trust. Has cohort profile stats. consistently offer full-stack support - from curriculum to mentorship and career outcomes.</li></ul><ul id="238db492-574d-8004-b67e-d398c854b181" class="bulleted-list"><li style="list-style-type:disc"><strong>GrowthX</strong> emphasizes community and has a solid visual layout. UX is decent, but the value proposition isn’t immediately obvious unless you scroll deep.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">🧠 Recommendations from Benchmarking</summary><div class="indented"><ol type="1" id="238db492-574d-8084-93a2-c95a31b082b1" class="numbered-list" start="1"><li><strong>Structure Like NextLeap:</strong> Use strong anchor-based navigation, modular curriculum visuals, and testimonial sections.</li></ol><ol type="1" id="238db492-574d-8026-9360-e9d98bfc0abd" class="numbered-list" start="2"><li><strong>Enhance Credibility:</strong> Like GrowthX or PM School, highlight alumni companies, salary lifts, or user metrics.</li></ol><ol type="1" id="238db492-574d-800b-a663-c0c24d8305f7" class="numbered-list" start="3"><li><strong>Optimize CTA Strategy:</strong> Use consistent and sticky CTAs like “Join Waitlist”</li></ol><ol type="1" id="238db492-574d-80f1-8cac-fde6b8284db9" class="numbered-list" start="4"><li><strong>Improve Pricing Transparency:</strong> Provide clear eligibility, discount logic, or student/alumni rates visibly on the page. Arbitrary pricing discount degrades trust and learner satisfaction.</li></ol><ol type="1" id="238db492-574d-80c1-a507-c5440cea7aed" class="numbered-list" start="5"><li>Member profile stats like GrowthX</li></ol></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">4. Top 5 Quick Wins</summary><div class="indented"><ul id="238db492-574d-80f9-85dc-f94563b73abb" class="bulleted-list"><li style="list-style-type:disc">Clarify value proposition in Hero section</li></ul><ul id="238db492-574d-803a-8807-d9087076ab22" class="bulleted-list"><li style="list-style-type:disc">Improve overall visual hierarchy eg..in Benefits section, highlight 3-5 high impact benefits. Adopt consistent topography.</li></ul><ul id="238db492-574d-8052-b871-ca187072d913" class="bulleted-list"><li style="list-style-type:disc">Add trust metrics ((Alumni Count, Alumni member profiles stats, Placement Rate, Cohort member stats, Mentor Stats). Add a trust bar eg. “<em>500+ Alumni”, “85% placed within 3 months”, “Backed by mentors from Google, Razorpay, etc.”</em></li></ul><ul id="238db492-574d-8093-960c-e1d9965e527b" class="bulleted-list"><li style="list-style-type:disc">Include strong CTAs for closed cohorts or to express interests in future cohorts</li></ul><ul id="238db492-574d-80b4-82d4-d6e3a958f088" class="bulleted-list"><li style="list-style-type:disc">Explore segment based pricing rather than arbitrary pricing for same cohorts within same segments to improve trust. Explore scholarships.</li></ul><p id="238db492-574d-806b-99f3-f5297f9cfd0b" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">5. Top 3 Strategic Redesigns - STAR</summary><div class="indented"><p id="238db492-574d-801e-97f0-e3b141905c23" class="">
+</p><table id="238db492-574d-802b-b450-eb30ea122fc8" class="simple-table"><thead class="simple-table-header"><tr id="238db492-574d-8053-b9f8-cd8a4d578f59"><th id="fiU?" class="simple-table-header-color simple-table-header" style="width:35px">#</th><th id="Ane~" class="simple-table-header-color simple-table-header" style="width:102.86459350585938px">Strategic Redesign</th><th id="FJ?A" class="simple-table-header-color simple-table-header">Situation (S)</th><th id="\bKh" class="simple-table-header-color simple-table-header">Task (T)</th><th id="tw&lt;e" class="simple-table-header-color simple-table-header">Action (A)</th><th id="irBt" class="simple-table-header-color simple-table-header">Result (R)</th></tr></thead><tbody><tr id="238db492-574d-80fc-a817-cd56419c59f0"><td id="fiU?" class="" style="width:35px">1</td><td id="Ane~" class="" style="width:102.86459350585938px"><strong>Redesign Information Flow</strong></td><td id="FJ?A" class="">Users face scroll fatigue and content overload due to poor structure and mixed sections.</td><td id="\bKh" class="">Improve information clarity and scanning by structuring content into clear sections.</td><td id="tw&lt;e" class="">- Group content into: Overview → Benefits → Curriculum → Support → Pricing → FAQ → Apply.- Use visual signposts and sticky navigation.</td><td id="irBt" class="">Higher user clarity, reduced bounce rate, increased time-on-page and scroll depth.</td></tr><tr id="238db492-574d-8091-a13f-f876e06bc56e"><td id="fiU?" class="" style="width:35px">2</td><td id="Ane~" class="" style="width:102.86459350585938px"><strong>Storytelling with Alumni Visual Journeys</strong></td><td id="FJ?A" class="">Success stories lack visual and emotional impact. No strong alumni transformation showcase.</td><td id="\bKh" class="">Add compelling, structured alumni stories with visuals.</td><td id="tw&lt;e" class="">- Feature before-after visuals, outcomes (e.g., job switch), and timelines.- Highlight support received during journey (mentors, projects).</td><td id="irBt" class="">Greater trust, relatability, and aspirational value. Stronger emotional connection drives higher conversions.</td></tr><tr id="238db492-574d-80dd-b88b-d3e67e265a54"><td id="fiU?" class="" style="width:35px">3</td><td id="Ane~" class="" style="width:102.86459350585938px"><strong>Revamp CTA Funnel (Explore → Apply)</strong></td><td id="FJ?A" class="">Flat CTA structure pressures users to apply early, without nurturing or phased information.</td><td id="\bKh" class="">Build a guided CTA experience aligned with decision journey.</td><td id="tw&lt;e" class="">- Add stage-based CTAs like: “Explore Curriculum”, “See Projects”, then “Apply Now”.- Use anchors, sticky bars, or modals for progressive disclosure.</td><td id="irBt" class="">Higher CTA engagement, improved guided conversions, reduced form abandonment.</td></tr><tr id="238db492-574d-804a-aa6c-e355cb43d68e"><td id="fiU?" class="" style="width:35px">4</td><td id="Ane~" class="" style="width:102.86459350585938px"><strong>Transparent Pricing by Segments</strong></td><td id="FJ?A" class="">Users discover different discounts in the same cohort, creating distrust and perceived unfairness.</td><td id="\bKh" class="">Build trust and brand equity by aligning discounts with clear user personas.</td><td id="tw&lt;e" class="">- Replace opaque dynamic pricing with segment-specific offers: e.g., Students, Early-birds, Alumni. Add tooltip explanations near prices or a FAQs “Why this price?” section.</td><td id="irBt" class="">Improves trust and transparency, strengthens brand perception, reduces dropout due to perceived bias.</td></tr></tbody></table><p id="238db492-574d-805e-ba03-dfdfb20d70f4" class="">
+</p><p id="238db492-574d-80c2-877b-ec79f2e409a3" class="">
+</p></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

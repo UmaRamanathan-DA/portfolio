@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance Management System – iOS App Redesign</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { background: #f8f8f8; color: #222; font-family: 'Poppins', Arial, sans-serif; }
+    .case-container { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); padding: 2.5rem 2rem; margin-top: 2rem; margin-bottom: 2rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; margin-top: 2.2rem; margin-bottom: 1rem; color: #333; }
+    h3 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 0.7rem; color: #444; }
+    .section { margin-bottom: 2.2rem; }
+    .placeholder { background: #eee; color: #888; border-radius: 8px; padding: 1.2rem; text-align: center; margin: 1.2rem 0; font-style: italic; }
+    table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.7rem; text-align: left; }
+    th { background: #f6e58d; color: #333; }
+    ul { margin-left: 1.2rem; }
+    .impact-list { margin-top: 1.2rem; }
+    .banner-cover {
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+      height: 280px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border-radius: 0 0 18px 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .banner-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 0 0 18px 18px;
+    }
+    .banner-overlay {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(30,30,30,0.25) 40%, rgba(30,30,30,0.65) 100%);
+      z-index: 1;
+      border-radius: 0 0 18px 18px;
+    }
+    .banner-title {
+      position: absolute;
+      left: 0; right: 0; bottom: 2.2rem;
+      text-align: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      letter-spacing: 1px;
+      padding: 0 1rem;
+    }
+    @media (max-width: 600px) {
+      .banner-cover { height: 160px; }
+      .banner-title { font-size: 1.1rem; bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="case-container">
+    <h1>📱 Compliance Management System – iOS App Redesign</h1>
+    <div class="section"><em>A Mobile-First Transformation for Field Assessors</em></div>
+
+    <h2>🧠 Introduction</h2>
+    <div class="section">
+      Redesigning a legacy compliance system to empower field officers with mobile-first tools. The goal: eliminate manual work, reduce errors, and improve on-site efficiency.
+    </div>
+
+    <h2>🎯 Project Snapshot</h2>
+    <ul>
+      <li><strong>NoBoMo, San Diego, Remote</strong></li>
+      <li><strong>Role:</strong> UX Designer</li>
+      <li><strong>Platform:</strong> iPhone & iPad</li>
+      <li><strong>Tools:</strong> Figma, Adobe XD, Balsamiq</li>
+      <li><strong>Year:</strong> 2025</li>
+    </ul>
+
+    <h2>🔍 The Challenge</h2>
+    <ul>
+      <li>Manual note-taking</li>
+      <li>No offline access</li>
+      <li>Frequent data loss</li>
+      <li>Delayed validations</li>
+      <li>Poor mobile compatibility</li>
+    </ul>
+
+    <h2>🧩 Goals & Objectives</h2>
+    <ul>
+      <li>Design for mobile and tablet</li>
+      <li>Enable offline recording and syncing</li>
+      <li>Auto-save to prevent data loss</li>
+      <li>Real-time alerts via SMS/iMessage</li>
+      <li>Dashboard for quick access to tasks and templates</li>
+    </ul>
+
+    <h2>👥 Stakeholder Assumptions</h2>
+    <table>
+      <tr><th>Assumption</th><th>Risk Level</th><th>Validation Approach</th></tr>
+      <tr><td>Users prefer mobile recording</td><td>High</td><td>Field interviews, analytics</td></tr>
+      <tr><td>SMS/iMessage is the best alert method</td><td>Medium</td><td>Survey, usage data</td></tr>
+      <tr><td>Offline sync is technically feasible</td><td>High</td><td>Dev partner consultation</td></tr>
+      <tr><td>Templates are reused across locations</td><td>Medium</td><td>Contextual inquiry</td></tr>
+      <tr><td>Users are tech-savvy and need minimal training</td><td>Low</td><td>Persona analysis</td></tr>
+    </table>
+
+    <h2>📊 Stakeholder Feedback Grid</h2>
+    <table>
+      <tr>
+        <th>✅ Works Well</th>
+        <th>⚠️ Needs to Change</th>
+        <th>❓ Questions</th>
+        <th>💡 New Ideas</th>
+      </tr>
+      <tr>
+        <td>On-field recording is easy and fast<br>Manual work eliminated<br>Templates auto-load based on location<br>Critical incident notifications visible<br>Frequent auto-saving</td>
+        <td>App performance is slow<br>Notifications are unintuitive<br>Syncing is confusing</td>
+        <td>How does communication work for non-iOS?<br>What are the offline data limits?</td>
+        <td>SMS/iMessage-based incident alerts<br>Gesture-based navigation<br>Voice-based search and incident recording<br>Dashboard with recent activities<br>Centralized notifications tab</td>
+      </tr>
+    </table>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\Feedback Grid.png"></img></div>
+    <h2>👤 Persona – Adam (Field & Survey Officer)</h2>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\Persona.png"></img></div>
+    
+
+    <h2>👤 Empathy Map – Adam (Field & Survey Officer)</h2>
+    
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\Empathy Map.png"></img></div>
+
+    <h2>🧭 Customer Journey Maps</h2>
+    <h3>As-Is Journey</h3>
+    <table>
+      <tr><th>Step</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Needs</th></tr>
+      <tr><td>Travel to site, take notes</td><td>Uses pen & paper</td><td>“Hope I don’t lose these notes.”</td><td>Anxious, cautious</td><td>Mobile recording, auto-save</td></tr>
+      <tr><td>Choose template</td><td>Searches manually</td><td>“Which one fits this site?”</td><td>Confused, uncertain</td><td>Smart template suggestions</td></tr>
+      <tr><td>Fill out basic details</td><td>Enters manually</td><td>“This takes too long.”</td><td>Frustrated</td><td>Autofill from location or history</td></tr>
+      <tr><td>Answer questionnaire</td><td>Scrolls through long forms</td><td>“I might miss something important.”</td><td>Overwhelmed</td><td>Simplified UI, criticality alerts</td></tr>
+      <tr><td>Continue later</td><td>Saves and exits</td><td>“Will this sync correctly?”</td><td>Worried</td><td>Reliable offline sync, confirmation</td></tr>
+    </table>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\As-Is-Scenario.png"></img></div>
+
+    <h3>To-Be Journey</h3>
+    <table>
+      <tr><th>Step</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Gains</th></tr>
+      <tr><td>Travel to site</td><td>Opens app, auto-loads template</td><td>“This is fast and accurate.”</td><td>Confident, focused</td><td>Location-based template suggestions</td></tr>
+      <tr><td>Fill out details</td><td>Autofill from GPS and history</td><td>“I’m saving so much time.”</td><td>Relieved</td><td>Smart autofill, reduced manual entry</td></tr>
+      <tr><td>Record assessment</td><td>Uses offline mode with auto-save</td><td>“No worries about data loss.”</td><td>Secure, efficient</td><td>Offline recording, auto-save</td></tr>
+      <tr><td>View alerts</td><td>Receives SMS/iMessage notifications</td><td>“I can act immediately.”</td><td>Empowered</td><td>Real-time criticality alerts</td></tr>
+      <tr><td>Submit & sync</td><td>Syncs automatically when online</td><td>“Everything’s backed up.”</td><td>Satisfied</td><td>Seamless sync, confirmation feedback</td></tr>
+    </table>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\To-Be-Scenario.png"></img></div>
+
+    <h2>✏️ Design Process</h2>
+    <h3>Wireframes (Balsamiq)</h3>
+    <ul>
+      <li>Explored multiple user journeys</li>
+      <li>Iterated 2–3 versions</li>
+      <li>Focused on usability and task efficiency</li>
+    </ul>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\balsymiq.png"></img></div>
+
+    <h3>High-Fidelity UI</h3>
+    <ul>
+      <li>Dashboard</li>
+      <li>Assessment List (Card & List views)</li>
+      <li>Quick Filters & Search</li>
+      <li>Record Assessment</li>
+      <li>Assessment Summary</li>
+    </ul>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\UI\dashboardhover.png"></img>
+        <img width="70%" src="..\images\Assessments\UI\cardsview.png"></img>
+        <img width="70%" src="..\images\Assessments\UI\assessment.png"></img>
+        <img width="70%" src="..\images\Assessments\UI\summary.png"></img>
+    </div>
+
+    <div class="side-by-side-imgs" style="display: flex; justify-content: center; gap: 2rem; align-items: flex-start; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+      <img src="../images/Assessments/UI/mobile-1.png" alt="Mobile UI 1" style="max-width: 300px; width: 100%; border-radius: 12px;">
+      <img src="../images/Assessments/UI/mobile-2.png" alt="Mobile UI 2" style="max-width: 300px; width: 100%; border-radius: 12px;">
+      <img src="../images/Assessments/UI/mobile-3.png" alt="Mobile UI 3" style="max-width: 300px; width: 100%; border-radius: 12px;">
+    </div>
+
+
+    <h2>💬 User Feedback</h2>
+    <ul>
+      <li>On-field recording is easy and fast</li>
+      <li>Manual work eliminated</li>
+      <li>Templates auto-load based on location</li>
+      <li>Critical incident notifications visible</li>
+      <li>Frequent auto-saving</li>
+      <li>App performance and syncing need improvement</li>
+    </ul>
+
+    <h2>🚀 Outcome & Impact</h2>
+    <div class="impact-list">
+      Delivered core screen designs and a functional prototype within one week.<br>
+      Collaborated with development partners to ensure feasibility and alignment.
+      <ul>
+        <li>Reduced manual work</li>
+        <li>Improved data integrity</li>
+        <li>Enhanced compliance workflows</li>
+        <li>Empowered field users with reliable tools</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html> 

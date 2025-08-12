@@ -1,0 +1,259 @@
+/* Common styles for all project pages */
+.project-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    min-height: 100vh;
+}
+
+.project-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #00ddff;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 6rem 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.project-title {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    font-size: 1.1rem;
+}
+
+.meta-item i {
+    color: #00ddff;
+}
+
+.project-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.project-description {
+    line-height: 1.8;
+    color: #555;
+}
+
+.project-description h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #00ddff;
+    padding-bottom: 0.5rem;
+}
+
+.project-description p {
+    margin-bottom: 1.5rem;
+}
+
+.project-sidebar {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    height: fit-content;
+}
+
+.skills-section, .tech-section {
+    margin-bottom: 2rem;
+}
+
+.skills-section h4, .tech-section h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.tech-category {
+    margin-bottom: 1.5rem;
+}
+
+.tech-category h5 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid #00ddff;
+    padding-bottom: 0.3rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: #00ddff;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #00ddff;
+    color: #333;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.back-btn:hover {
+    background: #e6c200;
+    transform: translateY(-2px);
+}
+
+.project-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #333;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid #333;
+}
+
+.project-btn:hover {
+    background: #00ddff;
+    color: #333;
+    border-color: #00ddff;
+    transform: translateY(-2px);
+}
+
+.project-btn i {
+    font-size: 1.1rem;
+}
+
+.project-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.github-btn {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.github-btn:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
+.dashboard-btn {
+    background: #00ddff;
+    color: #333;
+    border-color: #00ddff;
+}
+
+.dashboard-btn:hover {
+    background: #e6c200;
+    transform: translateY(-2px);
+}
+
+.action-btn i {
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .project-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .project-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .project-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .project-header {
+        background-attachment: scroll;
+        padding: 4rem 1rem;
+    }
+    
+    .project-title {
+        font-size: 2rem;
+    }
+} 
