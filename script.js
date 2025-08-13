@@ -2,6 +2,7 @@
 const sections = document.querySelectorAll('section');
 const sidebarNavLinks = document.querySelectorAll('.nav-link');
 
+
 // Add click event listeners to sidebar navigation links
 sidebarNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {

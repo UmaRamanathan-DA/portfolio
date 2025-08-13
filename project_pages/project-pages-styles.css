@@ -1,3 +1,4 @@
+
 /* Common styles for all project pages */
 .project-detail-container {
     max-width: 1200px;
@@ -11,7 +12,7 @@
     text-align: center;
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 2px solid #00ddff;
+    border-bottom: 2px solid #e6c200;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -45,7 +46,7 @@
 }
 
 .meta-item i {
-    color: #00ddff;
+    color: #e6c200;
 }
 
 .project-content {
@@ -64,7 +65,7 @@
     color: #333;
     margin-bottom: 1rem;
     font-size: 1.3rem;
-    border-bottom: 2px solid #00ddff;
+    border-bottom: 2px solid #e6c200;
     padding-bottom: 0.5rem;
 }
 
@@ -98,7 +99,7 @@
     margin-bottom: 0.8rem;
     font-size: 1rem;
     font-weight: 600;
-    border-bottom: 1px solid #00ddff;
+    border-bottom: 1px solid #e6c200;
     padding-bottom: 0.3rem;
 }
 
@@ -109,7 +110,7 @@
 }
 
 .skill-tag {
-    background: #00ddff;
+    background: #e6c200;
     color: #333;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -121,7 +122,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: #00ddff;
+    background: #e6c200;
     color: #333;
     padding: 1rem 2rem;
     text-decoration: none;
@@ -159,9 +160,9 @@
 }
 
 .project-btn:hover {
-    background: #00ddff;
+    background: #e6c200;
     color: #333;
-    border-color: #00ddff;
+    border-color: #e6c200;
     transform: translateY(-2px);
 }
 
@@ -201,9 +202,9 @@
 }
 
 .dashboard-btn {
-    background: #00ddff;
+    background: #e6c200;
     color: #333;
-    border-color: #00ddff;
+    border-color: #e6c200;
 }
 
 .dashboard-btn:hover {
