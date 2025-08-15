@@ -30,6 +30,7 @@ sidebarNavLinks.forEach(link => {
     });
 });
 
+
 // Update active navigation link based on scroll position
 function updateActiveNavLink() {
     const scrollPosition = window.scrollY + 100; // Offset for better detection

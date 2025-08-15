@@ -13,6 +13,20 @@
   padding: 2rem;
 }
 
+.project-showcase-card-1 {
+  display: flex;
+  align-items: right;
+  background: #9c8573;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 2rem 0;
+  min-height: 400px;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  padding: 0rem;
+}
+
 .project-showcase-card.cafe {
   position: relative;
   overflow: visible; /* Allow image to protrude */
@@ -30,6 +44,17 @@
   width: 50%;
 }
 
+.project-showcase-card-1.cafe1 .project-images {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: transparent;
+  min-width: 320px;
+  width: 100%;
+}
+
 .protrude-img {
   width: 300px;
   height: 400px;
@@ -38,7 +63,7 @@
   box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 12px rgba(0,0,0,0.10);
   position: absolute;
   top: -60px; /* Protrude above the card */
-  left: 50%;
+  left: 80%;
   transform: translateX(-50%);
   background: #fff;
   z-index: 3;
@@ -55,14 +80,14 @@
 
 .project-images {
   position: relative;
-  width: 50%;
+  width: 100%;
   min-width: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   height: 100%;
-  padding: 1rem 0;
+  padding: 0rem 0;
 }
 .tablet-img {
   width: 90%;
