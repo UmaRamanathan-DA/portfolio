@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Me · Bold Typography</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /*────────────────────────────────────────────────────────────────────────
+      Variables & Reset
+    ─────────────────────────────────────────────────────────────────────────*/
+    :root {
+      --font-body: 'Roboto', sans-serif;
+      --font-heading: 'Anton', sans-serif;
+
+      --bg-light: #f0f5f9;
+      --bg-dark:  #1a1f23;
+
+      --accent1: #ff6b6e;
+      --accent2: #ffd2a5;
+
+      --text-light: #ffffff;
+      --text-dark:  #24292e;
+
+      --transition: 0.3s ease-in-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    h1, h2 {
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent1);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Dark Mode Toggle
+    ─────────────────────────────────────────────────────────────────────────*/
+    .toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 42px;
+      height: 22px;
+      background: var(--accent1);
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .toggle::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left var(--transition);
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    body.dark .toggle::before {
+      left: 22px;
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Hero with Animated Gradient
+    ─────────────────────────────────────────────────────────────────────────*/
+    header.hero {
+      height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      background-size: 300% 300%;
+      animation: gradientShift 8s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header.hero h1 {
+      font-size: 4rem;
+      color: var(--text-light);
+      animation: popIn 0.8s ease-out both;
+    }
+
+    header.hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      opacity: 0;
+      animation: fadeIn 1.2s 0.5s ease-out forwards;
+    }
+
+    @keyframes popIn {
+      0%   { transform: scale(0.3); opacity: 0; }
+      80%  { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Section Containers & Titles
+    ─────────────────────────────────────────────────────────────────────────*/
+    section {
+      position: relative;
+      padding: 5rem 1rem;
+      max-width: 900px;
+      margin: -4rem auto 4rem;
+    }
+
+    section:nth-of-type(even) {
+      background: #fff;
+      clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+    }
+
+    section h2 {
+      font-size: 2.4rem;
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Cartoon Decoratives
+    ─────────────────────────────────────────────────────────────────────────*/
+    .cartoon {
+      position: absolute;
+      width: 80px;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .cartoon.dog   { top: 12%;  left: 4%;  }
+    .cartoon.bird  { top: 18%;  right: 6%; }
+    .cartoon.cat   { bottom: 14%; right: 8%; }
+    .cartoon.fish  { bottom: 10%; left: 12%; }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Overview Card (Straight)
+    ─────────────────────────────────────────────────────────────────────────*/
+    .overview {
+      
+      padding: 2rem;
+      background: transparent;
+      border-radius: 12px;
+      transition: transform var(--transition);
+    }
+
+    .overview:hover {
+      transform: scale(1.02);
+    }
+
+    .overview p {
+      font-weight: 400;
+    }
+
+    .overview p strong {
+      font-weight: 700;
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Feature List (Straight)
+    ─────────────────────────────────────────────────────────────────────────*/
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .features li {
+      list-style: none;
+      background: transparent;
+      padding: 1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      font-weight: 500;
+      transition: transform var(--transition);
+    }
+
+    .features li:hover {
+      transform: scale(1.03);
+    }
+
+    .features li::before {
+      content: '🐾';
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Straightforward Snap Gallery
+    ─────────────────────────────────────────────────────────────────────────*/
+    .snapshots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5rem;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .snapshots-1 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5rem;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .snapshots img {
+      height: 80%;
+      width: 40%;
+      border-radius: 0;
+      box-shadow: none;
+      object-fit:  cover;
+      transition: transform var(--transition);
+    }
+    .snapshots-1 img {
+      height: auto;
+      width: 100%;
+      border-radius: 0;
+      box-shadow: none;
+      object-fit:  cover;
+      transition: transform var(--transition);
+      justify-content: center;
+      align-items: center;
+    }
+    
+
+    .snapshots img:hover {
+      transform: scale(1.05);
+    }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Prototype CTA
+    ─────────────────────────────────────────────────────────────────────────*/
+    .prototype-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: var(--accent2);
+      color: var(--accent1);
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .prototype-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .hover-img img {
+    width: 100%;
+  height: auto;
+  transition: opacity 0.4s ease;
+}
+
+/* On hover, change the `src` visually using content swapping */
+.hover-img img:hover {
+  content: url("../images/PetMe/petme_thumbnail.png");
+}
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="toggle" id="modeToggle" title="Toggle dark mode"></div>
+
+  <header class="hero">
+    <h1>Pet Me</h1>
+    
+    <p class="tagline">Personal Project · Product Ideation · Hybrid Mobile UX-UI</p>
+
+  </header>
+  <section><img style="width: 40%;" class="cartoon cat" src="../images/PetMe/rabbit.svg" alt="" /></section>
+
+  <section>
+    <div class="snapshots-1" style="width: 90%; justify-content: center; place-content: center;">
+    <img  src="../images/PetMe/petme_thumbnail_1.png" 
+           alt="Home Screen" />
+    </div>
+  </section>
+
+  <section>    
+    <div class="overview">      
+      <p>Pet Me unites pet parents and pros with delight in every tap. Book grooming, track vet visits, or browse adoptable fur-friends—all with joyful micro-animations.</p>
+      <p><strong>Scope:</strong> Ideation · UX Strategy · Hi-fi Prototyping</p>
+    </div>
+  </section>  
+  <img class="cartoon fish" src="../images/PetMe/CartoonFish.svg" alt="" />
+  
+  
+
+  <section>
+    <h2>Key Features</h2>
+    <ul class="features">
+      <li>Live scheduler w/ calendar sync</li>
+      <li>Adopt-by-map matching</li>
+      <li>Smart reminders</li>
+      <li>Async chat + media share</li>
+    </ul>
+    <img class="cartoon fish" src="../images/PetMe/CartoonFish.svg" alt="" />
+  </section>
+  <section>
+    <h2>UI Gallery</h2>
+  </section>
+  <section>
+    <div style="width: 90%;" class="snapshots-1">
+      <img src="../images/PetMe/petme_thumbnail.png" alt="Home Screen" />   
+    </div>
+  </section>
+  <section>
+    <div class="snapshots">     
+      <img src="../images/PetMe/home1.png"        alt="Adoption Flow" />
+      <img src="../images/PetMe/home2.png"    alt="Scheduler UI" />    
+    </div>
+  </section>
+  <section>
+    <div class="snapshots">     
+      <img src="../images/PetMe/page1.png"         alt="In-App Chat" />
+      <img src="../images/PetMe/page2.png"         alt="In-App Chat" />      
+    </div>
+  </section>
+  <section>
+    <div class="snapshots"> 
+      <img src="../images/PetMe/page3.png"         alt="In-App Chat" />     
+      <img src="../images/PetMe/page4.png" alt="In-App Chat" />
+    </div>
+  </section>
+  <section>
+    <div class="snapshots">      
+      <img src="../images/PetMe/schedulebiolong.png" alt="In-App Chat" />
+    </div>
+  </section>
+<section>
+    <a
+      href="https://www.figma.com/proto/your-prototype-link"
+      class="prototype-link"
+      target="_blank">
+      View Prototype ↗
+    </a>
+  </section>
+
+  <footer>
+    © Vodca · Pet Me Concept · Built with whimsy 🐾
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const toggle = document.getElementById('modeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+  </script>
+</body>
+</html>
