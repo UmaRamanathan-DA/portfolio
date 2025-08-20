@@ -14,9 +14,34 @@
     h3 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 0.7rem; color: #444; }
     .section { margin-bottom: 2.2rem; }
     .placeholder { background: #eee; color: #888; border-radius: 8px; padding: 1.2rem; text-align: center; margin: 1.2rem 0; font-style: italic; }
-    table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; }
-    th, td { border: 1px solid #ddd; padding: 0.7rem; text-align: left; }
-    th { background: #f6e58d; color: #333; }
+    
+    /* Table Styles */
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 1.2rem 0; 
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td { 
+      border: 1px solid #ddd; 
+      padding: 0.7rem; 
+      text-align: left; 
+      vertical-align: top;
+    }
+    th { 
+      background: #f6e58d; 
+      color: #333; 
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    td {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
     ul { margin-left: 1.2rem; }
     .impact-list { margin-top: 1.2rem; }
     .banner-cover {
@@ -57,6 +82,247 @@
       letter-spacing: 1px;
       padding: 0 1rem;
     }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .case-container {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem 1rem;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+      
+      h3 {
+        font-size: 1.1rem;
+      }
+      
+      table {
+        margin: 1rem 0;
+      }
+      
+      th, td {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .case-container {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0.5rem;
+        border-radius: 12px;
+      }
+      
+      h1 {
+        font-size: 1.6rem;
+      }
+      
+      h2 {
+        font-size: 1.2rem;
+        margin-top: 1.8rem;
+      }
+      
+      h3 {
+        font-size: 1rem;
+        margin-top: 1.5rem;
+      }
+      
+      /* Mobile Table Responsiveness */
+      table {
+        display: block;
+        width: 100%;
+        border-radius: 6px;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      
+      thead {
+        display: none; /* Hide headers on mobile */
+      }
+      
+      tbody {
+        display: block;
+        width: 100%;
+      }
+      
+      tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        padding: 0.75rem;
+      }
+      
+      td {
+        display: block;
+        border: none;
+        padding: 0.5rem 0;
+        text-align: left;
+        position: relative;
+        padding-left: 0;
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+      
+      /* Add labels for mobile table cells */
+      td:before {
+        content: attr(data-label) ": ";
+        font-weight: 600;
+        color: #333;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      /* Special styling for specific table types */
+      .stakeholder-table td:before {
+        background: #f6e58d;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .feedback-table td:before {
+        background: #e8f4fd;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .journey-table td:before {
+        background: #f0f8e8;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .placeholder {
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 6px;
+      }
+      
+      .placeholder img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      .side-by-side-imgs {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        align-items: center !important;
+      }
+      
+      .side-by-side-imgs img {
+        max-width: 280px !important;
+        width: 100% !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .case-container {
+        padding: 1rem 0.75rem;
+        margin: 0.5rem 0.25rem;
+        border-radius: 8px;
+      }
+      
+      h1 {
+        font-size: 1.4rem;
+      }
+      
+      h2 {
+        font-size: 1.1rem;
+        margin-top: 1.5rem;
+      }
+      
+      h3 {
+        font-size: 0.95rem;
+        margin-top: 1.2rem;
+      }
+      
+      table {
+        margin: 0.75rem 0;
+        font-size: 0.8rem;
+      }
+      
+      tr {
+        margin-bottom: 0.75rem;
+        padding: 0.5rem;
+      }
+      
+      td {
+        padding: 0.375rem 0;
+        font-size: 0.8rem;
+      }
+      
+      td:before {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+      }
+      
+      .placeholder {
+        padding: 0.75rem;
+        margin: 0.75rem 0;
+        border-radius: 4px;
+      }
+      
+      .side-by-side-imgs img {
+        max-width: 260px !important;
+      }
+      
+      ul {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .case-container {
+        padding: 0.75rem 0.5rem;
+      }
+      
+      h1 {
+        font-size: 1.3rem;
+      }
+      
+      h2 {
+        font-size: 1rem;
+      }
+      
+      h3 {
+        font-size: 0.9rem;
+      }
+      
+      table {
+        font-size: 0.75rem;
+      }
+      
+      td {
+        font-size: 0.75rem;
+      }
+      
+      td:before {
+        font-size: 0.7rem;
+      }
+      
+      .side-by-side-imgs img {
+        max-width: 240px !important;
+      }
+    }
+
     @media (max-width: 600px) {
       .banner-cover { height: 160px; }
       .banner-title { font-size: 1.1rem; bottom: 1rem; }
@@ -102,13 +368,13 @@
     </ul>
 
     <h2>👥 Stakeholder Assumptions</h2>
-    <table>
+    <table class="stakeholder-table">
       <tr><th>Assumption</th><th>Risk Level</th><th>Validation Approach</th></tr>
-      <tr><td>Users prefer mobile recording</td><td>High</td><td>Field interviews, analytics</td></tr>
-      <tr><td>SMS/iMessage is the best alert method</td><td>Medium</td><td>Survey, usage data</td></tr>
-      <tr><td>Offline sync is technically feasible</td><td>High</td><td>Dev partner consultation</td></tr>
-      <tr><td>Templates are reused across locations</td><td>Medium</td><td>Contextual inquiry</td></tr>
-      <tr><td>Users are tech-savvy and need minimal training</td><td>Low</td><td>Persona analysis</td></tr>
+      <tr><td data-label="Assumption">Users prefer mobile recording</td><td data-label="Risk Level">High</td><td data-label="Validation Approach">Field interviews, analytics</td></tr>
+      <tr><td data-label="Assumption">SMS/iMessage is the best alert method</td><td data-label="Risk Level">Medium</td><td data-label="Validation Approach">Survey, usage data</td></tr>
+      <tr><td data-label="Assumption">Offline sync is technically feasible</td><td data-label="Risk Level">High</td><td data-label="Validation Approach">Dev partner consultation</td></tr>
+      <tr><td data-label="Assumption">Templates are reused across locations</td><td data-label="Risk Level">Medium</td><td data-label="Validation Approach">Contextual inquiry</td></tr>
+      <tr><td data-label="Assumption">Users are tech-savvy and need minimal training</td><td data-label="Risk Level">Low</td><td data-label="Validation Approach">Persona analysis</td></tr>
     </table>
 
     <div class="placeholder"><img width="100%" src="..\images\Assessments\Assumptions.png"></img></div>
@@ -117,7 +383,7 @@
     <div class="placeholder"><img width="100%" src="..\images\Assessments\stakeholder-map.png"></img></div>
 
     <h2>📊 Stakeholder Feedback Grid</h2>
-    <table>
+    <table class="feedback-table">
       <tr>
         <th>✅ Works Well</th>
         <th>⚠️ Needs to Change</th>
@@ -125,10 +391,10 @@
         <th>💡 New Ideas</th>
       </tr>
       <tr>
-        <td>On-field recording is easy and fast<br>Manual work eliminated<br>Templates auto-load based on location<br>Critical incident notifications visible<br>Frequent auto-saving</td>
-        <td>App performance is slow<br>Notifications are unintuitive<br>Syncing is confusing</td>
-        <td>How does communication work for non-iOS?<br>What are the offline data limits?</td>
-        <td>SMS/iMessage-based incident alerts<br>Gesture-based navigation<br>Voice-based search and incident recording<br>Dashboard with recent activities<br>Centralized notifications tab</td>
+        <td data-label="✅ Works Well">On-field recording is easy and fast<br>Manual work eliminated<br>Templates auto-load based on location<br>Critical incident notifications visible<br>Frequent auto-saving</td>
+        <td data-label="⚠️ Needs to Change">App performance is slow<br>Notifications are unintuitive<br>Syncing is confusing</td>
+        <td data-label="❓ Questions">How does communication work for non-iOS?<br>What are the offline data limits?</td>
+        <td data-label="💡 New Ideas">SMS/iMessage-based incident alerts<br>Gesture-based navigation<br>Voice-based search and incident recording<br>Dashboard with recent activities<br>Centralized notifications tab</td>
       </tr>
     </table>
     <div class="placeholder"><img width="100%" src="..\images\Assessments\Feedback Grid.png"></img></div>
@@ -141,13 +407,13 @@
 
     <h2>🧭 Customer Journey Maps</h2>
     <h3>As-Is Journey</h3>
-    <table>
+    <table class="journey-table">
       <tr><th>Step</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Needs</th></tr>
-      <tr><td>Travel to site, take notes</td><td>Uses pen & paper</td><td>“Hope I don’t lose these notes.”</td><td>Anxious, cautious</td><td>Mobile recording, auto-save</td></tr>
-      <tr><td>Choose template</td><td>Searches manually</td><td>“Which one fits this site?”</td><td>Confused, uncertain</td><td>Smart template suggestions</td></tr>
-      <tr><td>Fill out basic details</td><td>Enters manually</td><td>“This takes too long.”</td><td>Frustrated</td><td>Autofill from location or history</td></tr>
-      <tr><td>Answer questionnaire</td><td>Scrolls through long forms</td><td>“I might miss something important.”</td><td>Overwhelmed</td><td>Simplified UI, criticality alerts</td></tr>
-      <tr><td>Continue later</td><td>Saves and exits</td><td>“Will this sync correctly?”</td><td>Worried</td><td>Reliable offline sync, confirmation</td></tr>
+      <tr><td data-label="Step">Travel to site, take notes</td><td data-label="Does">Uses pen & paper</td><td data-label="Thinks">"Hope I don't lose these notes."</td><td data-label="Feels">Anxious, cautious</td><td data-label="Needs">Mobile recording, auto-save</td></tr>
+      <tr><td data-label="Step">Choose template</td><td data-label="Does">Searches manually</td><td data-label="Thinks">"Which one fits this site?"</td><td data-label="Feels">Confused, uncertain</td><td data-label="Needs">Smart template suggestions</td></tr>
+      <tr><td data-label="Step">Fill out basic details</td><td data-label="Does">Enters manually</td><td data-label="Thinks">"This takes too long."</td><td data-label="Feels">Frustrated</td><td data-label="Needs">Autofill from location or history</td></tr>
+      <tr><td data-label="Step">Answer questionnaire</td><td data-label="Does">Scrolls through long forms</td><td data-label="Thinks">"I might miss something important."</td><td data-label="Feels">Overwhelmed</td><td data-label="Needs">Simplified UI, criticality alerts</td></tr>
+      <tr><td data-label="Step">Continue later</td><td data-label="Does">Saves and exits</td><td data-label="Thinks">"Will this sync correctly?"</td><td data-label="Feels">Worried</td><td data-label="Needs">Reliable offline sync, confirmation</td></tr>
     </table>
     <div class="placeholder"><img width="70%" src="..\images\Assessments\As-Is-Scenario.png"></img></div>
 
@@ -155,13 +421,13 @@
     <div class="placeholder"><img width="100%" src="..\images\Assessments\users-hopes-fears.png"></img></div>
     
     <h3>To-Be Journey</h3>
-    <table>
+    <table class="journey-table">
       <tr><th>Step</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Gains</th></tr>
-      <tr><td>Travel to site</td><td>Opens app, auto-loads template</td><td>“This is fast and accurate.”</td><td>Confident, focused</td><td>Location-based template suggestions</td></tr>
-      <tr><td>Fill out details</td><td>Autofill from GPS and history</td><td>“I’m saving so much time.”</td><td>Relieved</td><td>Smart autofill, reduced manual entry</td></tr>
-      <tr><td>Record assessment</td><td>Uses offline mode with auto-save</td><td>“No worries about data loss.”</td><td>Secure, efficient</td><td>Offline recording, auto-save</td></tr>
-      <tr><td>View alerts</td><td>Receives SMS/iMessage notifications</td><td>“I can act immediately.”</td><td>Empowered</td><td>Real-time criticality alerts</td></tr>
-      <tr><td>Submit & sync</td><td>Syncs automatically when online</td><td>“Everything’s backed up.”</td><td>Satisfied</td><td>Seamless sync, confirmation feedback</td></tr>
+      <tr><td data-label="Step">Travel to site</td><td data-label="Does">Opens app, auto-loads template</td><td data-label="Thinks">"This is fast and accurate."</td><td data-label="Feels">Confident, focused</td><td data-label="Gains">Location-based template suggestions</td></tr>
+      <tr><td data-label="Step">Fill out details</td><td data-label="Does">Autofill from GPS and history</td><td data-label="Thinks">"I'm saving so much time."</td><td data-label="Feels">Relieved</td><td data-label="Gains">Smart autofill, reduced manual entry</td></tr>
+      <tr><td data-label="Step">Record assessment</td><td data-label="Does">Uses offline mode with auto-save</td><td data-label="Thinks">"No worries about data loss."</td><td data-label="Feels">Secure, efficient</td><td data-label="Gains">Offline recording, auto-save</td></tr>
+      <tr><td data-label="Step">View alerts</td><td data-label="Does">Receives SMS/iMessage notifications</td><td data-label="Thinks">"I can act immediately."</td><td data-label="Feels">Empowered</td><td data-label="Gains">Real-time criticality alerts</td></tr>
+      <tr><td data-label="Step">Submit & sync</td><td data-label="Does">Syncs automatically when online</td><td data-label="Thinks">"Everything's backed up."</td><td data-label="Feels">Satisfied</td><td data-label="Gains">Seamless sync, confirmation feedback</td></tr>
     </table>
     <div class="placeholder"><img width="70%" src="..\images\Assessments\To-Be-Scenario.png"></img></div>
 

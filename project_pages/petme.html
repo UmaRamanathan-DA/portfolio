@@ -312,6 +312,242 @@
       font-size: 0.85rem;
       color: var(--text-dark);
     }
+
+    /*────────────────────────────────────────────────────────────────────────
+      Mobile Responsiveness
+    ─────────────────────────────────────────────────────────────────────────*/
+    
+    /* Tablet and smaller desktop */
+    @media (max-width: 1024px) {
+      header.hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      header.hero p {
+        font-size: 1.1rem;
+      }
+      
+      section {
+        padding: 4rem 1rem;
+        margin: -3rem auto 3rem;
+      }
+      
+      section h2 {
+        font-size: 2.2rem;
+      }
+      
+      .snapshots {
+        gap: 3rem;
+      }
+      
+      .snapshots img {
+        width: 45%;
+      }
+    }
+
+    /* Large mobile devices */
+    @media (max-width: 768px) {
+      header.hero {
+        height: 60vh;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      }
+      
+      header.hero h1 {
+        font-size: 3rem;
+        text-align: center;
+        padding: 0 1rem;
+      }
+      
+      header.hero p {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0 1rem;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+        margin: -2rem auto 2rem;
+      }
+      
+      section:nth-of-type(even) {
+        clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+      }
+      
+      section h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
+      
+      .overview {
+        padding: 1.5rem;
+        text-align: center;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      
+      .features li {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+      }
+      
+      .snapshots {
+        gap: 2rem;
+        flex-direction: column;
+      }
+      
+      .snapshots img {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+      }
+      
+      .snapshots-1 {
+        gap: 2rem;
+      }
+      
+      .snapshots-1 img {
+        max-width: 500px;
+      }
+      
+      .cartoon {
+        width: 60px;
+        opacity: 0.7;
+      }
+      
+      .prototype-link {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        margin: 2rem auto 0;
+        display: block;
+      }
+      
+      footer {
+        padding: 2rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Small mobile devices */
+    @media (max-width: 480px) {
+      header.hero {
+        height: 50vh;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      }
+      
+      header.hero h1 {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+      }
+      
+      header.hero p {
+        font-size: 0.9rem;
+      }
+      
+      section {
+        padding: 2rem 0.75rem;
+        margin: -1.5rem auto 1.5rem;
+      }
+      
+      section h2 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+      }
+      
+      .overview {
+        padding: 1rem;
+      }
+      
+      .overview p {
+        font-size: 0.95rem;
+      }
+      
+      .features li {
+        padding: 0.625rem;
+        font-size: 0.9rem;
+      }
+      
+      .features li::before {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+      
+      .snapshots {
+        gap: 1.5rem;
+      }
+      
+      .snapshots-1 {
+        gap: 1.5rem;
+      }
+      
+      .cartoon {
+        width: 50px;
+        opacity: 0.6;
+      }
+      
+      .cartoon.dog   { top: 8%;  left: 2%;  }
+      .cartoon.bird  { top: 12%; right: 3%; }
+      .cartoon.cat   { bottom: 10%; right: 4%; }
+      .cartoon.fish  { bottom: 8%;  left: 8%;  }
+      
+      .prototype-link {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+        max-width: 280px;
+      }
+      
+      footer {
+        padding: 1.5rem 0.75rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 360px) {
+      header.hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      header.hero p {
+        font-size: 0.85rem;
+      }
+      
+      section h2 {
+        font-size: 1.6rem;
+      }
+      
+      .overview p {
+        font-size: 0.9rem;
+      }
+      
+      .features li {
+        font-size: 0.85rem;
+      }
+      
+      .cartoon {
+        width: 40px;
+      }
+    }
+
+    /* Landscape orientation adjustments */
+    @media (max-height: 500px) and (orientation: landscape) {
+      header.hero {
+        height: 100vh;
+      }
+      
+      header.hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      header.hero p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 

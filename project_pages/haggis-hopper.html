@@ -15,8 +15,22 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 400px; /* Optional: match image height */
-            width: 100%;   /* Optional: full width */
+            height: 400px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .project-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 2;
+            padding: 0 1rem;
         }
         
         .project-meta-s {
@@ -25,17 +39,48 @@
             gap: 2rem;
             margin-bottom: 1rem;
             flex-wrap: wrap;
+            padding: 0 1rem;
         }
         
         .meta-item-s {
             display: flex;
-            align-items: left;
+            align-items: center;
             gap: 0.5rem;
             color: #666;
+            font-size: 0.95rem;
         }
         
         .meta-item-s i {
             color: #FFD700;
+        }
+        
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #FFD700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .project-btn:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         
         .introduction-section {
@@ -59,6 +104,16 @@
             line-height: 1.8;
             margin-bottom: 1.5rem;
             text-align: justify;
+        }
+        
+        .introduction-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .introduction-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
         }
         
         .case-study-diagram {
@@ -198,10 +253,274 @@
             margin: 1rem 0;
         }
         
+        .project-sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .skills-section, .tech-section {
+            margin-bottom: 2rem;
+        }
+        
+        .skills-section h4, .tech-section h4 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #f8f9fa;
+            color: #333;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: #FFD700;
+            color: #333;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1200px) {
+            .eda-content, .time-series-content, .demand-prediction-content, .innovation-content, .data-sources-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .project-sidebar {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .project-title {
+                font-size: 2.2rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.6rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .project-header {
+                height: 300px;
+            }
+            
+            .project-title {
+                font-size: 1.8rem;
+                padding: 0 0.5rem;
+            }
+            
+            .project-meta-s {
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .meta-item-s {
+                font-size: 0.85rem;
+            }
+            
+            .project-buttons {
+                gap: 0.75rem;
+                padding: 0 0.5rem;
+            }
+            
+            .project-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .introduction-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .introduction-section p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            
+            .introduction-section ul {
+                margin-left: 1rem;
+            }
+            
+            .introduction-section li {
+                font-size: 0.9rem;
+            }
+            
+            .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
+                padding: 1.5rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
+                font-size: 1.1rem;
+                margin-top: 1.5rem;
+            }
+            
+            .eda-section p, .time-series-section p, .demand-prediction-section p, .innovation-section p, .data-sources-section p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
             .step-card {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
+                padding: 1.25rem;
+            }
+            
+            .card-icon {
+                font-size: 2rem;
+            }
+            
+            .step-card h4 {
+                font-size: 1rem;
+            }
+            
+            .step-card p {
+                font-size: 0.85rem;
+            }
+            
+            .project-sidebar {
+                padding: 1rem;
+            }
+            
+            .skills-section h4, .tech-section h4 {
+                font-size: 1rem;
+            }
+            
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-header {
+                height: 250px;
+            }
+            
+            .project-title {
+                font-size: 1.5rem;
+            }
+            
+            .project-meta-s {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .meta-item-s {
+                font-size: 0.8rem;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+            }
+            
+            .introduction-section {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .introduction-section p {
+                font-size: 0.9rem;
+            }
+            
+            .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
+                padding: 1rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
+                font-size: 1rem;
+            }
+            
+            .step-card {
+                max-width: 260px;
+                padding: 1rem;
+            }
+            
+            .card-icon {
+                font-size: 1.8rem;
+            }
+            
+            .step-card h4 {
+                font-size: 0.95rem;
+            }
+            
+            .step-card p {
+                font-size: 0.8rem;
+            }
+            
+            .project-sidebar {
+                padding: 0.75rem;
+            }
+            
+            .skill-tag {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .project-title {
+                font-size: 1.3rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.2rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .step-card {
+                max-width: 240px;
             }
         }
     </style>
@@ -215,9 +534,8 @@
         
         <div class="project-header">
             <h1 class="project-title">Haggis Hopper Taxi Business Insights</h1>
-            
-           
         </div>
+        
         <div class="project-meta-s">
             <div class="meta-item-s">
                 <i class="fas fa-building"></i>
@@ -237,12 +555,8 @@
             </div>
         </div>
         
-        <div>
-            <br><br>
-        </div>
-        
         <div class="project-buttons">
-            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="project-btn" target="_blank" class="action-btn dashboard-btn">
+            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="project-btn" target="_blank">
                 <i class="fab fa-github"></i>
                 View on GitHub
             </a>
@@ -263,114 +577,86 @@
             <p>Glasgow's taxi industry operates in an environment where demand can fluctuate significantly due to various factors, including seasonal tourism, local events, weather conditions, and changing travel patterns. These fluctuations present a complex challenge for taxi companies, requiring them to anticipate changes in demand and adjust their operations accordingly to maintain service quality and efficiency.</p>
             
             <p>This case study is designed as a response to these challenges, focusing on a data-driven approach to enhance the operational framework of Haggis Hoppers - one of Glasgow's taxi services companies. To address these obstacles, the company seeks innovative solutions that leverage historical data, including taxi demand patterns, trip logs, weather conditions, event schedules, and traffic data. The goal is to employ advanced time series analysis and predictive modelling techniques to forecast demand, identify operational inefficiencies, and recommend actionable strategies for dynamic fleet allocation, maintenance scheduling, and pricing. This initiative is not only about maintaining profitability but also about increasing customer satisfaction, ensuring operational efficiency, and contributing to the city's sustainability goals.</p>
+            
             <h2>Overview of the current operations</h2>
-            <p>Haggis Hoppers, in its journey from a modest family-run startup to a notable name in Glasgow’s
-                taxi service sector, has enjoyed a period of natural growth, echoing the vibrant energy of the
-                city itself. Today, the company operates a fleet of 50 diverse vehicles, including cutting-edge
-                eco-friendly hybrids and electric models, reflecting its steadfast commitment to sustainability
-                and reducing environmental impact. This growth in fleet size is complemented by an expanded
-                workforce, now comprising over 120 dedicated employees, including 80 drivers known for their
-                professionalism and passion for customer service, alongside operations, maintenance staff, and a
-                burgeoning customer support team.
-                <p>At the heart of Haggis Hoppers’ day-to-day operations is its state-of-the-art dispatch and
-                operational centre. Here, the technology underpins the management of bookings, fleet allocation,
-                and customer interactions, ensuring efficiency and responsiveness. The company prides itself
-                on its fleet management practices, with a rigorous maintenance regime and a dynamic system
-                for fleet allocation that responds adeptly to fluctuating traffic and weather conditions, thereby
-                optimising service delivery.</p>
-                <p>Despite these advances and the company’s evident success, with revenues climbing steadily
-                each year, Haggis Hoppers has identified a critical juncture in its growth trajectory. The realisation
-                dawned that while the business was expanding, its operations were not optimised to the degree
-                necessary for sustainable scaling. This insight marked a strategic pivot towards harnessing data
-                for operational insights and efficiency gains. </p>
-                <p>Acknowledging the power of data analytics in unlocking operational efficiencies, Haggis
-                Hoppers has recently inaugurated a data team. This small but ambitious unit is tasked with the
-                collection and analysis of various data streams, including trip logs, demand patterns, weather
-                impacts, and traffic flows. However, given the team’s nascent stage and the vast potential of
-                data-driven optimisation yet to be tapped, Haggis Hoppers finds itself at a crossroads, seeking
-                external expertise to leverage these insights fully. This is where the decision to engage with business analysts comes into play. Haggis Hoppers
-                recognises the opportunity to invite fresh perspectives and analytical skills to tackle its operational
-                challenges.</p>
-                <p>With this pivot towards a data-centric operational model, Haggis Hoppers is not merely addressing
-                immediate inefficiencies but is laying the groundwork for a future where data-driven
-                decisions propel the company towards greater profitability, customer satisfaction, and environmental
-                stewardship. This strategic shift underscores Haggis Hoppers’ journey from a family-owned
-                business to a pioneering, sustainable mobility provider in Glasgow, ready to redefine urban transport
-                in an increasingly data-driven world.</p>
-                <h2>Problem Statement</h2>
-                 <p>
-                     Haggis Hoppers, amidst its journey of growth and expansion, has recognised the need to refine
-                     its operations through data-driven insights. With a commitment to innovation and
-                     efficiency, the company wants to leverage its repository of trip log data to unlock operational efficiencies, optimising
-                     service delivery, and ultimately enhancing customer satisfaction. </p>
-                 
-                <h2>Expected Outcome</h2>
-                <p>
-                    Requirement is a comprehensive analysis of historical trip logs and its time series analysis of demand: </p>
-                    <p>
-                    <ul>
-                            <li> Proposed data-driven strategies to optimize fleet allocation, enhance customer service, and improve overall operational efficiency.</li> 
-                            <li><strong>Operational Efficiency:</strong> Identified opportunities for route optimization, reduced idle time, and improved fuel efficiency through temporal and geospatial analysis.</li> 
-                            <li><strong>Customer Experience:</strong> Analyzed customer behavior patterns to inform potential enhancements in ride booking, personalization, and service availability.</li> 
-                            <li><strong>Strategic Business Opportunities:</strong> Highlighted areas for potential service expansion and technological innovation based on demand patterns and underserved locations.</li> 
-                    </ul>
-                    </p>
-                <h2>Approach</h2>
-                 <div class="approach-steps">
-                     <div class="step-container">
-                         <a href="#eda-section" class="step-card">
-                             <div class="step-number">1</div>
-                             <div class="card-icon">
-                                 <i class="fas fa-chart-area"></i>
-                             </div>
-                             <h4>Exploratory Data Analysis</h4>
-                             <p>Comprehensive analysis of trip patterns, data quality, and initial insights</p>
-                         </a>
-                         <div class="step-arrow">
-                             <i class="fas fa-arrow-down"></i>
-                         </div>
-                     </div>
-                     
-                     <div class="step-container">
-                         <a href="#time-series-section" class="step-card">
-                             <div class="step-number">2</div>
-                             <div class="card-icon">
-                                 <i class="fas fa-chart-line"></i>
-                             </div>
-                             <h4>Time Series Analysis</h4>
-                             <p>Rigorous analysis of demand fluctuations and temporal patterns</p>
-                         </a>
-                         <div class="step-arrow">
-                             <i class="fas fa-arrow-down"></i>
-                         </div>
-                     </div>
-                     
-                     <div class="step-container">
-                         <a href="#demand-prediction-section" class="step-card">
-                             <div class="step-number">3</div>
-                             <div class="card-icon">
-                                 <i class="fas fa-brain"></i>
-                             </div>
-                             <h4>Demand Prediction Model</h4>
-                             <p>Machine learning models for hour-ahead demand forecasting</p>
-                         </a>
-                         <div class="step-arrow">
-                             <i class="fas fa-arrow-down"></i>
-                         </div>
-                     </div>
-                     
-                     <div class="step-container">
-                         <a href="#innovation-section" class="step-card">
-                             <div class="step-number">4</div>
-                             <div class="card-icon">
-                                 <i class="fas fa-lightbulb"></i>
-                             </div>
-                             <h4>What-if Analysis</h4>
-                             <p>Scenario simulation and innovative analytical approaches</p>
-                         </a>
-                     </div>
-                 </div>
-         </div>
+            <p>Haggis Hoppers, in its journey from a modest family-run startup to a notable name in Glasgow's taxi service sector, has enjoyed a period of natural growth, echoing the vibrant energy of the city itself. Today, the company operates a fleet of 50 diverse vehicles, including cutting-edge eco-friendly hybrids and electric models, reflecting its steadfast commitment to sustainability and reducing environmental impact. This growth in fleet size is complemented by an expanded workforce, now comprising over 120 dedicated employees, including 80 drivers known for their professionalism and passion for customer service, alongside operations, maintenance staff, and a burgeoning customer support team.</p>
+            
+            <p>At the heart of Haggis Hoppers' day-to-day operations is its state-of-the-art dispatch and operational centre. Here, the technology underpins the management of bookings, fleet allocation, and customer interactions, ensuring efficiency and responsiveness. The company prides itself on its fleet management practices, with a rigorous maintenance regime and a dynamic system for fleet allocation that responds adeptly to fluctuating traffic and weather conditions, thereby optimising service delivery.</p>
+            
+            <p>Despite these advances and the company's evident success, with revenues climbing steadily each year, Haggis Hoppers has identified a critical juncture in its growth trajectory. The realisation dawned that while the business was expanding, its operations were not optimised to the degree necessary for sustainable scaling. This insight marked a strategic pivot towards harnessing data for operational insights and efficiency gains.</p>
+            
+            <p>Acknowledging the power of data analytics in unlocking operational efficiencies, Haggis Hoppers has recently inaugurated a data team. This small but ambitious unit is tasked with the collection and analysis of various data streams, including trip logs, demand patterns, weather impacts, and traffic flows. However, given the team's nascent stage and the vast potential of data-driven optimisation yet to be tapped, Haggis Hoppers finds itself at a crossroads, seeking external expertise to leverage these insights fully. This is where the decision to engage with business analysts comes into play. Haggis Hoppers recognises the opportunity to invite fresh perspectives and analytical skills to tackle its operational challenges.</p>
+            
+            <p>With this pivot towards a data-centric operational model, Haggis Hoppers is not merely addressing immediate inefficiencies but is laying the groundwork for a future where data-driven decisions propel the company towards greater profitability, customer satisfaction, and environmental stewardship. This strategic shift underscores Haggis Hoppers' journey from a family-owned business to a pioneering, sustainable mobility provider in Glasgow, ready to redefine urban transport in an increasingly data-driven world.</p>
+            
+            <h2>Problem Statement</h2>
+            <p>Haggis Hoppers, amidst its journey of growth and expansion, has recognised the need to refine its operations through data-driven insights. With a commitment to innovation and efficiency, the company wants to leverage its repository of trip log data to unlock operational efficiencies, optimising service delivery, and ultimately enhancing customer satisfaction.</p>
+            
+            <h2>Expected Outcome</h2>
+            <p>Requirement is a comprehensive analysis of historical trip logs and its time series analysis of demand:</p>
+            <ul>
+                <li>Proposed data-driven strategies to optimize fleet allocation, enhance customer service, and improve overall operational efficiency.</li> 
+                <li><strong>Operational Efficiency:</strong> Identified opportunities for route optimization, reduced idle time, and improved fuel efficiency through temporal and geospatial analysis.</li> 
+                <li><strong>Customer Experience:</strong> Analyzed customer behavior patterns to inform potential enhancements in ride booking, personalization, and service availability.</li> 
+                <li><strong>Strategic Business Opportunities:</strong> Highlighted areas for potential service expansion and technological innovation based on demand patterns and underserved locations.</li> 
+            </ul>
+            
+            <h2>Approach</h2>
+            <div class="approach-steps">
+                <div class="step-container">
+                    <a href="#eda-section" class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="card-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <h4>Exploratory Data Analysis</h4>
+                        <p>Comprehensive analysis of trip patterns, data quality, and initial insights</p>
+                    </a>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+                
+                <div class="step-container">
+                    <a href="#time-series-section" class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Time Series Analysis</h4>
+                        <p>Rigorous analysis of demand fluctuations and temporal patterns</p>
+                    </a>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+                
+                <div class="step-container">
+                    <a href="#demand-prediction-section" class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Demand Prediction Model</h4>
+                        <p>Machine learning models for hour-ahead demand forecasting</p>
+                    </a>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+                
+                <div class="step-container">
+                    <a href="#innovation-section" class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>What-if Analysis</h4>
+                        <p>Scenario simulation and innovative analytical approaches</p>
+                    </a>
+                </div>
+            </div>
+        </div>
         
         <div class="eda-content">
             <div class="eda-section">
@@ -408,10 +694,7 @@
                 <p>• Translated complex analytical findings into clear visual narratives and recommendations, enhancing communication with technical and non-technical stakeholders.</p>
 
                 <h4>Key Findings</h4>
-                <p> Showcases the discovered patterns, insights,
-                    and recommendations - covers the time series analysis results and
-                    propose data-driven strategies for optimising fleet allocation, improving customer service, and
-                    enhancing overall operational efficiency.
+                <p>Showcases the discovered patterns, insights, and recommendations - covers the time series analysis results and propose data-driven strategies for optimising fleet allocation, improving customer service, and enhancing overall operational efficiency.</p>
             </div>
             
             <div class="project-sidebar">
@@ -431,7 +714,6 @@
                         <span class="skill-tag">SQL</span>
                         <span class="skill-tag">Excel</span>
                         <span class="skill-tag">Tableau</span>
-                    
                     </div>
                 </div>
                 
@@ -462,6 +744,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="time-series-content">
             <div class="time-series-section">
                 <h3 id="time-series-section">Time Series Analysis of Demand</h3>
@@ -474,10 +757,7 @@
                 <p>• Development of predictive models for demand forecasting</p>
 
                 <h4>Key Findings</h4>
-                <p> Showcases the discovered patterns, insights,
-                    and recommendations - covers the time series analysis results and
-                    propose data-driven strategies for optimising fleet allocation, improving customer service, and
-                    enhancing overall operational efficiency.
+                <p>Showcases the discovered patterns, insights, and recommendations - covers the time series analysis results and propose data-driven strategies for optimising fleet allocation, improving customer service, and enhancing overall operational efficiency.</p>
             </div>
             
             <div class="project-sidebar">
@@ -500,15 +780,9 @@
         <div class="eda-content">
             <div class="eda-section">
                 <h3 id="demand-prediction-section">Demand Prediction Model</h3>
-                <p>Building upon the insights gained from EDA, Haggis Hoppers aims to develop a predictive model
-                    for demand forecasting. The objective here is twofold:</p>
-                <p><strong>• Hour Ahead Prediction:</strong> The company seeks to create a model that can accurately predict
-                    taxi demand on an hour-ahead basis. Such a model would enable dynamic fleet allocation by
-                    anticipating demand surges or lulls, thereby optimising fleet utilisation and reducing customer
-                    wait times.</p>
-                <p><strong>• Operational Efficiency:</strong> By predicting demand more accurately, Haggis Hoppers can ensure a
-                    better match between supply and demand, enhancing operational efficiency, and potentially
-                    increasing profitability through optimised resource allocation.</p>
+                <p>Building upon the insights gained from EDA, Haggis Hoppers aims to develop a predictive model for demand forecasting. The objective here is twofold:</p>
+                <p><strong>• Hour Ahead Prediction:</strong> The company seeks to create a model that can accurately predict taxi demand on an hour-ahead basis. Such a model would enable dynamic fleet allocation by anticipating demand surges or lulls, thereby optimising fleet utilisation and reducing customer wait times.</p>
+                <p><strong>• Operational Efficiency:</strong> By predicting demand more accurately, Haggis Hoppers can ensure a better match between supply and demand, enhancing operational efficiency, and potentially increasing profitability through optimised resource allocation.</p>
                                     
                 <h4>Outliers</h4>
                 <p>Conducted comprehensive quantitative analysis using advanced statistical methods and machine learning techniques to uncover patterns in taxi operations, customer behavior, and demand forecasting. The research involved extensive data preprocessing, exploratory data analysis, and predictive modeling to deliver actionable insights for business optimization.</p>            
@@ -516,7 +790,6 @@
                 <h4>Detailed Tasks</h4>
                 <p>• Built and deployed advanced time series forecasting models (e.g., LSTM, SARIMA) to predict customer demand, optimize resource allocation, and enable automated forecasting workflows.</p>
                 <h4>Comparison of Prediction models</h4>
-    
             </div>            
             
             <div class="project-sidebar">
@@ -542,10 +815,8 @@
                 <div class="tech-section">
                     <h4>Quantitative Research</h4>
                     <div class="skill-tags">
-                        
                         <span class="skill-tag">Feature Engineering</span>
                         <span class="skill-tag">Outlier Analysis</span>
-    
                     </div>
                 </div>
                 
@@ -561,7 +832,6 @@
                 </div>
             </div>
         </div>
-        
         
         <div class="innovation-content">
             <div class="innovation-section">
@@ -596,36 +866,17 @@
             <div class="data-sources-section">
                 <h3>Data Sources</h3>
                 
-                <p><strong>Historical Trip Logs: </strong>
-                The historical trip logs dataset for February 2024 provides a comprehensive snapshot of the operations of Haggis Hoppers, reflecting a typical month of activity for the company. The dataset is a sample of all trips taken in February this year. As confirmed by the Haggis Hoppers data team, the dataset is representative of the entire population of customers choosing the company for their travel needs and encompasses a wide range of variables that capture the nuances of each trip. In the table below there is an overview of the fields included in the dataset.</p>
+                <p><strong>Historical Trip Logs: </strong>The historical trip logs dataset for February 2024 provides a comprehensive snapshot of the operations of Haggis Hoppers, reflecting a typical month of activity for the company. The dataset is a sample of all trips taken in February this year. As confirmed by the Haggis Hoppers data team, the dataset is representative of the entire population of customers choosing the company for their travel needs and encompasses a wide range of variables that capture the nuances of each trip. In the table below there is an overview of the fields included in the dataset.</p>
 
-                <p><strong>Other Data Sources: </strong>
-                To complement the historical trip logs and enhance the data-driven approach for optimising
-                Haggis Hoppers’ operations, business analysts can leverage a variety of additional data sources.
-                These sources can provide external context, enriching the insights drawn from the company’s
-                internal data. Here’s a rundown of other valuable data sources and the potential insights they
-                might offer.</p>
-                <p><strong>• Weather Data:</strong> Historical and real-time weather data can include information on temperature,
-                precipitation, wind speed, and other weather conditions. By correlating weather conditions with
-                trip data, analysts can identify patterns in demand related to weather changes. For instance,
-                demand might spike on rainy days or drop during extreme weather events. This insight can
-                inform fleet allocation strategies to meet weather-related changes in demand.
-                <p><strong>• Traffic and Road Closure Data:</strong> Real-time and historical traffic data, along with scheduled
-                road closures and construction updates from city transport departments. This data can help
-                in understanding how traffic congestion and road closures affect trip duration and fleet efficiency.
-                Analysts can recommend route optimisation strategies to drivers, potentially reducing
-                fuel consumption and improving customer satisfaction through shorter travel times.
-                <p><strong>• Event Calendar:</strong> Schedules and calendars of local events, including concerts, sports games,
-                festivals, and conventions. Large events can significantly impact local transportation demand.
-                Analysing event schedules alongside trip data can help predict surges in specific areas, allowing
-                for proactive fleet allocation and targeted marketing efforts.</p>
-                <p>
-                Haggis Hoppers is open and enthusiastic about business analysts utilising any external data
-                sources they find interesting and believe can contribute valuable insights to their analysis. The
-                company encourages analysts to think creatively and explore a wide range of datasets that
-                could enrich their understanding of our operations and the factors influencing demand for our
-                services. Whether it’s innovative use of social media analytics, untapped government data sets, or emerging trends in urban mobility, the company is keen to see how diverse and novel data
-                sources can be leveraged to enhance the data-driven decision-making process. <p>
+                <p><strong>Other Data Sources: </strong>To complement the historical trip logs and enhance the data-driven approach for optimising Haggis Hoppers' operations, business analysts can leverage a variety of additional data sources. These sources can provide external context, enriching the insights drawn from the company's internal data. Here's a rundown of other valuable data sources and the potential insights they might offer.</p>
+                
+                <p><strong>• Weather Data:</strong> Historical and real-time weather data can include information on temperature, precipitation, wind speed, and other weather conditions. By correlating weather conditions with trip data, analysts can identify patterns in demand related to weather changes. For instance, demand might spike on rainy days or drop during extreme weather events. This insight can inform fleet allocation strategies to meet weather-related changes in demand.</p>
+                
+                <p><strong>• Traffic and Road Closure Data:</strong> Real-time and historical traffic data, along with scheduled road closures and construction updates from city transport departments. This data can help in understanding how traffic congestion and road closures affect trip duration and fleet efficiency. Analysts can recommend route optimisation strategies to drivers, potentially reducing fuel consumption and improving customer satisfaction through shorter travel times.</p>
+                
+                <p><strong>• Event Calendar:</strong> Schedules and calendars of local events, including concerts, sports games, festivals, and conventions. Large events can significantly impact local transportation demand. Analysing event schedules alongside trip data can help predict surges in specific areas, allowing for proactive fleet allocation and targeted marketing efforts.</p>
+                
+                <p>Haggis Hoppers is open and enthusiastic about business analysts utilising any external data sources they find interesting and believe can contribute valuable insights to their analysis. The company encourages analysts to think creatively and explore a wide range of datasets that could enrich their understanding of our operations and the factors influencing demand for our services. Whether it's innovative use of social media analytics, untapped government data sets, or emerging trends in urban mobility, the company is keen to see how diverse and novel data sources can be leveraged to enhance the data-driven decision-making process.</p>
             </div>
             
             <div class="project-sidebar">
@@ -644,9 +895,6 @@
                 </div>
             </div>
         </div>
-
-        
-
     </div>
 </body>
 </html> 
