@@ -41,6 +41,35 @@
             color: #FFD700;
         }
 
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #FFD700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .project-btn:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
         .project-header {
             margin-top: 2rem;
             margin-bottom: 2rem;
@@ -75,7 +104,62 @@
         }
         .project-description h4 {
             font-size: 1rem;
-        }   </style>
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .project-title-s {
+                font-size: 2rem;
+            }
+            
+            .project-meta-s {
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .meta-item-s {
+                font-size: 0.9rem;
+            }
+            
+            .project-buttons {
+                gap: 0.75rem;
+                padding: 0 0.5rem;
+            }
+            
+            .project-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-s {
+                font-size: 1.8rem;
+            }
+            
+            .project-meta-s {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .meta-item-s {
+                font-size: 0.85rem;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+            }
+        }
+   </style>
 </head>
 <body>
     <div class="project-detail-container">
@@ -106,22 +190,39 @@
                 <span>Academic Project (Scaler)</span>
             </div>
         </div>
+
+        <div class="project-buttons">
+            <a href="https://loantap-credit-risk-prediction-uma-ramanathan.streamlit.app/" class="project-btn" target="_blank">
+                <i class="fas fa-chart-line"></i>
+                View Dashboard
+            </a>
+        </div>
+
         <div class="project-content">
             <div class="project-description">
                 <h3>Project Overview</h3>
-                <p>Developed a machine learning model to predict credit risk and optimize loan approval processes. The system analyzes customer data, credit history, and market trends to assess default risk and streamline loan approval decisions.</p>
+                <p>A machine-learning system to predict consumer loan default risk for LoanTap. It trains a logistic regression model with a custom preprocessing pipeline, serves realtime and batch scoring via FastAPI, and provides a Streamlit dashboard for insights, single-record scoring, CSV uploads, and EDA.</p>
                 
-                <h3>Key Responsibilities</h3>
-                <p>• Built predictive models using machine learning algorithms to assess credit risk and default probability</p>
-                <p>• Analyzed customer data, credit history, and market trends to identify risk factors</p>
-                <p>• Developed automated loan approval processes to streamline decision-making</p>
-                <p>• Created risk assessment frameworks to help financial institutions reduce risk while improving customer experience</p>
+                <h3>Key Tasks Delivered</h3>
+                <p>• Model training: Logistic Regression with class balancing, cross‑validation, ROC AUC/accuracy reporting, persisted with joblib.</p>
+                <p>• Preprocessing pipeline: Feature engineering (temporal, risk flags, binning), label encoding, scaling; saved and reused at inference.</p>
+                <p>• Interactive UI (Streamlit): Executive dashboard, manual and dataset-driven single prediction, CSV upload scoring, processed feature view, and EDA with ROC/PR/calibration/heatmaps.</p>
                 
+                
+                <h3>Tasks to be completed</h3>
+                <p>• Expecting to create risk assessment frameworks to help financial institutions reduce risk while improving customer experience.</p>
+                <p>• Expecting to develop automated loan approval processes to streamline decision-making.</p>                
+
                 <h3>Methodology & Approach</h3>
                 <p>Utilized supervised learning techniques including Random Forest, Logistic Regression, and Gradient Boosting to build predictive models. Implemented feature engineering to create relevant variables from customer data. Applied cross-validation and hyperparameter tuning to optimize model performance. Used ROC curves and precision-recall metrics to evaluate model effectiveness.</p>
                 
                 <h3>Results & Impact</h3>
-                <p>The credit risk prediction model helped financial institutions reduce default rates while improving customer experience through faster loan approval processes. The automated system enabled more efficient risk assessment and decision-making, leading to better resource allocation and reduced operational costs.</p>
+                <p>Lower credit losses and a healthier portfolio</p>
+                   <p> Better risk stratification reduces default rates and NPAs</p>
+                    Enables risk-based pricing/limits, improving expected loss and provisions accuracy
+                    Faster, scalable lending decisions
+                    Automates low-risk approvals, cutting turnaround time and manual effort
+                    Increases throughput and conversion while keeping risk in check.</p>
             </div>
             
             <div class="project-sidebar">
