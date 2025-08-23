@@ -328,7 +328,23 @@
     }
   </style>
   <style>
-
+    /* Full-bleed media utility */
+    .full-bleed {
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .full-bleed video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .full-bleed img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
     .brand-name {
       font-family: 'Poppins', sans-serif; /* rounded, playful font */
       font-size: 64px;
@@ -375,22 +391,14 @@
       Figma prototyping, and strategic feature prioritization.</p></div>
   </section>
 
-  <section>    
-    <span><br></span>
-    <div class="video-container">
-      <div class="video-wrapper">    
-        <iframe src="https://player.vimeo.com/video/793949871?h=6dce311425&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1" 
-          frameborder="0" 
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-          referrerpolicy="strict-origin-when-cross-origin" 
-          title="Bobacafe Checkout Coffee">
-        </iframe>     
-      </div>
-      <script src="https://player.vimeo.com/api/player.js"></script>
+  <section>   
+    
+    <div class="full-bleed">
+      <video controls preload="metadata" playsinline style="width:100%;height:700px" poster="">
+        <source src="../images/BobaBean cafe/Bobacafe_Checkout_Coffee.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
     </div>
-    <p class="video-caption">
-      Icons redesigned based on inspiration from existing assets while introducing playful animations and customization. These refinements bring clarity, delight, and a more engaging user experience.
-    </p>
   </section>
 
 

@@ -327,6 +327,24 @@
       .banner-cover { height: 160px; }
       .banner-title { font-size: 1.1rem; bottom: 1rem; }
     }
+    
+    /* Full-bleed media utility */
+    .full-bleed {
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .full-bleed video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .full-bleed img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 <body>
@@ -367,20 +385,15 @@
       <li>Dashboard for quick access to tasks and templates</li>
     </ul>
 
-    <section>    
-      
-      <div class="video-container">
-        <div class="video-wrapper">    
-          <iframe src="https://player.vimeo.com/video/1112493683?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="100%" height="900px" frameborder="0" allow="autoplay; loop; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="ogp_output"></iframe>
-             
-        </div>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-      </div>
-     
-    </section>
+    <div class="full-bleed">
+      <video controls preload="metadata" playsinline style="width:100%;height:900px" poster="">
+        <source src="../images/OGP/ogp_output.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
 
     <h2>👥 Stakeholder Assumptions</h2>
-    <table class="stakeh  older-table">
+    <table class="stakeholder-table">
       <tr><th>Assumption</th><th>Risk Level</th><th>Validation Approach</th></tr>
       <tr><td data-label="Assumption">Users prefer mobile recording</td><td data-label="Risk Level">High</td><td data-label="Validation Approach">Field interviews, analytics</td></tr>
       <tr><td data-label="Assumption">SMS/iMessage is the best alert method</td><td data-label="Risk Level">Medium</td><td data-label="Validation Approach">Survey, usage data</td></tr>
@@ -389,10 +402,10 @@
       <tr><td data-label="Assumption">Users are tech-savvy and need minimal training</td><td data-label="Risk Level">Low</td><td data-label="Validation Approach">Persona analysis</td></tr>
     </table>
 
-    <div class="placeholder"><img width="100%" src="..\images\Assessments\Assumptions.png"></img></div>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\Assumptions.png"></img></div></div>
 
     <h2>📊 Stakeholder Map</h2>
-    <div class="placeholder"><img width="100%" src="..\images\Assessments\stakeholder-map.png"></img></div>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\stakeholder-map.png"></img></div></div>
 
     <h2>📊 Stakeholder Feedback Grid</h2>
     <table class="feedback-table">
@@ -409,7 +422,7 @@
         <td data-label="💡 New Ideas">SMS/iMessage-based incident alerts<br>Gesture-based navigation<br>Voice-based search and incident recording<br>Dashboard with recent activities<br>Centralized notifications tab</td>
       </tr>
     </table>
-    <div class="placeholder"><img width="100%" src="..\images\Assessments\Feedback Grid.png"></img></div>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\Feedback Grid.png"></img></div></div>
     <h2>👤 Persona – Adam (Field & Survey Officer)</h2>
     <div class="placeholder"><img width="70%" src="..\images\Assessments\Persona.png"></img></div>
     
@@ -430,7 +443,7 @@
     <div class="placeholder"><img width="70%" src="..\images\Assessments\As-Is-Scenario.png"></img></div>
 
     <h2>📊 Users Hopes and Fears</h2>
-    <div class="placeholder"><img width="100%" src="..\images\Assessments\users-hopes-fears.png"></img></div>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\users-hopes-fears.png"></img></div></div>
     
     <h3>To-Be Journey</h3>
     <table class="journey-table">
@@ -445,7 +458,7 @@
 
     <h2>🧱 Feature Prioritization & Design Phasing </h2>
     <h3>Prioritization Grid</h3>
-    <div class="placeholder"><img width="100%" src="..\images\Assessments\prioritisation-grid.png"></img></div>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\prioritisation-grid.png"></img></div></div>
     
     <h3>🗺️ Experience-Based Evolution of User Capabilities: Roadmap</h3>
     <p>
