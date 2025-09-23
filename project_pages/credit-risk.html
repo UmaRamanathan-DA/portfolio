@@ -70,6 +70,24 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
+        /* Specific button variants */
+        .project-btn.btn-live {
+            background: #DC143C; /* crimson */
+            color: #fff;
+        }
+        .project-btn.btn-live:hover {
+            background: #b31234; /* darker crimson */
+            color: #fff;
+        }
+        .project-btn.btn-dashboard {
+            background: #000;
+            color: #fff;
+        }
+        .project-btn.btn-dashboard:hover {
+            background: #111;
+            color: #fff;
+        }
+
         .project-header {
             margin-top: 2rem;
             margin-bottom: 2rem;
@@ -159,6 +177,48 @@
                 padding: 0.75rem 1rem;
             }
         }
+
+        /* Accordion */
+        .accordion {
+            margin: 2rem 0 0 0;
+        }
+        .accordion-item {
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            margin: 0 1rem 0.75rem 1rem;
+            overflow: hidden;
+            background: #fff;
+        }
+        .accordion-header {
+            width: 100%;
+            text-align: left;
+            background: #f7f7f7;
+            color: #333;
+            border: none;
+            padding: 0.9rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .accordion-header:hover {
+            background: #efefef;
+        }
+        .accordion-icon {
+            margin-left: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+        .accordion-header[aria-expanded="true"] .accordion-icon {
+            transform: rotate(90deg);
+        }
+        .accordion-panel {
+            display: none;
+            padding: 1rem 1rem 0.75rem 1rem;
+        }
+        .accordion-panel.open {
+            display: block;
+        }
    </style>
 </head>
 <body>
@@ -192,75 +252,162 @@
         </div>
 
         <div class="project-buttons">
-            <a href="https://loantap-credit-risk-prediction-uma-ramanathan.streamlit.app/" class="project-btn" target="_blank">
+            <a href="https://credit-clarity-flow.lovable.app/" class="project-btn btn-live" target="_blank">
                 <i class="fas fa-chart-line"></i>
-                View Dashboard
+                View live application (made with Lovable AI)
+            </a>
+            <a href="https://loantap-credit-risk-prediction-uma-ramanathan.streamlit.app/" class="project-btn btn-dashboard" target="_blank">
+                <i class="fas fa-chart-line"></i>
+                View Dashboard showing Machine Learning Model
             </a>
         </div>
 
-        <div class="project-content">
-            <div class="project-description">
-                <h3>Project Overview</h3>
-                <p>A machine-learning system to predict consumer loan default risk for LoanTap. It trains a logistic regression model with a custom preprocessing pipeline, serves realtime and batch scoring via FastAPI, and provides a Streamlit dashboard for insights, single-record scoring, CSV uploads, and EDA.</p>
-                
-                <h3>Key Tasks Delivered</h3>
-                <p>• Model training: Logistic Regression with class balancing, cross‑validation, ROC AUC/accuracy reporting, persisted with joblib.</p>
-                <p>• Preprocessing pipeline: Feature engineering (temporal, risk flags, binning), label encoding, scaling; saved and reused at inference.</p>
-                <p>• Interactive UI (Streamlit): Executive dashboard, manual and dataset-driven single prediction, CSV upload scoring, processed feature view, and EDA with ROC/PR/calibration/heatmaps.</p>
-                
-                
-                <h3>Tasks to be completed</h3>
-                <p>• Expecting to create risk assessment frameworks to help financial institutions reduce risk while improving customer experience.</p>
-                <p>• Expecting to develop automated loan approval processes to streamline decision-making.</p>                
 
-                <h3>Methodology & Approach</h3>
-                <p>Utilized supervised learning techniques including Random Forest, Logistic Regression, and Gradient Boosting to build predictive models. Implemented feature engineering to create relevant variables from customer data. Applied cross-validation and hyperparameter tuning to optimize model performance. Used ROC curves and precision-recall metrics to evaluate model effectiveness.</p>
-                
-                <h3>Results & Impact</h3>
-                <p>Lower credit losses and a healthier portfolio</p>
-                   <p> Better risk stratification reduces default rates and NPAs</p>
-                    Enables risk-based pricing/limits, improving expected loss and provisions accuracy
-                    Faster, scalable lending decisions
-                    Automates low-risk approvals, cutting turnaround time and manual effort
-                    Increases throughput and conversion while keeping risk in check.</p>
-            </div>
-            
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Skills Used</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Predictive Modeling</span>
-                        <span class="skill-tag">Risk Assessment</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Feature Engineering</span>
-                        <span class="skill-tag">Model Validation</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Random Forest</span>
-                        <span class="skill-tag">Logistic Regression</span>
-                        <span class="skill-tag">Gradient Boosting</span>
-                        <span class="skill-tag">Cross-validation</span>
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    Product Design using Lovable AI
+                    <span class="accordion-icon">▶</span>
+                </button>
+                <div class="accordion-panel" role="region" aria-hidden="true">
+                <div class="project-content">
+                    <div class="project-description">
+          
+                        <p>The live app was rapidly prototyped and iterated using the Lovable AI platform. I translated the ML solution into a user‑friendly flow for credit analysts: upload data, review model‑driven risk insights, and generate decisions with clear rationales.</p>
+
+                        <h3>Design Process</h3>
+                        <p>Defined primary user journeys (single applicant review, batch scoring, exception handling) and wireframed screens before styling. Used componentized UI blocks to ensure consistency and fast changes. Validated flows through quick stakeholder demos.</p>
+
+                        <h3>Key Product Features</h3>
+                        <p>• CSV upload with schema guidance and validation</p>
+                        <p>• Score detail view with risk flags, feature contributions, and recommendations</p>
+                        <p>• Batch processing progress and downloadable results</p>
+                        <p>• Clear empty/error states to support operational use</p>
+
+                        <h3>Outcomes</h3>
+                        <p>Delivered a usable front‑end for credit review with fast turnaround, aligning UX with the underlying ML capabilities.</p>
+
+                        <h3>Key Impact</h3>
+                        <p>• Accelerated delivery from concept to a usable app using Lovable AI.</p>
+                        <p>• Reduced analyst review time through streamlined flows and clear risk rationales.</p>
+                        <p>• Improved adoption via an approachable UI tightly aligned to ML capabilities.</p>
+                    </div>
+
+                    <div class="project-sidebar">
+                        <div class="skills-section">
+                            <h4>Skills Used</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Product Thinking</span>
+                                <span class="skill-tag">UX Design</span>
+                                <span class="skill-tag">UI Design</span>
+                                <span class="skill-tag">Prototyping</span>
+                                <span class="skill-tag">User Flows</span>
+                                <span class="skill-tag">Usability</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-section">
+                            <h4>Tech Stack</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Lovable AI</span>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="tech-section">
-                    <h4>Tech Stack</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">Seaborn</span>
-                        <span class="skill-tag">Jupyter Notebook</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Predictive Modeling</span>
-                        <span class="skill-tag">Risk Assessment</span>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    Machine Learning Model
+                    <span class="accordion-icon">▶</span>
+                </button>
+                <div class="accordion-panel" role="region" aria-hidden="true">
+                <div class="project-content">
+                    <div class="project-description">
+                   
+                        <p>A machine-learning system to predict consumer loan default risk for LoanTap. It trains a logistic regression model with a custom preprocessing pipeline, serves realtime and batch scoring via FastAPI, and provides a Streamlit dashboard for insights, single-record scoring, CSV uploads, and EDA.</p>
+                        
+                        <h3>Key Tasks Delivered</h3>
+                        <p>• Model training: Logistic Regression with class balancing, cross‑validation, ROC AUC/accuracy reporting, persisted with joblib.</p>
+                        <p>• Preprocessing pipeline: Feature engineering (temporal, risk flags, binning), label encoding, scaling; saved and reused at inference.</p>
+                        <p>• Interactive UI (Streamlit): Executive dashboard, manual and dataset-driven single prediction, CSV upload scoring, processed feature view, and EDA with ROC/PR/calibration/heatmaps.</p>
+                        
+                        
+                        <h3>Tasks to be completed</h3>
+                        <p>• Expecting to create risk assessment frameworks to help financial institutions reduce risk while improving customer experience.</p>
+                        <p>• Expecting to develop automated loan approval processes to streamline decision-making.</p>                
+                        
+                        <h3>Methodology & Approach</h3>
+                        <p>Utilized supervised learning techniques including Random Forest, Logistic Regression, and Gradient Boosting to build predictive models. Implemented feature engineering to create relevant variables from customer data. Applied cross-validation and hyperparameter tuning to optimize model performance. Used ROC curves and precision-recall metrics to evaluate model effectiveness.</p>
+                        
+                        <h3>Results & Impact</h3>
+                        <p>Lower credit losses and a healthier portfolio</p>
+                           <p> Better risk stratification reduces default rates and NPAs</p>
+                            Enables risk-based pricing/limits, improving expected loss and provisions accuracy
+                            Faster, scalable lending decisions
+                            Automates low-risk approvals, cutting turnaround time and manual effort
+                            Increases throughput and conversion while keeping risk in check.</p>
                     </div>
+                    
+                    <div class="project-sidebar">
+                        <div class="skills-section">
+                            <h4>Skills Used</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Machine Learning</span>
+                                <span class="skill-tag">Predictive Modeling</span>
+                                <span class="skill-tag">Risk Assessment</span>
+                                <span class="skill-tag">Data Analysis</span>
+                                <span class="skill-tag">Feature Engineering</span>
+                                <span class="skill-tag">Model Validation</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">Random Forest</span>
+                                <span class="skill-tag">Logistic Regression</span>
+                                <span class="skill-tag">Gradient Boosting</span>
+                                <span class="skill-tag">Cross-validation</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-section">
+                            <h4>Tech Stack</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">NumPy</span>
+                                <span class="skill-tag">Matplotlib</span>
+                                <span class="skill-tag">Seaborn</span>
+                     
+                                <span class="skill-tag">Machine Learning</span>
+                                <span class="skill-tag">Predictive Modeling</span>
+                                <span class="skill-tag">Risk Assessment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
+
+        <script>
+        (function() {
+            var headers = document.querySelectorAll('.accordion-header');
+            headers.forEach(function(header) {
+                header.addEventListener('click', function() {
+                    var expanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', String(!expanded));
+                    var panel = this.nextElementSibling;
+                    if (panel) {
+                        var isOpen = panel.classList.contains('open');
+                        panel.classList.toggle('open');
+                        panel.setAttribute('aria-hidden', String(isOpen));
+                    }
+                });
+            });
+        })();
+        </script>
     </div>
 </body>
 </html> 
