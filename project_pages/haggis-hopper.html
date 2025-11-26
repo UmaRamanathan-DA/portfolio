@@ -16,7 +16,11 @@
         gap: 1.5rem;
         margin: 1.5rem 0 0;
     }
-
+    @media (max-width: 768px) {
+        .quantitative-gallery {
+            grid-template-columns: 1fr;
+        }
+    }
     .quantitative-card {
         background: white;
         border-radius: 10px;
@@ -844,98 +848,142 @@
             </div>
         </div>
         
-        <div style="width: 100%;">
-            <div class="eda-section">
-                <h4>Quantitative Analysis Visuals</h4>
-                <p>Key diagnostic plots summarizing the taxi fleet’s operational performance, demand patterns, and forecasting experiments.</p>
-                <div class="quantitative-gallery">
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution">
-                        <figcaption>Average Trip Duration</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/duration-analysis.png" alt="Trip duration trends by weekday and hour">
-                        <figcaption>Duration Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour">
-                        <figcaption>Drop-off Postcode vs Hour</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/pickup-hourofday.png" alt="Pickup demand by hour of day">
-                        <figcaption>Pickup Hour-of-Day</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tripcounts-postcode.png" alt="Trip counts per postcode">
-                        <figcaption>Trip Counts by Postcode</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/fare-analysis.png" alt="Fare and tip amount distributions">
-                        <figcaption>Fare & Tip Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/revenue-analysis.png" alt="Revenue composition">
-                        <figcaption>Revenue Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre">
-                        <figcaption>Revenue per Km</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot">
-                        <figcaption>Outlier Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/holtswinter-forecast.png" alt="Holt-Winters forecast components">
-                        <figcaption>Holt-Winters Forecast</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/holtswinter-forecast-tn.png" alt="Holt-Winters forecast thumbnail">
-                        <figcaption>Forecast Thumbnail</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/haggis-hopper-thumbnail.png" alt="Haggis Hopper dashboard thumbnail">
-                        <figcaption>Dashboard Cover</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/haggis-hopper-thumbnail_1.png" alt="Haggis Hopper dashboard alternate thumbnail">
-                        <figcaption>Dashboard Alternate</figcaption>
-                    </figure>
-                </div>
-                <h4>Interactive Tableau Highlights</h4>
-                <p>Selected Tableau dashboards that stakeholders explored during the quantitative review.</p>
-                <div class="quantitative-gallery">
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard">
-                        <figcaption>Demand Temporal Patterns</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard">
-                        <figcaption>Trip Volume Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap">
-                        <figcaption>Trip Demand Density</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard">
-                        <figcaption>Passenger Behaviour</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard">
-                        <figcaption>Fare Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis dashboard 1">
-                        <figcaption>Revenue Analysis 1</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis dashboard 2">
-                        <figcaption>Revenue Analysis 2</figcaption>
-                    </figure>
+               <!-- ... existing code ... -->
+
+               <div style="width: 100%;">
+                <div class="eda-section">
+                    <h4>Quantitative Analysis Visuals</h4>
+                    <p>Key diagnostic plots summarizing the taxi fleet’s operational performance, demand patterns, and forecasting experiments.</p>
+                    <div class="quantitative-gallery">
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/avg-trip-duration.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution">
+                            </a>
+                            <figcaption>Average Trip Duration</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/duration-analysis.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/duration-analysis.png" alt="Trip duration trends by weekday and hour">
+                            </a>
+                            <figcaption>Duration Analysis</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/dropoffpostcode-hour.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour">
+                            </a>
+                            <figcaption>Drop-off Postcode vs Hour</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/pickup-hourofday.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/pickup-hourofday.png" alt="Pickup demand by hour of day">
+                            </a>
+                            <figcaption>Pickup Hour-of-Day</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tripcounts-postcode.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tripcounts-postcode.png" alt="Trip counts per postcode">
+                            </a>
+                            <figcaption>Trip Counts by Postcode</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/fare-analysis.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/fare-analysis.png" alt="Fare and tip amount distributions">
+                            </a>
+                            <figcaption>Fare &amp; Tip Analysis</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/revenue-analysis.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/revenue-analysis.png" alt="Revenue composition">
+                            </a>
+                            <figcaption>Revenue Analysis</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/revenue-km.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre">
+                            </a>
+                            <figcaption>Revenue per Km</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/outlier-analysis.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot">
+                            </a>
+                            <figcaption>Outlier Analysis</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/holtswinter-forecast.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/holtswinter-forecast.png" alt="Holt-Winters forecast components">
+                            </a>
+                            <figcaption>Holt-Winters Forecast</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/holtswinter-forecast-tn.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/holtswinter-forecast-tn.png" alt="Holt-Winters forecast thumbnail">
+                            </a>
+                            <figcaption>Forecast Thumbnail</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/haggis-hopper-thumbnail.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/haggis-hopper-thumbnail.png" alt="Haggis Hopper dashboard thumbnail">
+                            </a>
+                            <figcaption>Dashboard Cover</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/haggis-hopper-thumbnail_1.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/haggis-hopper-thumbnail_1.png" alt="Haggis Hopper dashboard alternate thumbnail">
+                            </a>
+                            <figcaption>Dashboard Alternate</figcaption>
+                        </figure>
+                    </div>
+    
+                    <h4>Interactive Tableau Highlights</h4>
+                    <p>Selected Tableau dashboards that stakeholders explored during the quantitative review.</p>
+                    <div class="quantitative-gallery">
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard">
+                            </a>
+                            <figcaption>Demand Temporal Patterns</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard">
+                            </a>
+                            <figcaption>Trip Volume Analysis</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/Trip%20Demand%20Density.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap">
+                            </a>
+                            <figcaption>Trip Demand Density</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/Passenger%20Behaviour.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard">
+                            </a>
+                            <figcaption>Passenger Behaviour</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/Fare%20Analysis.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard">
+                            </a>
+                            <figcaption>Fare Analysis</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/revenue%20analysis%201.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis dashboard 1">
+                            </a>
+                            <figcaption>Revenue Analysis 1</figcaption>
+                        </figure>
+                        <figure class="quantitative-card">
+                            <a href="../images/haggishopper/tableau/revenue%20analysis%202.png" target="_blank" rel="noopener noreferrer">
+                                <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis dashboard 2">
+                            </a>
+                            <figcaption>Revenue Analysis 2</figcaption>
+                        </figure>
+                    </div>
                 </div>
             </div>
-        </div>     
+        </div>     <!-- ... existing code ... -->    
     </div>
 </body>
 </html> 
