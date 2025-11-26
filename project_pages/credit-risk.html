@@ -357,7 +357,7 @@
 
         <div class="content-section">
             <h2>What It Does</h2>
-            <p>A smart loan review tool that helps credit analysts make faster, more confident decisions. The platform analyzes applicant data using machine learning and presents clear risk scores with plain-English explanations-so analysts understand not just <em>what</em> the risk level is, but <em>why</em>.</p>
+            <p>A smart loan review tool that helps credit analysts make faster, more confident decisions. The platform analyzes applicant data using machine learning and presents clear risk scores with plain-English explanations—so analysts understand not just <em>what</em> the risk level is, but <em>why</em>.</p>
         </div>
 
         <div class="content-section">
@@ -403,24 +403,43 @@
             </div>
         </div>
 
-       
         <div class="content-section">
-            <h2>Why It Matters: Explainable AI</h2>
-            <p>Unlike "black box" models, this platform shows which factors drive each risk score-income stability, repayment history, debt levels, etc. This transparency builds analyst confidence, satisfies regulatory requirements, and ensures fairer lending decisions.</p>
+            <h2>How the Model Works</h2>
+            <p>The platform uses a <strong>logistic regression model</strong> trained on historical loan data to predict default risk. This approach was chosen for its balance of accuracy and interpretability—essential for regulated lending decisions. The model analyzes key factors including:</p>
+            <ul>
+                <li><strong>Interest rate and loan grade:</strong> Higher rates and lower grades correlate with elevated risk</li>
+                <li><strong>Credit utilization flags:</strong> High revolving credit use and debt-to-income ratios signal potential strain</li>
+                <li><strong>Employment and income stability:</strong> Job tenure and verified income reduce default likelihood</li>
+                <li><strong>Loan characteristics:</strong> Term length (36 vs 60 months), purpose (debt consolidation shows higher risk), and home ownership status</li>
+                <li><strong>Application details:</strong> Individual vs joint applications, verification status, and payment method</li>
+            </ul>
+            <p>The model was validated using cross-validation and achieves strong performance on both ROC-AUC and precision-recall metrics.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Why Explainability Matters</h2>
+            <p>Unlike "black box" models, the platform shows <strong>which specific factors drive each risk score</strong>—for example, "elevated risk due to high debt-to-income ratio and unverified income." This transparency:</p>
+            <ul>
+                <li>Builds analyst confidence in AI recommendations</li>
+                <li>Satisfies regulatory requirements for fair lending</li>
+                <li>Enables better customer conversations about approval conditions</li>
+                <li>Supports continuous model improvement through analyst feedback</li>
+            </ul>
         </div>
 
         <div class="content-section">
             <h2>Business Impact</h2>
             <ul class="impact-list">
                 <li><strong>Faster decisions:</strong> Streamlined workflows cut review time, enabling higher application throughput</li>
-                <li><strong>Lower credit losses:</strong> Better risk detection reduces defaults and portfolio delinquencies</li>
+                <li><strong>Lower credit losses:</strong> Better risk detection reduces defaults and charge-offs by identifying high-risk patterns in applicant profiles</li>
                 <li><strong>Stronger adoption:</strong> An intuitive interface made the ML technology accessible to non-technical users from day one</li>
+                <li><strong>Consistent risk assessment:</strong> Standardized scoring reduces analyst variability and improves portfolio quality</li>
             </ul>
         </div>
 
         <div class="content-section">
-            <h2>Approach</h2>
-            <p>Designed user flows and prototyped screens with stakeholder feedback loops. Built the UI with reusable components for speed and consistency. Connected a logistic regression model (trained on historical loan data) to a FastAPI backend, then wrapped everything in a clean analyst-facing interface.</p>
+            <h2>Key Insights from the Data</h2>
+            <p>Analysis of 300,000+ loans revealed that debt consolidation loans comprise the majority of applications, with interest rate and credit grade being the strongest predictors of default. The model successfully identifies that borrowers with verified income, individual applications, and 36-month terms show consistently better repayment performance.</p>
         </div>
 
         <div class="content-section">
@@ -428,6 +447,7 @@
             <div class="tech-stack">
                 <span class="tech-tag">Lovable AI</span>
                 <span class="tech-tag">Python</span>
+                <span class="tech-tag">Logistic Regression</span>
                 <span class="tech-tag">FastAPI</span>
                 <span class="tech-tag">Streamlit</span>
                 <span class="tech-tag">Scikit-learn</span>
@@ -439,7 +459,8 @@
                 <span class="tech-tag">UX/UI Design</span>
                 <span class="tech-tag">Prototyping</span>
                 <span class="tech-tag">Explainable AI</span>
-                <span class="tech-tag">User Research</span>
+                <span class="tech-tag">Feature Engineering</span>
+                <span class="tech-tag">Model Validation</span>
             </div>
         </div>
     </div>
