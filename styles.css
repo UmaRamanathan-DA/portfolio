@@ -30,6 +30,17 @@ html, body {
     position: relative;
 }
 
+.fa-tableau {
+    color: #E97627; /* Tableau brand orange */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.fa-tableau:hover {
+    color: #C1580C; /* Darker orange */
+    transform: scale(1.1);
+}
+
 /* Left Sidebar */
 .sidebar {
     width: 280px;
