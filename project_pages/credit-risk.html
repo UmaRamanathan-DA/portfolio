@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Risk Prediction - Uma Ramanathan</title>
+    <title>Credit Risk Assessment Platform - Uma Ramanathan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
@@ -70,13 +70,12 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        /* Specific button variants */
         .project-btn.btn-live {
-            background: #DC143C; /* crimson */
+            background: #DC143C;
             color: #fff;
         }
         .project-btn.btn-live:hover {
-            background: #b31234; /* darker crimson */
+            background: #b31234;
             color: #fff;
         }
         .project-btn.btn-dashboard {
@@ -88,40 +87,125 @@
             color: #fff;
         }
 
-        .project-header {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            text-align: left;
-            background: #fff;
-            padding: 1.5rem 1.5rem 1.2rem 1.5rem;
-            border-radius: 10px;
-            color: #222;
+        .content-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
         }
-        .project-title {
-            font-size: 1.15rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-        }
-        .project-meta > div {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            color: #444;
-        }
-        .project-meta > div:last-child {
-            margin-bottom: 0;
-        }
-        .project-description h2, .project-description h3, .project-description h4 {
-            margin-top: 2.2rem;
-            margin-bottom: 1rem;
+        
+        .content-section h2 {
             color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .impact-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .impact-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+        
+        .impact-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
             font-size: 1.2rem;
-            font-weight: 600;
         }
-        .project-description h3 {
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-tag {
+            background: #e9ecef;
+            color: #333;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .project-sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .skills-section, .tech-section {
+            margin-bottom: 2rem;
+        }
+        
+        .skills-section h4, .tech-section h4 {
+            color: #333;
             font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
         }
-        .project-description h4 {
-            font-size: 1rem;
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #f8f9fa;
+            color: #333;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: #FFD700;
+            color: #333;
+            transform: translateY(-1px);
         }
 
         /* Mobile Responsiveness */
@@ -147,6 +231,10 @@
             .project-btn {
                 padding: 0.625rem 1.25rem;
                 font-size: 0.9rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
             }
         }
 
@@ -177,48 +265,6 @@
                 padding: 0.75rem 1rem;
             }
         }
-
-        /* Accordion */
-        .accordion {
-            margin: 2rem 0 0 0;
-        }
-        .accordion-item {
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            margin: 0 1rem 0.75rem 1rem;
-            overflow: hidden;
-            background: #fff;
-        }
-        .accordion-header {
-            width: 100%;
-            text-align: left;
-            background: #f7f7f7;
-            color: #333;
-            border: none;
-            padding: 0.9rem 1rem;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .accordion-header:hover {
-            background: #efefef;
-        }
-        .accordion-icon {
-            margin-left: 0.5rem;
-            transition: transform 0.2s ease;
-        }
-        .accordion-header[aria-expanded="true"] .accordion-icon {
-            transform: rotate(90deg);
-        }
-        .accordion-panel {
-            display: none;
-            padding: 1rem 1rem 0.75rem 1rem;
-        }
-        .accordion-panel.open {
-            display: block;
-        }
    </style>
 </head>
 <body>
@@ -229,9 +275,9 @@
         </a>
         
         <div class="project-header-s">
-            <h1 class="project-title-s">Credit Risk Prediction</h1>
-           
+            <h1 class="project-title-s">Credit Risk Assessment Platform</h1>
         </div>
+        
         <div class="project-meta-s">
             <div class="meta-item-s">
                 <i class="fas fa-building"></i>
@@ -262,151 +308,54 @@
             </a>
         </div>
 
-
-        <div class="accordion">
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    Product Design using Lovable AI
-                    <span class="accordion-icon">▶</span>
-                </button>
-                <div class="accordion-panel" role="region" aria-hidden="true">
-                <div class="project-content">
-                    <div class="project-description">
-          
-                        <p>The live app was rapidly prototyped and iterated using the Lovable AI platform. I translated the ML solution into a user‑friendly flow for credit analysts: upload data, review model‑driven risk insights, and generate decisions with clear rationales.</p>
-
-                        <h3>Design Process</h3>
-                        <p>Defined primary user journeys and wireframed screens before styling. Used componentized UI blocks to ensure consistency and fast changes. Validated flows through quick stakeholder demos.</p>
-
-                        <h3>Key Product Features</h3>
-                       
-                        <p>• Score detail view with risk flags, feature contributions, and recommendations</p>
-       
-
-                        <h3>Outcomes</h3>
-                        <p>Delivered a usable front‑end for credit review with fast turnaround, aligning UX with the underlying ML capabilities.</p>
-
-                        <h3>Key Impact</h3>
-                        <p>• Accelerated delivery from concept to a usable app using Lovable AI.</p>
-                        <p>• Reduced analyst review time through streamlined flows and clear risk rationales.</p>
-                        <p>• Improved adoption via an approachable UI tightly aligned to ML capabilities.</p>
-                    </div>
-
-                    <div class="project-sidebar">
-                        <div class="skills-section">
-                            <h4>Skills Used</h4>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Product Thinking</span>
-                                <span class="skill-tag">UX Design</span>
-                                <span class="skill-tag">UI Design</span>
-                                <span class="skill-tag">Prototyping</span>
-                                <span class="skill-tag">User Flows</span>
-                                <span class="skill-tag">Usability</span>
-                            </div>
-                        </div>
-
-                        <div class="tech-section">
-                            <h4>Tech Stack</h4>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Lovable AI</span>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    Machine Learning Model
-                    <span class="accordion-icon">▶</span>
-                </button>
-                <div class="accordion-panel" role="region" aria-hidden="true">
-                <div class="project-content">
-                    <div class="project-description">
-                   
-                        <p>A machine-learning system to predict consumer loan default risk for LoanTap. It trains a logistic regression model with a custom preprocessing pipeline, serves realtime and batch scoring via FastAPI, and provides a Streamlit dashboard for insights, single-record scoring, CSV uploads, and EDA.</p>
-                        
-                        <h3>Key Tasks Delivered</h3>
-                        <p>• Model training: Logistic Regression with class balancing, cross‑validation, ROC AUC/accuracy reporting, persisted with joblib.</p>
-                        <p>• Preprocessing pipeline: Feature engineering (temporal, risk flags, binning), label encoding, scaling; saved and reused at inference.</p>
-                        <p>• Interactive UI (Streamlit): Executive dashboard, manual and dataset-driven single prediction, CSV upload scoring, processed feature view, and EDA with ROC/PR/calibration/heatmaps.</p>
-                        
-                        
-                        <h3>Tasks to be completed</h3>
-                        <p>• Expecting to create risk assessment frameworks to help financial institutions reduce risk while improving customer experience.</p>
-                        <p>• Expecting to develop automated loan approval processes to streamline decision-making.</p>                
-                        
-                        <h3>Methodology & Approach</h3>
-                        <p>Utilized supervised learning techniques including Random Forest, Logistic Regression, and Gradient Boosting to build predictive models. Implemented feature engineering to create relevant variables from customer data. Applied cross-validation and hyperparameter tuning to optimize model performance. Used ROC curves and precision-recall metrics to evaluate model effectiveness.</p>
-                        
-                        <h3>Results & Impact</h3>
-                        <p>Lower credit losses and a healthier portfolio</p>
-                           <p> Better risk stratification reduces default rates and NPAs</p>
-                            Enables risk-based pricing/limits, improving expected loss and provisions accuracy
-                            Faster, scalable lending decisions
-                            Automates low-risk approvals, cutting turnaround time and manual effort
-                            Increases throughput and conversion while keeping risk in check.</p>
-                    </div>
-                    
-                    <div class="project-sidebar">
-                        <div class="skills-section">
-                            <h4>Skills Used</h4>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Machine Learning</span>
-                                <span class="skill-tag">Predictive Modeling</span>
-                                <span class="skill-tag">Risk Assessment</span>
-                                <span class="skill-tag">Data Analysis</span>
-                                <span class="skill-tag">Feature Engineering</span>
-                                <span class="skill-tag">Model Validation</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Scikit-learn</span>
-                                <span class="skill-tag">Random Forest</span>
-                                <span class="skill-tag">Logistic Regression</span>
-                                <span class="skill-tag">Gradient Boosting</span>
-                                <span class="skill-tag">Cross-validation</span>
-                            </div>
-                        </div>
-                        
-                        <div class="tech-section">
-                            <h4>Tech Stack</h4>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Scikit-learn</span>
-                                <span class="skill-tag">Pandas</span>
-                                <span class="skill-tag">NumPy</span>
-                                <span class="skill-tag">Matplotlib</span>
-                                <span class="skill-tag">Seaborn</span>
-                     
-                                <span class="skill-tag">Machine Learning</span>
-                                <span class="skill-tag">Predictive Modeling</span>
-                                <span class="skill-tag">Risk Assessment</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+        <div class="content-section">
+            <h2>What It Does</h2>
+            <p>A smart loan review tool that helps credit analysts make faster, more confident decisions. The platform analyzes applicant data using machine learning and presents clear risk scores with plain-English explanations—so analysts understand not just <em>what</em> the risk level is, but <em>why</em>.</p>
         </div>
 
-        <script>
-        (function() {
-            var headers = document.querySelectorAll('.accordion-header');
-            headers.forEach(function(header) {
-                header.addEventListener('click', function() {
-                    var expanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', String(!expanded));
-                    var panel = this.nextElementSibling;
-                    if (panel) {
-                        var isOpen = panel.classList.contains('open');
-                        panel.classList.toggle('open');
-                        panel.setAttribute('aria-hidden', String(isOpen));
-                    }
-                });
-            });
-        })();
-        </script>
+        <div class="content-section">
+            <h2>The Solution</h2>
+            <p>I rapidly prototyped this application using Lovable AI to bridge the gap between complex data science and day-to-day credit operations. Analysts simply upload customer data, review AI-generated risk insights with visual flags and recommendations, then approve or decline loans with auto-generated rationales they can trust and explain to stakeholders.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Why It Matters: Explainable AI</h2>
+            <p>Unlike "black box" models, this platform shows which factors drive each risk score—income stability, repayment history, debt levels, etc. This transparency builds analyst confidence, satisfies regulatory requirements, and ensures fairer lending decisions.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Business Impact</h2>
+            <ul class="impact-list">
+                <li><strong>Faster decisions:</strong> Streamlined workflows cut review time, enabling higher application throughput</li>
+                <li><strong>Lower credit losses:</strong> Better risk detection reduces defaults and portfolio delinquencies</li>
+                <li><strong>Stronger adoption:</strong> An intuitive interface made the ML technology accessible to non-technical users from day one</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Approach</h2>
+            <p>Designed user flows and prototyped screens with stakeholder feedback loops. Built the UI with reusable components for speed and consistency. Connected a logistic regression model (trained on historical loan data) to a FastAPI backend, then wrapped everything in a clean analyst-facing interface.</p>
+        </div>
+
+        <div class="content-section">
+            <h3>Tech Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Lovable AI</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Scikit-learn</span>
+            </div>
+            
+            <h3>Skills</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Product Strategy</span>
+                <span class="tech-tag">UX/UI Design</span>
+                <span class="tech-tag">Prototyping</span>
+                <span class="tech-tag">Explainable AI</span>
+                <span class="tech-tag">User Research</span>
+            </div>
+        </div>
     </div>
 </body>
-</html> 
+</html>
