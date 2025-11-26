@@ -265,6 +265,53 @@
                 padding: 0.75rem 1rem;
             }
         }
+
+        .prototype-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .prototype-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .prototype-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .prototype-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .prototype-card figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .prototype-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .prototype-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
    </style>
 </head>
 <body>
@@ -318,6 +365,52 @@
             <p>I rapidly prototyped this application using Lovable AI to bridge the gap between complex data science and day-to-day credit operations. Analysts simply upload customer data, review AI-generated risk insights with visual flags and recommendations, then approve or decline loans with auto-generated rationales they can trust and explain to stakeholders.</p>
         </div>
 
+        <div class="content-section">
+            <h2>The Solution</h2>
+            <p>I rapidly prototyped this application using Lovable AI to bridge the gap between complex data science and day-to-day credit operations. Analysts simply upload customer data, review AI-generated risk insights with visual flags and recommendations, then approve or decline loans with auto-generated rationales they can trust and explain to stakeholders.</p>
+        </div>
+
+        <!-- Lovable Prototype Visuals -->
+        <div class="content-section">
+            <h3>Lovable AI Prototype Screenshots</h3>
+            <p>Interactive screens from the rapidly prototyped credit risk assessment platform:</p>
+            <div class="prototype-gallery">
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" alt="Loan application prototype interface">
+                    </a>
+                    <figcaption>Loan Application Interface</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/demo%20of%20loan%20approval%20worflow.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/demo%20of%20loan%20approval%20worflow.png" alt="Loan approval workflow demonstration">
+                    </a>
+                    <figcaption>Loan Approval Workflow</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/decision%20explained.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/decision%20explained.png" alt="Decision explanation with explainable AI">
+                    </a>
+                    <figcaption>Decision Explanation</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/application%20approved.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/application%20approved.png" alt="Application approved screen">
+                    </a>
+                    <figcaption>Application Approved</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/admin%20dashboard.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/admin%20dashboard.png" alt="Admin dashboard view">
+                    </a>
+                    <figcaption>Admin Dashboard</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Why It Matters: Explainable AI</h2>
+            <!-- ... rest of your content ... -->
         <div class="content-section">
             <h2>Why It Matters: Explainable AI</h2>
             <p>Unlike "black box" models, this platform shows which factors drive each risk score—income stability, repayment history, debt levels, etc. This transparency builds analyst confidence, satisfies regulatory requirements, and ensures fairer lending decisions.</p>
