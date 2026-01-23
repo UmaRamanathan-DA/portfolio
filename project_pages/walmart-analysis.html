@@ -12,6 +12,38 @@
         .project-header {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');        
         }
+        .quantitative-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0 0;
+    }
+    @media (max-width: 768px) {
+        .quantitative-gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+    .quantitative-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        text-align: center;
+    }
+
+    .quantitative-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    .quantitative-card figcaption {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #333;
+    }
+
     </style>
 </head>
 <body>
@@ -57,9 +89,7 @@
                 <h3>Project Overview</h3>
                 <p>Conducted comprehensive statistical analysis of Walmart's Black Friday customer purchase behavior to determine if spending habits differ between male and female customers. Performed advanced statistical testing including hypothesis testing, confidence intervals, and Central Limit Theorem simulations to provide data-driven insights for business decision-making. Developed an interactive Streamlit dashboard with comprehensive visualizations and business recommendations to support strategic marketing and inventory planning.</p>
                 
-                <h3>Quantitative Research</h3>
-                <p>Conducted comprehensive quantitative analysis using advanced statistical methods including hypothesis testing, confidence intervals, and Central Limit Theorem simulations to uncover patterns in customer spending behavior. The research involved extensive data preprocessing, exploratory data analysis, and statistical modeling to deliver actionable insights for business optimization.</p>
-                
+              
                 <h3>Key Analysis Areas</h3>
                 <p>• <strong>Data Quality Analysis:</strong> Ensured data integrity and consistency for reliable statistical analysis</p>
                 <p>• <strong>Gender Analysis:</strong> Investigated spending patterns differences between male and female customers</p>
@@ -69,6 +99,57 @@
                 <p>• <strong>Statistical Analysis:</strong> Applied rigorous statistical methods for reliable conclusions</p>
                 <p>• <strong>Business Recommendations:</strong> Developed data-driven strategies for business optimization</p>
                 
+        
+                <div class="quantitative-gallery">
+                    
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh1.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh1.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Duration Analysis</figcaption>
+                    </figure>
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh2.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh2.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Drop-off Postcode vs Hour</figcaption>
+                    </figure>
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh3.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh3.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Pickup Hour-of-Day</figcaption>
+                    </figure>
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh4.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh4.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Trip Counts by Postcode</figcaption>
+                    </figure>
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh5.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh5.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Fare and Tip Analysis</figcaption>
+                    </figure>
+                   
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh6.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh6.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Revenue per Km</figcaption>
+                    </figure>
+                   
+                    <figure class="quantitative-card">
+                        <a href="../images/walmartblackfriday/sh7.png" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/walmartblackfriday/sh7.png" alt="Trip duration trends by weekday and hour">
+                        </a>
+                        <figcaption>Average Trip Duration</figcaption>
+                    </figure>
+
+                
+                </div>
+
                 <h3>Detailed Tasks</h3>
                 <p>• Collected and preprocessed Walmart Black Friday transactional data to ensure data quality and consistency for statistical analysis</p>
                 <p>• Conducted comprehensive exploratory data analysis (EDA) using Python and statistical libraries to uncover key trends in customer spending behavior</p>
@@ -86,13 +167,7 @@
                 <p>• Age group analysis identified key demographic segments with highest spending potential</p>
                 <p>• Geographic analysis showed regional variations in Black Friday shopping behavior</p>
                 <p>• Occupation-based analysis provided insights for targeted marketing strategies</p>
-                
-                <h3>Business Impact</h3>
-                <p>• Provided statistical evidence for gender-based marketing strategies with confidence intervals</p>
-                <p>• Identified high-value customer segments for targeted marketing campaigns</p>
-                <p>• Developed data-driven recommendations for inventory optimization</p>
-                <p>• Created interactive dashboard for real-time business intelligence</p>
-                <p>• Established statistical framework for future customer behavior analysis</p>
+            
             </div>
             
             <div class="project-sidebar">
@@ -117,19 +192,7 @@
                 <div class="tech-section">
                     <h4>Tech Stack</h4>
                     
-                    <div class="tech-category">
-                        <h5>Programming & Tools</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Streamlit</span>
-                            <span class="skill-tag">Pandas</span>
-                            <span class="skill-tag">NumPy</span>
-                            <span class="skill-tag">Plotly</span>
-                            <span class="skill-tag">SciPy</span>
-                            <span class="skill-tag">Matplotlib</span>
-                            <span class="skill-tag">Seaborn</span>
-                        </div>
-                    </div>
+                   
                     
                     <div class="tech-category">
                         <h5>Statistical Analysis</h5>
@@ -163,10 +226,19 @@
                             <span class="skill-tag">Interactive Dashboards</span>
                             <span class="skill-tag">Data Visualization</span>
                             <span class="skill-tag">Business Recommendations</span>
-                            <span class="skill-tag">Marketing Strategy</span>
-                            <span class="skill-tag">Revenue Optimization</span>
-                            <span class="skill-tag">Inventory Management</span>
-                            <span class="skill-tag">Customer Targeting</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h5>Programming & Tools</h5>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Streamlit</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NumPy</span>
+                            <span class="skill-tag">Plotly</span>
+                            <span class="skill-tag">SciPy</span>
+                            <span class="skill-tag">Matplotlib</span>
+                            <span class="skill-tag">Seaborn</span>
                         </div>
                     </div>
                 </div>

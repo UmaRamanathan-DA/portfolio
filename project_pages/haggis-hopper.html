@@ -42,8 +42,8 @@
         color: #333;
     }
         .project-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                        url('../images/haggis-hopper/haggis-hopper-banner.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))
+                        ; 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -56,7 +56,7 @@
         }
         
         .project-title {
-            color: white;
+            color: rgb(240, 240, 240);
             font-size: 2.5rem;
             font-weight: 700;
             text-align: center;
@@ -588,370 +588,186 @@
         </div>
         
         <div class="project-buttons">
-            <a href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&:origin=viz_share_link" class="project-btn" target="_blank">
+            <a href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&:origin=viz_share_link" class="action-btn github-btn" target="_blank">
                 <i class="fas fa-chart-bar"></i>
                 Interactive Tableau Dashboard for business stakeholders
             </a>
            
-            <a href="https://haggishopper-uramanathan.streamlit.app/" class="project-btn" target="_blank">
+            <a href="https://haggishopper-uramanathan.streamlit.app/" class="action-btn github-btn" target="_blank">
                 <i class="fas fa-chart-line"></i>
                 View Analysis Dashboard in Streamlit App
             </a>
-            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="project-btn" target="_blank">
+            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="action-btn github-btn"" target="_blank">
                 <i class="fab fa-github"></i>
                 View on GitHub
             </a>
         </div>
 
-        <div class="introduction-section">
-            <h2>Introduction</h2>
-            <p>The case study examines how Haggis Hoppers, a growing, sustainability-focused Glasgow taxi company, can use data analytics and predictive modelling to better manage fluctuating urban transport demand and improve operational efficiency. It aims to leverage historical trip, weather, event, and traffic data to optimise fleet allocation, maintenance, and pricing so the business can scale sustainably while enhancing customer satisfaction and supporting city-wide sustainability goals.</p>
-            <h2>Expected Outcome</h2>
-            <p>Requirement is a comprehensive analysis of historical trip logs and its time series analysis of demand:</p>
+        <div class="project-content">
+            
+            <div class="introduction-section">
+            <h2>Project Goal</h2>
+            <p>
+                Use Haggis Hopper’s historical trip data to uncover where, when, and how demand fluctuates across Glasgow so the company can allocate its fleet more efficiently, improve passenger experience, and support sustainable growth.
+            </p>
+
+            <h2>Key Activities</h2>
             <ul>
-                <li>Propose data-driven strategies to optimize fleet allocation, enhance customer service, and improve overall operational efficiency.</li> 
-                <li><strong>Operational Efficiency:</strong> Identify opportunities for route optimization, reduced idle time, and improved fuel efficiency through temporal and geospatial analysis.</li> 
-                <li><strong>Customer Experience:</strong> Analyze customer behavior patterns to inform potential enhancements in ride booking, personalization, and service availability.</li> 
-                <li><strong>Strategic Business Opportunities:</strong> Highlight areas for potential service expansion and technological innovation based on demand patterns and underserved locations.</li> 
+                <li>Cleaned and prepared multi-source trip data for robust analysis and forecasting.</li>
+                <li>Explored temporal and geospatial demand patterns to identify hotspots and under-served areas.</li>
+                <li>Built Tableau dashboards for business stakeholders to monitor demand, revenue, and fleet performance.</li>
+                <li>Experimented with time-series and machine learning models to forecast short-term taxi demand.</li>
+                <li>Translated findings into concrete recommendations on fleet deployment and service design.</li>
             </ul>
+
+
+            <h2>Quantitative Analysis Visuals</h2>
+            <div class="quantitative-gallery">
+                
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/duration-analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/duration-analysis.png" alt="Trip duration trends by weekday and hour">
+                    </a>
+                    <figcaption>Duration Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/dropoffpostcode-hour.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour">
+                    </a>
+                    <figcaption>Drop-off Postcode vs Hour</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/pickup-hourofday.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/pickup-hourofday.png" alt="Pickup demand by hour of day">
+                    </a>
+                    <figcaption>Pickup Hour-of-Day</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/tripcounts-postcode.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/tripcounts-postcode.png" alt="Trip counts per postcode">
+                    </a>
+                    <figcaption>Trip Counts by Postcode</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/fare-analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/fare-analysis.png" alt="Fare and tip amount distributions">
+                    </a>
+                    <figcaption>Fare and Tip Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/outlier-analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot">
+                    </a>
+                    <figcaption>Outlier Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/revenue-km.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre">
+                    </a>
+                    <figcaption>Revenue per Km</figcaption>
+                </figure>
+               
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/avg-trip-duration.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution">
+                    </a>
+                    <figcaption>Average Trip Duration</figcaption>
+                </figure>
+            </div>
             
-            <h2>Approach</h2>
-            <div class="approach-steps">
-                <div class="step-container">
-                    <a href="#eda-section" class="step-card">
-                        <div class="step-number">1</div>
-                        <div class="card-icon">
-                            <i class="fas fa-chart-area"></i>
-                        </div>
-                        <h4>Exploratory Data Analysis</h4>
-                        <p>Comprehensive analysis of trip patterns, data quality, and initial insights</p>
+            <h2>Interactive Tableau Highlights</h2>
+            <div class="quantitative-gallery">
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard">
                     </a>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
-                </div>
-                
-                <div class="step-container">
-                    <a href="#time-series-section" class="step-card">
-                        <div class="step-number">2</div>
-                        <div class="card-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h4>Time Series Analysis</h4>
-                        <p>Rigorous analysis of demand fluctuations and temporal patterns</p>
+                    <figcaption>Demand Temporal Patterns</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard">
                     </a>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
-                </div>
-                
-                <div class="step-container">
-                    <a href="#demand-prediction-section" class="step-card">
-                        <div class="step-number">3</div>
-                        <div class="card-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h4>Demand Prediction Model</h4>
-                        <p>Machine learning models for hour-ahead demand forecasting</p>
+                    <figcaption>Trip Volume Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Trip%20Demand%20Density.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap">
                     </a>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
-                </div>
-                
-                <div class="step-container">
-                    <a href="#innovation-section" class="step-card">
-                        <div class="step-number">4</div>
-                        <div class="card-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h4>What-if Analysis</h4>
-                        <p>Scenario simulation and innovative analytical approaches</p>
+                    <figcaption>Trip Demand Density</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Passenger%20Behaviour.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard">
                     </a>
-                </div>
+                    <figcaption>Passenger Behaviour</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Fare%20Analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard">
+                    </a>
+                    <figcaption>Fare Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/revenue%20analysis%201.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis">
+                    </a>
+                    <figcaption>Revenue Analysis 1</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/revenue%20analysis%202.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis">
+                    </a>
+                    <figcaption>Revenue Analysis 2</figcaption>
+                </figure>
             </div>
         </div>
 
-        <div style="width: 100%;">
-            <div class="eda-section">
-                <h4>Quantitative Analysis Visuals</h4>
-                <p>Key diagnostic plots summarizing the taxi fleet’s operational performance, demand patterns, and forecasting experiments.</p>
-                <div class="quantitative-gallery">
-                    
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/python da/duration-analysis.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/python da/duration-analysis.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Duration Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/python da/dropoffpostcode-hour.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/python da/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour">
-                        </a>
-                        <figcaption>Drop-off Postcode vs Hour</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/python da/pickup-hourofday.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/python da/pickup-hourofday.png" alt="Pickup demand by hour of day">
-                        </a>
-                        <figcaption>Pickup Hour-of-Day</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/python da/tripcounts-postcode.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/python da/tripcounts-postcode.png" alt="Trip counts per postcode">
-                        </a>
-                        <figcaption>Trip Counts by Postcode</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/python da/fare-analysis.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/python da/fare-analysis.png" alt="Fare and tip amount distributions">
-                        </a>
-                        <figcaption>Fare and Tip Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/outlier-analysis.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot">
-                        </a>
-                        <figcaption>Outlier Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/revenue-km.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre">
-                        </a>
-                        <figcaption>Revenue per Km</figcaption>
-                    </figure>
-                   
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/avg-trip-duration.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution">
-                        </a>
-                        <figcaption>Average Trip Duration</figcaption>
-                    </figure>
-                </div>
-    
-                <h4>Interactive Tableau Highlights</h4>
-                <p>Selected Tableau dashboards that stakeholders explored during the quantitative review.</p>
-                <div class="quantitative-gallery">
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard">
-                        </a>
-                        <figcaption>Demand Temporal Patterns</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard">
-                        </a>
-                        <figcaption>Trip Volume Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/Trip%20Demand%20Density.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap">
-                        </a>
-                        <figcaption>Trip Demand Density</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/Passenger%20Behaviour.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard">
-                        </a>
-                        <figcaption>Passenger Behaviour</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/Fare%20Analysis.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard">
-                        </a>
-                        <figcaption>Fare Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/revenue%20analysis%201.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis">
-                        </a>
-                        <figcaption>Revenue Analysis 1</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/haggishopper/tableau/revenue%20analysis%202.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis">
-                        </a>
-                        <figcaption>Revenue Analysis 2</figcaption>
-                    </figure>
+        <div class="project-sidebar" style="margin-top: 2rem;">
+            <div class="skills-section">
+                <h4>Skills Used</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Geospatial Analysis</span>
+                    <span class="skill-tag">Time Series Analysis</span>
+                    <span class="skill-tag">Forecasting</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Dashboard Design</span>
                 </div>
             </div>
-        </div>
-        <div class="eda-content">
-            <div class="eda-section">
-                <h3 id="eda-section">Exploratory Data Analysis (EDA)</h3>
-                <p>The foundational step in Haggis Hoppers' data-driven journey is to undertake a comprehensive Exploratory Data Analysis (EDA) of its trip log data. This initial phase is crucial for several reasons:</p>
-                <p><strong>• Understanding Data Characteristics:</strong> EDA will allow Haggis Hoppers to gain a deep understanding of the underlying patterns, anomalies, trends, and correlations within its data. This includes analysing trip frequencies, duration, peak times, geographic hotspots of demand, and other relevant metrics.</p>
-                <p><strong>• Identifying Operational Insights:</strong> Through EDA, the company aims to uncover insights that could lead to immediate operational improvements, such as identifying under-served areas, times of day with mismatched supply and demand, and inefficiencies in current fleet allocation practices.</p>
-                <p><strong>• Data Quality Assessment:</strong> This phase will also serve to evaluate the quality of the collected data, identifying any inconsistencies, missing values, or outliers that may impact further analysis.</p>
-                
-                <h4>Quantitative Research and Key Analysis Areas</h4>
-                <p>Conducted comprehensive quantitative analysis using advanced statistical methods and machine learning techniques to uncover patterns in taxi operations, customer behavior, and demand forecasting. The research involved extensive data preprocessing, exploratory data analysis, and predictive modeling to deliver actionable insights for business optimization.</p>
 
-                <p>• Geospatial Analysis</p>
-                <p>• Demand Patterns</p>
-                <p>• Descriptive Statistics</p>
-                <p>• Postcode Demand Analysis</p>
-                <p>• Demand Analysis</p>
-                <p>• Outlier Analysis</p>
-                <p>• Temporal Analysis</p>
-                <p>• Hourly Variations and Outliers in Key Taxi Metrics: Demand, Distance, Duration, Fare, Tip, and Total Amount</p>
-                <p>• Revenue & Fare Analysis</p>
-                <p>• Trip Duration Analysis</p>
-                <p>• Clustering Analysis</p>
-                <p>• Hour-Ahead Demand Forecasting</p>
-                <p>• Business Insights</p>
-                
-                
-                <h4>Detailed Tasks</h4>
-                <p>• Collected, integrated, and cleaned transport datasets from multiple sources to ensure consistency and reliability for downstream analytics.</p>
-                <p>• Conducted exploratory data analysis (EDA) using Python and SQL to uncover key trends and trip patterns, supporting business planning and operational decision-making.</p>
-                <p>• Performed geospatial analysis to identify high-demand hotspots and optimize location-based services.</p>
-                <p>• Applied clustering techniques for customer segmentation, enabling targeted strategies for user engagement and service delivery.</p>
-                <p>• Designed and implemented interactive Tableau dashboards to visualize fleet utilization, demand trends, and key operational KPIs, facilitating real-time monitoring by cross-functional teams.</p>
-                <p>• Built and deployed advanced time series forecasting models (e.g., LSTM, SARIMA) to predict customer demand, optimize resource allocation, and enable automated forecasting workflows.</p>
-                <p>• Conducted statistical analyses (e.g., correlation analysis, hypothesis testing) to identify drivers of demand fluctuations and operational inefficiencies, delivering actionable insights to stakeholders.</p>
-                <p>• Translated complex analytical findings into clear visual narratives and recommendations, enhancing communication with technical and non-technical stakeholders.</p>
+            <div class="tech-section">
+                <h4>Tech Stack</h4>
 
-                <h4>Key Findings</h4>
-                <p>Showcases the discovered patterns, insights, and recommendations - covers the time series analysis results and propose data-driven strategies for optimising fleet allocation, improving customer service, and enhancing overall operational efficiency.</p>
-            </div>
-            
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Core Skills</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Geospatial Analysis</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                    </div>
-                </div>
-                
-                <div class="tech-section">
-                    <h4>Programming & Tools</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python and ML libraries</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Excel</span>
-                        <span class="skill-tag">Tableau</span>
-                    </div>
-                </div>
-                
-                <div class="tech-section">
-                    <h4>Quantitative Research</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Descriptive Statistics</span>
-                        <span class="skill-tag">Feature Engineering</span>
-                        <span class="skill-tag">Outlier Analysis</span>
-                        <span class="skill-tag">Correlation Analysis</span>
-                        <span class="skill-tag">Heatmaps</span>
-                        <span class="skill-tag">Time Series Analysis</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">Hypothesis Testing</span>
-                    </div>
-                </div>
-                
-                <div class="tech-section">
-                    <h4>Machine Learning</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">K-Means Clustering</span>
-                        <span class="skill-tag">LSTM Models</span>
-                        <span class="skill-tag">Holts Winter Models</span>
-                        <span class="skill-tag">Forecasting</span>
-                        <span class="skill-tag">Clustering</span>
-                        <span class="skill-tag">Regression</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="time-series-content">
-            <div class="time-series-section">
-                <h3 id="time-series-section">Time Series Analysis of Demand</h3>
-                <p>The heart of this project is to perform a rigorous time series analysis on the demand data captured in the historical trip logs. This analysis is expected to reveal demand fluctuations over time, identify predictable patterns related to time of day, week, or season, and potentially uncover correlations with external factors such as weather or local events. The ultimate goal is to utilise these insights to develop a predictive model for demand forecasting, enabling Haggis Hoppers to anticipate and efficiently meet customer needs with precision.</p>
-                
-                <h4>Key Tasks</h4>
-                <p>• Comprehensive time series analysis revealing demand fluctuations and patterns</p>
-                <p>• Identification of predictable patterns related to time of day, week, and seasonal variations</p>
-                <p>• Analysis of correlations with external factors (weather, local events)</p>
-                <p>• Development of predictive models for demand forecasting</p>
-
-                <h4>Key Findings</h4>
-                <p>Showcases the discovered patterns, insights, and recommendations - covers the time series analysis results and propose data-driven strategies for optimising fleet allocation, improving customer service, and enhancing overall operational efficiency.</p>
-            </div>
-            
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Time Series Skills</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Time Series Analysis</span>
-                        <span class="skill-tag">Seasonal Decomposition</span>
-                        <span class="skill-tag">Trend Analysis</span>
-                        <span class="skill-tag">ARIMA Models</span>
-                        <span class="skill-tag">Autocorrelation</span>
-                        <span class="skill-tag">Pattern Recognition</span>
-                        <span class="skill-tag">Cyclical Analysis</span>
-                        <span class="skill-tag">Demand Forecasting</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="eda-content">
-            <div class="eda-section">
-                <h3 id="demand-prediction-section">Demand Prediction Model</h3>
-                <p>Building upon the insights gained from EDA, Haggis Hoppers aims to develop a predictive model for demand forecasting. The objective here is twofold:</p>
-                <p><strong>• Hour Ahead Prediction:</strong> The company seeks to create a model that can accurately predict taxi demand on an hour-ahead basis. Such a model would enable dynamic fleet allocation by anticipating demand surges or lulls, thereby optimising fleet utilisation and reducing customer wait times.</p>
-                <p><strong>• Operational Efficiency:</strong> By predicting demand more accurately, Haggis Hoppers can ensure a better match between supply and demand, enhancing operational efficiency, and potentially increasing profitability through optimised resource allocation.</p>
-                                    
-                <h4>Outliers</h4>
-                <p>Conducted comprehensive quantitative analysis using advanced statistical methods and machine learning techniques to uncover patterns in taxi operations, customer behavior, and demand forecasting. The research involved extensive data preprocessing, exploratory data analysis, and predictive modeling to deliver actionable insights for business optimization.</p>            
-                
-                <h4>Detailed Tasks</h4>
-                <p>• Built and deployed advanced time series forecasting models (e.g., LSTM, SARIMA) to predict customer demand, optimize resource allocation, and enable automated forecasting workflows.</p>
-                <h4>Comparison of Prediction models</h4>
-            </div>            
-            
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Core Skills</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Data Preprocessing</span>
-                        <span class="skill-tag">Forecasting</span>
-                        <span class="skill-tag">Model Accuracy</span>
-                    </div>
-                </div>                
-                <div class="tech-section">
-                    <h4>Programming & Tools</h4>
+                <div class="tech-category">
+                    <h5>Programming &amp; Tools</h5>
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Excel</span>
                         <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Streamlit</span>
                     </div>
                 </div>
-                
-                <div class="tech-section">
-                    <h4>Quantitative Research</h4>
+
+                <div class="tech-category">
+                    <h5>Data &amp; Time Series Analysis</h5>
                     <div class="skill-tags">
-                        <span class="skill-tag">Feature Engineering</span>
-                        <span class="skill-tag">Outlier Analysis</span>
-                    </div>
-                </div>
-                
-                <div class="tech-section">
-                    <h4>Machine Learning</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Clustering</span>
-                        <span class="skill-tag">LSTM Models</span>
-                        <span class="skill-tag">Holts Winter Models</span>
+                        <span class="skill-tag">Time Series Analysis</span>
                         <span class="skill-tag">Forecasting</span>
-                        <span class="skill-tag">Regression</span>
+                        <span class="skill-tag">Outlier Analysis</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h5>Visualization &amp; Dashboards</h5>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Interactive Dashboards</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Stakeholder Reporting</span>
                     </div>
                 </div>
             </div>
-        </div>     
-    </div>   <!-- ... existing code ... -->    
+        </div>
+    </div>    
 </body>
 </html> 

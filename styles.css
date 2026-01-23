@@ -6,7 +6,7 @@ html, body {
     font-family: 'Segoe UI';
     line-height: 1.6;
     color: #333;
-    background: #fff;
+    background: #f7f7f9;
     overflow-x: hidden;
 }
 * {
@@ -355,7 +355,7 @@ html, body {
 .main-content {
     flex: 1;
     margin-left: 280px;
-    background: #f5f5f5;
+    background: transparent;
     min-height: 100vh;
     min-width: 0;
     padding: 2rem;
@@ -367,12 +367,12 @@ html, body {
     display: flex;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
     position: relative;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
     margin-top: -2rem;
     margin-right: 0rem;
     padding-top: 3rem;
@@ -384,7 +384,15 @@ html, body {
 
 .hero-title {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-title-2 {
+    font-size: 3rem;
+    font-weight: 900;
     color: #333;
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -397,15 +405,17 @@ html, body {
 .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #f89500;
+    color: #070707;
     margin-bottom: 1.5rem;
+    font-style: italic;
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #666;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8rem;
 }
 
 .hire-me-btn {
@@ -440,6 +450,7 @@ html, body {
 
 /* Services Section */
 .services-section {
+    margin-top: 1rem;
     margin-bottom: 4rem;
 }
 
@@ -535,6 +546,51 @@ html, body {
 .my-work-section {
     margin-bottom: 4rem;
 }
+
+
+.filter-hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.filter-hint span {
+    font-weight: 600;
+    color: #222;
+    animation: filter-text-blink 1.4s ease-in-out infinite;
+}
+
+.filter-hand-icon {
+    font-size: 2rem;
+    color: #ff5722;
+    animation: filter-hand-wave 1.2s ease-in-out infinite;
+}
+
+@keyframes filter-hand-wave {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    30% {
+        transform: translateX(5px);
+    }
+    60% {
+        transform: translateX(-3px);
+    }
+}
+
+@keyframes filter-text-blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
 
 
 .work-card {
