@@ -15,6 +15,104 @@
     .section { margin-bottom: 2.2rem; }
     .placeholder { background: #eee; color: #888; border-radius: 8px; padding: 1.2rem; text-align: center; margin: 1.2rem 0; font-style: italic; }
     
+    /* Hero heading + tags */
+    .project-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0f7b83;
+      margin-bottom: 0.4rem;
+    }
+    .case-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #123047;
+      margin-bottom: 0.25rem;
+    }
+    .case-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2c8672;
+      margin-bottom: 1rem;
+    }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.5rem 0 1.4rem;
+    }
+    .tag-pill {
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: #e5f2f4;
+      color: #155f6b;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #c1dde0;
+      white-space: nowrap;
+    }
+    .project-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+    .project-meta-table th {
+      background: #243447;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+    .project-meta-table td {
+      padding: 0.55rem 0.75rem;
+      border: 1px solid #d4dde5;
+      font-size: 0.9rem;
+    }
+    
+    /* Intro lenses */
+    .intro p {
+      margin: 0 0 0.9rem 0;
+      line-height: 1.6;
+      color: #222;
+    }
+    .lens-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.9rem 0 1.1rem;
+      background: #fff;
+      border: 1px solid #d4dde5;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .lens-table td {
+      border: 1px solid #d4dde5;
+      padding: 0.85rem 0.9rem;
+      vertical-align: top;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .lens-table .lens-name {
+      width: 30%;
+      font-weight: 700;
+      color: #2b3b4d;
+      background: #f5f7fa;
+    }
+    .callout-quote {
+      display: block;
+      padding: 0.9rem 1rem;
+      margin-top: 1.1rem;
+      background: #e7f3f2;
+      border-left: 10px solid #2c8672;
+      color: #24414a;
+      font-style: italic;
+      border-radius: 6px;
+    }
+    
     /* Table Styles */
     table { 
       width: 100%; 
@@ -90,10 +188,6 @@
         margin: 1.5rem 1rem;
       }
       
-      h1 {
-        font-size: 1.8rem;
-      }
-      
       h2 {
         font-size: 1.3rem;
       }
@@ -117,10 +211,6 @@
         padding: 1.5rem 1rem;
         margin: 1rem 0.5rem;
         border-radius: 12px;
-      }
-      
-      h1 {
-        font-size: 1.6rem;
       }
       
       h2 {
@@ -347,25 +437,115 @@
     }
   </style>
 </head>
-<body>
+  <body>
   
   <div class="case-container">
-    <h1>📱 Compliance Management System – iOS App Redesign</h1>
-    <div class="section"><em>A Mobile-First Transformation for Field Assessors</em></div>
+    <div class="project-label">Portfolio Project</div>
+    <h1 class="case-title">Compliance Management System: Mobile-First Field Extension</h1>
+    <div class="case-subtitle">A Unified UX Research, Interaction Design &amp; Product-Led Growth Case Study</div>
+    
+    <div class="tag-list">
+      <span class="tag-pill">UX Research</span>
+      <span class="tag-pill">Interaction Design</span>
+      <span class="tag-pill">PLG Framework</span>
+      <span class="tag-pill">Offline-First Design</span>
+      <span class="tag-pill">Product Analytics</span>
+      <span class="tag-pill">Enterprise System</span>
+    </div>
+    
+    <table class="project-meta-table">
+      <tr>
+        <th>Role</th>
+        <th>Platform</th>
+        <th>Domain</th>
+        <th>Year</th>
+      </tr>
+      <tr>
+        <td>UX Designer &amp; Product Analyst</td>
+        <td>iPad &amp; iPhone (iOS)</td>
+        <td>B2B Enterprise Compliance System</td>
+        <td>2021</td>
+      </tr>
+    </table>
 
-    <h2>🧠 Introduction</h2>
-    <div class="section">
-      Redesigning a legacy compliance system to empower field officers with mobile-first tools. The goal: eliminate manual work, reduce errors, and improve on-site efficiency.
+    <h2>1. Introduction</h2>
+    <div class="section intro">
+      <p>
+        This case study documents the end-to-end redesign of a legacy enterprise compliance management system for field-based users.
+        The platform was mature and well-adopted on desktop — used by compliance managers, administrators, and office-based assessors.
+        However, field users conducting on-site inspections, audits, and assessments at remote locations and live facilities had no way to use the system directly in the field.
+        Without a portable, field-ready interface, assessors were forced into a two-step workaround: making notes outside the system on-site, then returning to a desktop to manually enter or update the assessment record.
+        This broke the workflow at its most critical point — the moment of observation — and introduced delays, transcription errors, and compliance risk.
+      </p>
+      <p>
+        The strategic response was a purpose-built field-native features that field assessors could carry into any environment and use to fill in assessment forms directly and offline,
+        without needing to revert to pen and paper or defer data entry to a later desktop session.
+        The offline-first architecture, draft save, and auto-sync features were not enhancements — they were the core enablers that made direct field use viable.
+        This case study examines that project through two interlocking lenses:
+      </p>
+
+      <table class="lens-table">
+        <tr>
+          <td class="lens-name" data-label="Lens">UX Research &amp; Design Lens</td>
+          <td data-label="Description">Diagnosing user pain, mapping journeys, designing for the field context, and validating through usability testing — the human-centred story of how field assessors were failing and how the redesign addressed that.</td>
+        </tr>
+        <tr>
+          <td class="lens-name" data-label="Lens">Product-Led Growth (PLG) Lens</td>
+          <td data-label="Description">Translating every UX decision into measurable product metrics — activation rate, time-to-value, feature adoption, and sustained engagement — demonstrating how UX work directly drives growth outcomes in an enterprise SaaS context.</td>
+        </tr>
+      </table>
+     
     </div>
 
-    <h2>🎯 Project Snapshot</h2>
-    <ul>
-      <li><strong>NoBoMo, San Diego, Remote</strong></li>
-      <li><strong>Role:</strong> UX Designer</li>
-      <li><strong>Platform:</strong> iPhone & iPad</li>
-      <li><strong>Tools:</strong> Figma, Adobe XD, Balsamiq</li>
-      <li><strong>Year:</strong> 2021</li>
-    </ul>
+    <h2>2. Problem Statement</h2>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top:0.5rem;">2.1 The Core Access Failure</h3>
+    <div class="section intro" style="margin-bottom: 1.2rem;">
+      <p>
+        Field assessors were conducting compliance inspections at remote sites, live facilities, and outdoor environments where a laptop or desktop was neither available nor practical.
+        The compliance system had only a basic mobile interface, which produced a structural problem: the moment of assessment — when evidence was fresh, context was visible, and accuracy was highest — was exactly when the system could not be used, forcing assessors into a two-step workaround — making notes outside the system on-site, then returning to a desktop to enter the data. The solution was to extend the system across multiple touchpoints — desktop, iPad, and mobile — with a seamless experience that allowed assessors to fill forms, work offline, and sync data without any break in workflow.
+      </p>
+    </div>
+
+    <h3>Two Costly Workarounds Emerged</h3>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Workaround">Paper-Based Workaround</td>
+        <td data-label="Impact">Assessors took handwritten notes on-site and manually re-entered data at the desktop later. This introduced transcription errors, duplicated effort, and created compliance gaps between the moment of observation and the point of record.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Workaround">Deferred Completion</td>
+        <td data-label="Impact">Assessors waited until returning to a fixed location to complete digital records — hours or days after the site visit. Observations faded, context was lost, and time-sensitive incidents were flagged late.</td>
+      </tr>
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top: 1.6rem;">2.2 The Product-Level Symptom: Broken Activation</h3>
+    <div class="section intro" style="margin-bottom: 1.2rem;">
+      <p>
+        From a product analytics perspective, these workarounds showed up as a catastrophic activation failure. When the iOS extension was first introduced (pre-redesign),
+        field users were assigned licences but rarely completed assessments through the app. The system had a field access problem — but it also had a product completion problem.
+      </p>
+    </div>
+
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Metric">Desktop Completion Rate</td>
+        <td data-label="Finding">82% — the baseline for a well-functioning system</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Metric">iPad Pre-Redesign Completion Rate</td>
+        <td data-label="Finding">21% — 4× below desktop baseline</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Metric">Primary Abandonment Point</td>
+        <td data-label="Finding">Draft save and offline sync — the exact moments the field workflow required most</td>
+      </tr>
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top: 1.6rem;">2.3 Problem Statement Summary</h3>
+    <div class="callout-quote" style="font-style: italic;">
+      Field-based compliance assessors were unable to complete assessments at the point of inspection because the existing iOS interface was very basic and did not support offline capture, reliable draft save, or seamless sync — resulting in a 61-percentage-point gap in completion rate compared to desktop users, and creating compliance risk, data quality issues, and licence underutilisation for enterprise clients.
+    </div>
 
     <h2>🔍 The Challenge</h2>
     <ul>
