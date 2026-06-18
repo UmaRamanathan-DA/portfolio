@@ -131,6 +131,36 @@
             transform: translateY(-1px);
         }
 
+        .pdf-embed-container {
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            background: #fff;
+        }
+
+        .pdf-embed-container iframe {
+            display: block;
+            width: 100%;
+            height: 720px;
+            border: none;
+        }
+
+        .pdf-open-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: #333;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .pdf-open-link:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .project-title-s {
                 font-size: 1.8rem;
@@ -167,11 +197,19 @@
                 </div>
 
                 <div class="content-section">
-                    <h3>Executive Summary</h3>
+                    <h3>Business Objective</h3>
+                    <p>Deploy a Netomi Agentic AI solution that autonomously handles 70%+ of IROPS-related customer contacts — including flight status queries, rebooking requests, compensation claims, and proactive outreach — while maintaining CSAT above 4.2/5.0 and reducing contact center cost per contact by 55%.</p>
+
+                    <h4>Executive Summary</h4>
                     <p>SkyWave Airlines operates over 1,200 daily flights serving 85 destinations across North America and Europe. During Irregular Operations (IROPS) events — which include weather disruptions, mechanical delays, crew shortages, and air traffic control holds — the airline's contact center experiences a 400–600% surge in inbound customer contacts within 60–90 minutes. The current model relies almost entirely on human agents, resulting in extended hold times averaging 47 minutes, customer defection to self-help channels, and significant compensation costs driven by unmanaged expectations.</p>
 
-                    <h4>Business Objective</h4>
-                    <p>Deploy a Netomi Agentic AI solution that autonomously handles 70%+ of IROPS-related customer contacts — including flight status queries, rebooking requests, compensation claims, and proactive outreach — while maintaining CSAT above 4.2/5.0 and reducing contact center cost per contact by 55%.</p>
+                    <div class="pdf-embed-container">
+                        <iframe src="../assets/agentic-ai-orch/executive-presentation.pdf" title="Executive Presentation"></iframe>
+                    </div>
+                    <a href="../assets/agentic-ai-orch/executive-presentation.pdf" target="_blank" class="pdf-open-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open Executive Presentation (PDF)
+                    </a>
                 </div>
 
                 <div class="content-section">
