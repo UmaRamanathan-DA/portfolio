@@ -84,6 +84,53 @@
             margin-bottom: 0.75rem;
         }
 
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .deliverable-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-top: 3px solid #FFD700;
+        }
+
+        .deliverable-item h4 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+            font-size: 1.2rem;
+        }
+
+        .deliverable-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: #FFD700;
+            color: #222;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .deliverable-link:hover {
+            background: #e6c200;
+            transform: translateY(-1px);
+        }
+
         @media (max-width: 768px) {
             .project-title-s {
                 font-size: 1.8rem;
@@ -125,6 +172,73 @@
 
                     <h4>Business Objective</h4>
                     <p>Deploy a Netomi Agentic AI solution that autonomously handles 70%+ of IROPS-related customer contacts — including flight status queries, rebooking requests, compensation claims, and proactive outreach — while maintaining CSAT above 4.2/5.0 and reducing contact center cost per contact by 55%.</p>
+                </div>
+
+                <div class="content-section">
+                    <h3>Key Deliverables to Produce</h3>
+
+                    <div class="deliverable-item">
+                        <h4>1. Discovery &amp; Requirements Document</h4>
+                        <ul>
+                            <li>Stakeholder map (CX Ops, Engineering, Legal/Compliance)</li>
+                            <li>Current-state process pain points</li>
+                            <li>KPIs defined: containment rate, CSAT, average handle time, rebooking speed</li>
+                        </ul>
+                        <a href="../assets/agentic-ai-orch/discovery-requirements.html" target="_blank" class="deliverable-link">
+                            <i class="fas fa-file-alt"></i>
+                            View Full Document
+                        </a>
+                    </div>
+
+                    <div class="deliverable-item">
+                        <h4>2. Agentic Workflow Blueprint</h4>
+                        <ul>
+                            <li>Visual flowchart of agent decision logic (intents → actions → escalation paths)</li>
+                            <li>Guardrails and fallback conditions</li>
+                            <li>Human-in-the-loop triggers</li>
+                        </ul>
+                        <a href="../assets/agentic-ai-orch/agentic-workflow-blueprint.html" target="_blank" class="deliverable-link">
+                            <i class="fas fa-file-alt"></i>
+                            View Full Document
+                        </a>
+                    </div>
+
+                    <div class="deliverable-item">
+                        <h4>3. Integration Architecture Diagram</h4>
+                        <ul>
+                            <li>API touchpoints: GDS (flight inventory), PNR system, CRM, ticketing (e.g. Zendesk), SSO</li>
+                            <li>Event-driven triggers (e.g. flight status webhooks → agent activation)</li>
+                        </ul>
+                        <a href="../assets/agentic-ai-orch/integration-architecture.html" target="_blank" class="deliverable-link">
+                            <i class="fas fa-file-alt"></i>
+                            View Full Document
+                        </a>
+                    </div>
+
+                    <div class="deliverable-item">
+                        <h4>4. Agent Behavior Specification</h4>
+                        <ul>
+                            <li>Intent library (rebooking, refund, compensation, status inquiry)</li>
+                            <li>Sample conversation flows with decision branching</li>
+                            <li>Tone/persona guidelines</li>
+                        </ul>
+                        <a href="../assets/agentic-ai-orch/agent-behavior-specification.html" target="_blank" class="deliverable-link">
+                            <i class="fas fa-file-alt"></i>
+                            View Full Document
+                        </a>
+                    </div>
+
+                    <div class="deliverable-item">
+                        <h4>5. Test Plan &amp; Acceptance Criteria</h4>
+                        <ul>
+                            <li>Scenario matrix (cancellation, delay, missed connection, weather event)</li>
+                            <li>Success thresholds per scenario</li>
+                        </ul>
+                        <a href="../assets/agentic-ai-orch/test-plan-acceptance-criteria.html" target="_blank" class="deliverable-link">
+                            <i class="fas fa-file-alt"></i>
+                            View Full Document
+                        </a>
+                    </div>
                 </div>
             </div>
 
