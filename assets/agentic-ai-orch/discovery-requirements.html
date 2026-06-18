@@ -1,24 +1,743 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery &amp; Requirements Document - SkyWave Airlines Agentic AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../../project_pages/project-pages-styles.css">
-</head>
-<body>
-    <div class="project-detail-container">
-        <a href="../../project_pages/airline-agentic-recovery.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Project
-        </a>
-        <div class="project-description">
-            <h3>Discovery &amp; Requirements Document</h3>
-            <p>Detailed content for this deliverable will be added here.</p>
-        </div>
-    </div>
-</body>
-</html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>1. Discovery &amp; Requirements Document</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3826d69e-8f19-801a-b995-fc454a843d5e" class="page sans"><header><h1 class="page-title" dir="auto"><strong>1. Discovery &amp; Requirements Document</strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="3826d69e-8f19-8028-99aa-c6485bd48bdb" class="">Agentic AI Deployment for Post-Disruption Customer Recovery</p></div><div style="display:contents" dir="ltr"><table id="3826d69e-8f19-8077-a625-e254192ef998" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-801a-918d-daeb6c79fe64"><td id="M@zJ" class="">Client</td><td id="BG[@" class="">SkyWave Airlines (Illustrative Enterprise)</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8005-bce5-f34fd4b56b3f"><td id="M@zJ" class="">Engagement Type</td><td id="BG[@" class="">Agentic AI Implementation — Customer Experience Transformation</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80f3-bb89-e896069bde03"><td id="M@zJ" class="">Analyst</td><td id="BG[@" class="">Portfolio Case Study | Agentic Product Analyst Role</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8088-bd94-f5978bebd85a"><td id="M@zJ" class="">Date</td><td id="BG[@" class="">Q2 2025</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8004-bf48-d69ec00fdab8"><td id="M@zJ" class="">Document Status</td><td id="BG[@" class="">Final — v1.0</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3826d69e-8f19-80b6-bfa7-e2ef90d67f24" class=""><strong>1. Executive Summary</strong></h1></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-8085-8b17-c31db1decc77" class="">SkyWave Airlines operates over 1,200 daily flights serving 85 destinations across North America and Europe. During Irregular Operations (IROPS) events — which include weather disruptions, mechanical delays, crew shortages, and air traffic control holds — the airline&#x27;s contact center experiences a 400-600% surge in inbound customer contacts within 60-90 minutes. The current model relies almost entirely on human agents, resulting in extended hold times averaging 47 minutes, customer defection to self-help channels, and significant compensation costs driven by unmanaged expectations.</p></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-802f-9f51-cd710a486a89" class=""><strong>Business Objective</strong></p></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-80fd-91c6-f464626474ca" class="">Deploy a Netomi Agentic AI solution that autonomously handles 70%+ of IROPS-related customer contacts — including flight status queries, rebooking requests, compensation claims, and proactive outreach — while maintaining CSAT above 4.2/5.0 and reducing contact center cost per contact by 55%.</p></div><div style="display:contents" dir="auto"><hr id="3826d69e-8f19-8070-9dbb-db88f596efaa"/></div><div style="display:contents" dir="auto"><h1 id="3826d69e-8f19-8082-a1ec-f2482e77d5f1" class=""><strong>2. Stakeholder Map &amp; Discovery Participants</strong></h1></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-8084-a4e5-c630bcc71430" class="">The following stakeholders participated in discovery workshops and requirement sessions conducted over a 3-week period:</p></div><div style="display:contents" dir="ltr"><table id="3826d69e-8f19-80fc-b232-cee563b9c96f" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80f0-9b12-d56ee40a834e"><td id="jWhX" class=""><strong>Stakeholder</strong></td><td id="o}^y" class=""><strong>Role</strong></td><td id="nk];" class=""><strong>Department</strong></td><td id="HIxM" class=""><strong>Primary Interest</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-806a-9f1c-d175e27ccdc6"><td id="jWhX" class="">David Chen</td><td id="o}^y" class="">VP Customer Experience</td><td id="nk];" class="">CX &amp; Operations</td><td id="HIxM" class="">CSAT improvement, brand reputation</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-800d-8048-db09d12addfb"><td id="jWhX" class="">Maria Santos</td><td id="o}^y" class="">Director, Contact Center Ops</td><td id="nk];" class="">Operations</td><td id="HIxM" class="">Containment rate, AHT reduction</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80aa-bd94-d74578aee1a8"><td id="jWhX" class="">Raj Patel</td><td id="o}^y" class="">Head of Digital Transformation</td><td id="nk];" class="">Technology</td><td id="HIxM" class="">Platform scalability, integration</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8011-b695-ddd1d0360549"><td id="jWhX" class="">Lisa Kwan</td><td id="o}^y" class="">Chief Information Security Officer</td><td id="nk];" class="">IT/Security</td><td id="HIxM" class="">Data privacy, PCI/PII compliance</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8015-97d1-dddb27fdff04"><td id="jWhX" class="">Tom Adeyemi</td><td id="o}^y" class="">Engineering Lead, APIs</td><td id="nk];" class="">Technology</td><td id="HIxM" class="">Integration feasibility, SLAs</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-800d-a5ed-ced417b26417"><td id="jWhX" class="">Sarah O&#x27;Brien</td><td id="o}^y" class="">Senior Ops Analyst</td><td id="nk];" class="">Operations</td><td id="HIxM" class="">Workflow accuracy, escalation logic</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3826d69e-8f19-800c-852d-ce043ba3d941" class=""><strong>3. Current State Process Analysis</strong></h1></div><div style="display:contents" dir="auto"><h2 id="3826d69e-8f19-80ab-be50-d642eba10dd7" class=""><strong>3.1 IROPS Event Lifecycle (As-Is)</strong></h2></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-8036-b726-d51f106e4610" class="">When an IROPS event is declared, the following sequence currently occurs:</p></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-8066-978e-e566bbd8e61d" class="bulleted-list"><li style="list-style-type:disc">Flight Operations notifies Contact Center Ops via internal broadcast (avg. 12-minute lag)</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-8093-8b68-eb416d5447d5" class="bulleted-list"><li style="list-style-type:disc">Contact center activates overflow queue routing — no automated customer outreach</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-80c0-a22b-c249d7f675db" class="bulleted-list"><li style="list-style-type:disc">Inbound calls spike; average wait time escalates from 4 min to 47 min within 90 minutes</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-80d4-aa58-d896b9ace126" class="bulleted-list"><li style="list-style-type:disc">Agents manually look up PNR in Sabre GDS, cross-reference rebooking availability, and offer options</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-80fd-af44-e256686e2572" class="bulleted-list"><li style="list-style-type:disc">Compensation vouchers issued manually via legacy ticketing system (avg. 8 min per case)</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-8061-9828-eba5e4ccc156" class="bulleted-list"><li style="list-style-type:disc">No automated follow-up — customers must call back to confirm rebooking</li></ul></div><div style="display:contents" dir="auto"><h2 id="3826d69e-8f19-8029-a0e1-ca13b430e96c" class=""><strong>3.2 Identified Pain Points</strong></h2></div><div style="display:contents" dir="ltr"><table id="3826d69e-8f19-8042-a8a5-d0c0df134904" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-805b-9b70-ce6dfbb3a146"><td id="bTXg" class=""><strong>Pain Point</strong></td><td id="SnQ:" class=""><strong>Impact Severity</strong></td><td id="U@U|" class=""><strong>Quantified Impact</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80ab-8257-fe7f1a066e7e"><td id="bTXg" class="">No proactive outreach during IROPS</td><td id="SnQ:" class="">Critical</td><td id="U@U|" class="">80% of contacts are reactive; $2.1M annual cost</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-809a-b8d0-e403feb7afee"><td id="bTXg" class="">Manual PNR lookup and rebooking</td><td id="SnQ:" class="">High</td><td id="U@U|" class="">Avg. 11 min per contact; 60% of handle time</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8043-9570-c7a999bca538"><td id="bTXg" class="">No self-service compensation claim</td><td id="SnQ:" class="">High</td><td id="U@U|" class="">15,000 manual cases/year; $420K in labor</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-804f-9516-d5affefce169"><td id="bTXg" class="">Inconsistent agent guidance</td><td id="SnQ:" class="">Medium</td><td id="U@U|" class="">14% error rate in compensation calculation</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80b7-901d-c276f7e0dcaf"><td id="bTXg" class="">No omni-channel IROPS support</td><td id="SnQ:" class="">Medium</td><td id="U@U|" class="">Chat/email delayed 4+ hours during IROPS</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3826d69e-8f19-8001-9693-f685ed045ac5" class=""><strong>4. Functional Requirements</strong></h1></div><div style="display:contents" dir="auto"><h2 id="3826d69e-8f19-80bc-9345-ee7bed0ab4e8" class=""><strong>4.1 Core Agent Capabilities</strong></h2></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-8052-a780-ca7372e88f12" class="bulleted-list"><li style="list-style-type:disc">Flight status inquiry and real-time delay/cancellation notification (inbound and proactive)</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-8098-983a-ffe174415c44" class="bulleted-list"><li style="list-style-type:disc">Autonomous rebooking: offer alternatives, confirm selection, issue new boarding pass via email/SMS</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-8019-97f5-dd35f6d5910f" class="bulleted-list"><li style="list-style-type:disc">Compensation claim processing: eligibility check, voucher issuance, meal/hotel authorization</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-80a0-b581-fdaccde2dcc5" class="bulleted-list"><li style="list-style-type:disc">Baggage status inquiry with proactive delay notification</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-80c1-babc-deb2743532d7" class="bulleted-list"><li style="list-style-type:disc">Escalation to human agent with full context transfer (zero repeat information from customer)</li></ul></div><div style="display:contents" dir="auto"><ul id="3826d69e-8f19-80e2-a4e5-c1026035e8c1" class="bulleted-list"><li style="list-style-type:disc">Multi-channel coverage: voice IVR integration, webchat, mobile app chat, SMS, WhatsApp</li></ul></div><div style="display:contents" dir="auto"><h2 id="3826d69e-8f19-801a-9a6d-ecc8fd0b322a" class=""><strong>4.2 Non-Functional Requirements</strong></h2></div><div style="display:contents" dir="ltr"><table id="3826d69e-8f19-80a1-a893-ecc1f0fa0255" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80eb-af88-d1822627e85f"><td id="@H;]" class=""><strong>Category</strong></td><td id="jYR|" class=""><strong>Requirement</strong></td><td id="&lt;XMc" class=""><strong>Acceptance Threshold</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80a5-9720-f2029d308715"><td id="@H;]" class="">Availability</td><td id="jYR|" class="">System uptime during IROPS events</td><td id="&lt;XMc" class="">99.95% SLA</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80bc-86cb-fa1b19b79a95"><td id="@H;]" class="">Response Latency</td><td id="jYR|" class="">Agent response time per turn</td><td id="&lt;XMc" class="">&lt; 2.5 seconds P95</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-809e-9d4f-c28932f5a2dc"><td id="@H;]" class="">Scalability</td><td id="jYR|" class="">Concurrent session handling</td><td id="&lt;XMc" class="">10,000+ simultaneous sessions</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8072-a290-d3c3c86a5692"><td id="@H;]" class="">Security</td><td id="jYR|" class="">PII data handling &amp; encryption</td><td id="&lt;XMc" class="">AES-256 at rest, TLS 1.3 in transit</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8046-a00b-e65b933326d0"><td id="@H;]" class="">Compliance</td><td id="jYR|" class="">Data residency &amp; retention</td><td id="&lt;XMc" class="">US-only; 90-day logs, 7-year audit trail</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80ce-9ca7-c6c8322b676d"><td id="@H;]" class="">Accuracy</td><td id="jYR|" class="">Intent recognition accuracy</td><td id="&lt;XMc" class="">&gt;= 92% across top 20 intents</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3826d69e-8f19-80a4-9ffa-f991261cc821" class=""><strong>5. KPI Framework &amp; Success Criteria</strong></h1></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-8077-afaf-c97c9b249c85" class="">The following KPIs will govern the success of the Agentic AI deployment, measured at 30, 60, and 90 days post-launch:</p></div><div style="display:contents" dir="ltr"><table id="3826d69e-8f19-8004-ac12-db37eb851387" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80fa-b2e9-eac332ee7702"><td id="E_az" class=""><strong>KPI</strong></td><td id="=daq" class=""><strong>Baseline</strong></td><td id="?`Fg" class=""><strong>Target</strong></td><td id="};WR" class=""><strong>Measurement Method</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8032-bbe9-c15945bd913e"><td id="E_az" class="">AI Containment Rate</td><td id="=daq" class="">0%</td><td id="?`Fg" class="">&gt;= 70%</td><td id="};WR" class="">% contacts resolved without human transfer</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-801f-87ec-d9abae3bdaf4"><td id="E_az" class="">CSAT Score</td><td id="=daq" class="">3.8 / 5.0</td><td id="?`Fg" class="">&gt;= 4.2 / 5.0</td><td id="};WR" class="">Post-interaction IVR/email survey</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80bd-a2a6-f1b5a30a2e6f"><td id="E_az" class="">Average Handle Time</td><td id="=daq" class="">11 min</td><td id="?`Fg" class="">&lt; 4 min</td><td id="};WR" class="">Contact center platform reporting</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80e5-854c-efaf4ef9b2be"><td id="E_az" class="">IROPS Proactive Outreach</td><td id="=daq" class="">0%</td><td id="?`Fg" class="">&gt;= 85% of impacted pax notified</td><td id="};WR" class="">Event trigger logs vs. outreach logs</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80ea-89d1-c653cd05d9a0"><td id="E_az" class="">Cost per Contact</td><td id="=daq" class="">$14.20</td><td id="?`Fg" class="">&lt; $6.40</td><td id="};WR" class="">Blended cost model (labor + platform)</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80c1-945e-e4eee6a174f6"><td id="E_az" class="">Escalation Rate</td><td id="=daq" class="">100%</td><td id="?`Fg" class="">&lt;= 30%</td><td id="};WR" class="">% contacts transferred to human agent</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-806a-8e88-df195ba68c96"><td id="E_az" class="">First Contact Resolution</td><td id="=daq" class="">61%</td><td id="?`Fg" class="">&gt;= 88%</td><td id="};WR" class="">% contacts resolved in single interaction</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3826d69e-8f19-80f8-a52e-c5c9d55d83c7" class=""><strong>6. Constraints &amp; Risk Register</strong></h1></div><div style="display:contents" dir="ltr"><table id="3826d69e-8f19-800e-9d71-fc71ec794577" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80a3-aeb1-f7b9c8b8965b"><td id="S_Fu" class=""><strong>Risk</strong></td><td id="{VZH" class=""><strong>Likelihood</strong></td><td id="djc[" class=""><strong>Impact</strong></td><td id="L:x&gt;" class=""><strong>Mitigation</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80dc-983f-f0bcefe068d1"><td id="S_Fu" class="">GDS API rate limits during peak IROPS</td><td id="{VZH" class="">High</td><td id="djc[" class="">High</td><td id="L:x&gt;" class="">Async caching layer + circuit breaker</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8072-9493-e49dc5545c17"><td id="S_Fu" class="">Low initial intent training data</td><td id="{VZH" class="">Medium</td><td id="djc[" class="">High</td><td id="L:x&gt;" class="">Import 6 months of call transcripts</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-80f3-87d7-e90704d37210"><td id="S_Fu" class="">Customer distrust of AI during disruption</td><td id="{VZH" class="">Medium</td><td id="djc[" class="">Medium</td><td id="L:x&gt;" class="">Clear AI disclosure + easy escalation</td></tr></div><div style="display:contents" dir="ltr"><tr id="3826d69e-8f19-8039-a422-f3a102738962"><td id="S_Fu" class="">Regulatory changes to compensation rules</td><td id="{VZH" class="">Low</td><td id="djc[" class="">High</td><td id="L:x&gt;" class="">Dynamic policy config in Netomi admin</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="3826d69e-8f19-80a9-9a2c-e8507121d764" class="">Document prepared as part of an Agentic AI solution design portfolio case study for enterprise customer experience transformation.</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,24 +1,743 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integration Architecture Diagram - SkyWave Airlines Agentic AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../../project_pages/project-pages-styles.css">
-</head>
-<body>
-    <div class="project-detail-container">
-        <a href="../../project_pages/airline-agentic-recovery.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Project
-        </a>
-        <div class="project-description">
-            <h3>Integration Architecture Diagram</h3>
-            <p>Detailed content for this deliverable will be added here.</p>
-        </div>
-    </div>
-</body>
-</html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Integration Architecture Diagram</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3826d69e-8f19-808c-9b0e-c4bdc38f4d7f" class="page sans"><header><h1 class="page-title" dir="auto"><strong>Integration Architecture Diagram</strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="3836d69e-8f19-80de-828e-c90e4a4af870" class="">Agentic AI Deployment for Post-Disruption Customer Recovery</p></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-8052-bd52-d2a4977cf179" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80cb-9a8c-df878984aaad"><td id="]Z~G" class="">Client</td><td id="Jru&lt;" class="">SkyWave Airlines</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80c1-b7c4-ff63de615a94"><td id="]Z~G" class="">Platform</td><td id="Jru&lt;" class="">Netomi Agentic AI Platform</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80b3-a574-e67c5d681426"><td id="]Z~G" class="">Version</td><td id="Jru&lt;" class="">1.0 — Integration Design</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8012-8703-d1fca2477e47"><td id="]Z~G" class="">Prepared by</td><td id="Jru&lt;" class="">Agentic Product Analyst | Portfolio Case Study</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3836d69e-8f19-801b-a2dc-c4c88c093215" class=""><strong>1. Integration Architecture Overview</strong></h1></div><div style="display:contents" dir="auto"><p id="3836d69e-8f19-8058-89d2-d68c0b2e5dce" class="">The SkyWave Airlines Agentic AI deployment connects the Netomi platform to eight enterprise systems across three integration tiers: Real-Time Operational Systems (Tier 1), Customer Data Platforms (Tier 2), and Communication &amp; Channel Systems (Tier 3). All integrations use REST APIs with OAuth 2.0 authentication and event-driven messaging via a centralized integration broker.</p></div><div style="display:contents" dir="auto"><h1 id="3836d69e-8f19-8064-9065-ec0e2c3654f6" class=""><strong>2. System Inventory &amp; Integration Specifications</strong></h1></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-8085-8c60-f0ca14151a80" class=""><strong>2.1 Tier 1: Real-Time Operational Systems</strong></h2></div><div style="display:contents" dir="auto"><ol type="1" id="3836d69e-8f19-8029-b43e-c39fdfe2e033" class="numbered-list" start="1"><li><strong>Sabre GDS (Global Distribution System)</strong></li></ol></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-8012-b14b-d2a003d69ce0" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8079-baa9-c3743554f225"><td id="Sz~i" class=""><strong>Parameter</strong></td><td id="r|gv" class=""><strong>Details</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-808e-b63d-f7ee977c577a"><td id="Sz~i" class="">Integration Type</td><td id="r|gv" class="">REST API + Webhook event stream</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80ea-9447-dd1305f16b3f"><td id="Sz~i" class="">Auth Method</td><td id="r|gv" class="">OAuth 2.0 Client Credentials + API Key</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80f6-adb1-ee88db4e3913"><td id="Sz~i" class="">Key Endpoints</td><td id="r|gv" class="">GET /flights/{flightId}/status | POST /bookings/{pnr}/rebook | GET /availability | POST /boarding-pass/reissue</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8053-9bc6-d98fd3b6e33d"><td id="Sz~i" class="">Trigger Events</td><td id="r|gv" class="">FlightStatusChanged, FlightCancelled, DelayExceeds60Min, GateChanged</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-802a-a7dd-debba40f5886"><td id="Sz~i" class="">Data Exchanged</td><td id="r|gv" class="">PNR, passenger details, flight availability, seat inventory, fare classes</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80aa-b0e3-fd692a454cba"><td id="Sz~i" class="">SLA</td><td id="r|gv" class="">&lt; 800ms P95 response; 99.9% uptime</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8029-9c0e-e4499c688fc2"><td id="Sz~i" class="">Error Handling</td><td id="r|gv" class="">Retry (3x exponential backoff) → cache fallback → agent notification</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><ol type="1" id="3836d69e-8f19-80ef-b2c8-df9ba0830e1a" class="numbered-list" start="1"><li><strong>IROPS Event Management System</strong></li></ol></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-8045-9ee4-dff48344dc0a" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-807e-8830-ff499a0ad275"><td id="RP&lt;:" class=""><strong>Parameter</strong></td><td id="bOpR" class=""><strong>Details</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8059-94b8-f6a5d56c1bfd"><td id="RP&lt;:" class="">Integration Type</td><td id="bOpR" class="">Kafka event stream (inbound) + REST API (query)</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80e6-a4e6-c55d9167fd94"><td id="RP&lt;:" class="">Auth Method</td><td id="bOpR" class="">SAML 2.0 SSO + mTLS for Kafka consumer</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8007-ad6b-c6020ace468c"><td id="RP&lt;:" class="">Event Topics</td><td id="bOpR" class="">irops.declared, irops.scope_update, irops.resolved</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80c7-a8e0-f2b0533107f4"><td id="RP&lt;:" class="">Payload</td><td id="bOpR" class="">Event ID, affected flight numbers, disruption type, estimated resolution, impacted passenger count</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-808a-a89b-ee09e55e9794"><td id="RP&lt;:" class="">Netomi Action</td><td id="bOpR" class="">Trigger proactive outreach campaign; activate IROPS agent persona</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-80f9-a8da-df4a559d7942" class=""><strong>2.2 Tier 2: Customer Data Platforms</strong></h2></div><div style="display:contents" dir="auto"><ol type="1" id="3836d69e-8f19-80a5-b535-e090111dd48f" class="numbered-list" start="1"><li><strong>Salesforce CRM</strong></li></ol></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-8052-86f7-f73fa3bcfb41" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8046-b197-c55fd42e502c"><td id="wstl" class=""><strong>Parameter</strong></td><td id="l]E~" class=""><strong>Details</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80dd-8028-e34a96f7a9da"><td id="wstl" class="">Integration Type</td><td id="l]E~" class="">Salesforce REST API via named credentials</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8067-896c-f5507b85df5f"><td id="wstl" class="">Objects Used</td><td id="l]E~" class="">Contact, Case, Task, Opportunity (Loyalty Tier field)</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8099-974d-d3fb051f40f0"><td id="wstl" class="">Read Operations</td><td id="l]E~" class="">Customer loyalty tier (Gold/Platinum/Basic) → governs compensation ceiling</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-807a-96a1-e1293a2150c5"><td id="wstl" class="">Write Operations</td><td id="l]E~" class="">Create Case record for every agent session; log resolution, compensation issued, contact reason</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80b0-98b6-faac1810fb2e"><td id="wstl" class="">Real-Time vs. Batch</td><td id="l]E~" class="">Real-time read at session start; async write at session close</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><ol type="1" id="3836d69e-8f19-80f5-bdfa-c45d20112e32" class="numbered-list" start="1"><li><strong>Zendesk Ticketing</strong></li></ol></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-80ca-bfc0-c38ce75e4d05" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-805e-9b67-f62f3428f589"><td id="&lt;&lt;Zs" class=""><strong>Parameter</strong></td><td id="IFwG" class=""><strong>Details</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8055-987b-c39fae31e7bb"><td id="&lt;&lt;Zs" class="">Integration Type</td><td id="IFwG" class="">Zendesk REST API + Sunshine Conversations for chat handoff</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8086-b127-eb301a1f4dcd"><td id="&lt;&lt;Zs" class="">Key Actions</td><td id="IFwG" class="">Auto-create ticket on escalation; transfer full conversation context in ticket body</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80df-853d-c859cc725117"><td id="&lt;&lt;Zs" class="">Escalation Trigger</td><td id="IFwG" class="">Customer request OR agent confidence &lt; 0.72 OR 3rd consecutive disambiguation failure</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80bc-88f8-e1d6bc9a2d22"><td id="&lt;&lt;Zs" class="">Context Passed</td><td id="IFwG" class="">PNR, conversation transcript, identified intent, attempted resolutions, customer sentiment score</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><ol type="1" id="3836d69e-8f19-80aa-ba83-ffc3974284a9" class="numbered-list" start="1"><li><strong>Loyalty Management System (SkyRewards)</strong></li></ol></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-804b-b8ee-fcc4865d35c5" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8071-83e7-e114cf5db569"><td id="TSky" class=""><strong>Parameter</strong></td><td id="f{AJ" class=""><strong>Details</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8062-8aca-c44522306186"><td id="TSky" class="">Integration Type</td><td id="f{AJ" class="">Internal REST API (mTLS)</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-808f-9b25-d1510b18223c"><td id="TSky" class="">Read</td><td id="f{AJ" class="">Member tier, miles balance, upgrade eligibility</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8065-b9c8-dbd9de29221b"><td id="TSky" class="">Write</td><td id="f{AJ" class="">Post compensation miles, issue e-voucher code</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8048-a628-f5ec06fd34ff"><td id="TSky" class="">Business Rule</td><td id="f{AJ" class="">Platinum: auto-compensate up to $300 voucher + 5,000 miles; Gold: up to $150; Basic: $75</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-801d-b876-e0d662aff7be" class=""><strong>2.3 Tier 3: Communication &amp; Channel Systems</strong></h2></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-803c-9a4a-dff0a0ecd257" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-800e-9890-d66d7f5c83c3"><td id="&lt;n?W" class=""><strong>Channel</strong></td><td id="IC]p" class=""><strong>Platform</strong></td><td id="CuNe" class=""><strong>Integration</strong></td><td id="Ur_R" class=""><strong>Use Case</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-801d-93f1-e1dc37d8d21e"><td id="&lt;n?W" class="">IVR / Voice</td><td id="IC]p" class="">Genesys Cloud</td><td id="CuNe" class="">SIP trunk + DTMF/ASR</td><td id="Ur_R" class="">Inbound IROPS call handling</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8051-aec5-e05bc36efce1"><td id="&lt;n?W" class="">Web Chat</td><td id="IC]p" class="">Netomi Widget</td><td id="CuNe" class="">JavaScript SDK (embedded)</td><td id="Ur_R" class="">Real-time rebooking assistance</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-802f-bd46-db50259295db"><td id="&lt;n?W" class="">Mobile App</td><td id="IC]p" class="">iOS / Android SDK</td><td id="CuNe" class="">REST + push notification</td><td id="Ur_R" class="">Proactive IROPS alerts + chat</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8092-9a48-eb0669dd32f8"><td id="&lt;n?W" class="">SMS</td><td id="IC]p" class="">Twilio</td><td id="CuNe" class="">Twilio Messaging API</td><td id="Ur_R" class="">Proactive outreach, confirmation</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-806e-8163-c506bd87b91a"><td id="&lt;n?W" class="">WhatsApp</td><td id="IC]p" class="">Meta Business API</td><td id="CuNe" class="">Netomi WhatsApp connector</td><td id="Ur_R" class="">International traveler support</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8017-8ade-eacfda7dcb82"><td id="&lt;n?W" class="">Email</td><td id="IC]p" class="">SendGrid</td><td id="CuNe" class="">SMTP + templating API</td><td id="Ur_R" class="">Boarding pass re-issuance</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3836d69e-8f19-80fd-8bf2-f84d1b6f6e03" class=""><strong>3. Authentication &amp; Security Architecture</strong></h1></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-8089-8afb-d61c84331b02" class=""><strong>3.1 Authentication Methods by System</strong></h2></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-80b2-87c9-f92ae3c0a456" class="bulleted-list"><li style="list-style-type:disc"><strong>GDS &amp; Internal APIs:</strong>OAuth 2.0 Client Credentials Flow with short-lived access tokens (15-min TTL); token refresh handled by Netomi credential vault</li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-809b-9e7c-f80d2fa979b1" class="bulleted-list"><li style="list-style-type:disc"><strong>Kafka / Event Streams:</strong>Mutual TLS (mTLS) client certificates; certificate rotation every 90 days</li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-8041-a3b5-ce6ed357f8cf" class="bulleted-list"><li style="list-style-type:disc"><strong>Salesforce / Zendesk:</strong>OAuth 2.0 Named Principal; scoped to minimum required object access</li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-8010-aded-d89054a006bc" class="bulleted-list"><li style="list-style-type:disc"><strong>SSO for Admin Portal:</strong>SAML 2.0 federated to SkyWave Azure AD; MFA required</li></ul></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-8080-8792-e7e7a911f708" class=""><strong>3.2 Data Security Controls</strong></h2></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-8033-a94d-f1972fa20ee5" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80e8-8b94-e49c7268911b"><td id="=bdY" class=""><strong>Control</strong></td><td id="VNWF" class=""><strong>Standard</strong></td><td id="nGlt" class=""><strong>Implementation</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80ce-8da4-e080f698a1f6"><td id="=bdY" class="">Data at Rest Encryption</td><td id="VNWF" class="">AES-256</td><td id="nGlt" class="">Netomi managed encryption keys; customer-managed key option</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-800c-b644-e1a85c0317a6"><td id="=bdY" class="">Data in Transit</td><td id="VNWF" class="">TLS 1.3</td><td id="nGlt" class="">All API calls and event streams</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80d7-bae3-ccdb5d05ba62"><td id="=bdY" class="">PII Masking</td><td id="VNWF" class="">GDPR / CCPA</td><td id="nGlt" class="">Credit card, SSN masked in logs; tokenized PNR</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8095-8c8c-ee23083d8847"><td id="=bdY" class="">Audit Logging</td><td id="VNWF" class="">SOC 2 Type II</td><td id="nGlt" class="">All agent actions logged with timestamp, session ID, outcome</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-809a-b232-fdc0d234dd1c"><td id="=bdY" class="">Data Residency</td><td id="VNWF" class="">US-only</td><td id="nGlt" class="">AWS us-east-1 primary; us-west-2 DR</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3836d69e-8f19-8032-a90d-c7f963cefcd8" class=""><strong>4. API Error Handling &amp; Resilience Patterns</strong></h1></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-8088-9b07-c0dea24b70e3" class=""><strong>4.1 Circuit Breaker Configuration</strong></h2></div><div style="display:contents" dir="auto"><p id="3836d69e-8f19-80bc-ac86-f55985230ad2" class="">All external API calls implement a circuit breaker pattern to protect against cascading failures during peak IROPS load:</p></div><div style="display:contents" dir="auto"><p id="3836d69e-8f19-80c8-8a15-dd0ba20a813e" class="">Circuit Breaker — Sabre GDS  Threshold:     5 failures in 30-second window  Open Duration: 45 seconds  Half-Open:     1 probe request  Fallback:      Return cached flight data (&lt; 3 min old) + notify agent</p></div><div style="display:contents" dir="auto"><hr id="3836d69e-8f19-806a-a106-cd2e9090ed5a"/></div><div style="display:contents" dir="auto"><h2 id="3836d69e-8f19-807c-a33e-ea8bc86b3606" class=""><strong>4.2 Retry Policy</strong></h2></div><div style="display:contents" dir="ltr"><table id="3836d69e-8f19-80b3-a71f-e8680fa7ce68" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-807c-99fb-facda59a61ab"><td id="KnPg" class=""><strong>Error Type</strong></td><td id="maYD" class=""><strong>Retry Count</strong></td><td id="aRF@" class=""><strong>Backoff</strong></td><td id="Ty&lt;y" class=""><strong>Final Fallback</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80a3-8b50-fd340af607c5"><td id="KnPg" class="">HTTP 429 (Rate Limit)</td><td id="maYD" class="">3</td><td id="aRF@" class="">Exponential (1s, 2s, 4s)</td><td id="Ty&lt;y" class="">Queue request; resume after rate window</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-802b-8e85-c7e0961350d5"><td id="KnPg" class="">HTTP 503 (Service Unavail)</td><td id="maYD" class="">3</td><td id="aRF@" class="">Exponential (2s, 4s, 8s)</td><td id="Ty&lt;y" class="">Circuit breaker → cached response</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-80fe-abf8-ded98e8c515d"><td id="KnPg" class="">HTTP 500 (Server Error)</td><td id="maYD" class="">2</td><td id="aRF@" class="">Fixed 3s</td><td id="Ty&lt;y" class="">Log + escalate to human agent</td></tr></div><div style="display:contents" dir="ltr"><tr id="3836d69e-8f19-8062-bb9b-cdaf183b8d33"><td id="KnPg" class="">Timeout (&gt; 5s)</td><td id="maYD" class="">2</td><td id="aRF@" class="">Immediate</td><td id="Ty&lt;y" class="">Async retry + inform customer of delay</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="3836d69e-8f19-8095-a8a5-e53264547aef" class=""><strong>5. Data Flow Diagram (Textual Representation)</strong></h1></div><div style="display:contents" dir="auto"><p id="3836d69e-8f19-803d-8528-e83b145c65c3" class="">The following describes the complete data flow for a rebooking request initiated by a passenger via the SkyWave mobile app during an IROPS event:</p></div><div style="display:contents" dir="auto"><p id="3836d69e-8f19-8093-9bb7-c8a9f8e218af" class="">[IROPS Event Declared]       |       v [Kafka Topic: irops.declared] --&gt; [Netomi Event Processor]       |                                   |       |                    [Fetch Impacted PNRs from GDS]       |                                   |       |                    [Query Salesforce CRM: Loyalty Tier]       |                                   |       v                    [Trigger Proactive SMS/Push via Twilio] [Customer Responds via App Chat]       |       v [Netomi Agent: Intent Classification]       | Intent: REBOOK_FLIGHT       v [GDS API: GET /availability (alternatives)]       |       v [Present Options to Customer (NLG)]       |  [Customer Confirms Option]       |      v [GDS API: POST /bookings/{pnr}/rebook] [SkyRewards API: POST /compensation/issue] [SendGrid API: POST /boarding-pass/email]       |       v [CRM: Write Case Record — Resolved]       |       v [Post-Interaction Survey: SMS via Twilio]</p></div><div style="display:contents" dir="auto"><hr id="3836d69e-8f19-8040-a998-ee7c088fc5af"/></div><div style="display:contents" dir="auto"><h1 id="3836d69e-8f19-8098-90a8-cc2ef7515a9f" class=""><strong>6. Integration Testing Requirements</strong></h1></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-8047-9d6a-d7480fd18066" class="bulleted-list"><li style="list-style-type:disc"><strong>Unit tests for each API integration: happy path, 4xx, 5xx, timeout, rate limit:</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-80f7-bc9c-e256ee9de865" class="bulleted-list"><li style="list-style-type:disc"><strong>Contract tests: Pact-based consumer-driven contracts with GDS and Salesforce:</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-8016-9aea-ddfdb2bd8117" class="bulleted-list"><li style="list-style-type:disc"><strong>Load tests: Simulate 10,000 concurrent IROPS sessions; verify &lt; 2.5s P95 latency:</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-8020-8082-fb205bfd29f3" class="bulleted-list"><li style="list-style-type:disc"><strong>Chaos engineering: Randomly kill GDS mock during tests; verify circuit breaker activates:</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3836d69e-8f19-80e0-b130-e0fb9a705a1c" class="bulleted-list"><li style="list-style-type:disc"><strong>End-to-end test matrix: 48 scenarios covering all intent + channel + loyalty tier combinations:</strong></li></ul></div><div style="display:contents" dir="auto"><p id="3836d69e-8f19-807f-9cd4-ec45ec448e5a" class="">Document prepared as part of an Agentic AI solution design portfolio case study for enterprise customer experience transformation.</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
