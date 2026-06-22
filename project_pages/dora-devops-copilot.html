@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DORA DevOps Copilot — Phase 2 Agentic Extension</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="project-pages-styles.css">
+  <style>
+    body { background: #f8f8f8; color: #222; font-family: 'Poppins', Arial, sans-serif; }
+    .case-container { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); padding: 2.5rem 2rem; margin-top: 2rem; margin-bottom: 2rem; }
+    .back-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .back-link, .phase-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 1rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    }
+    .back-link { background: #f0f0f0; color: #333; }
+    .phase-link { background: #fff8e1; color: #7a5c00; border: 1px solid #f0d878; }
+    .back-link:hover { background: #e4e4e4; }
+    .phase-link:hover { background: #fff3c4; }
+    .project-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9a8200; margin-bottom: 0.4rem; }
+    .case-title { font-size: 2.2rem; font-weight: 800; color: #123047; margin-bottom: 0.35rem; line-height: 1.2; }
+    .case-subtitle { font-size: 1rem; color: #555; margin-bottom: 1rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1.4rem; }
+    .tag-pill { font-size: 0.8rem; font-weight: 500; background: #fff8e1; color: #7a5c00; padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid #f0d878; }
+    .tag-pill.base { background: #f5f7fa; color: #333; border-color: #dee2e6; }
+    .project-meta-table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.9rem; }
+    .project-meta-table th { background: #243447; color: #fff; font-weight: 600; padding: 0.5rem 0.75rem; text-align: left; font-size: 0.8rem; }
+    .project-meta-table td { padding: 0.55rem 0.75rem; border: 1px solid #d4dde5; }
+    h2 { font-size: 1.65rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #123047; border-bottom: 2px solid #FFD700; padding-bottom: 0.4rem; }
+    h3 { font-size: 1.2rem; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #333; font-weight: 600; }
+    h4 { font-size: 1.05rem; margin-top: 1.25rem; margin-bottom: 0.5rem; color: #333; }
+    p, li { line-height: 1.7; color: #333; }
+    ul { margin-left: 1.25rem; margin-bottom: 1rem; }
+    .callout-quote {
+      padding: 1rem 1.1rem; margin: 1.25rem 0;
+      background: #fffbea; border-left: 6px solid #FFD700;
+      color: #444; border-radius: 6px;
+    }
+    .callout-phase {
+      padding: 1rem 1.1rem; margin: 1.25rem 0;
+      background: #f3f0ff; border-left: 6px solid #6b5b95;
+      color: #3d3558; border-radius: 6px;
+    }
+    .lens-table, table.data-table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem;
+      border: 1px solid #d4dde5; font-size: 0.92rem;
+    }
+    .lens-table td, .data-table td, .data-table th {
+      border: 1px solid #d4dde5; padding: 0.75rem 0.85rem; vertical-align: top;
+    }
+    .lens-table .lens-name { font-weight: 700; color: #2b3b4d; background: #f5f7fa; width: 28%; }
+    .data-table th { background: #243447; color: #fff; }
+    .capability-card {
+      background: #fafbfc; border: 1px solid #e2e8f0; border-top: 3px solid #FFD700;
+      border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;
+    }
+    .capability-card h4 { margin-top: 0; color: #123047; }
+    .flow-block {
+      background: #f8f9fa; border-radius: 8px; padding: 1rem 1.25rem; margin: 0.75rem 0;
+      border-left: 4px solid #FFD700;
+    }
+    .flow-block strong { color: #123047; }
+    .arch-diagram, .code-block {
+      background: #1e2a3a; color: #e8edf2; padding: 1.25rem; border-radius: 8px;
+      font-family: ui-monospace, monospace; font-size: 0.8rem; line-height: 1.55;
+      overflow-x: auto; white-space: pre; margin: 1rem 0;
+    }
+    .code-block { font-size: 0.78rem; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .compare-card { padding: 1rem; border-radius: 8px; border: 1px solid #dee2e6; }
+    .compare-card.phase1 { background: #f8f9fa; border-top: 3px solid #999; }
+    .compare-card.phase2 { background: #fffbea; border-top: 3px solid #FFD700; }
+    .compare-card h4 { margin-top: 0; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .skill-tag {
+      background: #fff8e1; color: #7a5c00; padding: 0.35rem 0.75rem;
+      border-radius: 20px; font-size: 0.82rem; border: 1px solid #f0d878;
+    }
+    @media (max-width: 768px) {
+      .case-container { padding: 1.5rem 1rem; }
+      .case-title { font-size: 1.65rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="case-container">
+    <div class="back-row">
+      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
+      <a href="dora-metrics.html" class="phase-link"><i class="fas fa-link"></i> Phase 1: LLM-RAG Explorer</a>
+      <a href="https://github.com/UmaRamanathan-DA/AI-Powered-DORA-Metrics-Explorer" class="phase-link" target="_blank"><i class="fab fa-github"></i> GitHub (Phase 1)</a>
+    </div>
+
+    <div class="project-label">Phase 2 · Portfolio Extension · Agentic AI Product Design</div>
+    <h1 class="case-title">DORA DevOps Copilot</h1>
+    <div class="case-subtitle">Agentic AI extension for the DORA Metrics Explorer — multi-step reasoning, tool orchestration, voice interaction, and stakeholder-ready DevOps insights</div>
+
+    <div class="tag-list">
+      <span class="tag-pill">Agentic AI</span>
+      <span class="tag-pill">Tool Orchestration</span>
+      <span class="tag-pill">LLM-RAG</span>
+      <span class="tag-pill">Voice UX</span>
+      <span class="tag-pill">DevOps Analytics</span>
+      <span class="tag-pill base">Flask · Ollama · LLaMA 3</span>
+    </div>
+
+    <table class="project-meta-table">
+      <tr><th>Role</th><th>Base project</th><th>Status</th></tr>
+      <tr>
+        <td>AI Product Designer &amp; Prototype Architect</td>
+        <td>Extension of <a href="dora-metrics.html">AI-Powered DORA Metrics Explorer (Phase 1)</a></td>
+        <td>Product &amp; technical specification — for review before implementation</td>
+      </tr>
+    </table>
+
+    <div class="callout-phase">
+      <strong>Separate product, shared codebase.</strong> Phase 1 is a <em>RAG Q&amp;A assistant</em> — one question, one retrieval, one answer. Phase 2 evolves it into an <strong>agentic copilot</strong> that plans steps, calls tools, maintains session context, and optionally responds by voice. This document is a review-ready spec; Phase 1 files remain unchanged.
+    </div>
+
+    <h2>1. Phase 1 vs Phase 2 — What Changes</h2>
+    <div class="compare-grid">
+      <div class="compare-card phase1">
+        <h4>Phase 1 (current prototype)</h4>
+        <ul>
+          <li>Single-turn NL query → RAG → LLM answer</li>
+          <li>User must know what to ask</li>
+          <li>No multi-step analysis</li>
+          <li>Text UI only</li>
+          <li>RAG is the entire brain</li>
+        </ul>
+      </div>
+      <div class="compare-card phase2">
+        <h4>Phase 2 (agentic extension)</h4>
+        <ul>
+          <li>Goal-oriented session → plan → tools → synthesis</li>
+          <li>Copilot proposes next analyses</li>
+          <li>Chains metric lookup + benchmark + recommendation</li>
+          <li>Optional voice in / voice out</li>
+          <li>RAG becomes one tool among several</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>2. Product Vision</h2>
+    <p><strong>DORA DevOps Copilot</strong> helps engineering leaders and platform teams understand delivery performance through conversational, multi-step analysis — not just answering “what is our CFR?” but “how is our deployment performance this quarter, where are we vs industry, and what should we fix first?”</p>
+    <div class="callout-quote">
+      <strong>Example goal:</strong> “Review our Q2 DORA performance and tell me the top bottleneck.”<br>
+      The copilot fetches metrics → compares benchmarks → retrieves best-practice guidance → ranks improvement actions → returns a concise briefing (spoken or written).
+    </div>
+
+    <h2>3. How It Would Work — Runtime Flow</h2>
+    <div class="arch-diagram">User (text or voice)
+    │
+    ▼
+┌─────────────────┐     Phase 2 addition: optional STT / TTS
+│  Flask /agent   │◄──── Web Speech API or Whisper (input)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────────────────────────────┐
+│     DORA DevOps Copilot (Orchestrator)   │
+│  · Parse intent &amp; goal                   │
+│  · Build step plan (ReAct-style loop)     │
+│  · Session memory (metrics discussed)    │
+│  · Guardrails (no fabricated metrics)    │
+└────────┬────────────────────────────────┘
+         │ calls tools
+    ┌────┴────┬────────────┬──────────────┬─────────────┐
+    ▼         ▼            ▼              ▼             ▼
+ get_dora   compare_    rag_dora       detect_      format_
+ metrics    benchmark   best_practice  anomaly      briefing
+ (CSV/API)  (tiers)     (vector DB)    (trends)     (voice/text)
+         │
+         ▼
+    LLM synthesis (Ollama / LLaMA 3) — grounded on tool outputs only
+         │
+         ▼
+    Response + optional follow-ups (“Want a breakdown by team?”)</div>
+
+    <h2>4. Agent Capabilities (7 tools)</h2>
+
+    <div class="capability-card">
+      <h4>4.1 <code>get_dora_metrics</code></h4>
+      <p>Reads deployment frequency, lead time for changes, change failure rate (CFR), and mean time to restore (MTTR) from CSV/API for a given period or team.</p>
+      <p><strong>Why agentic:</strong> Copilot decides <em>which</em> metrics to pull based on the user goal — not the user spelling out every metric.</p>
+    </div>
+
+    <div class="capability-card">
+      <h4>4.2 <code>compare_benchmark</code></h4>
+      <p>Maps current values to DORA performance tiers (Elite / High / Medium / Low) using industry reference bands.</p>
+      <p><strong>Output:</strong> “CFR 18% — below High tier target (≤10%).”</p>
+    </div>
+
+    <div class="capability-card">
+      <h4>4.3 <code>rag_best_practices</code> (Phase 1 RAG, repackaged)</h4>
+      <p>Retrieves DevOps/DORA guidance from embedded docs (Sentence Transformers + vector store). Phase 1 RAG logic moves here as a <strong>tool</strong>, not the whole app.</p>
+    </div>
+
+    <div class="capability-card">
+      <h4>4.4 <code>analyze_trend</code></h4>
+      <p>Compares current period vs prior period; flags improving / degrading metrics.</p>
+    </div>
+
+    <div class="capability-card">
+      <h4>4.5 <code>identify_bottleneck</code></h4>
+      <p>Ranks metrics by gap-to-target and trend severity; returns top 1–3 focus areas with rationale.</p>
+    </div>
+
+    <div class="capability-card">
+      <h4>4.6 <code>generate_action_plan</code></h4>
+      <p>Produces 3–5 prioritised recommendations grounded in tool outputs (not hallucinated metrics).</p>
+    </div>
+
+    <div class="capability-card">
+      <h4>4.7 <code>format_briefing</code></h4>
+      <p>Formats response for channel: <strong>voice</strong> (≤45 sec, short sentences) or <strong>dashboard</strong> (structured markdown + numbers).</p>
+    </div>
+
+    <h2>5. Intent Library</h2>
+    <table class="data-table">
+      <tr><th>Intent</th><th>Example utterance</th><th>Tool chain</th></tr>
+      <tr><td>INT-01 Metric status</td><td>“What’s our change failure rate this month?”</td><td>get_dora_metrics → format_briefing</td></tr>
+      <tr><td>INT-02 Performance review</td><td>“How did we perform in Q2?”</td><td>get_dora_metrics (all four) → compare_benchmark → format_briefing</td></tr>
+      <tr><td>INT-03 Bottleneck diagnosis</td><td>“What should we fix first?”</td><td>get_dora_metrics → analyze_trend → identify_bottleneck → rag_best_practices → generate_action_plan</td></tr>
+      <tr><td>INT-04 Benchmark compare</td><td>“Are we elite on deployment frequency?”</td><td>get_dora_metrics → compare_benchmark</td></tr>
+      <tr><td>INT-05 Best practice</td><td>“How do teams reduce lead time?”</td><td>rag_best_practices → format_briefing</td></tr>
+      <tr><td>INT-06 Follow-up</td><td>“Break that down by service.”</td><td>Session memory → get_dora_metrics (filtered) → format_briefing</td></tr>
+    </table>
+
+    <h2>6. Sample Conversation</h2>
+    <div class="flow-block"><strong>User:</strong> Review our last quarter DORA metrics and tell me the biggest problem.</div>
+    <div class="flow-block"><strong>Copilot (planning):</strong> Fetch Q2 metrics → compare to benchmarks → identify worst gap → retrieve improvement guidance.</div>
+    <div class="flow-block"><strong>Copilot (response):</strong> In Q2, your change failure rate was 18% — above the High-performer threshold of 10% and worsening vs Q1 (+4 pts). Deployment frequency and lead time improved. The primary bottleneck is release quality in the payments service. Top actions: (1) expand pre-prod validation, (2) tighten rollback automation, (3) add CFR monitoring per team. Want a detailed breakdown or an action plan for engineering leads?</div>
+
+    <h2>7. Voice Layer (optional Phase 2B)</h2>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name">Input</td>
+        <td>Web Speech API (browser) or Whisper API/local — same <code>/agent</code> endpoint receives transcribed text</td>
+      </tr>
+      <tr>
+        <td class="lens-name">Output</td>
+        <td>Browser speechSynthesis or TTS API; copilot uses <code>format_briefing(mode=voice)</code> for shorter responses</td>
+      </tr>
+      <tr>
+        <td class="lens-name">UX</td>
+        <td>Push-to-talk on Flask UI; transcript shown alongside spoken answer for accessibility</td>
+      </tr>
+      <tr>
+        <td class="lens-name">Portfolio value</td>
+        <td>Demonstrates voice-as-primary interaction for DevOps standups / manager briefings</td>
+      </tr>
+    </table>
+
+    <h2>8. Proposed Code Changes (GitHub repo — for your review)</h2>
+    <p>These changes extend the existing Flask app without replacing Phase 1 behaviour. You can keep <code>/ask</code> (RAG) and add <code>/agent</code> (orchestrator).</p>
+
+    <h3>8.1 Suggested folder structure</h3>
+    <div class="code-block">AI-Powered-DORA-Metrics-Explorer/
+├── app.py                    # add /agent route; keep existing /ask
+├── agent/
+│   ├── orchestrator.py       # plan → tool loop → synthesize
+│   ├── intents.py            # intent routing rules
+│   ├── session.py            # Flask session / conversation state
+│   └── tools/
+│       ├── metrics.py        # get_dora_metrics, analyze_trend
+│       ├── benchmarks.py     # compare_benchmark, identify_bottleneck
+│       ├── rag.py            # move Phase 1 RAG here
+│       └── briefing.py       # generate_action_plan, format_briefing
+├── rag/                      # existing embeddings + vector store
+├── data/                     # DORA CSV inputs
+├── templates/
+│   └── index.html            # add voice button + agent chat UI
+└── static/
+    └── voice.js              # Web Speech STT/TTS hooks</div>
+
+    <h3>8.2 New API contract</h3>
+    <div class="code-block">POST /agent
+Request:  { "message": "Review Q2 DORA performance", "session_id": "...", "channel": "text|voice" }
+Response: {
+  "answer": "...",
+  "metrics_used": ["cfr", "deployment_frequency"],
+  "tools_called": ["get_dora_metrics", "compare_benchmark", "identify_bottleneck"],
+  "follow_ups": ["Want a breakdown by team?"],
+  "voice_summary": "..."   // optional short form for TTS
+}</div>
+
+    <h3>8.3 Orchestrator loop (conceptual)</h3>
+    <div class="code-block">def run_agent(user_message, session):
+    intent = classify_intent(user_message, session)
+    plan = build_tool_plan(intent)          # e.g. [get_dora_metrics, compare_benchmark, ...]
+    tool_results = []
+    for step in plan:
+        result = execute_tool(step, session)  # returns structured JSON, not prose
+        tool_results.append(result)
+        if result.requires_clarification:
+            return ask_clarifying_question(result)
+    answer = synthesize_with_llm(user_message, tool_results)  # Ollama/LLaMA 3
+    return format_briefing(answer, channel=session.channel)</div>
+
+    <h3>8.4 What stays from Phase 1</h3>
+    <ul>
+      <li>Flask app shell, deployment (Render/Railway)</li>
+      <li>Ollama + LLaMA 3 for generation</li>
+      <li>Sentence Transformers + RAG corpus (now invoked via <code>rag_best_practices</code> tool)</li>
+      <li>Pandas/CSV metric loading</li>
+      <li>Existing UI screenshot / dashboard — extended with agent chat panel</li>
+    </ul>
+
+    <h3>8.5 What Phase 2 adds</h3>
+    <ul>
+      <li>Agent orchestrator with tool calling and session memory</li>
+      <li>Structured metric tools (grounding — reduces hallucination)</li>
+      <li>Multi-step plans for complex questions</li>
+      <li>Follow-up suggestions</li>
+      <li>Voice input/output hooks</li>
+      <li>Logging: tools called, metrics referenced (audit/debug)</li>
+    </ul>
+
+    <h2>9. Guardrails</h2>
+    <ul>
+      <li><strong>Metrics must come from tools</strong> — LLM cannot invent CFR/MTTR numbers; synthesis only uses <code>tool_results</code> JSON.</li>
+      <li><strong>Citation for best practices</strong> — RAG tool returns source snippets; copilot references them in recommendations.</li>
+      <li><strong>Confidence fallback</strong> — if intent unclear, ask clarifying question instead of guessing.</li>
+      <li><strong>Voice brevity</strong> — voice responses capped at ~3 sentences unless user asks for detail.</li>
+      <li><strong>Human review</strong> — action plans labelled as “suggested”; not auto-applied to CI/CD systems.</li>
+    </ul>
+
+    <h2>10. Success Metrics</h2>
+    <table class="data-table">
+      <tr><th>Metric</th><th>Phase 1 baseline</th><th>Phase 2 target</th></tr>
+      <tr><td>Questions requiring multiple manual prompts</td><td>High (user chains asks)</td><td>≥70% resolved in one agent session</td></tr>
+      <tr><td>Metric hallucination rate</td><td>Risk in pure RAG</td><td>0% — tools-only numbers</td></tr>
+      <tr><td>Time to bottleneck insight</td><td>Manual analysis</td><td>&lt; 30 seconds per review goal</td></tr>
+      <tr><td>Follow-up engagement</td><td>N/A</td><td>≥40% sessions use suggested follow-up</td></tr>
+    </table>
+
+    <h2>11. Implementation Roadmap</h2>
+    <table class="data-table">
+      <tr><th>Phase</th><th>Scope</th><th>Effort (est.)</th></tr>
+      <tr><td><strong>2A</strong></td><td>Tool modules + <code>/agent</code> route + orchestrator (text only)</td><td>1–2 weeks</td></tr>
+      <tr><td><strong>2B</strong></td><td>Session memory + follow-ups + bottleneck ranking</td><td>3–5 days</td></tr>
+      <tr><td><strong>2C</strong></td><td>Voice layer (Web Speech) + voice briefing formatter</td><td>2–3 days</td></tr>
+      <tr><td><strong>2D</strong></td><td>Polish UI, logging, demo video for portfolio</td><td>2–3 days</td></tr>
+    </table>
+
+    <h2>12. Relationship to Phase 1</h2>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name"><a href="dora-metrics.html">Phase 1</a></td>
+        <td>LLM-RAG prototype — natural-language Q&amp;A over DORA metrics and best practices. Hands-on Flask/Ollama build.</td>
+      </tr>
+      <tr>
+        <td class="lens-name">Phase 2 (this spec)</td>
+        <td>Agentic copilot design — tool orchestration, multi-step DevOps analysis, voice UX, and concrete repo change plan for implementation.</td>
+      </tr>
+    </table>
+
+    <h2>Skills Demonstrated</h2>
+    <div class="skill-tags">
+      <span class="skill-tag">Agentic AI Design</span>
+      <span class="skill-tag">Tool Orchestration</span>
+      <span class="skill-tag">LLM Grounding</span>
+      <span class="skill-tag">RAG as Tool</span>
+      <span class="skill-tag">Voice UX</span>
+      <span class="skill-tag">DevOps Product Thinking</span>
+      <span class="skill-tag">Flask Architecture</span>
+      <span class="skill-tag">Technical Specification</span>
+    </div>
+
+    <div class="callout-quote" style="margin-top: 2rem;">
+      Portfolio extension for review. Phase 1 codebase unchanged. When ready to implement, start with <strong>2A</strong>: extract RAG into a tool, add <code>get_dora_metrics</code>, and wire a minimal orchestrator loop on <code>/agent</code>.
+    </div>
+  </div>
+</body>
+</html>
