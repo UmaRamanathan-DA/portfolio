@@ -282,7 +282,7 @@
                         <div class="work-header">
                             <h3>AI-Powered DORA Metrics Analyzer: DevOps Analytics</h3>
                             <span class="work-company">Personal Project</span>
-                            <span class="work-details">Software Engineering . DevOps . LLM-RAG · Agentic AI (Phase 2 spec)</span>                            
+                            <span class="work-details">Software Engineering . DevOps . LLM-RAG · Agentic AI (Phase 2)</span>                            
                         </div>
                         <div class="work-description">
                             <p>Prototyping a Flask-based web app using LLM with Retrieval-Augmented Generation to analyze DORA metrics via natural language prompts. Phase 2 spec extends this into an agentic DevOps copilot with tool orchestration and voice interaction.</p>
@@ -290,6 +290,7 @@
                         <div class="work-actions">
                             <a href="project_pages/dora-metrics.html" target="_blank" class="work-btn">Phase 1</a>
                             <a href="project_pages/dora-devops-copilot.html" target="_blank" class="work-btn" style="background:#9a8200;">Phase 2 spec</a>
+                            <a href="https://dora-devops-copilot.onrender.com" target="_blank" rel="noopener" class="work-btn" style="background:#123047;color:#FFD700;" id="dora-live-btn">Launch app</a>
                         </div>
                     </div>
                     <div class="work-card" data-category="data-science decision">
@@ -574,5 +575,14 @@
           });
         });
     </script>
+<script src="assets/apps-config.js"></script>
+<script>
+  (function () {
+    var btn = document.getElementById("dora-live-btn");
+    if (btn && window.PORTFOLIO_APPS && window.PORTFOLIO_APPS.doraCopilot) {
+      btn.href = window.PORTFOLIO_APPS.doraCopilot;
+    }
+  })();
+</script>
 </body>
 </html> 

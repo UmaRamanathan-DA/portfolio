@@ -79,6 +79,57 @@
       background: #fff8e1; color: #7a5c00; padding: 0.35rem 0.75rem;
       border-radius: 20px; font-size: 0.82rem; border: 1px solid #f0d878;
     }
+    .launch-panel {
+      background: linear-gradient(135deg, #123047 0%, #1e3a52 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      margin: 1.25rem 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .launch-panel h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1.15rem;
+      color: #fff;
+      border: none;
+      padding: 0;
+    }
+    .launch-panel p { margin: 0; color: rgba(255,255,255,0.88); font-size: 0.9rem; line-height: 1.5; }
+    .launch-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+    .launch-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.15rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      background: #FFD700; color: #123047; border: none; cursor: pointer;
+    }
+    .launch-btn:hover { background: #ffe44d; }
+    .launch-btn.secondary {
+      background: transparent; color: #FFD700; border: 1px solid rgba(255,215,0,0.55);
+    }
+    .launch-btn.secondary:hover { background: rgba(255,215,0,0.12); }
+    .app-embed-section { margin: 2rem 0; }
+    .app-embed-header {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .app-embed-note {
+      font-size: 0.85rem; color: #666; background: #f5f7fa; padding: 0.65rem 0.85rem;
+      border-radius: 8px; margin-bottom: 0.75rem; border-left: 4px solid #FFD700;
+    }
+    .app-embed-frame {
+      width: 100%; height: 720px; border: 1px solid #d4dde5; border-radius: 12px;
+      background: #f4f6f8;
+    }
+    .app-embed-offline {
+      display: none;
+      padding: 2rem; text-align: center; background: #f8f9fa; border: 1px dashed #cbd5e1;
+      border-radius: 12px; color: #555;
+    }
+    .app-embed-offline.visible { display: block; }
+    .app-embed-offline code { background: #e8edf2; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
     @media (max-width: 768px) {
       .case-container { padding: 1.5rem 1rem; }
       .case-title { font-size: 1.65rem; }
@@ -91,7 +142,8 @@
     <div class="back-row">
       <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
       <a href="dora-metrics.html" class="phase-link"><i class="fas fa-link"></i> Phase 1: LLM-RAG Explorer</a>
-      <a href="https://github.com/UmaRamanathan-DA/AI-Powered-DORA-Metrics-Explorer" class="phase-link" target="_blank"><i class="fab fa-github"></i> GitHub (Phase 1)</a>
+      <a href="#" class="phase-link launch-app-link" target="_blank" rel="noopener" id="nav-launch-app"><i class="fas fa-rocket"></i> Launch app</a>
+      <a href="https://github.com/UmaRamanathan-DA/AI-Powered-DORA-Metrics-Explorer" class="phase-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     </div>
 
     <div class="project-label">Phase 2 · Portfolio Extension · Agentic AI Product Design</div>
@@ -104,7 +156,7 @@
       <span class="tag-pill">LLM-RAG</span>
       <span class="tag-pill">Voice UX</span>
       <span class="tag-pill">DevOps Analytics</span>
-      <span class="tag-pill base">Flask · Ollama · LLaMA 3</span>
+      <span class="tag-pill base">Flask · Gunicorn · Render</span>
     </div>
 
     <table class="project-meta-table">
@@ -112,12 +164,54 @@
       <tr>
         <td>AI Product Designer &amp; Prototype Architect</td>
         <td>Extension of <a href="dora-metrics.html">AI-Powered DORA Metrics Explorer (Phase 1)</a></td>
-        <td>Product &amp; technical specification — for review before implementation</td>
+        <td><strong>Production app</strong> — Flask on Render + static fallback on GitHub Pages</td>
       </tr>
     </table>
 
+    <div class="launch-panel">
+      <div>
+        <h2><i class="fas fa-play-circle"></i> Launch production app</h2>
+        <p>Flask + Gunicorn backend deployed from this repo. Upload metrics, ask questions, see agent tool traces.</p>
+      </div>
+      <div class="launch-actions">
+        <a href="#" class="launch-btn" target="_blank" rel="noopener" id="open-app-btn">
+          <i class="fas fa-external-link-alt"></i> Open production app
+        </a>
+        <a href="../demos/dora-copilot/index.html" class="launch-btn secondary" target="_blank" rel="noopener">
+          <i class="fas fa-code"></i> Static fallback
+        </a>
+        <button type="button" class="launch-btn secondary" id="scroll-to-embed-btn">
+          <i class="fas fa-window-maximize"></i> Embedded view
+        </button>
+      </div>
+    </div>
+
+    <div class="app-embed-section" id="app-embed-section">
+      <div class="app-embed-header">
+        <h2 style="margin:0;border:none;padding:0;">Live demo (embedded)</h2>
+        <a href="#" class="phase-link" target="_blank" rel="noopener" id="open-app-tab">Open in new tab</a>
+      </div>
+      <div class="app-embed-note">
+        Production app runs on <strong>Render</strong> (Flask + Gunicorn). First deploy: connect this GitHub repo to Render using <code>render.yaml</code>.
+        Static fallback at <a href="../demos/dora-copilot/index.html">demos/dora-copilot</a> works without a server.
+      </div>
+      <div class="app-embed-offline" id="app-offline-msg">
+        <p>Production server starting or not deployed yet.</p>
+        <p>Deploy via Render, or use the <a href="../demos/dora-copilot/index.html">static fallback demo</a>.</p>
+      </div>
+      <iframe
+        id="copilot-frame"
+        class="app-embed-frame"
+        src="about:blank"
+        title="DORA DevOps Copilot"
+        loading="lazy"
+      ></iframe>
+    </div>
+
     <div class="callout-phase">
-      <strong>Separate product, shared codebase.</strong> Phase 1 is a <em>RAG Q&amp;A assistant</em> — one question, one retrieval, one answer. Phase 2 evolves it into an <strong>agentic copilot</strong> that plans steps, calls tools, maintains session context, and optionally responds by voice. This document is a review-ready spec; Phase 1 files remain unchanged.
+      <strong>Separate product, shared codebase.</strong> Phase 1 is a <em>RAG Q&amp;A assistant</em> (Flask + LangChain + Ollama). Phase 2 is an <strong>agentic copilot</strong> with tool orchestration and voice UX.
+      The <strong>production app</strong> (<code>apps/dora-copilot/</code>) is Flask + Gunicorn, deployable to Render from GitHub.
+      A <strong>static fallback</strong> at <code>demos/dora-copilot/</code> runs on GitHub Pages without a server.
     </div>
 
     <h2>1. Phase 1 vs Phase 2 — What Changes</h2>
@@ -354,10 +448,37 @@ Response: {
         <td>LLM-RAG prototype — natural-language Q&amp;A over DORA metrics and best practices. Hands-on Flask/Ollama build.</td>
       </tr>
       <tr>
-        <td class="lens-name">Phase 2 (this spec)</td>
-        <td>Agentic copilot design — tool orchestration, multi-step DevOps analysis, voice UX, and concrete repo change plan for implementation.</td>
+        <td class="lens-name">Phase 2 (this project)</td>
+        <td>Agentic copilot — production Flask app in <code>apps/dora-copilot/</code>, deployable via Render.</td>
       </tr>
     </table>
+
+    <h2>13. Tech stack &amp; hosting</h2>
+    <table class="data-table">
+      <tr><th>Component</th><th>Technology</th></tr>
+      <tr><td>Production app</td><td><strong>Flask 3</strong> + <strong>Gunicorn</strong> + pandas — deployed on <strong>Render</strong></td></tr>
+      <tr><td>Static fallback</td><td>HTML + JavaScript on <strong>GitHub Pages</strong> (<code>demos/dora-copilot/</code>)</td></tr>
+      <tr><td>Phase 1 RAG explorer</td><td><strong>Flask</strong> + LangChain + Ollama (separate repo — not Streamlit)</td></tr>
+      <tr><td>CI</td><td>GitHub Actions (<code>.github/workflows/dora-copilot.yml</code>)</td></tr>
+      <tr><td>Voice</td><td>Browser Web Speech API</td></tr>
+    </table>
+
+    <h2>14. Deploy production app</h2>
+    <div class="code-block"># 1. Push to GitHub
+git add apps/dora-copilot/ render.yaml assets/apps-config.js
+git commit -m "Add production DORA DevOps Copilot"
+git push origin main
+
+# 2. Render.com → New Blueprint → connect portfolio repo
+#    (uses render.yaml — deploys apps/dora-copilot/)
+
+# 3. Update assets/apps-config.js with your Render URL
+
+# 4. Run locally anytime:
+cd apps/dora-copilot && ./run.sh</div>
+
+    <h2>15. Static fallback (GitHub Pages)</h2>
+    <p>No server needed: <a href="../demos/dora-copilot/index.html">demos/dora-copilot</a> runs the agent in-browser.</p>
 
     <h2>Skills Demonstrated</h2>
     <div class="skill-tags">
@@ -372,8 +493,47 @@ Response: {
     </div>
 
     <div class="callout-quote" style="margin-top: 2rem;">
-      Portfolio extension for review. Phase 1 codebase unchanged. When ready to implement, start with <strong>2A</strong>: extract RAG into a tool, add <code>get_dora_metrics</code>, and wire a minimal orchestrator loop on <code>/agent</code>.
+      Production: <a href="#" id="footer-app-link">Render app</a> · Static fallback:
+      <a href="../demos/dora-copilot/index.html">demos/dora-copilot</a> · Source:
+      <code>apps/dora-copilot/</code>
     </div>
   </div>
+  <script src="../assets/apps-config.js"></script>
+  <script>
+    (function () {
+      var cfg = window.PORTFOLIO_APPS || {};
+      var appUrl = cfg.doraCopilot || cfg.doraCopilotStaticFallback || "../demos/dora-copilot/index.html";
+      var frame = document.getElementById("copilot-frame");
+      var offline = document.getElementById("app-offline-msg");
+
+      ["open-app-btn", "open-app-tab", "nav-launch-app", "footer-app-link"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.href = appUrl;
+          if (id !== "footer-app-link") el.target = "_blank";
+        }
+      });
+
+      if (frame) frame.src = appUrl;
+
+      fetch(appUrl.replace(/\/$/, "") + "/api/health")
+        .then(function (res) {
+          if (!res.ok) throw new Error("offline");
+          if (offline) offline.classList.remove("visible");
+        })
+        .catch(function () {
+          if (offline) offline.classList.add("visible");
+          if (frame && cfg.doraCopilotStaticFallback) frame.src = cfg.doraCopilotStaticFallback;
+        });
+
+      var scrollBtn = document.getElementById("scroll-to-embed-btn");
+      var embedSection = document.getElementById("app-embed-section");
+      if (scrollBtn && embedSection) {
+        scrollBtn.addEventListener("click", function () {
+          embedSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
