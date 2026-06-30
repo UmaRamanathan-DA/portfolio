@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DORA DevOps Copilot — Live Demo</title>
+  <link rel="stylesheet" href="copilot.css">
+</head>
+<body class="copilot-body">
+  <header class="copilot-header">
+    <div>
+      <h1>DORA DevOps Copilot <span class="hosted-badge">Live demo</span></h1>
+      <p>Upload metrics → ask a question → see agent analysis (runs in your browser)</p>
+    </div>
+    <div class="header-links">
+      <a href="../../project_pages/dora-devops-copilot.html">← Project spec</a>
+      <a href="../../index.html">Portfolio</a>
+    </div>
+  </header>
+
+  <div class="steps-bar">
+    <div class="step active" id="step-upload"><span class="step-num">1</span> Upload CSV</div>
+    <div class="step" id="step-ask"><span class="step-num">2</span> Ask question</div>
+    <div class="step" id="step-output"><span class="step-num">3</span> View output</div>
+  </div>
+
+  <div class="layout">
+    <main class="panel">
+      <h2>Your session</h2>
+
+      <div class="upload-zone" id="upload-zone">
+        <p class="upload-title">DORA metrics file</p>
+        <p class="upload-hint">CSV columns: Date, Deployment Frequency, Lead Time, Change Failure Rate, MTTR</p>
+        <form id="upload-form" class="upload-actions">
+          <input type="file" id="metrics-file" accept=".csv,.txt" hidden>
+          <button type="button" id="pick-file-btn" class="btn btn-secondary">Choose file</button>
+          <button type="submit" class="btn btn-primary" id="upload-btn" disabled>Upload</button>
+          <button type="button" id="sample-btn" class="btn btn-outline">Load sample data</button>
+        </form>
+        <div id="file-status" class="file-status">No file loaded yet</div>
+      </div>
+
+      <h2>Conversation</h2>
+      <div id="chat-log" class="chat-log">
+        <div class="msg system">Click <strong>Load sample data</strong>, then ask e.g. “What should we fix first?”</div>
+      </div>
+
+      <div class="input-row">
+        <textarea id="prompt" placeholder="Ask about DORA metrics, bottlenecks, or benchmarks…" disabled></textarea>
+        <div class="input-actions">
+          <button id="send-btn" class="btn btn-primary" type="button" disabled>Send</button>
+          <button id="voice-btn" class="btn btn-voice" type="button" disabled>Voice</button>
+        </div>
+      </div>
+      <div id="voice-status" class="voice-status">Voice: click Voice, speak, then confirm (Chrome/Edge). If embedded, open demo in a new tab for mic access.</div>
+      <div id="loading" class="loading hidden">Agent is analyzing…</div>
+    </main>
+
+    <aside class="panel">
+      <h2>Agent activity</h2>
+      <div id="agent-trace" class="agent-trace">
+        <div class="empty-state">Tool calls appear here after you send a question.</div>
+      </div>
+
+      <h2 class="section-gap">Metrics used</h2>
+      <div id="metrics-used" class="metrics-grid">
+        <div class="empty-state">Metric cards appear after analysis.</div>
+      </div>
+
+      <h2 class="section-gap">Suggested follow-ups</h2>
+      <div id="follow-ups" class="follow-ups"></div>
+
+      <div id="guardrail" class="guardrail">
+        Metric numbers come from your uploaded CSV via tools — not invented by the LLM.
+      </div>
+    </aside>
+  </div>
+
+  <script src="agent.js"></script>
+  <script src="copilot-ui.js"></script>
+</body>
+</html>

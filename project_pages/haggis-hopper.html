@@ -147,6 +147,35 @@
             margin-bottom: 0.5rem;
             color: #555;
         }
+
+        .deck-embed-container {
+            margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            background: #fff;
+        }
+
+        .deck-embed-container iframe {
+            display: block;
+            width: 100%;
+            height: 900px;
+            border: none;
+        }
+
+        .deck-open-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: #1a3c5e;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .deck-open-link:hover {
+            text-decoration: underline;
+        }
         
         .case-study-diagram {
             text-align: center;
@@ -610,6 +639,18 @@
             <p>
                 Use Haggis Hopper’s historical trip data to uncover where, when, and how demand fluctuates across Glasgow so the company can allocate its fleet more efficiently, improve passenger experience, and support sustainable growth.
             </p>
+
+            <h2>Customer Deck</h2>
+            <p>
+                Pricing deep-dive delivered to Haggis Hopper stakeholders — tariff inference, fare–distance correlations, anomaly detection, and dynamic pricing recommendations (February 2024, 3,068 trips).
+            </p>
+            <div class="deck-embed-container">
+                <iframe src="haggis_hoppers_pricing_analysis.html" title="Haggis Hoppers Pricing Analysis Report"></iframe>
+            </div>
+            <a href="haggis_hoppers_pricing_analysis.html" target="_blank" rel="noopener noreferrer" class="deck-open-link">
+                <i class="fas fa-external-link-alt"></i>
+                Open full customer deck
+            </a>
 
             <h2>Key Activities</h2>
             <ul>

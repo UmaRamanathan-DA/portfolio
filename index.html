@@ -289,8 +289,9 @@
                         </div>
                         <div class="work-actions">
                             <a href="project_pages/dora-metrics.html" target="_blank" class="work-btn">Phase 1</a>
-                            <a href="project_pages/dora-devops-copilot.html" target="_blank" class="work-btn" style="background:#9a8200;">Phase 2 spec</a>
-                            <a href="https://dora-devops-copilot.onrender.com" target="_blank" rel="noopener" class="work-btn" style="background:#123047;color:#FFD700;" id="dora-live-btn">Launch app</a>
+                            <a href="project_pages/dora-devops-copilot.html" target="_blank" class="work-btn" style="background:#9a8200;">Case study</a>
+                            <a href="#" target="_blank" rel="noopener" class="work-btn" style="background:#123047;color:#FFD700;" id="dora-live-btn">Launch app</a>
+                            <a href="#" target="_blank" rel="noopener" class="work-btn" style="background:#333;color:#fff;" id="dora-repo-btn">App repo</a>
                         </div>
                     </div>
                     <div class="work-card" data-category="data-science decision">
@@ -578,10 +579,11 @@
 <script src="assets/apps-config.js"></script>
 <script>
   (function () {
-    var btn = document.getElementById("dora-live-btn");
-    if (btn && window.PORTFOLIO_APPS && window.PORTFOLIO_APPS.doraCopilot) {
-      btn.href = window.PORTFOLIO_APPS.doraCopilot;
-    }
+    var cfg = window.PORTFOLIO_APPS || {};
+    var live = document.getElementById("dora-live-btn");
+    var repo = document.getElementById("dora-repo-btn");
+    if (live && cfg.doraCopilot) live.href = cfg.doraCopilot;
+    if (repo && cfg.doraCopilotRepo) repo.href = cfg.doraCopilotRepo;
   })();
 </script>
 </body>

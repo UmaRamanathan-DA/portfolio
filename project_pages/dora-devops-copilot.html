@@ -142,8 +142,9 @@
     <div class="back-row">
       <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
       <a href="dora-metrics.html" class="phase-link"><i class="fas fa-link"></i> Phase 1: LLM-RAG Explorer</a>
-      <a href="#" class="phase-link launch-app-link" target="_blank" rel="noopener" id="nav-launch-app"><i class="fas fa-rocket"></i> Launch app</a>
-      <a href="https://github.com/UmaRamanathan-DA/AI-Powered-DORA-Metrics-Explorer" class="phase-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#" class="phase-link" target="_blank" rel="noopener" id="nav-launch-app"><i class="fas fa-rocket"></i> Launch app</a>
+      <a href="#" class="phase-link" target="_blank" rel="noopener" id="nav-github-repo"><i class="fab fa-github"></i> App repo</a>
+      <a href="https://github.com/UmaRamanathan-DA/AI-Powered-DORA-Metrics-Explorer" class="phase-link" target="_blank"><i class="fab fa-github"></i> Phase 1</a>
     </div>
 
     <div class="project-label">Phase 2 · Portfolio Extension · Agentic AI Product Design</div>
@@ -164,21 +165,21 @@
       <tr>
         <td>AI Product Designer &amp; Prototype Architect</td>
         <td>Extension of <a href="dora-metrics.html">AI-Powered DORA Metrics Explorer (Phase 1)</a></td>
-        <td><strong>Production app</strong> — Flask on Render + static fallback on GitHub Pages</td>
+        <td><strong>Separate repo</strong> — Flask app published independently, linked from portfolio</td>
       </tr>
     </table>
 
     <div class="launch-panel">
       <div>
         <h2><i class="fas fa-play-circle"></i> Launch production app</h2>
-        <p>Flask + Gunicorn backend deployed from this repo. Upload metrics, ask questions, see agent tool traces.</p>
+        <p>Standalone Flask app in its own GitHub repo, deployed on Render. This page is the portfolio case study.</p>
       </div>
       <div class="launch-actions">
         <a href="#" class="launch-btn" target="_blank" rel="noopener" id="open-app-btn">
-          <i class="fas fa-external-link-alt"></i> Open production app
+          <i class="fas fa-external-link-alt"></i> Launch app
         </a>
-        <a href="../demos/dora-copilot/index.html" class="launch-btn secondary" target="_blank" rel="noopener">
-          <i class="fas fa-code"></i> Static fallback
+        <a href="#" class="launch-btn secondary" target="_blank" rel="noopener" id="open-repo-btn">
+          <i class="fab fa-github"></i> View app repo
         </a>
         <button type="button" class="launch-btn secondary" id="scroll-to-embed-btn">
           <i class="fas fa-window-maximize"></i> Embedded view
@@ -192,12 +193,8 @@
         <a href="#" class="phase-link" target="_blank" rel="noopener" id="open-app-tab">Open in new tab</a>
       </div>
       <div class="app-embed-note">
-        Production app runs on <strong>Render</strong> (Flask + Gunicorn). First deploy: connect this GitHub repo to Render using <code>render.yaml</code>.
-        Static fallback at <a href="../demos/dora-copilot/index.html">demos/dora-copilot</a> works without a server.
-      </div>
-      <div class="app-embed-offline" id="app-offline-msg">
-        <p>Production server starting or not deployed yet.</p>
-        <p>Deploy via Render, or use the <a href="../demos/dora-copilot/index.html">static fallback demo</a>.</p>
+        Production app lives in a <strong>separate GitHub repo</strong> (<code>dora-devops-copilot</code>), deployed on Render.
+        This portfolio page is the case study; the app runs at its own URL.
       </div>
       <iframe
         id="copilot-frame"
@@ -209,9 +206,7 @@
     </div>
 
     <div class="callout-phase">
-      <strong>Separate product, shared codebase.</strong> Phase 1 is a <em>RAG Q&amp;A assistant</em> (Flask + LangChain + Ollama). Phase 2 is an <strong>agentic copilot</strong> with tool orchestration and voice UX.
-      The <strong>production app</strong> (<code>apps/dora-copilot/</code>) is Flask + Gunicorn, deployable to Render from GitHub.
-      A <strong>static fallback</strong> at <code>demos/dora-copilot/</code> runs on GitHub Pages without a server.
+      <strong>Three repos, one story.</strong> Phase 1 RAG is in <em>AI-Powered-DORA-Metrics-Explorer</em>. Phase 2 copilot is a <strong>standalone app repo</strong> (<code>dora-devops-copilot</code>). This portfolio page is the case study and launch pad — not where the app code lives.
     </div>
 
     <h2>1. Phase 1 vs Phase 2 — What Changes</h2>
@@ -449,36 +444,43 @@ Response: {
       </tr>
       <tr>
         <td class="lens-name">Phase 2 (this project)</td>
-        <td>Agentic copilot — production Flask app in <code>apps/dora-copilot/</code>, deployable via Render.</td>
+        <td>Agentic copilot — standalone repo <a href="#" id="table-repo-link">dora-devops-copilot</a>, deployable on Render.</td>
       </tr>
     </table>
 
-    <h2>13. Tech stack &amp; hosting</h2>
+    <h2>13. Repo structure</h2>
     <table class="data-table">
-      <tr><th>Component</th><th>Technology</th></tr>
-      <tr><td>Production app</td><td><strong>Flask 3</strong> + <strong>Gunicorn</strong> + pandas — deployed on <strong>Render</strong></td></tr>
-      <tr><td>Static fallback</td><td>HTML + JavaScript on <strong>GitHub Pages</strong> (<code>demos/dora-copilot/</code>)</td></tr>
-      <tr><td>Phase 1 RAG explorer</td><td><strong>Flask</strong> + LangChain + Ollama (separate repo — not Streamlit)</td></tr>
-      <tr><td>CI</td><td>GitHub Actions (<code>.github/workflows/dora-copilot.yml</code>)</td></tr>
-      <tr><td>Voice</td><td>Browser Web Speech API</td></tr>
+      <tr><th>Repo</th><th>Purpose</th></tr>
+      <tr><td><code>portfolio</code></td><td>Main website, navigation, this case study page</td></tr>
+      <tr><td><code>dora-devops-copilot</code></td><td><strong>Runnable Flask app</strong> — deploy this to Render</td></tr>
+      <tr><td><code>AI-Powered-DORA-Metrics-Explorer</code></td><td>Phase 1 LLM-RAG prototype</td></tr>
     </table>
 
-    <h2>14. Deploy production app</h2>
-    <div class="code-block"># 1. Push to GitHub
-git add apps/dora-copilot/ render.yaml assets/apps-config.js
-git commit -m "Add production DORA DevOps Copilot"
-git push origin main
+    <h2>14. Publish the app (separate repo)</h2>
+    <div class="code-block"># 1. Create repo on github.com → name: dora-devops-copilot
 
-# 2. Render.com → New Blueprint → connect portfolio repo
-#    (uses render.yaml — deploys apps/dora-copilot/)
+# 2. Push from your Mac:
+cd /Users/knottrail/Documents/GitHub/dora-devops-copilot
+git init
+git add .
+git commit -m "Initial commit: DORA DevOps Copilot"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/dora-devops-copilot.git
+git push -u origin main
 
-# 3. Update assets/apps-config.js with your Render URL
+# 3. Render.com → New Blueprint → select dora-devops-copilot repo
+#    (or deploy via Docker if GitHub OAuth fails)
 
-# 4. Run locally anytime:
-cd apps/dora-copilot && ./run.sh</div>
+# 4. Update portfolio/assets/apps-config.js with your Render URL</div>
 
-    <h2>15. Static fallback (GitHub Pages)</h2>
-    <p>No server needed: <a href="../demos/dora-copilot/index.html">demos/dora-copilot</a> runs the agent in-browser.</p>
+    <h2>15. Tech stack</h2>
+    <table class="data-table">
+      <tr><th>Component</th><th>Technology</th></tr>
+      <tr><td>App backend</td><td>Flask 3 + Gunicorn + pandas</td></tr>
+      <tr><td>Hosting</td><td>Render (or Docker)</td></tr>
+      <tr><td>Portfolio</td><td>GitHub Pages (links to app — no app code here)</td></tr>
+      <tr><td>Voice</td><td>Browser Web Speech API</td></tr>
+    </table>
 
     <h2>Skills Demonstrated</h2>
     <div class="skill-tags">
@@ -493,38 +495,28 @@ cd apps/dora-copilot && ./run.sh</div>
     </div>
 
     <div class="callout-quote" style="margin-top: 2rem;">
-      Production: <a href="#" id="footer-app-link">Render app</a> · Static fallback:
-      <a href="../demos/dora-copilot/index.html">demos/dora-copilot</a> · Source:
-      <code>apps/dora-copilot/</code>
+      App repo: <a href="#" id="footer-repo-link">github.com/…/dora-devops-copilot</a> ·
+      Live app: <a href="#" id="footer-app-link">Render URL</a>
     </div>
   </div>
   <script src="../assets/apps-config.js"></script>
   <script>
     (function () {
       var cfg = window.PORTFOLIO_APPS || {};
-      var appUrl = cfg.doraCopilot || cfg.doraCopilotStaticFallback || "../demos/dora-copilot/index.html";
+      var appUrl = cfg.doraCopilot || "#";
+      var repoUrl = cfg.doraCopilotRepo || "#";
       var frame = document.getElementById("copilot-frame");
-      var offline = document.getElementById("app-offline-msg");
 
       ["open-app-btn", "open-app-tab", "nav-launch-app", "footer-app-link"].forEach(function (id) {
         var el = document.getElementById(id);
-        if (el) {
-          el.href = appUrl;
-          if (id !== "footer-app-link") el.target = "_blank";
-        }
+        if (el) { el.href = appUrl; if (id !== "footer-app-link") el.target = "_blank"; }
+      });
+      ["open-repo-btn", "nav-github-repo", "footer-repo-link", "table-repo-link"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) { el.href = repoUrl; el.target = "_blank"; }
       });
 
       if (frame) frame.src = appUrl;
-
-      fetch(appUrl.replace(/\/$/, "") + "/api/health")
-        .then(function (res) {
-          if (!res.ok) throw new Error("offline");
-          if (offline) offline.classList.remove("visible");
-        })
-        .catch(function () {
-          if (offline) offline.classList.add("visible");
-          if (frame && cfg.doraCopilotStaticFallback) frame.src = cfg.doraCopilotStaticFallback;
-        });
 
       var scrollBtn = document.getElementById("scroll-to-embed-btn");
       var embedSection = document.getElementById("app-embed-section");
