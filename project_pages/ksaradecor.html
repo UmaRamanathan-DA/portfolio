@@ -49,7 +49,7 @@
     }
 
     main {
-      max-width: 720px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 1.5rem 3rem;
     }
@@ -97,11 +97,25 @@
       display: block;
     }
 
+    .prototype-videos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
     .prototype-video-container {
       border-radius: 8px;
       overflow: hidden;
       background: var(--white);
-      margin-bottom: 1.25rem;
+    }
+
+    .prototype-video-container figcaption {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--charcoal);
+      opacity: 0.85;
+      background: var(--white);
     }
 
     .prototype-video-container video {
@@ -152,6 +166,10 @@
       main {
         padding: 0 1rem 2rem;
       }
+
+      .prototype-videos {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -180,6 +198,7 @@
     </a>
   </div>
 
+
   <main>
     <div class="intro">
       <p>
@@ -201,11 +220,21 @@
     </div>
 
     <h2>Prototype</h2>
-    <div class="prototype-video-container">
-      <video controls preload="metadata" playsinline poster="../images/KsaraDecor/ksd_thumbnail.png" title="Ksara Decor webshop prototype walkthrough">
-        <source src="../images/KsaraDecor/ksaradecor.mov" type="video/quicktime">
-        Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor.mov">Download the prototype video</a>.
-      </video>
+    <div class="prototype-videos">
+      <figure class="prototype-video-container">
+        <video controls preload="metadata" playsinline poster="../images/KsaraDecor/ksd_thumbnail.png" title="Ksara Decor webshop prototype walkthrough">
+          <source src="../images/KsaraDecor/ksaradecor.mov" type="video/quicktime">
+          Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor.mov">Download</a>.
+        </video>
+        <figcaption>Webshop walkthrough</figcaption>
+      </figure>
+      <figure class="prototype-video-container">
+        <video controls preload="metadata" playsinline poster="../images/KsaraDecor/ksd_thumbnail.png" title="Ksara Decor collections browse">
+          <source src="../images/KsaraDecor/ksaradecor_collections.mov" type="video/quicktime">
+          Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor_collections.mov">Download</a>.
+        </video>
+        <figcaption>Collections browse</figcaption>
+      </figure>
     </div>
   </main>
 
