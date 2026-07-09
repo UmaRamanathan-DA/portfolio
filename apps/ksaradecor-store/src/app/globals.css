@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --peach: #e6b8af;
+  --peach-light: #f2d4cc;
+  --charcoal: #2d2d2d;
+  --navy: #1a2b56;
+  --teal: #7bc8d4;
+}
+
+body {
+  @apply bg-peach text-charcoal antialiased;
+}
+
+@layer components {
+  .btn-pill {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply btn-pill bg-charcoal text-white hover:bg-navy disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply btn-pill border border-charcoal bg-transparent text-charcoal hover:bg-peach-light;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-card bg-white;
+  }
+}

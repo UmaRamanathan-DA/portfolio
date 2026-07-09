@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Ksara Decor Shop — Collections{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Shop Collections</h1>
+  <p>One-of-a-kind hand-painted bottles. Each piece is unique — add your favourites to the cart.</p>
+</section>
+
+<div class="container">
+  {% for collection in collections %}
+  <section class="collection-block" id="{{ collection.id }}">
+    <div class="collection-header">
+      <img src="{{ collection.image_url }}" alt="{{ collection.name }}" loading="lazy">
+      <div>
+        <h2>{{ collection.name }}</h2>
+        <p>{{ collection.description }}</p>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      {% for product in collection.products %}
+      <article class="product-card">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">
+        <div class="product-body">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <div class="product-price">${{ '%.2f'|format(product.price) }}</div>
+          {% if product.in_stock %}
+          <button class="btn btn-primary" data-add-to-cart="{{ product.id }}">Add to cart</button>
+          {% else %}
+          <span class="sold-out">Sold out</span>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

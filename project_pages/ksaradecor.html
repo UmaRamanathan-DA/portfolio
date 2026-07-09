@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Ksara Decor</title>
+  <style>
+    :root {
+      --peach: #e6b8af;
+      --peach-light: #f2d4cc;
+      --charcoal: #2d2d2d;
+      --navy: #1a2b56;
+      --teal: #7bc8d4;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--peach);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 3rem 1.5rem 1.25rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+      letter-spacing: 0.02em;
+      color: var(--charcoal);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      opacity: 0.85;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .intro {
+      margin-bottom: 2rem;
+    }
+
+    .intro p {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+    }
+
+    .intro em {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    .hero-img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      color: var(--navy);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .prototype-video-container {
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .prototype-video-container video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .figma-btn-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .figma-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      background: var(--charcoal);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background 0.2s;
+    }
+
+    .figma-btn:hover {
+      background: var(--navy);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 2rem 1rem 1.5rem;
+      }
+
+      main {
+        padding: 0 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ksara Decor</h1>
+    <p>Business Ideation · Webshop · Hand-painted Bottle Art</p>
+  </header>
+
+  <div class="figma-btn-wrap">
+    <a
+      href="https://www.figma.com/proto/4StAf8ZsPAfoxRXOTUgBvb/MyWork?node-id=225-8683&starting-point-node-id=225%3A7298"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="figma-btn">
+      Open prototype in Figma ↗
+    </a>
+    <a
+      href="http://localhost:3000"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="figma-btn"
+      style="background: var(--navy);">
+      Visit Next.js shop ↗
+    </a>
+  </div>
+
+  <main>
+    <div class="intro">
+      <p>
+        Ksara Decor upcycles glass bottles with hand-painted marine-inspired art — fun, one-of-a-kind pieces painted with love. A hobby-turned-business ideation for a webshop to sell these bottles online.
+      </p>
+      <em>No more out of the box — think out of the bottle.</em>
+    </div>
+
+    <img
+      class="hero-img"
+      src="../images/KsaraDecor/bottlepaint-2.png"
+      alt="Ksara Decor — hand-painted marine bottles and webshop concept"
+    />
+
+    <h2>Bottle Art</h2>
+    <div class="gallery">
+      <img src="../images/KsaraDecor/bottle_Walrus.png" alt="Hand-painted walrus bottle holding a cup of tea" />
+      <img src="../images/KsaraDecor/bottle_Walrus-1.png" alt="Walrus bottle art — This is not my cup of tea" />
+    </div>
+
+    <h2>Prototype</h2>
+    <div class="prototype-video-container">
+      <video controls preload="metadata" playsinline poster="../images/KsaraDecor/ksd_thumbnail.png" title="Ksara Decor webshop prototype walkthrough">
+        <source src="../images/KsaraDecor/ksaradecor.mov" type="video/quicktime">
+        Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor.mov">Download the prototype video</a>.
+      </video>
+    </div>
+  </main>
+
+  <footer>
+    Ksara Decor · Business Ideation · Webshop Prototype
+  </footer>
+
+</body>
+</html>

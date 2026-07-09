@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='shop.css') }}">
+  <title>{% block title %}Ksara Decor Shop{% endblock %}</title>
+</head>
+<body>
+  <header class="site-header">
+    <a href="{{ url_for('shop.index') }}" class="brand">
+      Ksara Decor
+      <span>Hand-painted bottle art</span>
+    </a>
+    <a href="{{ url_for('shop.cart_page') }}" class="cart-link">
+      Cart
+      <span class="cart-count" data-cart-count {% if not cart_count %}hidden{% endif %}>{{ cart_count or 0 }}</span>
+    </a>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    Ksara Decor · No more out of the box — think out of the bottle.
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="{{ url_for('static', filename='shop.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

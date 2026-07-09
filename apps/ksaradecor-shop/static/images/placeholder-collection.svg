@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#f2d4cc"/>
+  <rect x="80" y="120" width="440" height="360" rx="24" fill="#e6b8af" stroke="#2d2d2d" stroke-width="2" stroke-dasharray="12 8"/>
+  <text x="300" y="290" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="22" fill="#2d2d2d">Collection image</text>
+  <text x="300" y="330" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="16" fill="#1a2b56">Add photo to images/KsaraDecor/collections/</text>
+</svg>

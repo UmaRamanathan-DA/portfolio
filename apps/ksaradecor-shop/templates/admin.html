@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Cart Analytics — Ksara Decor{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Cart Analytics</h1>
+  <p>Track real visitors and add-to-cart activity.</p>
+</section>
+
+<div class="container">
+  <div class="admin-grid">
+    <div class="stat-card">
+      <strong>{{ summary.total_visitors }}</strong>
+      Visitors
+    </div>
+    <div class="stat-card">
+      <strong>{{ summary.total_add_to_cart }}</strong>
+      Add to cart events
+    </div>
+    <div class="stat-card">
+      <strong>{{ summary.unique_products_added }}</strong>
+      Unique products added
+    </div>
+    <div class="stat-card">
+      <strong>{{ summary.active_carts }}</strong>
+      Active carts
+    </div>
+  </div>
+
+  <h2 style="color:var(--navy);font-size:1.1rem;">Recent cart events</h2>
+  {% if events %}
+  <table class="events-table">
+    <thead>
+      <tr>
+        <th>Time (UTC)</th>
+        <th>Action</th>
+        <th>Product</th>
+        <th>Collection</th>
+        <th>Qty</th>
+        <th>Visitor</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+      <tr>
+        <td>{{ event.created_at[:19].replace('T', ' ') }}</td>
+        <td>{{ event.action }}</td>
+        <td>{{ event.product_name }}</td>
+        <td>{{ event.collection_id }}</td>
+        <td>{{ event.quantity }}</td>
+        <td><code>{{ event.visitor_id[:8] }}…</code></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <p>No cart events yet. Share the shop link and wait for visitors.</p>
+  </div>
+  {% endif %}
+
+  <p style="margin-top:2rem;font-size:0.85rem;">
+    API: <a href="{{ url_for('shop.api_analytics') }}">/api/analytics</a> ·
+    <a href="{{ url_for('shop.index') }}">Back to shop</a>
+  </p>
+</div>
+{% endblock %}

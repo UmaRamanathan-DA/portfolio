@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum OrderStatus {
+  pending
+  paid
+  fulfilled
+  cancelled
+}
+
+model Collection {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String
+  heroImage   String
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  name         String
+  description  String
+  priceCents   Int
+  images       String[]
+  isSold       Boolean       @default(false)
+  collectionId String
+  collection   Collection    @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  cartItems    CartLineItem[]
+  orderItems   OrderItem[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model CartSession {
+  id        String         @id @default(uuid())
+  items     CartLineItem[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+model CartLineItem {
+  id            String      @id @default(cuid())
+  cartSessionId String
+  productId     String
+  cartSession   CartSession @relation(fields: [cartSessionId], references: [id], onDelete: Cascade)
+  product       Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([cartSessionId, productId])
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  stripeSessionId String      @unique
+  customerEmail   String
+  customerName    String?
+  shippingAddress Json?
+  status          OrderStatus @default(pending)
+  totalCents      Int         @default(0)
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id              String  @id @default(cuid())
+  orderId         String
+  productId       String
+  priceAtPurchase Int
+  order           Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product         Product @relation(fields: [productId], references: [id])
+}
