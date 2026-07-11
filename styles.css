@@ -473,6 +473,14 @@ html, body {
     margin: 0 auto;
 }
 
+.section-header-summary p {
+    font-size: 1.2rem;
+    color: #545454;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
 .section-intro-wide {
     max-width: 820px;
     line-height: 1.7;
