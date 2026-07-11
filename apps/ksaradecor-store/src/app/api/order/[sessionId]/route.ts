@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 
 export async function GET(
   _request: Request,
@@ -7,7 +7,7 @@ export async function GET(
 ) {
   const { sessionId } = params;
 
-  const order = await prisma.order.findUnique({
+  const order = await getPrisma().order.findUnique({
     where: { stripeSessionId: sessionId },
     include: {
       items: {

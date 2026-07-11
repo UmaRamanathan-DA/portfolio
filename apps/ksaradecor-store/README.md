@@ -42,6 +42,8 @@ npm run dev
 
 Open **http://localhost:3000**
 
+**No database yet?** The shop runs in **demo mode** automatically — you can browse collections and add to cart. Checkout needs a real `DATABASE_URL` (see `.env.example`).
+
 ## User flow
 
 1. **Home** — hero + collection grid

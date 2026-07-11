@@ -3,28 +3,21 @@ import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { ImageGallery } from "@/components/ImageGallery";
 import { SoldBadge } from "@/components/SoldBadge";
+import { getProduct } from "@/lib/catalog-store";
 import { formatPrice } from "@/lib/format";
-import { prisma } from "@/lib/prisma";
 
 export default async function ProductPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const product = await prisma.product.findUnique({
-    where: { slug: params.slug },
-    include: { collection: true },
-  });
-
+  const product = await getProduct(params.slug);
   if (!product) notFound();
 
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
-      <Link
-        href={`/collections/${product.collection.slug}`}
-        className="text-sm text-navy underline"
-      >
-        ← {product.collection.name}
+      <Link href={`/collections/${product.collectionSlug}`} className="text-sm text-navy underline">
+        ← {product.collectionName}
       </Link>
 
       <div className="relative mt-4">
@@ -46,7 +39,7 @@ export default async function ProductPage({
           <div className="card p-4 text-center text-sm">
             <p className="font-medium">This piece has found its home.</p>
             <p className="mt-1 text-charcoal/70">Browse other bottles still available.</p>
-            <Link href={`/collections/${product.collection.slug}`} className="btn-secondary mt-4 inline-flex">
+            <Link href={`/collections/${product.collectionSlug}`} className="btn-secondary mt-4 inline-flex">
               View collection
             </Link>
           </div>

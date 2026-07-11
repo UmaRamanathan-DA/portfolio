@@ -1,20 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
-import { prisma } from "@/lib/prisma";
+import { getCollection } from "@/lib/catalog-store";
 
 export default async function CollectionPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const collection = await prisma.collection.findUnique({
-    where: { slug: params.slug },
-    include: {
-      products: { orderBy: { createdAt: "asc" } },
-    },
-  });
-
+  const collection = await getCollection(params.slug);
   if (!collection) notFound();
 
   return (

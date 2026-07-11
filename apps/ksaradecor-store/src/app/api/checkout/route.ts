@@ -1,10 +1,21 @@
 import { NextResponse } from "next/server";
 import { clearCart, getCartWithProducts, getOrCreateCartId } from "@/lib/cart";
+import { isDemoMode } from "@/lib/db-config";
 import { SHIPPING_RATES, STRIPE_TAX_ENABLED } from "@/lib/constants";
-import { prisma } from "@/lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 import { getStripe } from "@/lib/stripe";
 
 export async function POST() {
+  if (isDemoMode()) {
+    return NextResponse.json(
+      {
+        error:
+          "Checkout requires a database. Add your Neon/Supabase DATABASE_URL to .env, then run npm run db:push && npm run db:seed",
+      },
+      { status: 503 }
+    );
+  }
+
   try {
     const cartId = await getOrCreateCartId();
     const cart = await getCartWithProducts(cartId);
@@ -75,7 +86,7 @@ export async function POST() {
       },
     });
 
-    await prisma.order.create({
+    await getPrisma().order.create({
       data: {
         stripeSessionId: session.id,
         customerEmail: "pending@checkout.stripe",

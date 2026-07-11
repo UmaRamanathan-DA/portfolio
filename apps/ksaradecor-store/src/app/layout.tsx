@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { DemoBanner } from "@/components/DemoBanner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { BRAND } from "@/lib/constants";
 import { getCartWithProducts, getOrCreateCartId } from "@/lib/cart";
@@ -33,6 +34,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-sans`}>
+        <DemoBanner />
         <SiteHeader cartCount={cartCount} />
         <main className="min-h-screen pb-8">{children}</main>
       </body>

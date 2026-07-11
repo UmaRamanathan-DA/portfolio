@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { clearCart } from "@/lib/cart";
 import { sendOrderConfirmationEmail } from "@/lib/email";
-import { prisma } from "@/lib/prisma";
+import { getPrisma } from "@/lib/prisma";
 import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     const fullSession = await stripe.checkout.sessions.retrieve(session.id);
 
     try {
-      const order = await prisma.order.findUnique({
+      const order = await getPrisma().order.findUnique({
         where: { stripeSessionId: session.id },
         include: {
           items: {
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
 
       const productIds = order.items.map((item) => item.productId);
 
-      await prisma.$transaction(async (tx) => {
+      await getPrisma().$transaction(async (tx) => {
         const soldUpdate = await tx.product.updateMany({
           where: { id: { in: productIds }, isSold: false },
           data: { isSold: true },
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
         });
       });
 
-      const paidOrder = await prisma.order.findUnique({
+      const paidOrder = await getPrisma().order.findUnique({
         where: { id: order.id },
         include: { items: { include: { product: true } } },
       });

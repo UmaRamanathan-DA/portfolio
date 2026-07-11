@@ -3,13 +3,11 @@ export const dynamic = "force-dynamic";
 import Image from "next/image";
 import { CollectionCard } from "@/components/CollectionCard";
 import { BRAND } from "@/lib/constants";
+import { listCollections } from "@/lib/catalog-store";
 import { productImageSrc } from "@/lib/format";
-import { prisma } from "@/lib/prisma";
 
 export default async function HomePage() {
-  const collections = await prisma.collection.findMany({
-    orderBy: { name: "asc" },
-  });
+  const collections = await listCollections();
 
   return (
     <div className="mx-auto max-w-5xl px-4">
