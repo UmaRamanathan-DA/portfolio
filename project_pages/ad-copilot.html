@@ -58,10 +58,32 @@
             padding-bottom: 0.5rem;
         }
 
+        .content-section h4 {
+            color: #333;
+            font-size: 1.25rem;
+            margin: 1.75rem 0 0.85rem;
+        }
+
         .content-section p {
             color: #555;
             line-height: 1.8;
             margin-bottom: 1rem;
+        }
+
+        .content-section ul,
+        .content-section ol {
+            margin: 0 0 1rem 1.35rem;
+            color: #555;
+        }
+
+        .content-section li {
+            line-height: 1.8;
+            margin-bottom: 0.65rem;
+        }
+
+        .narrative-lede {
+            font-size: 1.05rem;
+            color: #444;
         }
 
         .skill-list {
@@ -135,7 +157,7 @@
         </a>
 
         <div class="project-header-s">
-            <h1 class="project-title-s">Ad Copilot — AI Co-Pilot for Performance Marketing Teams</h1>
+            <h1 class="project-title-s">Ad Copilot: An AI Co-Pilot for Performance Marketing Teams</h1>
             <div class="project-meta-s">
                 <div class="meta-item-s"><i class="fas fa-user"></i>Product Manager (self-directed portfolio project)</div>
                 <div class="meta-item-s"><i class="fas fa-bullhorn"></i>Performance Marketing · MarTech · Generative AI</div>
@@ -157,6 +179,71 @@
                         <span class="skill-chip"><strong>Technical Product Management</strong> — API integration, system architecture</span>
                         <span class="skill-chip"><strong>Product Requirements &amp; Process</strong> — PRDs, user stories, phased release planning</span>
                     </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Case Study Narrative</h3>
+                    <p class="narrative-lede">A self-directed product portfolio project Simulating a 0-to-1 AI product build inside a performance marketing / adtech context. All company names, users, and metrics below are illustrative, built to demonstrate product judgment rather than reported as real company results.</p>
+
+                    <h4>1. The Premise</h4>
+                    <p>Performance marketing teams at mid-market e-commerce and lead-gen companies run 20-100+ live ad variants at any time across Meta and Google. Two things are true at once:</p>
+                    <ul>
+                        <li>Creative fatigue is constant. Winning ads decay in 1-3 weeks. Marketers can’t hand-write and test replacements fast enough.</li>
+                        <li>Budget decisions lag reality. By the time a human notices CPA creeping up on a campaign, days of spend have already been wasted.</li>
+                    </ul>
+                    <p>The market has AI creative generators (copy/image tools) and it has bid/budget automation (platform-native and third-party). What’s missing is a connective layer: a copilot that watches performance signals, proposes both creative and budget actions, and knows when to act automatically versus when to ask a human first.</p>
+                    <p>Thesis: the product isn’t valuable because it uses AI — it’s valuable because it makes a trust boundary explicit: what the AI can do autonomously, what it must escalate, and how a marketer builds confidence in it over time.</p>
+
+                    <h4>2. My Role</h4>
+                    <p>Acting as the sole PM for a 0-to-1 build, partnered with a (hypothetical) team of 2 backend engineers, 1 ML engineer, and 1 designer. Responsibilities modeled: discovery, PRD ownership, backlog definition, metrics framework, cross-functional alignment with engineering on architecture, and go-to-market/release sequencing.</p>
+
+                    <h4>3. Discovery: Who Is This For, and What Do They Actually Need</h4>
+                    <p>Primary persona: the in-house performance marketer at a company spending $50K-$500K/month on paid social and search, usually a team of 1-4, no dedicated data scientist.</p>
+                    <p>Assumed/validated-style pains (framed as research findings for realism, grounded in well-documented industry pain points):</p>
+                    <ul>
+                        <li>They trust automated bidding less than they trust automated reporting — platform “black box” optimization has burned them before.</li>
+                        <li>They will not adopt anything that can spend money without a visible paper trail.</li>
+                        <li>Their biggest time sink isn’t analysis, it’s production — writing new ad copy variants fast enough to keep pace with decay.</li>
+                    </ul>
+                    <p>Key product insight: the adoption barrier isn’t AI capability, it’s AI accountability. This became the design spine for everything downstream — especially the human-in-the-loop review flow and the confidence-threshold system (detailed in the AI Workflow Design doc, next in this series).</p>
+
+                    <h4>4. Solution Overview</h4>
+                    <p>Ad Copilot has three connected capabilities:</p>
+                    <ol>
+                        <li>Creative Generation — generates ad copy/headline variants from a product feed + past top-performing ads, tagged with a predicted performance confidence score.</li>
+                        <li>Performance Monitoring &amp; Recommendation — watches live campaigns against ROAS/CPA/CPL targets and proposes budget/bid changes.</li>
+                        <li>Human Review Queue — every AI action is classified into one of three lanes: Auto-apply (high confidence, low blast radius), Suggest (needs a human click to approve), or Escalate (flagged as high-risk: new market, low data volume, or budget change above a threshold).</li>
+                    </ol>
+                    <p>The lane a recommendation lands in is the core AI product mechanic — it’s what separates this from “just call the API and ship whatever it says.”</p>
+
+                    <h4>5. Key Product Decisions (and the tradeoffs behind them)</h4>
+                    <p>Decision: Default everything to “Suggest” in v1, not “Auto-apply.” Even where the model was confident, early trust had to be earned before autonomy was granted. This slowed down the “wow” of the demo but was the right call for adoption — a lesson pulled directly from how performance marketers described being burned by black-box platform automation.</p>
+                    <p>Decision: Cost controls are a v1 requirement, not a v2 nice-to-have. Because creative generation is called per-product, per-variant, at scale, unmanaged LLM spend could scale faster than the customer’s ad budget itself. This forced early decisions on model tiering (cheaper model for first-pass variant generation, stronger model only for the top-N candidates worth polishing), caching of repeated product-feed inputs, and hard per-account monthly generation caps.</p>
+                    <p>Decision: Attribution stays platform-native in v1; no custom attribution engine. Building a proprietary multi-touch attribution model was tempting but would have doubled the engineering scope and introduced a credibility risk (marketers are skeptical of any attribution numbers that don’t reconcile with their ad platform’s own reporting). v1 ingests Meta/Google’s own conversion data and layers recommendations on top of it, rather than trying to out-attribute the platforms.</p>
+                    <p>Decision: One north-star metric, not a dashboard of everything. Chose Incremental ROAS improvement attributable to accepted AI suggestions as the single success metric for the product itself (distinct from the marketing metrics the tool helps optimize). This kept the team from optimizing for engagement-with-the-tool instead of outcomes-for-the-customer.</p>
+
+                    <h4>6. What Comes Next in This Portfolio</h4>
+                    <p>This case study is the narrative spine. It’s backed by:</p>
+                    <ul>
+                        <li>A full PRD with scope, requirements, and out-of-scope calls</li>
+                        <li>A user story backlog with acceptance criteria</li>
+                        <li>An AI workflow design doc covering prompt design, confidence scoring, cost controls, and the review-lane logic in detail</li>
+                        <li>A metrics &amp; attribution spec operationalizing ROAS/CPA/CPL/CTR as product signals</li>
+                        <li>A system architecture / API integration doc for the Meta Ads API, Google Ads API, and the LLM provider</li>
+                        <li>A phased release plan with rollout gates and rollback criteria</li>
+                    </ul>
+
+                    <h4>7. Lessons (framed as retro learnings)</h4>
+                    <ul>
+                        <li>The hardest part of an AI product isn’t the model — it’s designing the escalation logic that earns user trust incrementally.</li>
+                        <li>Cost controls are a product decision, not an infra afterthought, the moment your AI feature is usage-scaled rather than flat-rate.</li>
+                        <li>In performance marketing specifically, credibility with the platforms’ own numbers matters more than technical elegance in your own attribution logic.</li>
+                    </ul>
+
+                    <a href="../assets/ad-copilot/ad-copilot-case-study.pdf" target="_blank" class="pdf-open-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open Case Study Narrative (PDF)
+                    </a>
                 </div>
 
                 <div class="content-section">
