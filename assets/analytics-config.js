@@ -14,8 +14,9 @@
  * Localhost / private networks are ignored by GoatCounter by default.
  */
 window.PORTFOLIO_ANALYTICS = {
-  // Required: your GoatCounter site code (subdomain)
-  goatcounterCode: "https://umaramanathan-da.github.io/portfolio/",
+  // Required: GoatCounter SITE CODE only (the subdomain), NOT your portfolio URL.
+  // Example: if your dashboard is https://mysite.goatcounter.com → use "mysite"
+  goatcounterCode: "umaramanathan-da.github.io/portfolio/",
 
   // Show a quiet “N views” line at the bottom of each page
   showViewCount: true,
