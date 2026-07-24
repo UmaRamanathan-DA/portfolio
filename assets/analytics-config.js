@@ -15,7 +15,7 @@
  */
 window.PORTFOLIO_ANALYTICS = {
   // Required: your GoatCounter site code (subdomain)
-  goatcounterCode: "",
+  goatcounterCode: "https://umaramanathan-da.github.io/portfolio/",
 
   // Show a quiet “N views” line at the bottom of each page
   showViewCount: true,
