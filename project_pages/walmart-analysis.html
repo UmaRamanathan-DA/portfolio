@@ -4,235 +4,611 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walmart Black Friday Sales Analysis - Uma Ramanathan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="project-pages-styles.css">
     <style>
-        .project-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');        
+        :root {
+            --notion-bg: #ffffff;
+            --notion-page: #ffffff;
+            --notion-text: #37352f;
+            --notion-muted: #787774;
+            --notion-border: rgba(55, 53, 47, 0.09);
+            --notion-hover: rgba(55, 53, 47, 0.04);
+            --notion-callout: #f1f1ef;
+            --notion-callout-blue: #e7f3f8;
+            --notion-callout-amber: #fbf3db;
+            --notion-callout-green: #edf3ec;
+            --notion-callout-pink: #f4e0e9;
+            --notion-accent: #2383e2;
         }
-        .quantitative-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 1.5rem;
-        margin: 1.5rem 0 0;
-    }
-    @media (max-width: 768px) {
-        .quantitative-gallery {
-            grid-template-columns: 1fr;
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #f7f6f3;
+            color: var(--notion-text);
+            font-family: "DM Sans", ui-sans-serif, sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
-    }
-    .quantitative-card {
-        background: white;
-        border-radius: 10px;
-        padding: 1rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        text-align: center;
-    }
 
-    .quantitative-card img {
-        width: 100%;
-        height: auto;
-        border-radius: 6px;
-    }
+        .page-shell {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 1.25rem 1rem 4rem;
+        }
 
-    .quantitative-card figcaption {
-        margin-top: 0.75rem;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #333;
-    }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1.25rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+            color: var(--notion-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.15s, color 0.15s;
+        }
 
+        .back-link:hover {
+            background: var(--notion-hover);
+            color: var(--notion-text);
+        }
+
+        .notion-page {
+            background: var(--notion-page);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
+            padding: 3rem 3.25rem 3.5rem;
+        }
+
+        .notion-cover {
+            height: 8px;
+            margin: -3rem -3.25rem 2.25rem;
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(90deg, #0071ce 0%, #ffc220 55%, #e8deee 100%);
+        }
+
+        .notion-title {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: clamp(1.85rem, 4vw, 2.55rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--notion-text);
+            margin: 0 0 1.25rem;
+        }
+
+        .notion-props {
+            display: grid;
+            gap: 0.35rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--notion-border);
+        }
+
+        .prop-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 0.75rem;
+            align-items: start;
+            padding: 0.35rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.92rem;
+        }
+
+        .prop-row:hover { background: var(--notion-hover); }
+
+        .prop-label {
+            color: var(--notion-muted);
+            font-weight: 500;
+        }
+
+        .prop-value { color: var(--notion-text); }
+
+        .prop-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .prop-tag {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            background: #e8deee;
+            color: #5a3e6b;
+        }
+
+        .prop-tag.blue { background: #d3e5ef; color: #1a5270; }
+        .prop-tag.green { background: #dbeddb; color: #2d5a2d; }
+        .prop-tag.amber { background: #fdecc8; color: #7a5c00; }
+        .prop-tag.yellow { background: #fff2c2; color: #6b5a00; }
+
+        .notion-section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--notion-muted);
+            margin: 2rem 0 0.75rem;
+        }
+
+        .notion-h2 {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin: 2.35rem 0 0.85rem;
+            color: var(--notion-text);
+            scroll-margin-top: 1.5rem;
+        }
+
+        .notion-h2:first-of-type { margin-top: 1.5rem; }
+
+        .notion-h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.55rem;
+            color: var(--notion-text);
+        }
+
+        .notion-page p {
+            margin: 0 0 0.9rem;
+            color: var(--notion-text);
+        }
+
+        .notion-page ul,
+        .notion-page ol {
+            margin: 0.25rem 0 1rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .notion-page li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .notion-page ul li::before {
+            content: "";
+            position: absolute;
+            left: 0.35rem;
+            top: 0.65rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--notion-text);
+            opacity: 0.55;
+        }
+
+        .notion-page ol {
+            counter-reset: notion-ol;
+        }
+
+        .notion-page ol li {
+            counter-increment: notion-ol;
+        }
+
+        .notion-page ol li::before {
+            content: counter(notion-ol) ".";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.4rem;
+            color: var(--notion-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .callout {
+            display: flex;
+            gap: 0.85rem;
+            align-items: flex-start;
+            margin: 1rem 0 1.25rem;
+            padding: 0.95rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-callout);
+        }
+
+        .callout.blue { background: var(--notion-callout-blue); }
+        .callout.amber { background: var(--notion-callout-amber); }
+        .callout.green { background: var(--notion-callout-green); }
+        .callout.pink { background: var(--notion-callout-pink); }
+
+        .callout-mark {
+            flex-shrink: 0;
+            width: 1.35rem;
+            height: 1.35rem;
+            margin-top: 0.1rem;
+            border-radius: 4px;
+            background: rgba(55, 53, 47, 0.08);
+            color: var(--notion-muted);
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            letter-spacing: 0;
+        }
+
+        .callout-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .callout-body p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .callout-body p + p { margin-top: 0.65rem; }
+
+        .callout-body a {
+            color: var(--notion-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .callout-body a:hover { text-decoration: underline; }
+
+        .divider {
+            height: 1px;
+            background: var(--notion-border);
+            margin: 2.25rem 0;
+            border: none;
+        }
+
+        .skills-inline {
+            display: grid;
+            gap: 0.55rem;
+            margin: 0.5rem 0 0;
+        }
+
+        .skill-line {
+            padding: 0.7rem 0.85rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .skill-line strong { font-weight: 600; }
+
+        .toc {
+            margin: 0.5rem 0 1.5rem;
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+        }
+
+        .toc-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--notion-muted);
+            margin-bottom: 0.45rem;
+        }
+
+        .toc a {
+            display: block;
+            color: var(--notion-accent);
+            text-decoration: none;
+            font-size: 0.92rem;
+            padding: 0.2rem 0;
+        }
+
+        .toc a:hover { text-decoration: underline; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .gallery figure {
+            margin: 0;
+        }
+
+        .gallery a {
+            display: block;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--notion-border);
+            transition: box-shadow 0.15s, border-color 0.15s;
+        }
+
+        .gallery a:hover {
+            border-color: rgba(55, 53, 47, 0.18);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .gallery img {
+            display: block;
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .gallery figcaption {
+            margin-top: 0.45rem;
+            font-size: 0.85rem;
+            color: var(--notion-muted);
+            line-height: 1.4;
+        }
+
+        .tech-grid {
+            display: grid;
+            gap: 0.85rem;
+            margin: 0.75rem 0 0;
+        }
+
+        .tech-block {
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+        }
+
+        .tech-block h4 {
+            margin: 0 0 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--notion-muted);
+        }
+
+        .tech-block .prop-tags {
+            margin: 0;
+        }
+
+        @media (max-width: 720px) {
+            .notion-page {
+                padding: 2rem 1.25rem 2.5rem;
+            }
+
+            .notion-cover {
+                margin: -2rem -1.25rem 1.75rem;
+            }
+
+            .prop-row {
+                grid-template-columns: 1fr;
+                gap: 0.15rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="project-detail-container">
-        <a href="../index.html" class="back-btn">
+    <div class="page-shell">
+        <a href="../index.html" class="back-link">
             <i class="fas fa-arrow-left"></i>
             Back to Portfolio
         </a>
-        
-        <div>
-            <h1 class="project-title">Walmart Black Friday Sales Analysis</h1>
-            
-            <div class="project-meta">
-                <div class="meta-item">
-                    
-                    <span>Walmart . Business Analytics & Statistical Analysis . Jul 2024 - Aug 2024 . Data Analyst/Data Scientist</span>
-                </div>
-            </div>
-            
-            <div class="project-actions">
-       
-                <a href="https://walmartblackfriday-umaramanathan.streamlit.app/" target="_blank" class="action-btn dashboard-btn">
-                    <i class="fas fa-chart-line"></i>
-                    View Analysis Dashboard
-                </a>
-            </div>
-        </div>
-        
-        <div class="project-content">
-            <div class="project-description">
-                <h3>Project Overview</h3>
-                <p>Conducted comprehensive statistical analysis of Walmart's Black Friday customer purchase behavior to determine if spending habits differ between male and female customers. Performed advanced statistical testing including hypothesis testing, confidence intervals, and Central Limit Theorem simulations to provide data-driven insights for business decision-making. Developed an interactive Streamlit dashboard with comprehensive visualizations and business recommendations to support strategic marketing and inventory planning.</p>
-                             
-                <h3>Key Analysis Areas</h3>
-                <p>• <strong>Data Quality Analysis:</strong> Ensured data integrity and consistency for reliable statistical analysis</p>
-                <p>• <strong>Gender Analysis:</strong> Investigated spending patterns differences between male and female customers</p>
-                <p>• <strong>Age Group Analysis:</strong> Identified key demographic segments with highest spending potential</p>
-                <p>• <strong>City Category Analysis:</strong> Explored regional variations in Black Friday shopping behavior</p>
-                <p>• <strong>Occupation Analysis:</strong> Provided insights for targeted marketing strategies</p>
-                <p>• <strong>Statistical Analysis:</strong> Applied rigorous statistical methods for reliable conclusions</p>
-                <p>• <strong>Business Recommendations:</strong> Developed data-driven strategies for business optimization</p>
-                
-        
-                <div class="quantitative-gallery">
-                    
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh1.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh1.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Duration Analysis</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh2.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh2.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Drop-off Postcode vs Hour</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh3.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh3.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Pickup Hour-of-Day</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh4.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh4.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Trip Counts by Postcode</figcaption>
-                    </figure>
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh5.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh5.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Fare and Tip Analysis</figcaption>
-                    </figure>
-                   
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh6.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh6.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Revenue per Km</figcaption>
-                    </figure>
-                   
-                    <figure class="quantitative-card">
-                        <a href="../images/walmartblackfriday/sh7.png" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/walmartblackfriday/sh7.png" alt="Trip duration trends by weekday and hour">
-                        </a>
-                        <figcaption>Average Trip Duration</figcaption>
-                    </figure>
 
-                
-                </div>
+        <article class="notion-page">
+            <div class="notion-cover" aria-hidden="true"></div>
 
-                <h3>Detailed Tasks</h3>
-                <p>• Collected and preprocessed Walmart Black Friday transactional data to ensure data quality and consistency for statistical analysis</p>
-                <p>• Conducted comprehensive exploratory data analysis (EDA) using Python and statistical libraries to uncover key trends in customer spending behavior</p>
-                <p>• Performed hypothesis testing to determine if there are statistically significant differences in spending between male and female customers</p>
-                <p>• Implemented confidence interval analysis to provide reliable estimates of customer spending patterns with different confidence levels</p>
-                <p>• Conducted Central Limit Theorem simulations to demonstrate the impact of sample size on statistical precision and reliability</p>
-                <p>• Analyzed customer segments by age, occupation, city category, and marital status to identify high-value customer groups</p>
-                <p>• Developed an interactive Streamlit dashboard with comprehensive visualizations and statistical analysis tools for stakeholder engagement</p>
-                <p>• Created data-driven business recommendations for targeted marketing, inventory optimization, and revenue enhancement strategies</p>
-                <p>• Applied statistical rigor to business problems, translating complex analytical findings into actionable insights for non-technical stakeholders</p>
-                
-                <h3>Key Findings</h3>
-                <p>• Statistical analysis revealed significant differences in spending patterns between male and female customers</p>
-                <p>• Central Limit Theorem simulations demonstrated the importance of sample size for reliable statistical inference</p>
-                <p>• Age group analysis identified key demographic segments with highest spending potential</p>
-                <p>• Geographic analysis showed regional variations in Black Friday shopping behavior</p>
-                <p>• Occupation-based analysis provided insights for targeted marketing strategies</p>
-            
-            </div>
-            
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Skills Used</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Streamlit</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">Hypothesis Testing</span>
-                        <span class="skill-tag">Confidence Intervals</span>
-                        <span class="skill-tag">Central Limit Theorem</span>
-                        <span class="skill-tag">Exploratory Data Analysis</span>
-                        <span class="skill-tag">Data Preprocessing</span>
-                        <span class="skill-tag">Customer Segmentation</span>
-                        <span class="skill-tag">Business Intelligence</span>
-                        <span class="skill-tag">Data Visualization</span>
+            <h1 class="notion-title">Walmart Black Friday Sales Analysis</h1>
+
+            <div class="notion-props" aria-label="Page properties">
+                <div class="prop-row">
+                    <span class="prop-label">Company</span>
+                    <span class="prop-value">Walmart</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Role</span>
+                    <span class="prop-value">Data Analyst / Data Scientist</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Timeline</span>
+                    <span class="prop-value">Jul 2024 – Aug 2024</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Domain</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag blue">Business Analytics</span>
+                        <span class="prop-tag yellow">Statistical Analysis</span>
+                        <span class="prop-tag green">Retail</span>
                     </div>
                 </div>
-                
-                <div class="tech-section">
-                    <h4>Tech Stack</h4>
-                    
-                   
-                    
-                    <div class="tech-category">
-                        <h5>Statistical Analysis</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Hypothesis Testing</span>
-                            <span class="skill-tag">Confidence Intervals</span>
-                            <span class="skill-tag">Central Limit Theorem</span>
-                            <span class="skill-tag">T-Test Analysis</span>
-                            <span class="skill-tag">Descriptive Statistics</span>
-                            <span class="skill-tag">Statistical Significance Testing</span>
-                            <span class="skill-tag">Sample Size Analysis</span>
-                        </div>
-                    </div>
-                    
-                    <div class="tech-category">
-                        <h5>Data Analysis</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Data Preprocessing</span>
-                            <span class="skill-tag">Exploratory Data Analysis</span>
-                            <span class="skill-tag">Customer Segmentation</span>
-                            <span class="skill-tag">Gender Analysis</span>
-                            <span class="skill-tag">Age Group Analysis</span>
-                            <span class="skill-tag">Geographic Analysis</span>
-                            <span class="skill-tag">Occupation Analysis</span>
-                        </div>
-                    </div>
-                    
-                    <div class="tech-category">
-                        <h5>Business Intelligence</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Interactive Dashboards</span>
-                            <span class="skill-tag">Data Visualization</span>
-                            <span class="skill-tag">Business Recommendations</span>
-                        </div>
-                    </div>
-                    <div class="tech-category">
-                        <h5>Programming & Tools</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Streamlit</span>
-                            <span class="skill-tag">Pandas</span>
-                            <span class="skill-tag">NumPy</span>
-                            <span class="skill-tag">Plotly</span>
-                            <span class="skill-tag">SciPy</span>
-                            <span class="skill-tag">Matplotlib</span>
-                            <span class="skill-tag">Seaborn</span>
-                        </div>
+                <div class="prop-row">
+                    <span class="prop-label">Skills</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag amber">Hypothesis Testing</span>
+                        <span class="prop-tag amber">Confidence Intervals</span>
+                        <span class="prop-tag amber">Customer Segmentation</span>
+                        <span class="prop-tag amber">EDA</span>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <p class="notion-section-label">Summary</p>
+            <p>Statistical deep-dive into Walmart Black Friday purchase behavior — specifically whether spending habits differ between male and female customers. Used hypothesis testing, confidence intervals, and Central Limit Theorem simulations, then packaged the findings into an interactive Streamlit dashboard with business recommendations for marketing and inventory planning.</p>
+
+            <div class="callout blue">
+                <div class="callout-mark" aria-hidden="true">→</div>
+                <div class="callout-body">
+                    <p><a href="https://walmartblackfriday-umaramanathan.streamlit.app/" target="_blank" rel="noopener noreferrer">Open the live analysis dashboard ↗</a></p>
+                </div>
+            </div>
+
+            <p class="notion-section-label">Top skills used</p>
+            <div class="skills-inline">
+                <div class="skill-line"><strong>Statistical Inference</strong> — hypothesis testing, confidence intervals, CLT simulations</div>
+                <div class="skill-line"><strong>Exploratory Data Analysis</strong> — spend patterns by gender, age, city, and occupation</div>
+                <div class="skill-line"><strong>Customer Segmentation</strong> — high-value demographic and geographic cohorts</div>
+                <div class="skill-line"><strong>Dashboarding</strong> — Streamlit app with visuals and stakeholder-ready recommendations</div>
+            </div>
+
+            <hr class="divider">
+
+            <p class="notion-section-label">Project narrative</p>
+
+            <nav class="toc" aria-label="Page contents">
+                <div class="toc-title">In this page</div>
+                <a href="#overview">1. Overview</a>
+                <a href="#areas">2. Key analysis areas</a>
+                <a href="#visuals">3. Visuals from the analysis</a>
+                <a href="#tasks">4. What I did</a>
+                <a href="#findings">5. Key findings</a>
+                <a href="#stack">6. Tech stack</a>
+            </nav>
+
+            <h2 class="notion-h2" id="overview">1. Overview</h2>
+            <p>The core question was simple: do male and female customers spend differently on Black Friday at Walmart — and if so, by how much, and with what confidence?</p>
+            <p>Around that question I built a full statistical workflow: clean the transactional data, explore spend across demographics, run formal tests, quantify uncertainty with confidence intervals, and show how sample size affects reliability via CLT simulations. The output wasn’t just a notebook — it was a Streamlit dashboard stakeholders could actually use.</p>
+
+            <div class="callout amber">
+                <div class="callout-mark" aria-hidden="true">★</div>
+                <div class="callout-body">
+                    <p>Goal: turn rigorous stats into decisions — who to target, where spend concentrates, and how confident we can be before betting marketing budget on a segment.</p>
+                </div>
+            </div>
+
+            <h2 class="notion-h2" id="areas">2. Key analysis areas</h2>
+            <ul>
+                <li><strong>Data quality</strong> — integrity and consistency checks before any inference</li>
+                <li><strong>Gender analysis</strong> — spending pattern differences between male and female customers</li>
+                <li><strong>Age groups</strong> — demographic segments with the highest spending potential</li>
+                <li><strong>City category</strong> — regional variation in Black Friday behavior</li>
+                <li><strong>Occupation</strong> — signals useful for targeted marketing</li>
+                <li><strong>Statistical methods</strong> — hypothesis tests, intervals, and CLT simulations for reliable conclusions</li>
+                <li><strong>Business recommendations</strong> — strategies tied back to the evidence</li>
+            </ul>
+
+            <h2 class="notion-h2" id="visuals">3. Visuals from the analysis</h2>
+            <p>A few charts from the exploratory and statistical work. Click any image to open full size.</p>
+
+            <div class="gallery">
+                <figure>
+                    <a href="../images/walmartblackfriday/sh1.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh1.png" alt="Duration analysis chart">
+                    </a>
+                    <figcaption>Duration Analysis</figcaption>
+                </figure>
+                <figure>
+                    <a href="../images/walmartblackfriday/sh2.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh2.png" alt="Drop-off postcode versus hour chart">
+                    </a>
+                    <figcaption>Drop-off Postcode vs Hour</figcaption>
+                </figure>
+                <figure>
+                    <a href="../images/walmartblackfriday/sh3.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh3.png" alt="Pickup hour of day chart">
+                    </a>
+                    <figcaption>Pickup Hour-of-Day</figcaption>
+                </figure>
+                <figure>
+                    <a href="../images/walmartblackfriday/sh4.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh4.png" alt="Trip counts by postcode chart">
+                    </a>
+                    <figcaption>Trip Counts by Postcode</figcaption>
+                </figure>
+                <figure>
+                    <a href="../images/walmartblackfriday/sh5.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh5.png" alt="Fare and tip analysis chart">
+                    </a>
+                    <figcaption>Fare and Tip Analysis</figcaption>
+                </figure>
+                <figure>
+                    <a href="../images/walmartblackfriday/sh6.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh6.png" alt="Revenue per kilometer chart">
+                    </a>
+                    <figcaption>Revenue per Km</figcaption>
+                </figure>
+                <figure>
+                    <a href="../images/walmartblackfriday/sh7.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/walmartblackfriday/sh7.png" alt="Average trip duration chart">
+                    </a>
+                    <figcaption>Average Trip Duration</figcaption>
+                </figure>
+            </div>
+
+            <h2 class="notion-h2" id="tasks">4. What I did</h2>
+            <ol>
+                <li>Collected and preprocessed Walmart Black Friday transactional data for analysis-ready quality</li>
+                <li>Ran EDA in Python to surface spend trends across customer segments</li>
+                <li>Hypothesis-tested gender differences in spending for statistical significance</li>
+                <li>Built confidence intervals for spending estimates at multiple confidence levels</li>
+                <li>Simulated the Central Limit Theorem to show how sample size affects precision</li>
+                <li>Segmented customers by age, occupation, city category, and marital status</li>
+                <li>Shipped an interactive Streamlit dashboard with visuals and stats tools</li>
+                <li>Wrote data-driven recommendations for marketing, inventory, and revenue</li>
+                <li>Translated technical findings into language non-technical stakeholders could act on</li>
+            </ol>
+
+            <h2 class="notion-h2" id="findings">5. Key findings</h2>
+            <div class="callout green">
+                <div class="callout-mark" aria-hidden="true">✓</div>
+                <div class="callout-body">
+                    <ul style="margin:0;">
+                        <li>Spending patterns differed significantly between male and female customers</li>
+                        <li>CLT simulations made the sample-size ↔ reliability tradeoff concrete for stakeholders</li>
+                        <li>Age-group analysis pointed to the demographic bands with the highest spend potential</li>
+                        <li>Geographic splits showed clear regional variation in Black Friday behavior</li>
+                        <li>Occupation-based cuts suggested practical levers for targeted marketing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <h2 class="notion-h2" id="stack">6. Tech stack</h2>
+            <div class="tech-grid">
+                <div class="tech-block">
+                    <h4>Statistical analysis</h4>
+                    <div class="prop-tags">
+                        <span class="prop-tag">Hypothesis Testing</span>
+                        <span class="prop-tag">Confidence Intervals</span>
+                        <span class="prop-tag">Central Limit Theorem</span>
+                        <span class="prop-tag">T-Test</span>
+                        <span class="prop-tag">Descriptive Stats</span>
+                        <span class="prop-tag">Sample Size Analysis</span>
+                    </div>
+                </div>
+                <div class="tech-block">
+                    <h4>Data analysis</h4>
+                    <div class="prop-tags">
+                        <span class="prop-tag">Data Preprocessing</span>
+                        <span class="prop-tag">EDA</span>
+                        <span class="prop-tag">Customer Segmentation</span>
+                        <span class="prop-tag">Gender / Age / Geo Analysis</span>
+                        <span class="prop-tag">Occupation Analysis</span>
+                    </div>
+                </div>
+                <div class="tech-block">
+                    <h4>Business intelligence</h4>
+                    <div class="prop-tags">
+                        <span class="prop-tag">Interactive Dashboards</span>
+                        <span class="prop-tag">Data Visualization</span>
+                        <span class="prop-tag">Business Recommendations</span>
+                    </div>
+                </div>
+                <div class="tech-block">
+                    <h4>Programming &amp; tools</h4>
+                    <div class="prop-tags">
+                        <span class="prop-tag blue">Python</span>
+                        <span class="prop-tag blue">Streamlit</span>
+                        <span class="prop-tag blue">Pandas</span>
+                        <span class="prop-tag blue">NumPy</span>
+                        <span class="prop-tag blue">Plotly</span>
+                        <span class="prop-tag blue">SciPy</span>
+                        <span class="prop-tag blue">Matplotlib</span>
+                        <span class="prop-tag blue">Seaborn</span>
+                    </div>
+                </div>
+            </div>
+        </article>
     </div>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>
 </body>
-</html> 
+</html>
