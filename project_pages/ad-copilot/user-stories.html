@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Stories & Acceptance Criteria — Ad Copilot - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="notion-doc.css">
+</head>
+<body>
+    <div class="page-shell">
+        <a href="../ad-copilot.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Case Study
+        </a>
+
+        <article class="notion-page">
+            <div class="notion-cover" aria-hidden="true"></div>
+            <h1 class="notion-title">User Stories & Acceptance Criteria</h1>
+
+            <div class="notion-props" aria-label="Page properties">
+                <div class="prop-row">
+                    <span class="prop-label">Status</span>
+                    <span class="prop-value">Draft v1.0</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Owner</span>
+                    <span class="prop-value">Product</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Series</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag blue">Ad Copilot</span>
+                        <span class="prop-tag">Portfolio Doc</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="toc" aria-label="On this page">
+                <div class="toc-title">On this page</div>
+                <a href="#epic1">Epic 1 — Account Connection</a>
+<a href="#epic2">Epic 2 — Creative Generation</a>
+<a href="#epic3">Epic 3 — Monitoring</a>
+<a href="#epic4">Epic 4 — Review Lanes</a>
+<a href="#epic5">Epic 5 — Cost Controls</a>
+<a href="#summary">Backlog summary</a>
+            </nav>
+
+            <p>Stories are grouped by epic, mapped to PRD Functional Requirements (FR-#), with Gherkin-style acceptance criteria. Points are rough t-shirt-to-Fibonacci estimates for planning illustration.</p>
+
+            <h2 class="notion-h2" id="epic1">Epic 1: Account Connection &amp; Setup</h2>
+
+            <div class="story" id="us-1">
+                <h3 class="notion-h3" style="margin-top:0">US-1 — Connect ad account</h3>
+                <p>As a performance marketer, I want to connect my Meta Ads account via OAuth so that Ad Copilot can read my campaign data.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">PRD §8 flow 1</span>
+                </div>
+                <ul class="ac"><li>Given I am on the onboarding screen, when I click “Connect Meta Ads,” then I am redirected to Meta’s OAuth consent screen.</li>
+<li>Given I grant permission, when I return to Ad Copilot, then my last 90 days of campaign, ad set, and ad-level performance data begins syncing.</li>
+<li>Given the sync is in progress, when I view the dashboard, then I see a sync-status indicator rather than an empty or misleading state.</li>
+<li>Given I deny permission or the OAuth flow fails, when I return to Ad Copilot, then I see a clear error message and a retry option.</li></ul>
+            </div>
+            <div class="story" id="us-2">
+                <h3 class="notion-h3" style="margin-top:0">US-2 — Set performance targets per campaign</h3>
+                <p>As a performance marketer, I want to set a target ROAS or CPA per campaign so that the system knows when performance has drifted.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 3</span>
+                    <span class="prop-tag blue">FR-6, PRD §8 flow 2</span>
+                </div>
+                <ul class="ac"><li>Given I’ve connected an account, when I open a campaign’s settings, then I can input a target ROAS or target CPA (not both).</li>
+<li>Given no target is set, when drift monitoring runs, then that campaign is excluded from recommendations and marked “no target set.”</li></ul>
+            </div>
+            <h2 class="notion-h2" id="epic2">Epic 2: Creative Generation</h2>
+
+            <div class="story" id="us-3">
+                <h3 class="notion-h3" style="margin-top:0">US-3 — Generate ad copy variants on demand</h3>
+                <p>As a performance marketer, I want to generate new ad copy variants for a specific ad set so that I can replace fatiguing creative quickly.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 8</span>
+                    <span class="prop-tag blue">FR-1, FR-3</span>
+                </div>
+                <ul class="ac"><li>Given I select an ad set and click “Generate variants,” when generation completes, then I see 3–5 headline/primary-text/CTA combinations.</li>
+<li>Given variants are generated, when I view them, then each displays a confidence score.</li>
+<li>Given the product feed is missing required fields, when I attempt generation, then I receive a specific error naming the missing field.</li></ul>
+            </div>
+            <div class="story" id="us-4">
+                <h3 class="notion-h3" style="margin-top:0">US-4 — Scheduled creative refresh</h3>
+                <p>As a performance marketer, I want to schedule automatic variant generation for ad sets that show fatigue signals so that I don’t have to manually monitor for decay.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P1</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-3</span>
+                </div>
+                <ul class="ac"><li>Given I enable “auto-refresh” on an ad set, when fatigue is detected (e.g. CTR decline), then new variants are generated into the review queue.</li>
+<li>Given auto-refresh is enabled, when no fatigue signal occurs, then no unnecessary generation calls are made.</li></ul>
+            </div>
+            <div class="story" id="us-5">
+                <h3 class="notion-h3" style="margin-top:0">US-5 — Brand-safety filtering on generated copy</h3>
+                <p>As a brand/compliance stakeholder, I want to screen generated ad copy against a wordlist so that non-compliant or off-brand copy never reaches a reviewer.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-4</span>
+                </div>
+                <ul class="ac"><li>Given a generated variant contains a blocked term, when generation completes, then that variant is suppressed and never appears in the review queue.</li>
+<li>Given a variant is suppressed, when an admin views generation logs, then the suppressed variant and matched term are visible for audit.</li></ul>
+            </div>
+            <h2 class="notion-h2" id="epic3">Epic 3: Monitoring &amp; Recommendations</h2>
+
+            <div class="story" id="us-6">
+                <h3 class="notion-h3" style="margin-top:0">US-6 — Detect performance drift</h3>
+                <p>As a system, I want to compare live performance against campaign targets hourly so that drift is caught before days of wasted spend.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 8</span>
+                    <span class="prop-tag blue">FR-5, FR-6</span>
+                </div>
+                <ul class="ac"><li>Given a campaign has a target CPA, when actual CPA exceeds target by more than the configured threshold for the configured duration, then a recommendation is generated.</li>
+<li>Given the ad platform API is rate-limited or returns stale data, when the sync job runs, then the system retries with backoff and flags data as stale rather than acting on incomplete data.</li></ul>
+            </div>
+            <div class="story" id="us-7">
+                <h3 class="notion-h3" style="margin-top:0">US-7 — Receive a budget/bid recommendation with reasoning</h3>
+                <p>As a performance marketer, I want to see why a recommendation was made so that I can evaluate it instead of blindly trusting or distrusting it.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-7</span>
+                </div>
+                <ul class="ac"><li>Given a recommendation is generated, when I open it, then I see the triggering metric, current vs target value, and proposed action.</li>
+<li>Given a recommendation is generated, when I open it, then I see a confidence score and plain-language explanation — not just raw model output.</li></ul>
+            </div>
+            <h2 class="notion-h2" id="epic4">Epic 4: Review Lanes &amp; Human-in-the-Loop</h2>
+
+            <div class="story" id="us-8">
+                <h3 class="notion-h3" style="margin-top:0">US-8 — Lane assignment for AI actions</h3>
+                <p>As a system, I want to classify every AI action into Auto-apply, Suggest, or Escalate so that risk is proportional to autonomy.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 8</span>
+                    <span class="prop-tag blue">FR-8, FR-9</span>
+                </div>
+                <ul class="ac"><li>Given confidence score and blast radius are calculated, when lane assignment runs, then the action is placed in exactly one lane.</li>
+<li>Given an account is new (below data-volume threshold), when any action is generated, then it is placed in Suggest or Escalate — never Auto-apply.</li></ul>
+            </div>
+            <div class="story" id="us-9">
+                <h3 class="notion-h3" style="margin-top:0">US-9 — Review and act on a queued recommendation</h3>
+                <p>As a performance marketer, I want to approve, reject, or edit a queued recommendation so that I retain control over budget-impacting actions.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-10</span>
+                </div>
+                <ul class="ac"><li>Given a Suggest-lane item, when I click Approve, then the action executes against the ad platform API and is logged.</li>
+<li>Given a Suggest-lane item, when I click Edit, then I can modify the proposed value before approving.</li>
+<li>Given I reject a recommendation, when I do so, then I can optionally provide a reason stored to improve future scoring.</li></ul>
+            </div>
+            <div class="story" id="us-10">
+                <h3 class="notion-h3" style="margin-top:0">US-10 — Audit log and rollback</h3>
+                <p>As a performance marketer, I want to see a full history of AI actions and roll them back so that I never lose visibility or control.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-11</span>
+                </div>
+                <ul class="ac"><li>Given any AI action has been taken, when I view the audit log, then I see action, timestamp, lane, confidence, and status.</li>
+<li>Given an Auto-apply action was taken within the last 5 minutes, when I click Rollback, then the prior budget/bid is restored and logged.</li></ul>
+            </div>
+            <div class="story" id="us-11">
+                <h3 class="notion-h3" style="margin-top:0">US-11 — Configure lane thresholds per account</h3>
+                <p>As a admin user, I want to adjust confidence/blast-radius thresholds so that the system’s risk tolerance matches our account’s needs.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P1</span>
+                    <span class="prop-tag">Points: 3</span>
+                    <span class="prop-tag blue">FR-12</span>
+                </div>
+                <ul class="ac"><li>Given I am an admin, when I raise the Auto-apply confidence threshold, then fewer actions qualify going forward.</li>
+<li>Given I attempt a threshold that allows unbounded budget risk, when I save, then the system blocks the change and explains why.</li></ul>
+            </div>
+            <h2 class="notion-h2" id="epic5">Epic 5: Cost Controls</h2>
+
+            <div class="story" id="us-12">
+                <h3 class="notion-h3" style="margin-top:0">US-12 — Enforce monthly generation caps</h3>
+                <p>As a business, I want to cap LLM generation calls per account per month so that AI cost doesn’t scale unpredictably against plan tier.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-13</span>
+                </div>
+                <ul class="ac"><li>Given an account has reached its monthly cap, when further generation is attempted, then the request is blocked with a clear message and upgrade option.</li>
+<li>Given an account crosses 80% of its cap, when this threshold is crossed, then the account owner receives a proactive notification.</li></ul>
+            </div>
+            <div class="story" id="us-13">
+                <h3 class="notion-h3" style="margin-top:0">US-13 — Tiered model routing</h3>
+                <p>As a system, I want to use a lower-cost model for first-pass and reserve the higher-cost model for top candidates so that generation cost stays proportionate.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P0</span>
+                    <span class="prop-tag">Points: 8</span>
+                    <span class="prop-tag blue">FR-14</span>
+                </div>
+                <ul class="ac"><li>Given a generation request produces an initial candidate set, when top-N are selected, then only those N are refined with the higher-cost model.</li>
+<li>Given refinement fails or times out, when this occurs, then first-pass candidates are still surfaced rather than failing silently.</li></ul>
+            </div>
+            <div class="story" id="us-14">
+                <h3 class="notion-h3" style="margin-top:0">US-14 — Cache reuse for unchanged inputs</h3>
+                <p>As a system, I want to reuse prior generation outputs when product-feed input hasn’t changed so that we avoid redundant model calls.</p>
+                <div class="story-meta">
+                    <span class="prop-tag amber">P1</span>
+                    <span class="prop-tag">Points: 5</span>
+                    <span class="prop-tag blue">FR-15</span>
+                </div>
+                <ul class="ac"><li>Given a product feed entry is unchanged within the caching window, when a new generation request is made, then cached outputs are served.</li>
+<li>Given cached outputs are served, when the user views them, then they carry no “stale” stigma in the UI.</li></ul>
+            </div>
+            <h2 class="notion-h2" id="summary">Backlog summary</h2>
+            <table class="simple-table">
+                <thead><tr><th>Epic</th><th>Stories</th><th>P0</th><th>Points</th></tr></thead>
+                <tbody>
+                    <tr><td>Account Connection &amp; Setup</td><td>2</td><td>2</td><td>8</td></tr>
+                    <tr><td>Creative Generation</td><td>3</td><td>2</td><td>18</td></tr>
+                    <tr><td>Monitoring &amp; Recommendations</td><td>2</td><td>2</td><td>13</td></tr>
+                    <tr><td>Review Lanes &amp; HITL</td><td>4</td><td>3</td><td>21</td></tr>
+                    <tr><td>Cost Controls</td><td>3</td><td>2</td><td>18</td></tr>
+                </tbody>
+            </table>
+            <div class="callout green">
+                <div class="callout-mark" aria-hidden="true">✓</div>
+                <div class="callout-body">
+                    <p><strong>Suggested MVP cut:</strong> all P0 stories (13 stories, ~72 points), deferring US-4, US-11, and US-14 (P1) to Phase 2.</p>
+                </div>
+            </div>
+
+
+            <hr class="divider">
+            <p class="notion-section-label">More in this series</p>
+            <div class="doc-nav">
+                <a href="prd.html"><strong>Product Requirements Doc</strong><span>Scope, goals, FRs, NFRs, and out-of-scope calls</span></a>
+<a href="user-stories.html" class="current"><strong>User Stories & Acceptance Criteria</strong><span>Epic backlog with Given/When/Then criteria</span></a>
+<a href="ai-workflow.html"><strong>AI Workflow Design</strong><span>Prompts, confidence scoring, lanes, and cost controls</span></a>
+<a href="metrics-attribution.html"><strong>Metrics & Attribution Spec</strong><span>ROAS/CPA/CTR as product signals</span></a>
+<a href="architecture.html"><strong>Architecture & API Integration</strong><span>System components, Meta/Google/LLM APIs</span></a>
+<a href="release-plan.html"><strong>Release Plan</strong><span>Phased rollout gates, flags, and rollback</span></a>
+            </div>
+        </article>
+    </div>
+<script src="../../assets/analytics-config.js"></script>
+<script src="../../assets/analytics.js"></script>
+</body>
+</html>

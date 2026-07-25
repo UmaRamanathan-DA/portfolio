@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Requirements Doc (PRD) — Ad Copilot - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="notion-doc.css">
+</head>
+<body>
+    <div class="page-shell">
+        <a href="../ad-copilot.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Case Study
+        </a>
+
+        <article class="notion-page">
+            <div class="notion-cover" aria-hidden="true"></div>
+            <h1 class="notion-title">Product Requirements Doc (PRD)</h1>
+
+            <div class="notion-props" aria-label="Page properties">
+                <div class="prop-row">
+                    <span class="prop-label">Status</span>
+                    <span class="prop-value">Draft v1.0</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Owner</span>
+                    <span class="prop-value">Product</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Series</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag blue">Ad Copilot</span>
+                        <span class="prop-tag">Portfolio Doc</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="toc" aria-label="On this page">
+                <div class="toc-title">On this page</div>
+                <a href="#goals">1. Goals</a>
+<a href="#non-goals">2. Non-goals</a>
+<a href="#personas">3. Personas</a>
+<a href="#solution">4. Solution summary</a>
+<a href="#flows">5. Core user flows</a>
+<a href="#fr">6. Functional requirements</a>
+<a href="#nfr">7. Non-functional requirements</a>
+<a href="#phases">8. Phased scope</a>
+            </nav>
+
+            <p>This PRD defines the zero-to-one scope for Ad Copilot: an AI co-pilot for performance marketers that generates ad creative, monitors live campaign performance, and routes every AI action through confidence-based human review lanes.</p>
+            <div class="callout amber">
+                <div class="callout-mark" aria-hidden="true">★</div>
+                <div class="callout-body">
+                    <p>Thesis: the product isn’t valuable because it uses AI — it’s valuable because it makes a trust boundary explicit: what the AI can do autonomously, what it must escalate, and how a marketer builds confidence in it over time.</p>
+                </div>
+            </div>
+
+            <h2 class="notion-h2" id="goals">1. Goals</h2>
+            <ul>
+                <li><strong>Primary:</strong> ≥40% suggestion acceptance rate by month 3 of beta (sustained, not a one-week spike).</li>
+                <li><strong>Product north-star:</strong> Incremental ROAS improvement attributable to accepted AI suggestions.</li>
+                <li><strong>Trust:</strong> Every budget-impacting action leaves a visible paper trail (audit log + optional rollback).</li>
+                <li><strong>Cost:</strong> LLM spend stays under a fixed ceiling as % of managed ad spend per account.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="non-goals">2. Non-goals (v1)</h2>
+            <ul>
+                <li>No autonomous spend above configured thresholds — Auto-apply is Phase 3 only and opt-in.</li>
+                <li>No custom multi-touch attribution engine — platform-native numbers only.</li>
+                <li>Text-only creative in v1 — no image/video generation.</li>
+                <li>No multi-language support (English-only prompts).</li>
+                <li>No sub-minute real-time recommendations — hourly refresh is intentional.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="personas">3. Personas</h2>
+            <div class="decision">
+                <p><strong>Primary — In-house Performance Marketer.</strong> Manages $50K–$500K/mo paid social &amp; search; team of 1–4; no dedicated data scientist. Distrusts black-box automation; will not adopt anything that spends money without a paper trail. Biggest time sink is creative production, not analysis.</p>
+            </div>
+            <div class="decision">
+                <p><strong>Secondary — Marketing Lead.</strong> Cares about Incremental ROAS from the tool and LLM cost as % of managed spend — not engagement vanity metrics inside the product.</p>
+            </div>
+            <div class="decision">
+                <p><strong>Admin / Compliance.</strong> Needs brand-safety filtering, configurable lane thresholds (bounded by hard platform ceilings), and immutable audit history.</p>
+            </div>
+
+            <h2 class="notion-h2" id="solution">4. Solution summary</h2>
+            <ol>
+                <li><strong>Creative Generation</strong> — variants from product feed + past top performers, each with a confidence score.</li>
+                <li><strong>Performance Monitoring &amp; Recommendation</strong> — watches ROAS/CPA/CPL targets; proposes budget/bid changes on drift.</li>
+                <li><strong>Human Review Queue</strong> — every AI action lands in Auto-apply, Suggest, or Escalate based on confidence + blast radius + account trust tier.</li>
+            </ol>
+
+            <h2 class="notion-h2" id="flows">5. Core user flows</h2>
+            <h3 class="notion-h3">Flow 1 — Connect ad account</h3>
+            <p>Marketer connects Meta (v1) via OAuth → last 90 days of campaign/ad set/ad data syncs → sync-status shown until ready.</p>
+            <h3 class="notion-h3">Flow 2 — Set targets &amp; monitor</h3>
+            <p>Per campaign, set target ROAS or CPA (not both). Drift monitoring compares live metrics to targets hourly and generates recommendations with reasoning.</p>
+            <h3 class="notion-h3">Flow 3 — Generate &amp; review creative</h3>
+            <p>On-demand (and later scheduled) generation → brand-safety filter → confidence score → Suggest/Escalate queue → approve / edit / reject.</p>
+            <h3 class="notion-h3">Flow 4 — Act &amp; audit</h3>
+            <p>Approved/auto-applied actions execute via platform APIs; all lanes write to an immutable audit log; Auto-apply supports a 5-minute rollback window.</p>
+
+            <h2 class="notion-h2" id="fr">6. Functional requirements</h2>
+            <table class="simple-table">
+                <thead><tr><th>ID</th><th>Requirement</th></tr></thead>
+                <tbody>
+                    <tr><td>FR-1</td><td>Generate 3–5 ad copy variants (headline / primary text / CTA) for a selected ad set from product feed + historical top performers.</td></tr>
+                    <tr><td>FR-2</td><td>Display a confidence score (bucketed High/Medium/Low) on every generated variant and recommendation.</td></tr>
+                    <tr><td>FR-3</td><td>Support on-demand generation; optionally schedule auto-refresh when creative fatigue signals fire (CTR decline).</td></tr>
+                    <tr><td>FR-4</td><td>Run deterministic brand-safety wordlist screening before any variant reaches a reviewer; log suppressions for admin audit.</td></tr>
+                    <tr><td>FR-5</td><td>Detect performance drift by comparing live metrics to campaign targets on an hourly cadence.</td></tr>
+                    <tr><td>FR-6</td><td>Allow target ROAS or target CPA per campaign; campaigns without a target are excluded and marked “no target set.”</td></tr>
+                    <tr><td>FR-7</td><td>Surface recommendations with triggering metric, current vs target, proposed action, confidence, and plain-language reasoning.</td></tr>
+                    <tr><td>FR-8</td><td>Classify every AI action into exactly one lane: Auto-apply, Suggest, or Escalate.</td></tr>
+                    <tr><td>FR-9</td><td>New / low-data accounts cannot land in Auto-apply regardless of model confidence.</td></tr>
+                    <tr><td>FR-10</td><td>Reviewers can approve, reject, or edit Suggest-lane items before execution.</td></tr>
+                    <tr><td>FR-11</td><td>Immutable audit log of all AI actions across lanes; rollback for Auto-apply within 5 minutes.</td></tr>
+                    <tr><td>FR-12</td><td>Admins can configure lane thresholds per account within hard platform-level blast-radius ceilings.</td></tr>
+                    <tr><td>FR-13</td><td>Enforce per-account monthly LLM generation caps before the model call is made; notify at 80%.</td></tr>
+                    <tr><td>FR-14</td><td>Tiered model routing: lower-cost model for first-pass candidates; higher-capability model only for top-N refinement.</td></tr>
+                    <tr><td>FR-15</td><td>Cache generation outputs for unchanged product-feed inputs (keyed by feed hash + prompt template version).</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="notion-h2" id="nfr">7. Non-functional requirements</h2>
+            <table class="simple-table">
+                <thead><tr><th>ID</th><th>Requirement</th></tr></thead>
+                <tbody>
+                    <tr><td>NFR-1</td><td>Performance data refreshed hourly; rate-limit aware with backoff; stale data flagged in UI rather than acted on blindly.</td></tr>
+                    <tr><td>NFR-2</td><td>Auto-apply rollback available within 5 minutes of execution.</td></tr>
+                    <tr><td>NFR-3</td><td>Audit log is append-only and not user-editable.</td></tr>
+                    <tr><td>NFR-4</td><td>Every LLM call logs token count, model tier, and prompt-template version for cost control and regression tracing.</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="notion-h2" id="phases">8. Phased scope</h2>
+            <ol>
+                <li><strong>Phase 1 (MVP):</strong> Meta only; creative generation + Suggest/Escalate review; cost caps; no Auto-apply.</li>
+                <li><strong>Phase 2:</strong> Google Ads + budget/bid recommendations; still Suggest-lane only; P1 stories (auto-refresh, threshold config, caching) considered from Phase 1 learnings.</li>
+                <li><strong>Phase 3:</strong> Opt-in Auto-apply for trust-tier-eligible accounts; hard blast-radius ceilings enforced and non-configurable.</li>
+            </ol>
+            <div class="callout blue">
+                <div class="callout-mark" aria-hidden="true">→</div>
+                <div class="callout-body">
+                    <p>Detailed entry/exit gates and feature flags live in the <a href="release-plan.html">Release Plan</a>. Story-level mapping lives in <a href="user-stories.html">User Stories</a>.</p>
+                </div>
+            </div>
+
+
+            <hr class="divider">
+            <p class="notion-section-label">More in this series</p>
+            <div class="doc-nav">
+                <a href="prd.html" class="current"><strong>Product Requirements Doc</strong><span>Scope, goals, FRs, NFRs, and out-of-scope calls</span></a>
+<a href="user-stories.html"><strong>User Stories & Acceptance Criteria</strong><span>Epic backlog with Given/When/Then criteria</span></a>
+<a href="ai-workflow.html"><strong>AI Workflow Design</strong><span>Prompts, confidence scoring, lanes, and cost controls</span></a>
+<a href="metrics-attribution.html"><strong>Metrics & Attribution Spec</strong><span>ROAS/CPA/CTR as product signals</span></a>
+<a href="architecture.html"><strong>Architecture & API Integration</strong><span>System components, Meta/Google/LLM APIs</span></a>
+<a href="release-plan.html"><strong>Release Plan</strong><span>Phased rollout gates, flags, and rollback</span></a>
+            </div>
+        </article>
+    </div>
+<script src="../../assets/analytics-config.js"></script>
+<script src="../../assets/analytics.js"></script>
+</body>
+</html>

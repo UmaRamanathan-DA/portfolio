@@ -279,23 +279,52 @@
 
         .skill-line strong { font-weight: 600; }
 
-        .deck-block {
-            margin-top: 0.5rem;
+        .doc-links {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0 0.5rem;
         }
 
-        .deck-frame {
-            margin-top: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--notion-border);
-            background: #fafafa;
-        }
-
-        .deck-frame iframe {
+        .doc-link {
             display: block;
-            width: 100%;
-            height: 820px;
-            border: none;
+            padding: 0.9rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+            border: 1px solid transparent;
+            color: var(--notion-text);
+            text-decoration: none;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .doc-link:hover {
+            background: rgba(55, 53, 47, 0.07);
+            border-color: var(--notion-border);
+        }
+
+        .doc-link-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--notion-text);
+        }
+
+        .doc-link-title .arrow {
+            color: var(--notion-accent);
+            font-weight: 500;
+            font-size: 0.88rem;
+            white-space: nowrap;
+        }
+
+        .doc-link-desc {
+            display: block;
+            margin-top: 0.25rem;
+            color: var(--notion-muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+            font-weight: 400;
         }
 
         .toc {
@@ -334,10 +363,6 @@
             .prop-row {
                 grid-template-columns: 1fr;
                 gap: 0.15rem;
-            }
-
-            .deck-frame iframe {
-                height: 520px;
             }
         }
     </style>
@@ -407,7 +432,7 @@
                 <a href="#discovery">3. Discovery: Who Is This For, and What Do They Actually Need</a>
                 <a href="#solution">4. Solution Overview</a>
                 <a href="#decisions">5. Key Product Decisions (and the tradeoffs behind them)</a>
-                <a href="#next">6. What Comes Next in This Portfolio</a>
+                <a href="#docs">6. Explore the full product set</a>
                 <a href="#lessons">7. Lessons (framed as retro learnings)</a>
             </nav>
 
@@ -466,16 +491,34 @@
                 <p>Decision: One north-star metric, not a dashboard of everything. Chose Incremental ROAS improvement attributable to accepted AI suggestions as the single success metric for the product itself (distinct from the marketing metrics the tool helps optimize). This kept the team from optimizing for engagement-with-the-tool instead of outcomes-for-the-customer.</p>
             </div>
 
-            <h2 class="notion-h2" id="next">6. What Comes Next in This Portfolio</h2>
-            <p>This case study is the narrative spine. It’s backed by:</p>
-            <ul>
-                <li>A full PRD with scope, requirements, and out-of-scope calls</li>
-                <li>A user story backlog with acceptance criteria</li>
-                <li>An AI workflow design doc covering prompt design, confidence scoring, cost controls, and the review-lane logic in detail</li>
-                <li>A metrics &amp; attribution spec operationalizing ROAS/CPA/CPL/CTR as product signals</li>
-                <li>A system architecture / API integration doc for the Meta Ads API, Google Ads API, and the LLM provider</li>
-                <li>A phased release plan with rollout gates and rollback criteria</li>
-            </ul>
+            <h2 class="notion-h2" id="docs">6. Explore the full product set</h2>
+            <p>This case study is the narrative spine. Open any doc below to read the same content in Notion style — requirements, backlog, AI behavior, metrics, architecture, and rollout.</p>
+            <div class="doc-links">
+                <a class="doc-link" href="ad-copilot/prd.html">
+                    <span class="doc-link-title">PRD — Product Requirements<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">Goals, non-goals, personas, 15 functional requirements, NFRs, and phased scope.</span>
+                </a>
+                <a class="doc-link" href="ad-copilot/user-stories.html">
+                    <span class="doc-link-title">User Stories &amp; Acceptance Criteria<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">5 epics, 14 stories with Given/When/Then criteria, mapped to PRD FRs.</span>
+                </a>
+                <a class="doc-link" href="ad-copilot/ai-workflow.html">
+                    <span class="doc-link-title">AI Workflow Design<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">Prompt design, confidence scoring, review-lane logic, and cost controls.</span>
+                </a>
+                <a class="doc-link" href="ad-copilot/metrics-attribution.html">
+                    <span class="doc-link-title">Metrics &amp; Attribution Spec<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">ROAS, CPA, CPL, CPC, CTR as product signals — plus platform-native attribution.</span>
+                </a>
+                <a class="doc-link" href="ad-copilot/architecture.html">
+                    <span class="doc-link-title">Architecture &amp; API Integration<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">System components, Meta/Google/LLM integrations, data model, and open eng questions.</span>
+                </a>
+                <a class="doc-link" href="ad-copilot/release-plan.html">
+                    <span class="doc-link-title">Release Plan<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">Three trust-gated phases, feature flags, beta strategy, and rollback criteria.</span>
+                </a>
+            </div>
 
             <h2 class="notion-h2" id="lessons">7. Lessons (framed as retro learnings)</h2>
             <div class="callout green">
@@ -486,16 +529,6 @@
                         <li>Cost controls are a product decision, not an infra afterthought, the moment your AI feature is usage-scaled rather than flat-rate.</li>
                         <li>In performance marketing specifically, credibility with the platforms’ own numbers matters more than technical elegance in your own attribution logic.</li>
                     </ul>
-                </div>
-            </div>
-
-            <hr class="divider">
-
-            <p class="notion-section-label">Project deck</p>
-            <p>Full product design deck covering strategy, requirements, AI system design, and technical architecture.</p>
-            <div class="deck-block">
-                <div class="deck-frame">
-                    <iframe src="../assets/ad-copilot/ad-copilot-portfolio-deck.pdf" title="Ad Copilot Portfolio Deck"></iframe>
                 </div>
             </div>
         </article>

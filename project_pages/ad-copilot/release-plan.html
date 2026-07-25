@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Plan — Ad Copilot - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="notion-doc.css">
+</head>
+<body>
+    <div class="page-shell">
+        <a href="../ad-copilot.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Case Study
+        </a>
+        <article class="notion-page">
+            <div class="notion-cover" aria-hidden="true"></div>
+            <h1 class="notion-title">Release Plan</h1>
+            <div class="notion-props" aria-label="Page properties">
+                <div class="prop-row">
+                    <span class="prop-label">Status</span>
+                    <span class="prop-value">Draft v1.0</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Owner</span>
+                    <span class="prop-value">Product, in partnership with Engineering & Design</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Series</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag blue">Ad Copilot</span>
+                        <span class="prop-tag">Portfolio Doc</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="toc" aria-label="On this page">
+                <div class="toc-title">On this page</div>
+                <a href="#philosophy">1. Philosophy</a>
+<a href="#phase1">2. Phase 1</a>
+<a href="#phase2">3. Phase 2</a>
+<a href="#phase3">4. Phase 3</a>
+<a href="#flags">5. Feature flags</a>
+<a href="#monitor">6. Monitoring</a>
+            </nav>
+
+            <p>The final doc in the set. It operationalizes the PRD’s three-phase scope into concrete entry/exit gates, rollback criteria, and a beta strategy — the release shouldn’t be a launch date, it should be a sequence of trust-earning gates.</p>
+
+            <h2 class="notion-h2" id="philosophy">1. Release philosophy</h2>
+            <div class="callout amber">
+                <div class="callout-mark" aria-hidden="true">★</div>
+                <div class="callout-body">
+                    <p>Ad Copilot’s biggest adoption risk isn’t feature completeness — it’s a marketer’s trust in AI-driven action on their live budget. Each phase expands scope only after the previous phase has demonstrated the trust and quality signals it needs. No phase is gated purely on a calendar date.</p>
+                </div>
+            </div>
+
+            <h2 class="notion-h2" id="phase1">2. Phase 1 — MVP: Creative + Suggest-lane (Meta only)</h2>
+            <p><strong>Scope:</strong> US-1, US-2, US-3, US-5, US-6, US-7, US-8 (Suggest/Escalate only), US-9, US-10, US-12, US-13.</p>
+            <h3 class="notion-h3">Entry criteria</h3>
+            <ul>
+                <li>Meta Ads API integration complete; data-accuracy validated against manual spot-check of 10 beta-partner accounts.</li>
+                <li>Brand-safety filter: zero false negatives on a curated known-bad term list.</li>
+                <li>Cost-cap enforcement (US-12) load-tested to block reliably at the boundary.</li>
+            </ul>
+            <p><strong>Beta cohort:</strong> 5–10 design partners, mix of e-commerce (ROAS) and lead-gen (CPA), actively managing $50K+/mo so drift signals have enough data.</p>
+            <h3 class="notion-h3">Exit criteria (to Phase 2)</h3>
+            <ul>
+                <li>Suggestion acceptance ≥ 40% across beta, sustained 4+ weeks.</li>
+                <li>Zero brand-safety filter failures reaching a live account.</li>
+                <li>No unresolved P0/P1 bugs in Action Executor or Audit Log.</li>
+                <li>Qualitative: partners report recommendation <em>reasoning</em> is useful (structured interviews, not just analytics).</li>
+            </ul>
+            <div class="decision">
+                <p><strong>Rollback / kill-switch:</strong> per-account “pause AI” toggle exists from day one. Any partner can disable generation and recommendations instantly.</p>
+            </div>
+
+            <h2 class="notion-h2" id="phase2">3. Phase 2 — Multi-platform + budget/bid recs</h2>
+            <p><strong>Scope:</strong> Google Ads; extend to budget/bid recommendations (still Suggest-only); consider US-4, US-11, US-14 from Phase 1 learnings.</p>
+            <h3 class="notion-h3">Entry criteria</h3>
+            <ul>
+                <li>Phase 1 exits met and sustained.</li>
+                <li>Google Ads developer token approval secured (Architecture §3.2).</li>
+                <li>Confidence calibration reviewed against real Phase 1 outcomes before extending scoring to budget/bid actions.</li>
+            </ul>
+            <p><strong>Rollout:</strong> budget/bid recs behind a feature flag — Phase 1 beta cohort first.</p>
+            <h3 class="notion-h3">Exit criteria (to Phase 3)</h3>
+            <ul>
+                <li>Budget/bid acceptance reaches parity with creative-recommendation acceptance.</li>
+                <li>Incremental ROAS north-star shows a positive, statistically-reasonable trend across the expanded cohort.</li>
+                <li>No Escalate item unreviewed past its staleness threshold — validating the review flow scales.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="phase3">4. Phase 3 — Auto-apply lane</h2>
+            <p><strong>Scope:</strong> Auto-apply goes live; rollback becomes load-bearing in production.</p>
+            <h3 class="notion-h3">Entry criteria</h3>
+            <ul>
+                <li>Accounts become Auto-apply-eligible only after meeting the trust-tier bar (data volume + acceptance history) — per-account, not global.</li>
+                <li>Platform-level hard ceilings on Auto-apply blast radius are implemented and confirmed non-configurable by admins.</li>
+                <li>Rollback tested under failure injection in staging before any real account exposure.</li>
+            </ul>
+            <p><strong>Rollout:</strong> opt-in only. Even eligible accounts must explicitly enable Auto-apply per campaign — never on by default.</p>
+            <p><strong>Success:</strong> Auto-apply accounts show equal or better Incremental ROAS vs their own Suggest-lane history; rollback rate low and stable.</p>
+
+            <h2 class="notion-h2" id="flags">5. Feature flags</h2>
+            <table class="simple-table">
+                <thead><tr><th>Flag</th><th>Controls</th><th>Default</th></tr></thead>
+                <tbody>
+                    <tr><td><code>platform.google_ads</code></td><td>Google Ads availability</td><td>Off until Phase 2 entry</td></tr>
+                    <tr><td><code>recs.budget_bid</code></td><td>Budget/bid recommendations</td><td>Off until Phase 2</td></tr>
+                    <tr><td><code>lane.auto_apply</code></td><td>Whether Auto-apply can ever be reached</td><td>Off until Phase 3; then opt-in per account</td></tr>
+                    <tr><td><code>account.ai_paused</code></td><td>Per-account master kill-switch</td><td>Available from Phase 1; owner-overridable</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="notion-h2" id="monitor">6. Post-launch monitoring</h2>
+            <ul>
+                <li>Weekly review of guardrails: LLM cost %, acceptance rate, escalation rate.</li>
+                <li>Any single-account cost-cap breach investigated same-week.</li>
+                <li>Confidence calibration treated as ongoing release-health work, not a one-time launch task.</li>
+            </ul>
+
+            <div class="callout green">
+                <div class="callout-mark" aria-hidden="true">✓</div>
+                <div class="callout-body">
+                    <p><strong>What “done” looks like:</strong> Case Study → PRD → User Stories → AI Workflow → Metrics Spec → Architecture → Release Plan all trace one thesis — earn autonomy incrementally; make the AI’s boundaries explicit — through every layer.</p>
+                </div>
+            </div>
+
+            <hr class="divider">
+            <p class="notion-section-label">More in this series</p>
+            <div class="doc-nav">
+                <a href="prd.html"><strong>Product Requirements Doc</strong><span>Scope, goals, FRs, NFRs, and out-of-scope calls</span></a>
+<a href="user-stories.html"><strong>User Stories & Acceptance Criteria</strong><span>Epic backlog with Given/When/Then criteria</span></a>
+<a href="ai-workflow.html"><strong>AI Workflow Design</strong><span>Prompts, confidence scoring, lanes, and cost controls</span></a>
+<a href="metrics-attribution.html"><strong>Metrics & Attribution Spec</strong><span>ROAS/CPA/CTR as product signals</span></a>
+<a href="architecture.html"><strong>Architecture & API Integration</strong><span>System components, Meta/Google/LLM APIs</span></a>
+<a href="release-plan.html" class="current"><strong>Release Plan</strong><span>Phased rollout gates, flags, and rollback</span></a>
+            </div>
+        </article>
+    </div>
+<script src="../../assets/analytics-config.js"></script>
+<script src="../../assets/analytics.js"></script>
+</body>
+</html>

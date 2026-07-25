@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workflow Design — Ad Copilot - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="notion-doc.css">
+</head>
+<body>
+    <div class="page-shell">
+        <a href="../ad-copilot.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Case Study
+        </a>
+        <article class="notion-page">
+            <div class="notion-cover" aria-hidden="true"></div>
+            <h1 class="notion-title">AI Workflow Design</h1>
+            <div class="notion-props" aria-label="Page properties">
+                <div class="prop-row">
+                    <span class="prop-label">Status</span>
+                    <span class="prop-value">Draft v1.0</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Owner</span>
+                    <span class="prop-value">Product, in partnership with ML Engineering</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Series</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag blue">Ad Copilot</span>
+                        <span class="prop-tag">Portfolio Doc</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="toc" aria-label="On this page">
+                <div class="toc-title">On this page</div>
+                <a href="#purpose">1. Purpose</a>
+<a href="#routing">2. Model selection & routing</a>
+<a href="#prompts">3. Prompt design</a>
+<a href="#confidence">4. Confidence scoring</a>
+<a href="#lanes">5. Review lanes</a>
+<a href="#cost">6. Cost controls</a>
+<a href="#feedback">7. Feedback loop</a>
+<a href="#out">8. Out of scope</a>
+            </nav>
+
+            <p>This doc is the technical-product bridge between “we use AI” and “here’s exactly how the AI behaves, when it’s trusted, and what it costs.” It’s the document I’d expect to defend line-by-line with an ML engineer in a design review.</p>
+            <div class="callout">
+                <div class="callout-mark" aria-hidden="true">i</div>
+                <div class="callout-body">
+                    <p>Shared pipeline for creative generation and performance recommendation:</p>
+                    <p><strong>Input → Model Call(s) → Confidence Scoring → Lane Assignment → Human Review (if required) → Action → Feedback Loop</strong></p>
+                </div>
+            </div>
+
+            <h2 class="notion-h2" id="purpose">1. Purpose</h2>
+            <p>Two AI-driven capabilities exist: creative generation and performance recommendation. Both share the pipeline above. This doc defines each stage, the model limitations we design around, and the cost-control mechanisms baked into the pipeline rather than bolted on after.</p>
+
+            <h2 class="notion-h2" id="routing">2. Model selection &amp; routing</h2>
+            <p>Principle: match model cost/capability to the risk and reversibility of the output — not “use the best model everywhere.”</p>
+            <table class="simple-table">
+                <thead><tr><th>Task</th><th>Model tier</th><th>Rationale</th></tr></thead>
+                <tbody>
+                    <tr><td>First-pass creative generation (3–8 candidates)</td><td>Lower-cost, faster</td><td>High volume, low individual stakes — filtered before a human sees them</td></tr>
+                    <tr><td>Refinement of top-N candidates</td><td>Higher-capability</td><td>Low volume; higher quality bar since these reach the reviewer</td></tr>
+                    <tr><td>Drift detection &amp; recommendation reasoning</td><td>Higher-capability, strict output schema</td><td>Needs defensible rationale over noisy time-series — what a marketer will actually judge</td></tr>
+                    <tr><td>Brand-safety wordlist screening</td><td>Deterministic rules (not a model)</td><td>Compliance-critical checks must not depend on probabilistic behavior</td></tr>
+                </tbody>
+            </table>
+            <h3 class="notion-h3">Known model limitations we design around</h3>
+            <ul>
+                <li><strong>Inconsistent scoring:</strong> never surface a raw model confidence % — smooth against a calibration set and bucket High/Medium/Low.</li>
+                <li><strong>Hallucinated specificity:</strong> reasoning prompts may only reference fields present in input data; outputs validated against source metrics before display.</li>
+                <li><strong>Prompt injection via product feed:</strong> feed content is untrusted input — delimited data section, never concatenated into instructions; brand-safety still runs.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="prompts">3. Prompt design principles</h2>
+            <ul>
+                <li><strong>Structured in, structured out</strong> — JSON-schema-constrained responses so code can validate rather than regex-parse.</li>
+                <li><strong>Few-shot from the account’s own top performers</strong> — not generic industry examples.</li>
+                <li><strong>Explicit negative constraints</strong> — no unverifiable superlatives, no pricing claims absent from the feed, tone bounded by config.</li>
+                <li><strong>Separate reasoning prompts from generation prompts</strong> — different templates and (per §2) different model tiers.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="confidence">4. Confidence scoring methodology</h2>
+            <p>Confidence is not the model’s raw self-reported score. It’s a composite:</p>
+            <div class="pre-block">Confidence = f(model self-score, historical acceptance rate, data volume, signal strength)</div>
+            <ul>
+                <li><strong>Model self-score</strong> — one weak signal among several; never sufficient alone.</li>
+                <li><strong>Historical acceptance rate</strong> — how often similar past suggestions were approved. New accounts default conservative (enforces “can’t reach Auto-apply”).</li>
+                <li><strong>Data volume</strong> — &lt;7 days or &lt;100 conversions → confidence-capped regardless of model claim.</li>
+                <li><strong>Signal strength</strong> — how far from target, and how stable over the lookback (one-hour spike ≠ three-day trend).</li>
+            </ul>
+            <p>This composite feeds lane assignment (§5) and is recalibrated periodically against outcomes (§7).</p>
+
+            <h2 class="notion-h2" id="lanes">5. Review lane logic</h2>
+            <table class="simple-table">
+                <thead><tr><th>Lane</th><th>Criteria</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td>Auto-apply</td><td>High confidence AND blast radius below cap AND trust tier ≥ established</td><td>5% budget nudge on a campaign with 60 days of stable accepted history</td></tr>
+                    <tr><td>Suggest</td><td>Medium confidence, OR blast radius above cap, OR newer account</td><td>Most v1 traffic — Suggest-only by design</td></tr>
+                    <tr><td>Escalate</td><td>Low confidence, OR insufficient data, OR compliance-sensitive action</td><td>Recommendation with &lt;100 conversions of underlying data</td></tr>
+                </tbody>
+            </table>
+            <div class="callout amber">
+                <div class="callout-mark" aria-hidden="true">★</div>
+                <div class="callout-body">
+                    <p>Lane thresholds are configurable per account (US-11) but bounded by hard platform-level ceilings (e.g. no account can enable Auto-apply above a fixed % of daily budget). That ceiling is <em>not</em> exposed as configurable.</p>
+                </div>
+            </div>
+
+            <h2 class="notion-h2" id="cost">6. Cost controls</h2>
+            <ul>
+                <li><strong>Monthly generation cap</strong> enforced at the request layer before any model call (FR-13).</li>
+                <li><strong>Tiered routing</strong> — if 8 first-pass candidates and top-2 refined, refinement cost is ~25% of “best model everywhere.”</li>
+                <li><strong>Caching</strong> — cache key = feed-content hash + prompt template version (prompt updates invalidate correctly).</li>
+                <li><strong>Circuit breaker</strong> — on provider latency/error spikes, degrade to “generation delayed” rather than retry into an incident.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="feedback">7. Feedback loop &amp; evaluation</h2>
+            <ul>
+                <li>Every approve/edit/reject feeds the historical-acceptance term in confidence scoring.</li>
+                <li>Calibration reviewed on a cadence against held-out outcomes; adjust thresholds before blaming “need a bigger model.”</li>
+                <li>Prompt template changes are versioned and logged against every output (NFR-4) so regressions are traceable.</li>
+            </ul>
+
+            <h2 class="notion-h2" id="out">8. Deliberately out of scope</h2>
+            <ul>
+                <li>Model fine-tuning / custom training — v1 uses off-the-shelf APIs.</li>
+                <li>Multi-language support.</li>
+                <li>Sub-minute recommendation latency — hourly refresh is intentional.</li>
+            </ul>
+
+            <hr class="divider">
+            <p class="notion-section-label">More in this series</p>
+            <div class="doc-nav">
+                <a href="prd.html"><strong>Product Requirements Doc</strong><span>Scope, goals, FRs, NFRs, and out-of-scope calls</span></a>
+<a href="user-stories.html"><strong>User Stories & Acceptance Criteria</strong><span>Epic backlog with Given/When/Then criteria</span></a>
+<a href="ai-workflow.html" class="current"><strong>AI Workflow Design</strong><span>Prompts, confidence scoring, lanes, and cost controls</span></a>
+<a href="metrics-attribution.html"><strong>Metrics & Attribution Spec</strong><span>ROAS/CPA/CTR as product signals</span></a>
+<a href="architecture.html"><strong>Architecture & API Integration</strong><span>System components, Meta/Google/LLM APIs</span></a>
+<a href="release-plan.html"><strong>Release Plan</strong><span>Phased rollout gates, flags, and rollback</span></a>
+            </div>
+        </article>
+    </div>
+<script src="../../assets/analytics-config.js"></script>
+<script src="../../assets/analytics.js"></script>
+</body>
+</html>
