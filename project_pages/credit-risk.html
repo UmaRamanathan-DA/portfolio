@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Risk Assessment Platform - Uma Ramanathan</title>
+    <title>LoanTap Credit Risk Scoring System - Uma Ramanathan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
@@ -171,7 +171,35 @@
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            height: fit-content;
+        }
+
+        .project-body-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .project-main {
+            min-width: 0;
+        }
+
+        .project-sidebar-sticky {
+            position: sticky;
+            top: 1.25rem;
+            max-height: calc(100vh - 2.5rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-gutter: stable;
+        }
+
+        .project-sidebar-sticky::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .project-sidebar-sticky::-webkit-scrollbar-thumb {
+            background: #dee2e6;
+            border-radius: 999px;
         }
         
         .skills-section, .tech-section {
@@ -235,6 +263,16 @@
 
             .content-section {
                 padding: 1.5rem;
+            }
+
+            .project-body-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .project-sidebar-sticky {
+                position: static;
+                max-height: none;
+                overflow: visible;
             }
         }
 
@@ -312,6 +350,111 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .summary-callout {
+            background: #fffbea;
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0 0;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .summary-callout strong {
+            color: #333;
+        }
+
+        .pipeline-block {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+        }
+
+        .pipeline-block h4 {
+            margin: 0 0 0.75rem;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .pipeline-flow {
+            font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: #444;
+            background: #f1f3f5;
+            border-radius: 6px;
+            padding: 1rem 1.15rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 0;
+            font-size: 0.92rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.65rem 0.85rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .data-table th {
+            background: #fffbea;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            color: #555;
+        }
+
+        .stage-list {
+            margin: 0.5rem 0 0;
+            padding-left: 1.25rem;
+        }
+
+        .stage-list li {
+            margin-bottom: 0.45rem;
+        }
+
+        .ml-badge {
+            display: inline-block;
+            background: #333;
+            color: #FFD700;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            margin-left: 0.35rem;
+            vertical-align: middle;
+        }
+
+        .project-summary-top {
+            max-width: 820px;
+            margin: 1.5rem auto 0;
+            padding: 1.15rem 1.35rem;
+            background: #fffbea;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.75;
+            text-align: left;
+        }
+
+        .project-summary-top strong {
+            color: #333;
+        }
    </style>
 </head>
 <body>
@@ -322,7 +465,13 @@
         </a>
         
         <div class="project-header-s">
-            <h1 class="project-title-s">Credit Risk Assessment Platform</h1>
+            <h1 class="project-title-s">LoanTap Credit Risk Scoring System</h1>
+            <p style="max-width: 780px; margin: 0.75rem auto 0; color: #666; line-height: 1.7;">
+                Predicts whether a loan applicant is likely to <strong>Fully Pay</strong> or <strong>Charge Off</strong> (default), then wraps that probability into risk scores, repayment odds, and approve/reject-style recommendations for credit analysts.
+            </p>
+            <p class="project-summary-top">
+                I used <strong>Lovable</strong> to rapidly prototype an explainable credit-decision UX, and separately built a working <strong>logistic-regression risk model + API</strong> on historical loan data (~396k records, ~77% accuracy / ~80% AUC). The UI is currently a clickable prototype; the model is a functioning backend. <strong>Next step:</strong> wiring them so the UI is driven by real scores.
+            </p>
         </div>
         
         <div class="project-meta-s">
@@ -355,20 +504,130 @@
             </a>
         </div>
 
+        <div class="project-body-layout">
+            <main class="project-main">
+
         <div class="content-section">
-            <h2>What It Does</h2>
-            <p>A smart loan review tool that helps credit analysts make faster, more confident decisions. The platform analyzes applicant data using machine learning and presents clear risk scores with plain-English explanations—so analysts understand not just <em>what</em> the risk level is, but <em>why</em>.</p>
+            <h2>Problem Statement</h2>
+            <p>
+                LoanTap-style consumer lending generates high application volume, but manual credit review is slow and inconsistent. Analysts need a repeatable way to score new applicants against patterns learned from historical loan outcomes — not gut feel alone.
+            </p>
+            <p>
+                The core question this system answers: <strong>given an applicant’s profile (amount, term, rate, grade, income, DTI, credit history, purpose, etc.), how likely are they to default?</strong> That default probability is then translated into operational outputs analysts can act on — a 0–100 risk score, repayment odds, and tiered recommendations such as APPROVE, APPROVE_WITH_CONDITIONS, REVIEW_MANUAL, or REJECT.
+            </p>
+            <div class="summary-callout">
+                <strong>Bottom line:</strong> An offline-trained logistic regression credit-default model for LoanTap-style applications. Training used ~396k historical loans; live use only scores new applications and does <em>not</em> update the model from API or UI users.
+            </div>
         </div>
 
         <div class="content-section">
             <h2>The Solution</h2>
-            <p>I rapidly prototyped this application using Lovable AI to bridge the gap between complex data science and day-to-day credit operations. Analysts simply upload customer data, review AI-generated risk insights with visual flags and recommendations, then approve or decline loans with auto-generated rationales they can trust and explain to stakeholders.</p>
+            <p>
+                The project has two complementary layers. First, a <strong>classical ML scoring engine</strong> (Python, scikit-learn, FastAPI, Streamlit): logistic regression trained once on historical loan records, saved as <code>.joblib</code> artifacts, and deployed for inference-only scoring. Second, a <strong>Lovable AI UX prototype</strong> that shows how analysts could interact with risk outputs in a polished loan-review workflow — upload data, see flags, and explain decisions to stakeholders.
+            </p>
+            <p>
+                The ML backend is not generative AI. It is supervised binary classification — Fully Paid vs Charged Off — with rule-based recommendation thresholds applied on top of the predicted default probability.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>ML &amp; AI Approach <span class="ml-badge">CLASSICAL ML</span></h2>
+            <ul>
+                <li><strong>Algorithm:</strong> Logistic regression (scikit-learn)</li>
+                <li><strong>Training:</strong> Offline, one-time fit on historical loan CSV via <code>train_model.py</code></li>
+                <li><strong>Reported performance:</strong> ~77% accuracy, ~80% ROC AUC</li>
+                <li><strong>Deployment:</strong> FastAPI + Streamlit app loads saved <code>models/loan_risk_model.joblib</code> and <code>models/preprocessor.joblib</code> — inference only, no retraining at runtime</li>
+                <li><strong>Not used:</strong> Generative AI, LLMs, or continuous online learning from live applicants</li>
+            </ul>
+
+            <h3>Training vs live scoring</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>What happens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Training</strong> (<code>train_model.py</code>)</td>
+                        <td>Fits the model once on the historical CSV (<code>input dataset/logistic_regression.csv</code>). ~396,030 loan records split ~80/20 train/validation (~316k / ~79k). Predictions are not written back into the training set.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serving</strong> (API / Streamlit UI)</td>
+                        <td>Does not retrain. New applications are scored with the frozen model. There is no fixed user capacity at inference — it can score one application, a batch, or a whole CSV; throughput depends on the host machine.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section">
+            <h2>Pipeline: Input → Output</h2>
+
+            <div class="pipeline-block">
+                <h4>Training path (offline, run once)</h4>
+                <p class="pipeline-flow">Historical CSV → Preprocess → Train logistic regression → Saved model + preprocessor (.joblib)</p>
+            </div>
+
+            <div class="pipeline-block">
+                <h4>Runtime path (every new application)</h4>
+                <p class="pipeline-flow">New application (JSON / UI / CSV) → Validate → Preprocess → Predict → Risk score / approve / repay outputs</p>
+            </div>
+
+            <h3>1. Training input</h3>
+            <p>CSV of past loans with fields such as loan amount, term, interest rate, grade, income, debt-to-income (DTI), credit history, purpose, address, and the label <code>loan_status</code> (<strong>Fully Paid</strong> / <strong>Charged Off</strong>).</p>
+
+            <h3>2. Preprocessing</h3>
+            <ul class="stage-list">
+                <li>Fill missing values</li>
+                <li>Engineer features — credit history years, high-DTI flags, term/grade/purpose risk flags, income/loan buckets, and related derived signals</li>
+                <li>Label-encode categoricals and scale numerics</li>
+                <li>→ ~35 model features fed to logistic regression</li>
+            </ul>
+
+            <h3>3. Model training</h3>
+            <ul class="stage-list">
+                <li>Binary target: Fully Paid = 0, Charged Off = 1</li>
+                <li>Artifacts saved to <code>models/loan_risk_model.joblib</code> and <code>models/preprocessor.joblib</code></li>
+            </ul>
+
+            <h3>4. Runtime input (one applicant)</h3>
+            <p>Same application fields as training (loan amount, term, income, DTI, grade, etc.) submitted via API or Streamlit — <strong>without</strong> <code>loan_status</code>, since that is the outcome being predicted.</p>
+
+            <h3>5. Runtime outputs (one probability, multiple wrappers)</h3>
+            <p>The core output is a default probability. Different endpoints and UI views format that same score for different analyst tasks. Recommendations are threshold rules on default probability (e.g. risk score &lt; 30 → APPROVE) — not a separate approval model.</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint / view</th>
+                        <th>Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Default risk</strong></td>
+                        <td>Prediction (0/1), default probability, risk score (0–100), recommendation (APPROVE / APPROVE_WITH_CONDITIONS / REVIEW_MANUAL / REJECT), confidence</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repayment</strong></td>
+                        <td>Repayment probability, default probability, risk category (Low / Med / High)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Approval</strong></td>
+                        <td>Approval/rejection probabilities, recommendation, rule-based risk factor tags (e.g. high DTI, low income)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Batch / CSV</strong></td>
+                        <td>List of the above per row, plus summary counts</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Lovable Prototype Visuals -->
         <div class="content-section">
             <h3>Lovable AI Prototype Screenshots</h3>
-            <p>Interactive screens from the rapidly prototyped credit risk assessment platform:</p>
+            <p>UX concept for how analysts could interact with scoring outputs in day-to-day credit operations. This layer is separate from the logistic regression backend — it demonstrates workflow, explainability presentation, and approval UX rather than model training logic.</p>
             <div class="prototype-gallery">
                 <figure class="prototype-card">
                     <a href="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" target="_blank" rel="noopener noreferrer">
@@ -406,7 +665,7 @@
         <!-- Predictor Model Screenshots -->
         <div class="content-section">
             <h3>Predictor Model Screenshots</h3>
-            <p>Data analysis visualizations and model insights from the credit risk prediction system:</p>
+            <p>Exploratory analysis and model diagnostics from the historical LoanTap training dataset — feature importance, repayment patterns, and geographic trends that informed preprocessing and feature engineering.</p>
             <div class="prototype-gallery">
                 
                 <figure class="prototype-card">
@@ -456,26 +715,26 @@
         </div>
 
         <div class="content-section">
-            <h2>How the Model Works</h2>
-            <p>The platform uses a <strong>logistic regression model</strong> trained on historical loan data to predict default risk. This approach was chosen for its balance of accuracy and interpretability—essential for regulated lending decisions. The model analyzes key factors including:</p>
+            <h2>What the Model Learns</h2>
+            <p>Logistic regression was chosen for its balance of accuracy and interpretability — important for regulated lending decisions. Key signal groups in the ~35-feature set include:</p>
             <ul>
-                <li><strong>Interest rate and loan grade:</strong> Higher rates and lower grades correlate with elevated risk</li>
-                <li><strong>Credit utilization flags:</strong> High revolving credit use and debt-to-income ratios signal potential strain</li>
-                <li><strong>Employment and income stability:</strong> Job tenure and verified income reduce default likelihood</li>
-                <li><strong>Loan characteristics:</strong> Term length (36 vs 60 months), purpose (debt consolidation shows higher risk), and home ownership status</li>
+                <li><strong>Interest rate and loan grade:</strong> Higher rates and lower grades correlate with elevated default risk</li>
+                <li><strong>Credit utilization and DTI:</strong> High revolving credit use and debt-to-income ratios signal repayment strain</li>
+                <li><strong>Employment and income:</strong> Job tenure and verified income reduce default likelihood</li>
+                <li><strong>Loan characteristics:</strong> Term length (36 vs 60 months), purpose (e.g. debt consolidation patterns), and home ownership status</li>
                 <li><strong>Application details:</strong> Individual vs joint applications, verification status, and payment method</li>
             </ul>
-            <p>The model was validated using cross-validation and achieves strong performance on both ROC-AUC and precision-recall metrics.</p>
+            <p>Validated with an ~80/20 train/validation split; reported metrics are ~77% accuracy and ~80% ROC AUC on held-out data.</p>
         </div>
 
         <div class="content-section">
             <h2>Why Explainability Matters</h2>
-            <p>Unlike "black box" models, the platform shows <strong>which specific factors drive each risk score</strong>—for example, "elevated risk due to high debt-to-income ratio and unverified income." This transparency:</p>
+            <p>Because the core model is logistic regression — not a black-box deep learner — coefficients and engineered features support clearer reasoning about <strong>which factors drive each risk score</strong>. The approval view adds rule-based risk factor tags (e.g. high DTI, low income) on top of the default probability. That transparency:</p>
             <ul>
-                <li>Builds analyst confidence in AI recommendations</li>
-                <li>Satisfies regulatory requirements for fair lending</li>
-                <li>Enables better customer conversations about approval conditions</li>
-                <li>Supports continuous model improvement through analyst feedback</li>
+                <li>Builds analyst confidence in ML-assisted recommendations</li>
+                <li>Supports fair-lending documentation and stakeholder review</li>
+                <li>Enables clearer customer conversations about approval conditions</li>
+                <li>Keeps recommendations auditable — thresholds are explicit rules, not opaque model stacks</li>
             </ul>
         </div>
 
@@ -491,29 +750,38 @@
 
         <div class="content-section">
             <h2>Key Insights from the Data</h2>
-            <p>Analysis of dataset revealed that debt consolidation loans comprise the majority of applications, with interest rate and credit grade being the strongest predictors of default. The model successfully identifies that borrowers with verified income, individual applications, and 36-month terms show consistently better repayment performance.</p>
+            <p>Analysis of the ~396k-record training set showed debt consolidation loans comprise a large share of applications, with interest rate and credit grade among the strongest default predictors. Borrowers with verified income, individual (non-joint) applications, and 36-month terms tended to show better repayment performance — patterns reflected in the engineered feature set.</p>
         </div>
 
-        <div class="content-section">
-            <h3>Tech Stack</h3>
-            <div class="tech-stack">
-                <span class="tech-tag">Lovable AI</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Logistic Regression</span>
-                <span class="tech-tag">FastAPI</span>
-                <span class="tech-tag">Streamlit</span>
-                <span class="tech-tag">Scikit-learn</span>
-            </div>
-            
-            <h3>Skills</h3>
-            <div class="tech-stack">
-                <span class="tech-tag">Product Strategy</span>
-                <span class="tech-tag">UX/UI Design</span>
-                <span class="tech-tag">Prototyping</span>
-                <span class="tech-tag">Explainable AI</span>
-                <span class="tech-tag">Feature Engineering</span>
-                <span class="tech-tag">Model Validation</span>
-            </div>
+            </main>
+
+            <aside class="project-sidebar project-sidebar-sticky" aria-label="Tech stack and skills">
+                <div class="tech-section">
+                    <h4>Tech Stack</h4>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">Logistic Regression</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">joblib</span>
+                        <span class="tech-tag">Lovable AI</span>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <h4>Skills</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Credit Risk Modeling</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">Model Validation</span>
+                        <span class="skill-tag">ML Deployment (inference)</span>
+                        <span class="skill-tag">API Design</span>
+                        <span class="skill-tag">UX Prototyping</span>
+                        <span class="skill-tag">Explainable AI</span>
+                    </div>
+                </div>
+            </aside>
         </div>
     </div>
 <script src="../assets/analytics-config.js"></script>
