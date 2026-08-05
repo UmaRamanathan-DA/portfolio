@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance Management System – iOS App Redesign</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { background: #f8f8f8; color: #222; font-family: 'Poppins', Arial, sans-serif; }
+    .case-container { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); padding: 2.5rem 2rem; margin-top: 2rem; margin-bottom: 2rem; }
+    h1 { font-size: 2.5rem; margin-bottom: 10rem; }
+    h2 { font-size: 2rem; margin-top: 10rem; margin-bottom: 1rem; color: #333; }
+    h3 { font-size: 1.15rem; margin-top: 3rem; margin-bottom: 3rem; color: #444; }
+    .section { margin-bottom: 2.2rem; }
+    .placeholder { background: #eee; color: #888; border-radius: 8px; padding: 1.2rem; text-align: center; margin: 1.2rem 0; font-style: italic; }
+    
+    /* Hero heading + tags */
+    .project-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0f7b83;
+      margin-bottom: 0.4rem;
+    }
+    .case-title {
+      font-size: 2.5rem;
+      font-weight: 1000;
+      color: #123047;
+      margin-bottom: 0.25rem;
+    }
+    .case-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2c8672;
+      margin-bottom: 1rem;
+    }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.5rem 0 1.4rem;
+    }
+    .tag-pill {
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: #e5f2f4;
+      color: #155f6b;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #c1dde0;
+      white-space: nowrap;
+    }
+    .project-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+    .project-meta-table th {
+      background: #243447;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+    .project-meta-table td {
+      padding: 0.55rem 0.75rem;
+      border: 1px solid #d4dde5;
+      font-size: 0.9rem;
+    }
+    
+    /* Intro lenses */
+    .intro p {
+      margin: 0 0 0.9rem 0;
+      line-height: 1.6;
+      color: #222;
+    }
+    .lens-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.9rem 0 1.1rem;
+      background: #fff;
+      border: 1px solid #d4dde5;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .lens-table td {
+      border: 1px solid #d4dde5;
+      padding: 0.85rem 0.9rem;
+      vertical-align: top;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .lens-table .lens-name {
+      width: 30%;
+      font-weight: 700;
+      color: #2b3b4d;
+      background: #f5f7fa;
+    }
+    .callout-quote {
+      display: block;
+      padding: 0.9rem 1rem;
+      margin-top: 1.1rem;
+      background: #e7f3f2;
+      border-left: 10px solid #2c8672;
+      color: #24414a;
+      font-style: italic;
+      border-radius: 6px;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    /* Table Styles */
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 1.2rem 0; 
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td { 
+      border: 1px solid #ddd; 
+      padding: 0.7rem; 
+      text-align: left; 
+      vertical-align: top;
+    }
+    th { 
+      background: #f6e58d; 
+      color: #333; 
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    td {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    ul { margin-left: 1.2rem; }
+    .impact-list { margin-top: 1.2rem; }
+    .banner-cover {
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+      height: 280px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border-radius: 0 0 18px 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .banner-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 0 0 18px 18px;
+    }
+    .banner-overlay {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(30,30,30,0.25) 40%, rgba(30,30,30,0.65) 100%);
+      z-index: 1;
+      border-radius: 0 0 18px 18px;
+    }
+    .banner-title {
+      position: absolute;
+      left: 0; right: 0; bottom: 2.2rem;
+      text-align: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      letter-spacing: 1px;
+      padding: 0 1rem;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+      .case-container {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem 1rem;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+      
+      h3 {
+        font-size: 1.1rem;
+      }
+      
+      table {
+        margin: 1rem 0;
+      }
+      
+      th, td {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* ── Section title ── */
+    .section-main-title {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      background: #f2f2f2;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin-top: 10;
+      margin-bottom: 1.75rem;
+    }
+ 
+    /* ── Metric banner ── */
+    .metric-banner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #2c8672;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+ 
+    .metric-cell {
+      padding: 18px 16px 14px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+ 
+    .metric-cell:last-child { border-right: none; }
+ 
+    .metric-value {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+ 
+    .metric-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .case-container {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0.5rem;
+        border-radius: 12px;
+      }
+      
+      h2 {
+        font-size: 1.2rem;
+        margin-top: 1.8rem;
+      }
+      
+      h3 {
+        font-size: 1rem;
+        margin-top: 1.5rem;
+      }
+      
+      /* Mobile Table Responsiveness */
+      table {
+        display: block;
+        width: 100%;
+        border-radius: 6px;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+      }
+      
+      thead {
+        display: none; /* Hide headers on mobile */
+      }
+      
+      tbody {
+        display: block;
+        width: 100%;
+      }
+      
+      tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        padding: 0.75rem;
+      }
+      
+      td {
+        display: block;
+        border: none;
+        padding: 0.5rem 0;
+        text-align: left;
+        position: relative;
+        padding-left: 0;
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+      
+      /* Add labels for mobile table cells */
+      td:before {
+        content: attr(data-label) ": ";
+        font-weight: 600;
+        color: #333;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      /* Special styling for specific table types */
+      .stakeholder-table td:before {
+        background: #f6e58d;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .feedback-table td:before {
+        background: #e8f4fd;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .journey-table td:before {
+        background: #f0f8e8;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+      
+      .placeholder {
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 6px;
+      }
+      
+      .placeholder img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      .side-by-side-imgs {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        align-items: center !important;
+      }
+      
+      .side-by-side-imgs img {
+        max-width: 280px !important;
+        width: 100% !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .case-container {
+        padding: 1rem 0.75rem;
+        margin: 0.5rem 0.25rem;
+        border-radius: 8px;
+      }
+      
+      h1 {
+        font-size: 1.4rem;
+      }
+      
+      h2 {
+        font-size: 1.1rem;
+        margin-top: 1.5rem;
+      }
+      
+      h3 {
+        font-size: 0.95rem;
+        margin-top: 1.2rem;
+      }
+      
+      table {
+        margin: 0.75rem 0;
+        font-size: 0.8rem;
+      }
+      
+      tr {
+        margin-bottom: 0.75rem;
+        padding: 0.5rem;
+      }
+      
+      td {
+        padding: 0.375rem 0;
+        font-size: 0.8rem;
+      }
+      
+      td:before {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+      }
+      
+      .placeholder {
+        padding: 0.75rem;
+        margin: 0.75rem 0;
+        border-radius: 4px;
+      }
+      
+      .side-by-side-imgs img {
+        max-width: 260px !important;
+      }
+      
+      ul {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .case-container {
+        padding: 0.75rem 0.5rem;
+      }
+      
+      h1 {
+        font-size: 1.3rem;
+      }
+      
+      h2 {
+        font-size: 1rem;
+      }
+      
+      h3 {
+        font-size: 0.9rem;
+      }
+      
+      table {
+        font-size: 0.75rem;
+      }
+      
+      td {
+        font-size: 0.75rem;
+      }
+      
+      td:before {
+        font-size: 0.7rem;
+      }
+      
+      .side-by-side-imgs img {
+        max-width: 240px !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .banner-cover { height: 160px; }
+      .banner-title { font-size: 1.1rem; bottom: 1rem; }
+    }
+    
+    /* Full-bleed media utility */
+    .full-bleed {
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .full-bleed video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .full-bleed img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+  <body>
+  
+  <div class="case-container">
+    <div class="project-label">Portfolio Project</div>
+    <h1 class="case-title">Compliance Management System: Mobile-First Field Extension</h1>
+    <div class="case-subtitle">A Unified UX Research, Interaction Design &amp; Product-Led Growth (Adoption) Case Study</div>
+    
+    <div class="tag-list">
+      <span class="tag-pill">Product Discovery</span>
+      <span class="tag-pill">UX Research</span>
+      <span class="tag-pill">Interaction Design</span>
+      <span class="tag-pill">PLG Framework</span>
+      <span class="tag-pill">Offline-First Design</span>
+      <span class="tag-pill">Product Analytics</span>
+      <span class="tag-pill">Enterprise System</span>
+    </div>
+    
+    <table class="project-meta-table">
+      <tr>
+        <th>Role</th>
+        <th>Platform</th>
+        <th>Domain</th>
+        <th>Year</th>
+      </tr>
+      <tr>
+        <td>UX Designer &amp; Product Analyst</td>
+        <td>iPad &amp; iPhone (iOS)</td>
+        <td>B2B Enterprise Compliance System</td>
+        <td>2021</td>
+      </tr>
+    </table>
+
+    
+    <h2>Introduction</h2>
+    <div class="section intro">
+      <p>
+        This case study documents the end-to-end redesign of a legacy enterprise compliance management system for field-based users.
+        The platform was mature and well-adopted on desktop, used by compliance managers, administrators, and office-based assessors.
+        However, field users conducting on-site inspections, audits, and assessments at remote locations and live facilities had no way to use the system directly in the field.
+        Without a portable, field-ready interface, assessors were forced into a two-step workaround: making notes outside the system on-site, then returning to a desktop to manually enter or update the assessment record.
+        This broke the workflow at its most critical point, the moment of observation, and introduced delays, transcription errors, and compliance risk.
+      </p>
+      <p>
+        The strategic response was a purpose-built field-native features that field assessors could carry into any environment and use to fill in assessment forms directly and offline,
+        without needing to revert to pen and paper or defer data entry to a later desktop session.
+        The offline-first architecture, draft save, and auto-sync features were not enhancements, they were the core enablers that made direct field use viable.
+        This case study examines that project through two interlocking lenses:
+      </p>
+
+      <table class="lens-table">
+        <tr>
+          <td class="lens-name" data-label="Lens">UX Research &amp; Design Lens</td>
+          <td data-label="Description">Diagnosing user pain, mapping journeys, designing for the field context, and validating through usability testing, the human-centred story of how field assessors were failing and how the redesign addressed that.</td>
+        </tr>
+        <tr>
+          <td class="lens-name" data-label="Lens">Product-Led Growth (PLG) Lens</td>
+          <td data-label="Description">Translating every UX decision into measurable product metrics, activation rate, time-to-value, feature adoption, and sustained engagement, demonstrating how UX work directly drives growth outcomes in an enterprise SaaS context.</td>
+        </tr>
+      </table>
+      
+      <p>The approach flow is Research → Product metrics → Activation funnel → UX → Growth outcomes</p>
+
+      <div class="callout-quote" style="background:#f3f0ff;border-left-color:#6b5b95;color:#3d3558;font-style:normal;">
+        <strong>Phase 2 — AI Extension:</strong> This redesign is extended by a separate portfolio product,
+        <a href="compliance-field-copilot.html" style="color:#4a3d7a;font-weight:600;">Compliance Field Copilot</a>
+        — an AI layer with voice capture, guided completion, PLG propensity intelligence, and manager analytics.
+        <a href="compliance-field-copilot.html" style="display:inline-block;margin-top:0.5rem;color:#155f6b;font-weight:600;">View Phase 2 AI Extension →</a>
+      </div>
+    </div>
+
+    <h2>Prototype</h2>
+    <div class="full-bleed">
+      <video controls preload="metadata" playsinline style="width:100%;height:600px" poster="../images/OGP/ogp_thumbnail.png">
+        <source src="../images/OGP/ogp_output.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+
+
+    <style>
+      .skills-wrap { font-family: 'Segoe UI', Arial, sans-serif; padding: 0.5rem 0 1rem; }
+      .skills-heading { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 1rem; }
+      .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+      .skill-group { background: #f7f7f7; border-radius: 8px; padding: 1rem 1.1rem; }
+      .skill-group-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #555; margin-bottom: 0.65rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid #e0e0e0; }
+      .skill-item { font-size: 0.82rem; color: #1a1a1a; padding: 3px 0; line-height: 1.5; }
+      .skill-item::before { content: "–"; margin-right: 6px; color: #bbb; }
+    </style>
+    
+    <div class="skills-wrap">
+      <h2>Skills used</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">UX Research &amp; Design</div>
+          <div class="skill-item">User Research (interviews, field observation)</div>
+          <div class="skill-item">Persona Development</div>
+          <div class="skill-item">Empathy Mapping</div>
+          <div class="skill-item">Customer Journey Mapping (As-Is &amp; To-Be)</div>
+          <div class="skill-item">Workshop Facilitation</div>
+          <div class="skill-item">Wireframing</div>
+          <div class="skill-item">Interaction Design</div>
+          <div class="skill-item">Prototyping</div>
+          <div class="skill-item">Usability Testing (SUS scoring)</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Product Thinking</div>
+          <div class="skill-item">Product Discovery</div>
+          <div class="skill-item">Feature Prioritisation</div>
+          <div class="skill-item">Roadmap Planning</div>
+          <div class="skill-item">PLG (Product-Led Growth) Framework</div>
+          <div class="skill-item">Activation &amp; Funnel Analysis</div>
+          <div class="skill-item">Feature Adoption Analysis</div>
+          <div class="skill-item">Retention Modelling</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Problem Statement</h2>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top:2rem;">The Core Access Failure</h3>
+    <div class="section intro" style="margin-bottom: 1.2rem;">
+      <p>
+        Field assessors were conducting compliance inspections at remote sites, live facilities, and outdoor environments where a laptop or desktop was neither available nor practical.
+        The compliance system had only a basic mobile interface, which produced a structural problem: the moment of assessment, when evidence was fresh, context was visible, and accuracy was highest, was exactly when the system could not be used, forcing assessors into a two-step workaround, making notes outside the system on-site, then returning to a desktop to enter the data. The solution was to extend the system across multiple touchpoints, desktop, iPad, and mobile, with a seamless experience that allowed assessors to fill forms, work offline, and sync data without any break in workflow.
+      </p>
+    </div>
+
+    <h4>Two Costly Workarounds Emerged</h4>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Workaround">Paper-Based Workaround</td>
+        <td data-label="Impact">Assessors took handwritten notes on-site and manually re-entered data at the desktop later. This introduced transcription errors, duplicated effort, and created compliance gaps between the moment of observation and the point of record.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Workaround">Deferred Completion</td>
+        <td data-label="Impact">Assessors waited until returning to a fixed location to complete digital records, hours or days after the site visit. Observations faded, context was lost, and time-sensitive incidents were flagged late.</td>
+      </tr>
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top: 1.6rem;">The Product-Level Symptom: Broken Activation</h3>
+    <div class="section intro" style="margin-bottom: 1.2rem;">
+      <p>
+        From a product analytics perspective, these workarounds showed up as a catastrophic activation failure. When the iOS extension was first introduced (pre-redesign),
+        field users were assigned licences but rarely completed assessments through the app. The system had a field access problem, but it also had a product completion problem.
+      </p>
+    </div>
+
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Metric">Desktop Completion Rate</td>
+        <td data-label="Finding">82%, the baseline for a well-functioning system</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Metric">iPad Pre-Redesign Completion Rate</td>
+        <td data-label="Finding">21%, 4× below desktop baseline</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Metric">Primary Abandonment Point</td>
+        <td data-label="Finding">Draft save and offline sync, the exact moments the field workflow required most</td>
+      </tr>
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top: 1.6rem;">Problem Statement Summary</h3>
+    <div class="callout-quote" style="font-style: italic;">
+      Field-based compliance assessors were unable to complete assessments at the point of inspection because the existing iOS interface was very basic and did not support offline capture, reliable draft save, or seamless sync, resulting in a 61-percentage-point gap in completion rate compared to desktop users, and creating compliance risk, data quality issues, and licence underutilisation for enterprise clients.
+      <ul>
+        <li>Manual note-taking</li>
+        <li>No offline access</li>
+        <li>Frequent data loss</li>
+        <li>Delayed validations</li>
+        <li>Poor mobile compatibility</li>
+      </ul>
+    </div>
+
+    <h2>Research &amp; Discovery Methodology</h2>
+    <div class="section intro" style="margin-bottom: 1.2rem;">
+      <p>
+        The research phase combined qualitative field investigation with quantitative funnel analysis. This dual approach was deliberate: qualitative methods revealed why assessors were failing; quantitative analysis revealed where and how severely. Together they built the complete picture needed to design a credible, evidence-driven solution.
+      </p>
+    </div>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top:2rem;">Research Methods</h3>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Method">Stakeholder Discovery Workshops</td>
+        <td data-label="Details">Facilitated sessions with compliance managers, field assessors, and system administrators. Used feedback grids (Works Well / Needs to Change / Questions / Ideas) to surface competing priorities and hidden assumptions.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Field Observation &amp; User Interviews</td>
+        <td data-label="Details">On-site observation of assessors at work, watching how notes were taken, how the app was (or wasn&apos;t) used, and where confidence broke down. Interviews followed each observation to understand the emotional and cognitive experience.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">User Personas &amp; Empathy Mapping</td>
+        <td data-label="Details">Synthesised research into a primary persona (Adam, Field &amp; Survey Officer) with empathy maps capturing what he does, thinks, feels, and needs at each stage of the assessment workflow.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Customer Journey Mapping (As-Is)</td>
+        <td data-label="Details">Mapped the current-state journey step-by-step, from travelling to a site through to post-submission, documenting actions, thoughts, feelings, and needs at each stage. Surfaced the emotional low points (anxiety, confusion, frustration) that corresponded to interface failures.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Activation Funnel Analysis</td>
+        <td data-label="Details">Analysed the 6-stage digital funnel from iPad licence assignment through to full assessment submission. Identified the funnel stage where drop-off was most severe (draft save / sync) and quantified the gap between desktop and iPad completion rates.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">System Usability Scale (SUS)</td>
+        <td data-label="Details">Conducted SUS evaluations on both the desktop and the pre-redesign iPad interface. The desktop scored 76 (Good). The iPad pre-redesign scored 49 (Not Acceptable), a quantified confirmation of the usability gap.</td>
+      </tr>
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600;">📊 Stakeholder Feedback Grid</h3>
+    <table class="feedback-table">
+      <tr>
+        <th>✅ Works Well</th>
+        <th>⚠️ Needs to Change</th>
+        <th>❓ Questions</th>
+        <th>💡 New Ideas</th>
+      </tr>
+      <tr>
+        <td data-label="✅ Works Well">On-field recording is easy and fast<br>Manual work eliminated<br>Templates auto-load based on location<br>Critical incident notifications visible<br>Frequent auto-saving</td>
+        <td data-label="⚠️ Needs to Change">App performance is slow<br>Notifications are unintuitive<br>Syncing is confusing</td>
+        <td data-label="❓ Questions">How does communication work for non-iOS?<br>What are the offline data limits?</td>
+        <td data-label="💡 New Ideas">SMS/iMessage-based incident alerts<br>Gesture-based navigation<br>Voice-based search and incident recording<br>Dashboard with recent activities<br>Centralized notifications tab</td>
+      </tr>
+    </table>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\Feedback Grid.png"></img></div></div>
+    <h3 style="color:#2c8672; font-weight:600; margin-top: 1.6rem;">👤 Persona – Adam (Field & Survey Officer)</h3>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\Persona.png"></img></div>
+    
+    <h3 style="color:#2c8672; font-weight:600; margin-top: 1.6rem;">👤 Empathy Map – Adam (Field & Survey Officer)</h3>
+    
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\Empathy Map.png"></img></div>
+
+
+    <h3 style="color:#2c8672; font-weight:600;">Stakeholder Assumptions and Risk Mapping</h3>
+  
+    <table class="stakeholder-table">
+      <tr><th>Assumption</th><th>Risk Level</th><th>Validation Approach</th></tr>
+      <tr><td data-label="Assumption">Users prefer mobile recording</td><td data-label="Risk Level">High</td><td data-label="Validation Approach">Field interviews, analytics</td></tr>
+      <tr><td data-label="Assumption">SMS/iMessage is the best alert method</td><td data-label="Risk Level">Medium</td><td data-label="Validation Approach">Survey, usage data</td></tr>
+      <tr><td data-label="Assumption">Offline sync is technically feasible</td><td data-label="Risk Level">High</td><td data-label="Validation Approach">Dev partner consultation</td></tr>
+      <tr><td data-label="Assumption">Templates are reused across locations</td><td data-label="Risk Level">Medium</td><td data-label="Validation Approach">Contextual inquiry</td></tr>
+      <tr><td data-label="Assumption">Users are tech-savvy and need minimal training</td><td data-label="Risk Level">Low</td><td data-label="Validation Approach">Persona analysis</td></tr>
+    </table>
+
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\Assumptions.png"></img></div></div>
+
+    <h3 style="color:#2c8672; font-weight:600;">As-Is Customer Journey: The Failing Field Experience</h3>
+    <table class="journey-table">
+      <tr><th>Step</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Needs</th></tr>
+      <tr><td data-label="Step">Travel to site, take notes</td><td data-label="Does">Uses pen & paper</td><td data-label="Thinks">"Hope I don't lose these notes."</td><td data-label="Feels">Anxious, cautious</td><td data-label="Needs">Mobile recording, auto-save</td></tr>
+      <tr><td data-label="Step">Choose template</td><td data-label="Does">Searches manually</td><td data-label="Thinks">"Which one fits this site?"</td><td data-label="Feels">Confused, uncertain</td><td data-label="Needs">Smart template suggestions</td></tr>
+      <tr><td data-label="Step">Fill out basic details</td><td data-label="Does">Enters manually</td><td data-label="Thinks">"This takes too long."</td><td data-label="Feels">Frustrated</td><td data-label="Needs">Autofill from location or history</td></tr>
+      <tr><td data-label="Step">Answer questionnaire</td><td data-label="Does">Scrolls through long forms</td><td data-label="Thinks">"I might miss something important."</td><td data-label="Feels">Overwhelmed</td><td data-label="Needs">Simplified UI, criticality alerts</td></tr>
+      <tr><td data-label="Step">Continue later</td><td data-label="Does">Saves and exits</td><td data-label="Thinks">"Will this sync correctly?"</td><td data-label="Feels">Worried</td><td data-label="Needs">Reliable offline sync, confirmation</td></tr>
+    </table>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\As-Is-Scenario.png"></img></div>
+
+    <h3 style="color:#2c8672; font-weight:600;">Key Friction Points from Field Research</h3>
+    <ul>
+      <li>No reliable offline mode, one dropped connection lost all unsaved data</li>
+      <li>Draft save was hidden and manual, most users didn&apos;t know it existed; auto-save was absent</li>
+      <li>Sync was opaque, no visibility on whether data had synced; users re-entered data out of fear</li>
+      <li>Desktop navigation ported to iPad, deep menus designed for mouse use were unusable with gloved or one-handed field operation</li>
+      <li>Form inputs not optimised for touch, small tap targets, no keyboard auto-dismiss, date pickers unsuited to iOS</li>
+      <li>No field-specific features, photo evidence, quick notes, and site context required separate apps</li>
+    </ul>
+
+    <h2>PLG Framework Application</h2>
+    <div class="section intro" style="margin-bottom: 1.2rem;">
+      <p>
+        Product-Led Growth is typically associated with freemium SaaS and self-serve models. Its core logic, however, applies directly to enterprise product extensions: the product must deliver value fast enough and reliably enough to drive sustained engagement, without relying on sales or support to carry users to the aha moment.
+      </p>
+    </div>
+
+    <h3 style="color:#2c8672; font-weight:600;">Mapping PLG Concepts to This Project</h3>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Method">Activation (Aha Moment)</td>
+        <td data-label="Details">A field user completes their first full assessment on iPad and submits it, experiencing the system working at the point of inspection for the first time.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Time-to-Value        </td>
+        <td data-label="Details">How quickly a newly iPad-enabled assessor submits their first completed assessment. Pre-redesign: ~62 minutes with high abandonment. Post-redesign target: ~28 minutes.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Retention</td>
+        <td data-label="Details">Sustained assessment submission rate over 30–90 days, not logins or time-in-app, but actual compliance output.        </td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Feature Adoption</td>
+        <td data-label="Details">Uptake of offline mode, draft save, and auto-sync, the three features that make field use viable and directly enable the aha moment.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Expansion Signal (PQL)</td>
+        <td data-label="Details">Accounts where 3+ assessments are completed via iPad in the first 14 days, including at least one via the offline path, a strong signal for additional field licence expansion.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Churn Risk Indicator</td>
+        <td data-label="Details">Accounts with high iPad licence assignment but low completion rate, flagged as renewal risk requiring customer success intervention.        </td>
+      </tr>
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600;">The Aha Moment: Two Valid Completion Paths</h3>
+    <p>Unlike a simple SaaS activation, the aha moment in this system has two equally valid routes, both result in a fully submitted assessment and both count as activation:
+    </p>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Method">Path 1: Single Session</td>
+        <td data-label="Details">A field user completes their first full assessment on iPad and submits it, experiencing the system working at the point of inspection for the first time.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Path 2: Draft → Offline → Sync → Submit</td>
+        <td data-label="Details">User starts assessment → saves to draft (auto or manual) → completes offline → draft auto-syncs on reconnect → user reviews and submits. Typical for complex, multi-location assessments. Pre-redesign: effectively broken. Post-redesign: a primary viable route.</td>
+      </tr>
+    </table>
+
+    <div class="callout-quote" style="font-style: italic;">
+      <p>The redesign's primary success condition was making Path 2 as reliable as Path 1, because for the most demanding field assessments, Path 2 is the only realistic option.</p>
+    </div>
+
+    <h3 style="color:#2c8672; font-weight:600; margin-top:2rem;">PLG Translation: UX Work as Growth Interventions</h3>
+    <p>Every phase of UX research and design work maps directly to a PLG metric. This is not just a usability project, it is a growth intervention:
+    </p>
+    <table class="lens-table">
+      <tr>
+        <td class="lens-name" data-label="Method">Identified desktop inaccessibility through field research</td>
+        <td data-label="Details">Activation blocker analysis, root cause of near-zero field completion rate. This is the PLG equivalent of mapping funnel drop-off to a specific product failure.        </td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Designed offline-first assessment capture with draft save        </td>
+        <td data-label="Details">Removed the single biggest barrier to Path 2 completion, the core aha moment enabler. Without this, activation cannot improve.</td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Built auto-sync with visible status indicator        </td>
+        <td data-label="Details">Reduced abandonment anxiety, the sync state indicator directly addresses the emotional barrier (fear of data loss) that caused mid-assessment dropout.        </td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Simplified iPad UI with field-only feature set</td>
+        <td data-label="Details">Reduced time-to-value, assessors reach the submission screen faster with fewer navigation steps.        </td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">SUS scoring before and after redesign        </td>
+        <td data-label="Details">Quantified UX improvement as a proxy for activation probability, connects interface quality to a measurable growth output.
+        </td>
+      </tr>
+      <tr>
+        <td class="lens-name" data-label="Method">Designed contextual first-use onboarding tooltips</td>
+        <td data-label="Details">Feature discovery acceleration, ensured offline mode and draft save were adopted early rather than discovered weeks later.        </td>
+      </tr>
+    </table>
+
+    <h2>Design Solution: Offline-First, Field-Native</h2>
+    <div class="callout-quote" style="font-style: italic;">
+      <p>Design principle: The iPad interface must work reliably in the worst-case field scenario, no connectivity, one hand occupied, gloves possible, time pressure real. Everything else follows from that constraint.
+      </p>
+    </div>
+
+    <h3 style="color:#2c8672; font-weight:600;">From As-Is to To-Be: The Redesigned Journey</h3>
+    <table class="journey-table">
+      <tr><th>Stage</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Gains</th></tr>
+      <tr><td data-label="Step">Travel to site</td><td data-label="Does">Opens app, auto-loads template</td><td data-label="Thinks">"This is fast and accurate."</td><td data-label="Feels">Confident, focused</td><td data-label="Gains">Location-based template suggestions</td></tr>
+      <tr><td data-label="Step">Fill out details</td><td data-label="Does">Autofill from GPS and history</td><td data-label="Thinks">"I'm saving so much time."</td><td data-label="Feels">Relieved</td><td data-label="Gains">Smart autofill, reduced manual entry</td></tr>
+      <tr><td data-label="Step">Record assessment</td><td data-label="Does">Uses offline mode with auto-save</td><td data-label="Thinks">"No worries about data loss."</td><td data-label="Feels">Secure, efficient</td><td data-label="Gains">Offline recording, auto-save</td></tr>
+      <tr><td data-label="Step">View alerts</td><td data-label="Does">Receives SMS/iMessage notifications</td><td data-label="Thinks">"I can act immediately."</td><td data-label="Feels">Empowered</td><td data-label="Gains">Real-time criticality alerts</td></tr>
+      <tr><td data-label="Step">Submit & sync</td><td data-label="Does">Syncs automatically when online</td><td data-label="Thinks">"Everything's backed up."</td><td data-label="Feels">Satisfied</td><td data-label="Gains">Seamless sync, confirmation feedback</td></tr>
+    </table>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\To-Be-Scenario.png"></img></div>
+
+    <h3 style="color:#2c8672; font-weight:600;">Before & After: Key Design Changes</h3>
+    <table class="journey-table">
+      
+      <tr><td data-label="Step">❌ No offline mode, data lost on disconnection</td><td data-label="Does">✅ Offline-first architecture: assessments work fully without any connectivity</td></tr>
+      <tr><td data-label="Step">❌ Manual, hidden draft save      </td><td data-label="Does">✅ Auto-save every 60 seconds + persistent draft recovery on relaunch</td></tr>
+      <tr><td data-label="Step">❌ Opaque sync, no user feedback</td><td data-label="Does">✅ Sync status bar: Saved Offline → Syncing… → Submitted, visible at all times      </td></tr>
+      <tr><td data-label="Step">❌ Desktop navigation (5+ taps to reach assessment)</td><td data-label="Does">✅ Flat field navigation, assessment launch in 2 taps from home screen</td></tr>
+      <tr><td data-label="Step">❌ Small touch targets, desktop form controls      </td><td data-label="Does">✅ iOS-native controls, large tap targets, optimised for gloved/one-hand use</td></tr>
+      <tr><td data-label="Step">❌ No photo or note capture within the flow</td><td data-label="Does">✅ In-context photo attachment and quick notes embedded within each assessment field</td></tr>
+      <tr><td data-label="Step">❌ No onboarding for new iPad users</td><td data-label="Does">✅ Contextual first-use tooltips on offline mode, draft save, and sync      </td></tr>
+      
+    </table>
+
+    <h3 style="color:#2c8672; font-weight:600;">Feature Prioritisation: Phased Delivery</h3>
+
+  <p>
+    To guide the redesign, we developed a staged capability roadmap grounded in field research and user feedback. 
+    This roadmap prioritized <strong>progressive empowerment</strong> for assessors—from basic mobile access to advanced interaction modes.
+  </p>
+
+  <h4>📌 Short-Term Enhancements</h4>
+  <ul>
+    <li>Mobile login, assessment creation, and resume flow</li>
+    <li>Offline mode with auto-sync and criticality alerts</li>
+    <li>Autosave and sync status visibility</li>
+  </ul>
+
+  <h4>🚀 Long-Term Vision</h4>
+  <ul>
+    <li>Dashboard with recent activities and centralized notifications</li>
+    <li>Gesture-based navigation for faster input</li>
+    <li>Voice-enabled search and incident recording</li>
+    <li>SMS/iMessage alerts for critical events</li>
+  </ul>
+
+  <p>
+    This phased approach ensured that each release delivered meaningful value while laying the foundation 
+    for intuitive, high-impact experiences.
+  </p>
+  <div class="placeholder"><img width="70%" src="..\images\Assessments\experience based road map.png"></img></div>
+  <div><div class="placeholder"><img width="100%" src="..\images\Assessments\prioritisation-grid.png"></img></div></div>
+
+  <h3 style="color:#2c8672; font-weight:600; margin-top:2rem;"> Stakeholder Map</h3>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\stakeholder-map.png"></img></div></div>
+ 
+    <h3 style="color:#2c8672; font-weight:600; margin-top:2rem;"> Users Hopes and Fears</h3>
+    <div><div class="placeholder"><img width="100%" src="..\images\Assessments\users-hopes-fears.png"></img></div></div>
+   
+
+
+
+  <h2 class="section-main-title">Analytics: Activation Funnel &amp; Completion Analysis</h2>
+
+  <!-- 6.1 -->
+  <h3 class="section-sub-title"> The 6-Stage Activation Funnel</h3>
+  <p class="intro-text">The funnel begins at iPad licence assignment, existing enterprise users being extended to a new platform, not new sign-ups. The drop-off pattern reveals where the field extension failed before the redesign:</p>
+
+  <table class="funnel-table">
+    <thead>
+      <tr>
+        <th>Funnel Stage</th>
+        <th>Desktop</th>
+        <th>iPad Pre</th>
+        <th>iPad Post (Proj)</th>
+        <th>Interpretation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>iPad Licence Assigned</td>
+        <td>500 (100%)</td>
+        <td>300 (100%)</td>
+        <td>300 (100%)</td>
+        <td>Baseline, existing users given iPad access</td>
+      </tr>
+      <tr>
+        <td>First iPad Login</td>
+        <td>480 (96%)</td>
+        <td>228 (76%)</td>
+        <td>261 (87%)</td>
+        <td>iPad drop hints at device unfamiliarity</td>
+      </tr>
+      <tr>
+        <td>Assessment Opened on iPad</td>
+        <td>450 (90%)</td>
+        <td>150 (50%)</td>
+        <td>225 (75%)</td>
+        <td>Half of iPad users couldn't navigate to an assessment</td>
+      </tr>
+      <tr>
+        <td>Field Data Entered (any)</td>
+        <td>430 (86%)</td>
+        <td>108 (36%)</td>
+        <td>198 (66%)</td>
+        <td>Most couldn't enter data effectively on iPad</td>
+      </tr>
+      <tr>
+        <td>Draft Saved or Submitted</td>
+        <td>415 (83%)</td>
+        <td>78 (26%)</td>
+        <td>177 (59%)</td>
+        <td>Draft save broken pre-redesign; most abandoned</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>Assessment Fully Submitted ★</strong></td>
+        <td><strong>410 (82%)</strong></td>
+        <td><strong>63 (21%)</strong></td>
+        <td><strong>165 (55%)</strong></td>
+        <td><strong>Aha Moment, 4× gap pre-redesign; projected to close significantly</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 6.2 -->
+  <h3 class="section-sub-title">Completion Path Breakdown</h3>
+
+  <table class="completion-table">
+    <thead>
+      <tr>
+        <th>Completion Path</th>
+        <th>Desktop</th>
+        <th>iPad Pre-Redesign</th>
+        <th>iPad Post-Redesign (Proj)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Single Session Complete</td>
+        <td>82%</td>
+        <td>21%</td>
+        <td>55%</td>
+      </tr>
+      <tr>
+        <td>Draft → Sync → Submit</td>
+        <td class="bold">10%</td>
+        <td class="bold">5%</td>
+        <td class="bold">38%</td>
+      </tr>
+      <tr>
+        <td class="abandoned">Abandoned</td>
+        <td class="abandoned">8%</td>
+        <td class="abandoned">74%</td>
+        <td class="abandoned">7%</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="callout-quote" style="font-style: italic;">
+    <p>PLG Insight: The post-redesign projection shows a deliberate shift, the draft→sync→submit path grows from 5% to 38% of completions. The feature that drives activation is offline mode, not UI polish.</em>
+    </p>
+  </div>
+
+
+
+  <h3 class="section-sub-title">Feature Adoption (Post-Launch, 8 Weeks)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Week 1</th>
+        <th>Week 4</th>
+        <th>Week 8</th>
+        <th>PLG Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="aha-row">
+        <td>Offline Mode</td>
+        <td>41%</td>
+        <td>68%</td>
+        <td>83%</td>
+        <td><span class="plg-badge badge-aha">Aha Moment Core</span></td>
+      </tr>
+      <tr class="aha-row">
+        <td>Auto-Sync on Reconnect</td>
+        <td>38%</td>
+        <td>72%</td>
+        <td>88%</td>
+        <td><span class="plg-badge badge-aha">Aha Moment Core</span></td>
+      </tr>
+      <tr class="aha-row">
+        <td>Draft Save &amp; Resume</td>
+        <td>45%</td>
+        <td>74%</td>
+        <td>86%</td>
+        <td><span class="plg-badge badge-aha">Aha Moment Core</span></td>
+      </tr>
+      <tr class="secondary-row">
+        <td>Photo Attachment</td>
+        <td>22%</td>
+        <td>44%</td>
+        <td>61%</td>
+        <td><span class="plg-badge badge-secondary">Secondary</span></td>
+      </tr>
+      <tr class="secondary-row">
+        <td>Quick Notes</td>
+        <td>18%</td>
+        <td>38%</td>
+        <td>54%</td>
+        <td><span class="plg-badge badge-secondary">Secondary</span></td>
+      </tr>
+      <tr class="secondary-row">
+        <td>Offline Map</td>
+        <td>12%</td>
+        <td>28%</td>
+        <td>41%</td>
+        <td><span class="plg-badge badge-secondary">Secondary</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2 class="section-sub-title">Impact &amp; Projected Outcomes</h2>
+
+  <!-- Metric banner -->
+  <div class="metric-banner">
+    <div class="metric-cell">
+      <div class="metric-value">21% → 55%</div>
+      <div class="metric-label">Assessment Completion Rate (iPad)</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-value">62 → 28 mins</div>
+      <div class="metric-label">Time to First Submission</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-value">49 → 81</div>
+      <div class="metric-label">SUS Score (iPad Interface)</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-value">17% → 64%</div>
+      <div class="metric-label">90-Day Sustained Submission Rate</div>
+    </div>
+  </div>
+
+  <!-- 7.1 Full Impact Summary -->
+  <h3 class="section-sub-title">Full Impact Summary</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Before (iPad Pre)</th>
+        <th>Projected After</th>
+        <th>Basis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Assessment Completion Rate (iPad)</td>
+        <td>21%</td>
+        <td class="projected">55%</td>
+        <td>Funnel recovery from friction removal and offline-path reliability</td>
+      </tr>
+      <tr>
+        <td>Draft→Sync→Submit Path Usage</td>
+        <td>5%</td>
+        <td class="projected">38% of completions</td>
+        <td>Offline workflow now functional, Path 2 becomes a primary route</td>
+      </tr>
+      <tr>
+        <td>Time to First Submission</td>
+        <td>~62 minutes</td>
+        <td class="projected">~28 minutes</td>
+        <td>Step count 9→4 for Path 1; offline removes reconnection wait time</td>
+      </tr>
+      <tr>
+        <td>SUS Score (iPad interface)</td>
+        <td>49, Poor</td>
+        <td class="projected">81, Excellent</td>
+        <td>Post-redesign usability testing estimate vs 68-point threshold</td>
+      </tr>
+      <tr>
+        <td>90-Day Sustained Submission Rate</td>
+        <td>17%</td>
+        <td class="projected">~64%</td>
+        <td>Activation-retention correlation; benchmarked from Amplitude PLG data</td>
+      </tr>
+      <tr>
+        <td>Field Licence Utilisation</td>
+        <td>~21%</td>
+        <td class="projected">~55%</td>
+        <td>Direct mirror of completion rate, licences used vs assigned</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+    <h2>✏️ Design Process</h2>
+    <h3>Wireframes (Balsamiq)</h3>
+    <ul>
+      <li>Explored multiple user journeys</li>
+      <li>Iterated 2–3 versions</li>
+      <li>Focused on usability and task efficiency</li>
+    </ul>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\balsymiq.png"></img></div>
+
+    <h3>High-Fidelity UI</h3>
+    <ul>
+      <li>Dashboard</li>
+      <li>Assessment List (Card & List views)</li>
+      <li>Quick Filters & Search</li>
+      <li>Record Assessment</li>
+      <li>Assessment Summary</li>
+    </ul>
+    <div class="placeholder"><img width="70%" src="..\images\Assessments\UI\dashboardhover.png"></img>
+        <img width="70%" src="..\images\Assessments\UI\cardsview.png"></img>
+        <img width="70%" src="..\images\Assessments\UI\assessment.png"></img>
+        <img width="70%" src="..\images\Assessments\UI\summary.png"></img>
+    </div>
+
+    <div class="side-by-side-imgs" style="display: flex; justify-content: center; gap: 2rem; align-items: flex-start; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+      <img src="../images/Assessments/UI/mobile-1.png" alt="Mobile UI 1" style="max-width: 300px; width: 100%; border-radius: 12px;">
+      <img src="../images/Assessments/UI/mobile-2.png" alt="Mobile UI 2" style="max-width: 300px; width: 100%; border-radius: 12px;">
+      <img src="../images/Assessments/UI/mobile-3.png" alt="Mobile UI 3" style="max-width: 300px; width: 100%; border-radius: 12px;">
+    </div>
+
+  <h2> Strategic PLG Recommendations</h2>
+<h3>Instrument Offline Workflows Specifically</h3>
+<p>Standard analytics cannot capture offline behaviour at the time of occurrence. Implementing a local event queue that timestamps and stores events offline, syncing them with the server on reconnect, gives the product team full visibility into the offline assessment journey, including where offline users drop off.</p>
+<h3>Define the Product Qualified Lead (PQL) for Enterprise Expansion</h3>
+<p>Field assessors who complete 3+ assessments via iPad in their first 14 days, including at least one via the offline path, are strong signals for licence expansion. These accounts should be flagged in the CRM for account manager outreach, not to sell, but to identify whether additional field assessors in the organisation would benefit from iPad access.</p>
+<h3>Surface Draft Recovery Prominently on Relaunch</h3>
+<p>The most anxiety-inducing moment for field users is returning to the app after a connectivity loss. The relaunch screen should proactively surface any pending drafts: "You have 1 assessment saved offline, ready to sync." This single intervention can meaningfully reduce abandonment at the sync stage.</p>
+<h3>Use Completion Rate as the North Star Metric</h3>
+<p>In enterprise SaaS, renewal conversations are won or lost on demonstrated usage value. Assessment completion rate, not logins, not time-in-app, maps directly to compliance outcomes and licence justification. It should be the primary metric in customer success dashboards and QBR decks.</p>
+
+<div class="callout-quote" style="background:#f3f0ff;border-left-color:#6b5b95;color:#3d3558;font-style:normal;margin-top:2rem;">
+  <strong>Continue to Phase 2:</strong> See how this PLG framework extends into an AI product specification —
+  <a href="compliance-field-copilot.html" style="color:#4a3d7a;font-weight:600;">Compliance Field Copilot (AI Extension)</a>
+</div>
+
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html> 

@@ -1,0 +1,129 @@
+/* Shared styles for Compliance Management System — Phases 1–3 */
+body { background: #f8f8f8; color: #222; font-family: 'Poppins', Arial, sans-serif; margin: 0; }
+.case-container {
+  max-width: 960px; margin: 2rem auto; background: #fff;
+  border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 2.5rem 2rem;
+}
+.back-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.back-link, .phase-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.9rem; border-radius: 8px; text-decoration: none;
+  font-weight: 600; font-size: 0.85rem;
+}
+.back-link { background: #f0f0f0; color: #333; }
+.back-link:hover { background: #e4e4e4; }
+.phase-link { background: #e5f2f4; color: #155f6b; border: 1px solid #c1dde0; }
+.phase-link:hover { background: #d4eaed; }
+.phase-link.current { background: #2c8672; color: #fff; border-color: #2c8672; pointer-events: none; }
+.phase-nav-note { font-size: 0.82rem; color: #666; margin: 0 0 1.25rem; line-height: 1.5; }
+
+.project-label {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #0f7b83; margin-bottom: 0.4rem;
+}
+.case-title { font-size: 2.1rem; font-weight: 800; color: #123047; margin: 0 0 0.35rem; line-height: 1.2; }
+.case-subtitle { font-size: 1rem; color: #2c8672; margin-bottom: 1rem; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1.25rem; }
+.tag-pill {
+  font-size: 0.8rem; font-weight: 500; background: #e5f2f4; color: #155f6b;
+  padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid #c1dde0;
+}
+.tag-pill.ai { background: #fff8e1; color: #7a5c00; border-color: #f0d878; }
+.tag-pill.learn { background: #f3f0ff; color: #4a3d7a; border-color: #d4cce8; }
+
+.project-meta-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.75rem; font-size: 0.9rem; }
+.project-meta-table th {
+  background: #243447; color: #fff; font-weight: 600;
+  padding: 0.5rem 0.75rem; text-align: left; font-size: 0.8rem;
+}
+.project-meta-table td { padding: 0.55rem 0.75rem; border: 1px solid #d4dde5; vertical-align: top; }
+
+h2 {
+  font-size: 1.55rem; margin-top: 2.4rem; margin-bottom: 1rem; color: #123047;
+  border-bottom: 2px solid #2c8672; padding-bottom: 0.4rem;
+}
+h3 { font-size: 1.15rem; margin-top: 1.6rem; margin-bottom: 0.65rem; color: #2c8672; font-weight: 600; }
+h4 { font-size: 1.02rem; margin-top: 1.2rem; margin-bottom: 0.45rem; color: #333; }
+p, li { line-height: 1.7; color: #333; }
+ul { margin: 0 0 1rem 1.25rem; }
+.section { margin-bottom: 1.25rem; }
+
+.callout-quote {
+  padding: 1rem 1.1rem; margin: 1.15rem 0; background: #e7f3f2;
+  border-left: 6px solid #2c8672; color: #24414a; border-radius: 6px;
+}
+.callout-phase {
+  padding: 1rem 1.1rem; margin: 1.15rem 0; background: #f3f0ff;
+  border-left: 6px solid #6b5b95; color: #3d3558; border-radius: 6px;
+}
+.callout-warn {
+  padding: 1rem 1.1rem; margin: 1.15rem 0; background: #fff8e1;
+  border-left: 6px solid #c9a227; color: #5a4a10; border-radius: 6px;
+}
+
+.lens-table, .data-table {
+  width: 100%; border-collapse: collapse; margin: 1rem 0 1.4rem;
+  border: 1px solid #d4dde5; border-radius: 8px; overflow: hidden; font-size: 0.9rem;
+}
+.lens-table td, .data-table td, .data-table th {
+  border: 1px solid #d4dde5; padding: 0.7rem 0.85rem; vertical-align: top;
+}
+.lens-table .lens-name, .data-table th { font-weight: 700; color: #2b3b4d; background: #f5f7fa; }
+.data-table th { background: #243447; color: #fff; }
+
+.placeholder {
+  background: #f7f7f7; border-radius: 8px; padding: 0.75rem;
+  text-align: center; margin: 1rem 0;
+}
+.placeholder img { max-width: 100%; height: auto; border-radius: 6px; }
+.side-by-side-imgs {
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+  margin: 1rem 0; align-items: flex-start;
+}
+.side-by-side-imgs img {
+  max-width: 300px; width: 100%; border-radius: 12px;
+}
+
+.capability-card {
+  background: #fafbfc; border: 1px solid #e2e8f0; border-top: 3px solid #2c8672;
+  border-radius: 8px; padding: 1.15rem 1.25rem; margin-bottom: 1.1rem;
+}
+.capability-card h4 { margin-top: 0; color: #123047; }
+.flow-block {
+  background: #f8f9fa; border-radius: 8px; padding: 0.9rem 1.15rem; margin: 0.6rem 0;
+  border-left: 4px solid #2c8672;
+}
+.arch-diagram {
+  background: #1e2a3a; color: #e8edf2; padding: 1.15rem; border-radius: 8px;
+  font-family: ui-monospace, monospace; font-size: 0.78rem; line-height: 1.5;
+  overflow-x: auto; white-space: pre; margin: 1rem 0;
+}
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;
+}
+.skill-group { background: #f7f7f7; border-radius: 8px; padding: 1rem 1.1rem; }
+.skill-group-title {
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  color: #555; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid #e0e0e0;
+}
+.skill-item { font-size: 0.85rem; color: #1a1a1a; padding: 0.2rem 0; line-height: 1.45; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.75rem; }
+.skill-tag {
+  background: #e5f2f4; color: #155f6b; padding: 0.3rem 0.7rem;
+  border-radius: 20px; font-size: 0.8rem; border: 1px solid #c1dde0;
+}
+.next-phase {
+  display: block; margin-top: 2rem; padding: 1.1rem 1.25rem;
+  background: #123047; color: #fff; border-radius: 10px; text-decoration: none;
+  font-weight: 600; line-height: 1.5;
+}
+.next-phase:hover { background: #1c4460; }
+.next-phase span { display: block; font-weight: 400; font-size: 0.88rem; opacity: 0.85; margin-top: 0.25rem; }
+.full-bleed video { display: block; width: 100%; height: auto; max-height: 560px; border-radius: 8px; background: #111; }
+
+@media (max-width: 768px) {
+  .case-container { padding: 1.5rem 1rem; margin: 1rem 0.5rem; }
+  .case-title { font-size: 1.55rem; }
+  h2 { font-size: 1.25rem; }
+}
