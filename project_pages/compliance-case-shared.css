@@ -195,6 +195,84 @@ body {
   border-top: 1px dashed #cbbfa6;
 }
 
+.artifact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.75rem;
+}
+
+.artifact-card {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ddd2bb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.artifact-card img,
+.artifact-card object {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.artifact-card figcaption {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  padding: 0.65rem 0.8rem;
+  margin: 0;
+  border-top: 1px solid #eee4d0;
+  line-height: 1.35;
+}
+
+.change-visual {
+  margin: 0.75rem 0 0.25rem;
+  border: 1px solid #ddd2bb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+  max-width: 36rem;
+}
+
+.change-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.change-visual.mobile-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  max-width: none;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.change-visual.mobile-row img {
+  width: calc(33.33% - 0.35rem);
+  min-width: 100px;
+  border-radius: 6px;
+}
+
+.diagram-block {
+  margin: 1rem 0 1.75rem;
+  border: 1px solid #ddd2bb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.diagram-block img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .note {
   font-size: 1.15rem;
   color: var(--ink-soft);
