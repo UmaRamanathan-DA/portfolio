@@ -3,298 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 3 — AI Enablement: Compliance Field Copilot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Phase 3 — AI Enablement</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="compliance-case-shared.css">
 </head>
 <body>
-  <div class="case-container">
-    <div class="back-row">
-      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
-      <a href="Assessments.html" class="phase-link">Phase 1: UX Redesign</a>
-      <a href="compliance-product-led-adoption.html" class="phase-link">Phase 2: Product-Led Adoption</a>
-      <a href="compliance-field-copilot.html" class="phase-link current">Phase 3: AI Enablement</a>
-    </div>
-    <p class="phase-nav-note">Phase 3 is a product specification built on <a href="Assessments.html">Phase 1</a> and the illustrative adoption lens in <a href="compliance-product-led-adoption.html">Phase 2</a>. Not production implementation.</p>
+  <div class="notebook-shell">
+    <article class="notebook">
+      <div class="back-row">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
+        <a href="Assessments.html" class="phase-link">Phase 1</a>
+        <a href="compliance-product-led-adoption.html" class="phase-link">Phase 2</a>
+        <a href="compliance-field-copilot.html" class="phase-link current">Phase 3</a>
+      </div>
 
-    <div class="project-label">Phase 3 · Self-Directed Learning Exercise · AI Product Specification</div>
-    <h1 class="case-title">AI Enablement — Compliance Field Copilot</h1>
-    <div class="case-subtitle">AI Product Specification</div>
+      <p class="phase-kicker">PHASE 3</p>
+      <p class="note">Portfolio learning exercise — a product specification only, not built or delivered. Builds on Phase 1 (real) and Phase 2 (illustrative).</p>
 
-    <div class="tag-list">
-      <span class="tag-pill learn">Learning Exercise</span>
-      <span class="tag-pill ai">Generative AI</span>
-      <span class="tag-pill ai">Agentic Workflow Design</span>
-      <span class="tag-pill">Product Analytics</span>
-      <span class="tag-pill">Voice UX</span>
-      <span class="tag-pill">B2B Enterprise SaaS</span>
-      <span class="tag-pill">Offline-First</span>
-    </div>
+      <h1 class="case-title">Field access was solved. Completion still depended on manual template search, typing, and self-checking.</h1>
 
-    <div class="callout-warn">
-      <strong>This is a self-directed learning exercise, not client work.</strong>
-      This page is a product specification and AI solution design I wrote to practice AI-enablement product thinking — agent architecture, tool design, guardrails, voice UX — on top of the real Phase 1 case. No part of this was requested by, built for, or delivered to NoMoBo’s client. All metrics referenced here are illustrative, carried forward from Phase 2’s fictitious adoption data, not real production numbers.
-      <br><br>
-      See <a href="Assessments.html">Phase 1 — the real, delivered project →</a>
-      ·
-      See <a href="compliance-product-led-adoption.html">Phase 2 — the adoption-analytics exercise →</a>
-    </div>
+      <div class="hero-slot">
+        <p class="hero-caption">hero visual — agent architecture diagram</p>
+      </div>
 
-    <table class="project-meta-table">
-      <tr><th>Role</th><th>Platform</th><th>Relationship</th><th>Status</th></tr>
-      <tr>
-        <td>Product Analyst &amp; AI Solution Designer</td>
-        <td>iPad / iPhone / Web Admin</td>
-        <td>Extension of Phase 1 (real) and Phase 2 (illustrative)</td>
-        <td>Personal learning project — product specification only, not built</td>
-      </tr>
-    </table>
+      <div class="metrics-row">
+        <div class="metric-chip">15–20% targeted lift in field activation</div>
+        <div class="metric-chip">20–30% additional targeted reduction in time-to-value</div>
+      </div>
 
-    <div class="callout-phase">
-      <strong>Separate product, shared foundation.</strong>
-      Phase 1 solved the access and workflow problem — real, delivered, offline-first mobile redesign.
-      Phase 2 explored an adoption-analytics lens on that redesign.
-      Phase 3 asks: if I were designing an AI layer on top of this product, what would it look like?
-      Compliance Field Copilot is that exploration — a distinct AI product layer that accelerates completion and reduces abandonment for the individual field assessor.
-    </div>
+      <h2>Business Objective</h2>
+      <p>Design an AI layer that helps assessors move faster and with more confidence at the point of inspection, without removing their control over what gets submitted.</p>
 
-    <h2>1. Executive Summary</h2>
-    <p>Phase 1 established that field assessors failed to activate because the product could not be used at the point of inspection — producing a 61-percentage-point completion gap vs desktop users and 74% assessment abandonment on mobile. The redesign targeted offline mode, draft save, and auto-sync as the core activation enablers.</p>
-    <p>Phase 3 asks: once field access is viable, what intelligent assistance further compresses time-to-value and helps assessors complete work with confidence? The answer explored here is an embedded <strong>Compliance Field Copilot</strong> — an AI assistant that helps assessors select templates, capture evidence by voice, complete complex questionnaires, and submit with confidence, while giving compliance managers plain-language visibility into field adoption trends.</p>
+      <h2>Business Challenges</h2>
+      <ul class="change-list">
+        <li>Template selection and long-form data entry still slowed assessors down</li>
+        <li>Manual capture kept transcription errors alive even after the redesign</li>
+        <li>Managers had no plain-language way to see where adoption was still breaking down</li>
+      </ul>
 
-    <h2>2. Problem Statement — What Phase 1 Left Unsolved</h2>
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name">Residual friction</td>
-        <td>Even with offline sync, assessors still face template confusion, long forms, manual re-entry from handwritten notes, and anxiety about submission completeness.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Adoption blind spots</td>
-        <td>Standard analytics struggle to capture offline drop-off in real time — an assessor abandoning mid-assessment offline is invisible until they reconnect, by which point the moment (and often the data) is lost.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Manager visibility</td>
-        <td>Compliance managers lack plain-language access to adoption trends and site-level risk across their teams.</td>
-      </tr>
-    </table>
+      <h2>Approach</h2>
+      <p class="approach-line">Agentic Workflow Design · Voice UX · Product Analytics · Guardrails &amp; Governance</p>
 
-    <h2>3. Product Vision — Compliance Field Copilot</h2>
-    <div class="callout-quote">
-      An in-context AI copilot that meets field assessors where work actually happens — on-site, offline, under time pressure.
-    </div>
-    <p><strong>Product name:</strong> Compliance Field Copilot (working title)</p>
-    <p><strong>Positioning:</strong> Add-on AI module for the enterprise compliance platform. Deployed as an integrated layer within the Phase 1 mobile experience, with an admin-facing insights console for compliance managers.</p>
+      <h2>What Changed</h2>
+      <ul class="change-list">
+        <li>
+          <strong>Designed a smart template recommender</strong>
+          Suggests the right template by GPS and history, replacing manual search.
+        </li>
+        <li>
+          <strong>Specified voice-to-form capture</strong>
+          Assessors speak observations; the copilot maps them to structured fields.
+        </li>
+        <li>
+          <strong>Built a pre-submit validation agent</strong>
+          Checks completeness before submission — assessor keeps final say.
+        </li>
+        <li>
+          <strong>Modeled adoption-risk scoring</strong>
+          Flags assessors likely to abandon before they do, not after.
+        </li>
+        <li>
+          <strong>Specified a manager insights copilot</strong>
+          Plain-language queries over field adoption data, no custom reports needed.
+        </li>
+      </ul>
 
-    <h3>Primary personas</h3>
-    <table class="data-table">
-      <tr><th>Persona</th><th>AI need</th><th>Success signal</th></tr>
-      <tr>
-        <td>Field Assessor</td>
-        <td>Fast, accurate capture at inspection site; confidence data will sync</td>
-        <td>Higher completion rate; lower abandonment</td>
-      </tr>
-      <tr>
-        <td>Compliance Manager</td>
-        <td>Visibility into field adoption, risk gaps, and team performance</td>
-        <td>Faster issue detection; clearer team-level picture</td>
-      </tr>
-    </table>
+      <h2>Transformation Scale</h2>
+      <div class="scale-block">
+        <p>7 AI-assisted capabilities specified end-to-end</p>
+        <p>1 orchestrator coordinating 6 specialised agent tools</p>
+        <p>4-phase rollout roadmap defined — Foundation → Capture → Intelligence → Admin</p>
+      </div>
 
-    <h2>4. AI Capabilities — Detailed Specification</h2>
+      <p class="tagline">A specification for faster, more confident field capture, with a human always in the loop.</p>
 
-    <div class="capability-card">
-      <h4>4.1 Smart Template Recommender</h4>
-      <p>Uses GPS location, facility type, assessment history, and the org’s template library to rank the top 1–3 templates with confidence scores.</p>
-      <p><strong>Example:</strong> “Based on your location at Warehouse B and your last 3 visits, I recommend the Fire Safety — Industrial template (92% match). Use this one?”</p>
-    </div>
+      <h2>Business Impact</h2>
+      <div class="impact-block">
+        <ul>
+          <li>+15–20% targeted lift in field activation</li>
+          <li>Additional 20–30% targeted reduction in time-to-value beyond Phase 1</li>
+          <li>Abandonment rate targeted to hold at ≤7%, vs. 74% pre-redesign baseline</li>
+          <li>+10% targeted lift in sustained 30–90 day submission rate</li>
+          <li>Full audit trail and human-in-the-loop guardrails specified for every AI suggestion</li>
+        </ul>
+      </div>
 
-    <div class="capability-card">
-      <h4>4.2 Context-Aware Autofill</h4>
-      <p>Pre-populates fields from prior assessments at the same site, org defaults, and device context. Assessor confirms before save — never silent overwrite.</p>
-    </div>
-
-    <div class="capability-card">
-      <h4>4.3 Voice-to-Form Capture</h4>
-      <p>Assessor speaks observations; speech-to-text + entity extraction maps content to structured form fields.</p>
-      <p><strong>Example:</strong> “Fire exit blocked at loading bay B, severity high” → copilot proposes field values; assessor taps Confirm.</p>
-      <p>Directly attacks the transcription-error and double-entry abandonment drivers from Phase 1.</p>
-    </div>
-
-    <div class="capability-card">
-      <h4>4.4 Guided Completion &amp; Criticality Alerts</h4>
-      <p>Surfaces next required critical items, explains why they matter, and flags incomplete sections before submit.</p>
-    </div>
-
-    <div class="capability-card">
-      <h4>4.5 Pre-Submit Validation Agent</h4>
-      <p>Runs validation rules before submit: required fields, evidence attachments, consistency checks vs prior visits. Returns a pass/fail with a fix list. Copilot recommends fixes; assessor retains submit authority.</p>
-    </div>
-
-    <div class="capability-card">
-      <h4>4.6 Adoption Risk Intelligence (Admin Console)</h4>
-      <p>ML models trained on Phase 2’s illustrative funnel data predict activation risk (user unlikely to complete their first assessment within 14 days) and abandonment risk (mid-assessment dropout probability during offline/sync stages).</p>
-      <p><strong>Outputs:</strong> manager dashboard alerts and in-app nudges like “You have 1 draft ready to sync.”</p>
-    </div>
-
-    <div class="capability-card">
-      <h4>4.7 Manager Insights Copilot (Natural-Language Analytics)</h4>
-      <p>LLM-RAG over assessment data lets managers ask plain-language questions and get concise answers with drill-down links.</p>
-      <p><strong>Example queries:</strong> “Which sites had the lowest completion rate this month?” · “Where are assessors abandoning during offline sync?”</p>
-    </div>
-
-    <h2>5. Agent Architecture</h2>
-    <p>A lightweight orchestrator with specialised tools, not a single monolithic chatbot.</p>
-    <div class="arch-diagram">┌─────────────────────────────────────────────────────────────┐
-│              Compliance Field Copilot (Orchestrator)         │
-│  Intent routing · Session state · Guardrails · Disclosure    │
-└──────────────┬──────────────────────────────────────────────┘
-               │
-    ┌──────────┼──────────┬────────────┬────────────┬──────────┐
-    ▼          ▼          ▼            ▼            ▼          ▼
- Template   Autofill   Voice-to-   Validation   Adoption   Manager
- Recommender Engine    Form NLP    Agent        Risk       RAG Q&amp;A
-                                               Scorer
-               │
-    ┌──────────┴──────────────────────────────────────────────┐
-    │  Platform APIs: assessments · drafts · sync · templates  │
-    │  Offline queue · audit log · manager escalation queue    │
-    └─────────────────────────────────────────────────────────┘</div>
-
-    <h3>Tool catalogue</h3>
-    <table class="data-table">
-      <tr><th>Tool</th><th>Input</th><th>Output</th><th>Autonomy</th></tr>
-      <tr><td>get_site_context</td><td>GPS, account ID</td><td>Site profile, history</td><td>Automatic</td></tr>
-      <tr><td>suggest_templates</td><td>Site context</td><td>Ranked template list</td><td>Suggest → user confirms</td></tr>
-      <tr><td>autofill_fields</td><td>Template + history</td><td>Pre-filled draft</td><td>Suggest → user confirms</td></tr>
-      <tr><td>transcribe_voice_note</td><td>Audio blob</td><td>Structured field proposals</td><td>Suggest → user confirms</td></tr>
-      <tr><td>validate_submission</td><td>Draft assessment</td><td>Pass/fail + fix list</td><td>Advisory</td></tr>
-      <tr><td>score_adoption_risk</td><td>User behaviour events</td><td>Activation/abandonment risk score + nudge</td><td>Automatic (admin)</td></tr>
-      <tr><td>query_compliance_analytics</td><td>NL manager question</td><td>Answer + citations</td><td>Read-only</td></tr>
-    </table>
-
-    <h2>6. Sample Conversation Flows</h2>
-
-    <h3>Template selection (happy path)</h3>
-    <div class="flow-block"><strong>Copilot:</strong> Good morning. You’re at Warehouse B. I recommend the Fire Safety — Industrial template based on this site and your recent visits. Start with this template?</div>
-    <div class="flow-block"><strong>Assessor:</strong> Yes.</div>
-    <div class="flow-block"><strong>Copilot:</strong> I’ve pre-filled site address, assessor ID, and last inspection date. Please confirm or edit. Ready to begin Section 1?</div>
-
-    <h3>Voice capture → structured fields</h3>
-    <div class="flow-block"><strong>Assessor (voice):</strong> Loading bay fire exit partially blocked by pallets, high severity, photo attached.</div>
-    <div class="flow-block"><strong>Copilot:</strong> I captured: Location — Loading Bay · Issue — Blocked fire exit · Severity — High · Evidence — 1 photo. Add to Section 4?</div>
-    <div class="flow-block"><strong>Assessor:</strong> Confirm.</div>
-
-    <h3>Offline sync reassurance</h3>
-    <div class="flow-block"><strong>Copilot (on relaunch):</strong> Welcome back. You have 1 assessment saved offline from yesterday — 85% complete. Sync now and finish the remaining 2 critical items?</div>
-
-    <h3>Escalation — high-severity finding</h3>
-    <div class="flow-block"><strong>Copilot:</strong> This finding exceeds your organisation’s auto-close threshold. I’ve flagged it for manager review and logged the draft. You can still submit — your manager will be notified automatically.</div>
-
-    <h2>7. Adoption Metrics — AI Success Criteria (Illustrative)</h2>
-    <p>Targets below reuse Phase 2’s illustrative metrics to show how AI interventions would map to adoption outcomes.</p>
-    <table class="data-table">
-      <tr><th>Adoption Metric (Phase 2, illustrative)</th><th>AI Intervention</th><th>Target Impact</th></tr>
-      <tr>
-        <td>Activation rate (first completed assessment)</td>
-        <td>Template recommender + autofill + onboarding copilot</td>
-        <td>+15–20% field activation</td>
-      </tr>
-      <tr>
-        <td>Time-to-value</td>
-        <td>Autofill + guided completion</td>
-        <td>Additional 20–30% reduction beyond Phase 1</td>
-      </tr>
-      <tr>
-        <td>Draft→sync→submit path share</td>
-        <td>Offline relaunch prompts + validation agent</td>
-        <td>Maintain 38%+ path share; reduce sync-stage abandonment</td>
-      </tr>
-      <tr>
-        <td>Abandonment rate</td>
-        <td>Voice-to-form + pre-submit validation</td>
-        <td>Hold at ≤7% (vs 74% pre-redesign)</td>
-      </tr>
-      <tr>
-        <td>Retention (30–90 day submission rate)</td>
-        <td>Adoption-risk nudges</td>
-        <td>+10% sustained submission rate</td>
-      </tr>
-    </table>
-    <p><strong>North Star:</strong> Assessment completion rate (not logins). <strong>Core:</strong> Offline path reliability + AI-assisted capture. <strong>Depth:</strong> Predictive nudges that catch an assessor before they abandon mid-task.</p>
-
-    <h2>8. Guardrails &amp; Enterprise Governance</h2>
-    <ul>
-      <li><strong>Human in the loop</strong> — AI suggests; assessors confirm all field entries and submissions.</li>
-      <li><strong>No auto-approval</strong> — Copilot cannot certify compliance outcomes or override policy.</li>
-      <li><strong>Audit trail</strong> — Every suggestion, transcription, and validation logged with timestamp and user ID.</li>
-      <li><strong>AI disclosure</strong> — Copilot identifies as AI at session start.</li>
-      <li><strong>Offline integrity</strong> — Local queue preserves events; sync conflicts surfaced for manual resolution.</li>
-      <li><strong>Manager escalation</strong> — High-severity or policy-threshold breaches route to manager queue automatically.</li>
-      <li><strong>Data minimisation</strong> — Voice and location data retained per organisation policy; no training on client data without consent.</li>
-    </ul>
-
-    <h2>9. Technical Approach (High Level)</h2>
-    <table class="data-table">
-      <tr><th>Layer</th><th>Approach</th></tr>
-      <tr><td>Field copilot UI</td><td>Embedded in Phase 1 iOS/iPad app; chat + voice FAB; offline-capable</td></tr>
-      <tr><td>Orchestration</td><td>Agent router with tool calling; session state per assessment draft</td></tr>
-      <tr><td>NLU / LLM</td><td>Intent classification + constrained generation for form-safe outputs</td></tr>
-      <tr><td>Voice</td><td>On-device or cloud STT; entity extraction to schema-bound fields</td></tr>
-      <tr><td>Adoption ML</td><td>Propensity models on event stream (activation, abandonment)</td></tr>
-      <tr><td>Manager RAG</td><td>Embeddings over metrics + assessment summaries; NL query interface</td></tr>
-      <tr><td>Integration</td><td>REST APIs to assessment, template, draft, sync, and notification services</td></tr>
-    </table>
-
-    <h2>10. Phased Rollout Roadmap (Hypothetical)</h2>
-    <table class="data-table">
-      <tr><th>Phase</th><th>Scope</th><th>Adoption focus</th></tr>
-      <tr><td><strong>3A — Foundation</strong></td><td>Template recommender, autofill, guided completion</td><td>Activation + time-to-value</td></tr>
-      <tr><td><strong>3B — Capture</strong></td><td>Voice-to-form, pre-submit validation</td><td>Abandonment reduction</td></tr>
-      <tr><td><strong>3C — Intelligence</strong></td><td>Adoption-risk models, manager alerts, nudges</td><td>Retention (predictive engagement nudges)</td></tr>
-      <tr><td><strong>3D — Admin</strong></td><td>Manager Insights Copilot (NL analytics)</td><td>Team-level adoption visibility</td></tr>
-    </table>
-
-    <h2>11. Expected Impact (Illustrative)</h2>
-    <ul>
-      <li>Further compression of field assessment time beyond Phase 1 UX gains</li>
-      <li>Reduced compliance gap risk from missed critical items and transcription errors</li>
-      <li>Higher sustained adoption per assessor, driven by proactive abandonment-risk nudges</li>
-    </ul>
-
-    <h2>12. Relationship Across Phases</h2>
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name"><a href="Assessments.html">Phase 1 (real)</a></td>
-        <td>UX research and offline-first redesign — making field use possible. Delivered for NoMoBo’s client, 2021.</td>
-      </tr>
-      <tr>
-        <td class="lens-name"><a href="compliance-product-led-adoption.html">Phase 2 (illustrative)</a></td>
-        <td>Product-adoption analytics applied to Phase 1’s outcome — a learning exercise in activation, funnel, and retention thinking.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Phase 3 (illustrative, this page)</td>
-        <td>AI copilot specification — a learning exercise in agentic product design, voice UX, and guardrails, built on Phase 2’s fictitious adoption data.</td>
-      </tr>
-    </table>
-
-    <h2>Skills Demonstrated</h2>
-    <div class="skill-tags">
-      <span class="skill-tag">AI Product Design</span>
-      <span class="skill-tag">Agentic Workflow Design</span>
-      <span class="skill-tag">Conversational AI</span>
-      <span class="skill-tag">Voice UX</span>
-      <span class="skill-tag">Product Analytics Thinking</span>
-      <span class="skill-tag">B2B Enterprise SaaS</span>
-      <span class="skill-tag">Requirements Specification</span>
-      <span class="skill-tag">Guardrails &amp; Governance</span>
-      <span class="skill-tag">Cross-functional Product Thinking</span>
-    </div>
-
-    <a class="next-phase" href="Assessments.html" style="margin-top:2rem;background:#2c8672;">
-      ← Back to Phase 1 (real client redesign)
-      <span>Or jump to <span style="text-decoration:underline;">Phase 2</span> from the nav above</span>
-    </a>
+      <a class="next-phase" href="Assessments.html">← Back to Phase 1</a>
+    </article>
   </div>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>

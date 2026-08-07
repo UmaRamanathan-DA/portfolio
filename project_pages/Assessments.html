@@ -3,377 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 1 — Compliance Management System: Mobile-First Field Redesign</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Phase 1 — Field Assessment Redesign</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="compliance-case-shared.css">
 </head>
 <body>
-  <div class="case-container">
-    <div class="back-row">
-      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
-      <a href="Assessments.html" class="phase-link current">Phase 1: UX Redesign</a>
-      <a href="compliance-product-led-adoption.html" class="phase-link">Phase 2: Product-Led Adoption</a>
-      <a href="compliance-field-copilot.html" class="phase-link">Phase 3: AI Enablement</a>
-    </div>
-    <p class="phase-nav-note">Three-part series: Phase 1 is the real client redesign. Phases 2 and 3 are self-directed learning exercises built on this project — not additional client work.</p>
-
-    <div class="project-label">Phase 1 · Client Project · 2021</div>
-    <h1 class="case-title">Compliance Management System — Mobile-First Field Redesign</h1>
-    <div class="case-subtitle">A UX Research &amp; Interaction Design Case Study</div>
-
-    <div class="tag-list">
-      <span class="tag-pill">Product Discovery</span>
-      <span class="tag-pill">UX Research</span>
-      <span class="tag-pill">Interaction Design</span>
-      <span class="tag-pill">Offline-First Design</span>
-      <span class="tag-pill">Enterprise System</span>
-    </div>
-
-    <table class="project-meta-table">
-      <tr><th>Role</th><th>Platform</th><th>Domain</th><th>Year</th></tr>
-      <tr>
-        <td>UX Designer &amp; Product Analyst</td>
-        <td>iPad &amp; iPhone (iOS)</td>
-        <td>B2B Enterprise Compliance System</td>
-        <td>2021</td>
-      </tr>
-    </table>
-
-    <h2>Introduction</h2>
-    <div class="section">
-      <p>This case study documents the end-to-end redesign of a legacy enterprise compliance management system for field-based users. The platform was mature and well-adopted on desktop, used by compliance managers, administrators, and office-based assessors. However, field users conducting on-site inspections, audits, and assessments at remote locations and live facilities had no way to use the system directly in the field.</p>
-      <p>Without a portable, field-ready interface, assessors were forced into a two-step workaround: making notes outside the system on-site, then returning to a desktop to manually enter or update the assessment record. This broke the workflow at its most critical point — the moment of observation — and introduced delays, transcription errors, and compliance risk.</p>
-      <p>The strategic response was purpose-built field-native features that field assessors could carry into any environment and use to fill in assessment forms directly and offline, without needing to revert to pen and paper or defer data entry to a later desktop session. The offline-first architecture, draft save, and auto-sync features were not enhancements — they were the core enablers that made direct field use viable.</p>
-      <p>This case study covers the research, design, and validation of that redesign: diagnosing user pain, mapping journeys, designing for the field context, and validating through usability testing.</p>
-      <p><strong>Approach:</strong> Research → Design → Validation</p>
-      <div class="callout-phase">
-        This project continues in two follow-on explorations:
-        <a href="compliance-product-led-adoption.html"><strong>Phase 2 — Product-Led Adoption</strong></a>
-        applies product-adoption analytics thinking to this redesign, and
-        <a href="compliance-field-copilot.html"><strong>Phase 3 — AI Enablement</strong></a>
-        specs out an AI copilot layer on top of it. Both are self-directed learning exercises built on this real project, not additional client work.
+  <div class="notebook-shell">
+    <article class="notebook">
+      <div class="back-row">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
+        <a href="Assessments.html" class="phase-link current">Phase 1</a>
+        <a href="compliance-product-led-adoption.html" class="phase-link">Phase 2</a>
+        <a href="compliance-field-copilot.html" class="phase-link">Phase 3</a>
       </div>
-    </div>
 
-    <h2>Prototype</h2>
-    <div class="full-bleed">
-      <video controls preload="metadata" playsinline poster="../images/OGP/ogp_thumbnail.png">
-        <source src="../images/OGP/ogp_output.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-    </div>
+      <p class="phase-kicker">PHASE 1</p>
+      <h1 class="case-title">Field assessors couldn't complete compliance work where the work actually happened.</h1>
 
-    <h2>Skills Used</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-title">UX Research &amp; Design</div>
-        <div class="skill-item">User Research (interviews, field observation)</div>
-        <div class="skill-item">Persona Development</div>
-        <div class="skill-item">Empathy Mapping</div>
-        <div class="skill-item">Customer Journey Mapping (As-Is &amp; To-Be)</div>
-        <div class="skill-item">Workshop Facilitation</div>
-        <div class="skill-item">Wireframing</div>
-        <div class="skill-item">Interaction Design</div>
-        <div class="skill-item">Prototyping</div>
-        <div class="skill-item">Usability Testing (SUS scoring)</div>
+      <div class="hero-slot">
+        <video controls preload="metadata" playsinline poster="../images/OGP/ogp_thumbnail.png">
+          <source src="../images/OGP/ogp_output.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+        <p class="hero-caption">before/after mobile UI</p>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Product Thinking</div>
-        <div class="skill-item">Product Discovery</div>
-        <div class="skill-item">Feature Prioritisation</div>
-        <div class="skill-item">Roadmap Planning</div>
+
+      <div class="metrics-row">
+        <div class="metric-chip">2.6× increase in field assessment completion <span>21% → 55%</span></div>
+        <div class="metric-chip">65% improvement in usability score <span>SUS 49 → 81</span></div>
       </div>
-    </div>
 
-    <h2>Problem Statement</h2>
-    <h3>The Core Access Failure</h3>
-    <p>Field assessors were conducting compliance inspections at remote sites, live facilities, and outdoor environments where a laptop or desktop was neither available nor practical. The compliance system had only a basic mobile interface, which produced a structural problem: the moment of assessment — when evidence was fresh, context was visible, and accuracy was highest — was exactly when the system could not be used, forcing assessors into a two-step workaround. The solution was to extend the system across multiple touchpoints — desktop, iPad, and mobile — with a seamless experience that allowed assessors to fill forms, work offline, and sync data without any break in workflow.</p>
+      <h2>Business Objective</h2>
+      <p>Give field-based compliance assessors a mobile-first way to complete inspections at the point of observation, without reverting to pen, paper, or a desktop workaround.</p>
 
-    <h3>Two Costly Workarounds Emerged</h3>
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name">Paper-Based Workaround</td>
-        <td>Assessors took handwritten notes on-site and manually re-entered data at the desktop later. This introduced transcription errors, duplicated effort, and created compliance gaps between the moment of observation and the point of record.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Deferred Completion</td>
-        <td>Assessors waited until returning to a fixed location to complete digital records, hours or days after the site visit. Observations faded, context was lost, and time-sensitive incidents were flagged late.</td>
-      </tr>
-    </table>
-
-    <h3>The Quantified Usability Gap</h3>
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name">Desktop Completion Rate</td>
-        <td>82%, the baseline for a well-functioning system</td>
-      </tr>
-      <tr>
-        <td class="lens-name">iPad Pre-Redesign Completion Rate</td>
-        <td>21%, 4× below desktop baseline</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Primary Abandonment Point</td>
-        <td>Draft save and offline sync — the exact moments the field workflow required most</td>
-      </tr>
-    </table>
-
-    <div class="callout-quote">
-      <strong>Problem Statement Summary.</strong> Field-based compliance assessors were unable to complete assessments at the point of inspection because the existing iOS interface was very basic and did not support offline capture, reliable draft save, or seamless sync — resulting in a 61-percentage-point gap in completion rate compared to desktop users, and creating compliance risk and data quality issues for field operations.
-      <ul>
-        <li>Manual note-taking</li>
-        <li>No offline access</li>
-        <li>Frequent data loss</li>
-        <li>Delayed validations</li>
-        <li>Poor mobile compatibility</li>
+      <h2>Business Challenges</h2>
+      <ul class="change-list">
+        <li>Field assessors had no reliable way to complete assessments on-site</li>
+        <li>Manual paper workarounds caused transcription errors and compliance gaps</li>
+        <li>The existing iPad interface had a 61-point completion gap vs. desktop</li>
       </ul>
-    </div>
 
-    <h2>Research &amp; Discovery Methodology</h2>
-    <p>The research phase combined qualitative field investigation with quantitative funnel analysis. This dual approach was deliberate: qualitative methods revealed why assessors were failing; quantitative analysis revealed where and how severely. Together they built the complete picture needed to design a credible, evidence-driven solution.</p>
+      <h2>Approach</h2>
+      <p class="approach-line">UX Research · Interaction Design · Offline-First Architecture</p>
 
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name">Stakeholder Discovery Workshops</td>
-        <td>Facilitated sessions with compliance managers, field assessors, and system administrators. Used feedback grids (Works Well / Needs to Change / Questions / Ideas) to surface competing priorities and hidden assumptions.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Field Observation &amp; User Interviews</td>
-        <td>On-site observation of assessors at work, watching how notes were taken, how the app was (or wasn’t) used, and where confidence broke down. Interviews followed each observation to understand the emotional and cognitive experience.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">User Personas &amp; Empathy Mapping</td>
-        <td>Synthesised research into a primary persona (Adam, Field &amp; Survey Officer) with empathy maps capturing what he does, thinks, feels, and needs at each stage of the assessment workflow.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Customer Journey Mapping (As-Is)</td>
-        <td>Mapped the current-state journey step-by-step, from travelling to a site through to post-submission, documenting actions, thoughts, feelings, and needs at each stage. Surfaced the emotional low points (anxiety, confusion, frustration) that corresponded to interface failures.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Usage Funnel Analysis</td>
-        <td>Analysed the 6-stage digital funnel from iPad access assignment through to full assessment submission, quantifying the gap between desktop and iPad completion rates and identifying the stage where drop-off was most severe (draft save / sync).</td>
-      </tr>
-      <tr>
-        <td class="lens-name">System Usability Scale (SUS)</td>
-        <td>Conducted SUS evaluations on both the desktop and the pre-redesign iPad interface. The desktop scored 76 (Good). The iPad pre-redesign scored 49 (Not Acceptable), a quantified confirmation of the usability gap.</td>
-      </tr>
-    </table>
+      <h2>What Changed</h2>
+      <ul class="change-list">
+        <li>
+          <strong>Built offline-first assessment capture</strong>
+          Assessors can now complete forms fully without connectivity — no data lost.
+        </li>
+        <li>
+          <strong>Made draft recovery automatic</strong>
+          Auto-save every 60 seconds, with persistent recovery on relaunch.
+        </li>
+        <li>
+          <strong>Redesigned navigation for field use</strong>
+          Assessment launch cut from 5+ taps to 2, built for one-handed, gloved use.
+        </li>
+        <li>
+          <strong>Added visible sync status</strong>
+          A persistent status bar removes the anxiety of not knowing if data saved.
+        </li>
+        <li>
+          <strong>Embedded photo and note capture</strong>
+          Evidence capture now happens inside the assessment flow, not a separate app.
+        </li>
+      </ul>
 
-    <h3>Stakeholder Feedback Grid</h3>
-    <table class="data-table">
-      <tr><th>Works Well</th><th>Needs to Change</th></tr>
-      <tr>
-        <td>On-field recording is easy and fast · Manual work eliminated · Templates auto-load based on location · Critical incident notifications visible · Frequent auto-saving</td>
-        <td>App performance is slow · Notifications are unintuitive · Syncing is confusing</td>
-      </tr>
-      <tr><th>Questions</th><th>New Ideas</th></tr>
-      <tr>
-        <td>How does communication work for non-iOS? · What are the offline data limits?</td>
-        <td>SMS/iMessage-based incident alerts · Gesture-based navigation · Voice-based search and incident recording · Dashboard with recent activities · Centralized notifications tab</td>
-      </tr>
-    </table>
-    <div class="placeholder"><img src="../images/Assessments/Feedback Grid.png" alt="Stakeholder feedback grid"></div>
+      <h2>Transformation Scale</h2>
+      <div class="scale-block">
+        <p>6 field workflow stages redesigned end-to-end</p>
+        <p>8 field-native capabilities shipped</p>
+        <p>2 platforms unified — desktop and iPad, one consistent experience</p>
+      </div>
 
-    <h3>Persona &amp; Empathy Map — Adam (Field &amp; Survey Officer)</h3>
-    <div class="placeholder"><img width="70%" src="../images/Assessments/Persona.png" alt="Persona — Adam, Field &amp; Survey Officer"></div>
-    <div class="placeholder"><img width="70%" src="../images/Assessments/Empathy Map.png" alt="Empathy map"></div>
+      <p class="tagline">A field-tested, offline-first assessment experience — validated, not assumed.</p>
 
-    <h3>Stakeholder Assumptions and Risk Mapping</h3>
-    <table class="data-table">
-      <tr><th>Assumption</th><th>Risk Level</th><th>Validation Approach</th></tr>
-      <tr><td>Users prefer mobile recording</td><td>High</td><td>Field interviews, analytics</td></tr>
-      <tr><td>SMS/iMessage is the best alert method</td><td>Medium</td><td>Survey, usage data</td></tr>
-      <tr><td>Offline sync is technically feasible</td><td>High</td><td>Dev partner consultation</td></tr>
-      <tr><td>Templates are reused across locations</td><td>Medium</td><td>Contextual inquiry</td></tr>
-      <tr><td>Users are tech-savvy and need minimal training</td><td>Low</td><td>Persona analysis</td></tr>
-    </table>
-    <div class="placeholder"><img src="../images/Assessments/Assumptions.png" alt="Assumptions and risk mapping"></div>
+      <h2>Business Impact</h2>
+      <div class="impact-block">
+        <ul>
+          <li>2.6× increase in field assessment completion — 21% → 55%</li>
+          <li>55% reduction in time to first submission — 62 min → 28 min</li>
+          <li>65% improvement in usability score — SUS 49 (Poor) → 81 (Excellent)</li>
+          <li>Fewer transcription errors and compliance gaps from paper workarounds</li>
+          <li>Consistent, field-native experience across desktop, iPad, and mobile</li>
+        </ul>
+      </div>
 
-    <h3>As-Is Customer Journey: The Failing Field Experience</h3>
-    <table class="data-table">
-      <tr><th>Step</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Needs</th></tr>
-      <tr>
-        <td>Travel to site, take notes</td>
-        <td>Uses pen &amp; paper</td>
-        <td>“Hope I don’t lose these notes.”</td>
-        <td>Anxious, cautious</td>
-        <td>Mobile recording, auto-save</td>
-      </tr>
-      <tr>
-        <td>Choose template</td>
-        <td>Searches manually</td>
-        <td>“Which one fits this site?”</td>
-        <td>Confused, uncertain</td>
-        <td>Smart template suggestions</td>
-      </tr>
-      <tr>
-        <td>Fill out basic details</td>
-        <td>Enters manually</td>
-        <td>“This takes too long.”</td>
-        <td>Frustrated</td>
-        <td>Autofill from location or history</td>
-      </tr>
-      <tr>
-        <td>Answer questionnaire</td>
-        <td>Scrolls through long forms</td>
-        <td>“I might miss something important.”</td>
-        <td>Overwhelmed</td>
-        <td>Simplified UI, criticality alerts</td>
-      </tr>
-      <tr>
-        <td>Continue later</td>
-        <td>Saves and exits</td>
-        <td>“Will this sync correctly?”</td>
-        <td>Worried</td>
-        <td>Reliable offline sync, confirmation</td>
-      </tr>
-    </table>
-    <div class="placeholder"><img width="70%" src="../images/Assessments/As-Is-Scenario.png" alt="As-Is journey scenario"></div>
-
-    <h3>Key Friction Points from Field Research</h3>
-    <ul>
-      <li>No reliable offline mode — one dropped connection lost all unsaved data</li>
-      <li>Draft save was hidden and manual; most users didn’t know it existed; auto-save was absent</li>
-      <li>Sync was opaque — no visibility on whether data had synced; users re-entered data out of fear</li>
-      <li>Desktop navigation ported to iPad — deep menus designed for mouse use were unusable with gloved or one-handed field operation</li>
-      <li>Form inputs not optimised for touch — small tap targets, no keyboard auto-dismiss, date pickers unsuited to iOS</li>
-      <li>No field-specific features — photo evidence, quick notes, and site context required separate apps</li>
-    </ul>
-
-    <h2>Design Solution: Offline-First, Field-Native</h2>
-    <div class="callout-quote">
-      <strong>Design principle:</strong> the iPad interface must work reliably in the worst-case field scenario — no connectivity, one hand occupied, gloves possible, time pressure real. Everything else follows from that constraint.
-    </div>
-
-    <h3>From As-Is to To-Be: The Redesigned Journey</h3>
-    <table class="data-table">
-      <tr><th>Stage</th><th>Does</th><th>Thinks</th><th>Feels</th><th>Gains</th></tr>
-      <tr>
-        <td>Travel to site</td>
-        <td>Opens app, auto-loads template</td>
-        <td>“This is fast and accurate.”</td>
-        <td>Confident, focused</td>
-        <td>Location-based template suggestions</td>
-      </tr>
-      <tr>
-        <td>Fill out details</td>
-        <td>Autofill from GPS and history</td>
-        <td>“I’m saving so much time.”</td>
-        <td>Relieved</td>
-        <td>Smart autofill, reduced manual entry</td>
-      </tr>
-      <tr>
-        <td>Record assessment</td>
-        <td>Uses offline mode with auto-save</td>
-        <td>“No worries about data loss.”</td>
-        <td>Secure, efficient</td>
-        <td>Offline recording, auto-save</td>
-      </tr>
-      <tr>
-        <td>View alerts</td>
-        <td>Receives SMS/iMessage notifications</td>
-        <td>“I can act immediately.”</td>
-        <td>Empowered</td>
-        <td>Real-time criticality alerts</td>
-      </tr>
-      <tr>
-        <td>Submit &amp; sync</td>
-        <td>Syncs automatically when online</td>
-        <td>“Everything’s backed up.”</td>
-        <td>Satisfied</td>
-        <td>Seamless sync, confirmation feedback</td>
-      </tr>
-    </table>
-    <div class="placeholder"><img width="70%" src="../images/Assessments/To-Be-Scenario.png" alt="To-Be journey scenario"></div>
-
-    <h3>Before &amp; After: Key Design Changes</h3>
-    <table class="data-table">
-      <tr><th>Before</th><th>After</th></tr>
-      <tr><td>No offline mode, data lost on disconnection</td><td>Offline-first architecture: assessments work fully without any connectivity</td></tr>
-      <tr><td>Manual, hidden draft save</td><td>Auto-save every 60 seconds + persistent draft recovery on relaunch</td></tr>
-      <tr><td>Opaque sync, no user feedback</td><td>Sync status bar: Saved Offline → Syncing… → Submitted, visible at all times</td></tr>
-      <tr><td>Desktop navigation (5+ taps to reach assessment)</td><td>Flat field navigation, assessment launch in 2 taps from home screen</td></tr>
-      <tr><td>Small touch targets, desktop form controls</td><td>iOS-native controls, large tap targets, optimised for gloved/one-hand use</td></tr>
-      <tr><td>No photo or note capture within the flow</td><td>In-context photo attachment and quick notes embedded within each assessment field</td></tr>
-      <tr><td>No onboarding for new iPad users</td><td>Contextual first-use tooltips on offline mode, draft save, and sync</td></tr>
-    </table>
-
-    <h3>Feature Prioritisation: Phased Delivery</h3>
-    <p>A staged capability roadmap grounded in field research and user feedback, prioritizing progressive empowerment for assessors — from basic mobile access to advanced interaction modes.</p>
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name">Short-Term Enhancements</td>
-        <td>
-          <ul>
-            <li>Mobile login, assessment creation, and resume flow</li>
-            <li>Offline mode with auto-sync and criticality alerts</li>
-            <li>Autosave and sync status visibility</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td class="lens-name">Long-Term Vision</td>
-        <td>
-          <ul>
-            <li>Dashboard with recent activities and centralized notifications</li>
-            <li>Gesture-based navigation for faster input</li>
-            <li>Voice-enabled search and incident recording</li>
-            <li>SMS/iMessage alerts for critical events</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <div class="placeholder"><img width="70%" src="../images/Assessments/experience based road map.png" alt="Experience-based roadmap"></div>
-    <div class="placeholder"><img src="../images/Assessments/prioritisation-grid.png" alt="Prioritisation grid"></div>
-    <div class="placeholder"><img src="../images/Assessments/stakeholder-map.png" alt="Stakeholder map"></div>
-    <div class="placeholder"><img src="../images/Assessments/users-hopes-fears.png" alt="Users hopes and fears"></div>
-
-    <h2>Validation: Did the Redesign Work?</h2>
-    <table class="data-table">
-      <tr><th>Metric</th><th>Before</th><th>After</th><th>What it validates</th></tr>
-      <tr>
-        <td>SUS Score (iPad interface)</td>
-        <td>49 (Poor)</td>
-        <td>81 (Excellent)</td>
-        <td>The interface itself became genuinely usable</td>
-      </tr>
-      <tr>
-        <td>Assessment Completion Rate (iPad)</td>
-        <td>21%</td>
-        <td>55%</td>
-        <td>Assessors could now complete the task the redesign targeted</td>
-      </tr>
-      <tr>
-        <td>Time on Task (first submission)</td>
-        <td>~62 min</td>
-        <td>~28 min</td>
-        <td>The redesigned flow removed unnecessary steps</td>
-      </tr>
-    </table>
-
-    <h2>Design Process</h2>
-    <h3>Wireframes (Balsamiq)</h3>
-    <p>Explored multiple user journeys, iterated 2–3 versions, focused on usability and task efficiency.</p>
-    <div class="placeholder"><img width="70%" src="../images/Assessments/balsymiq.png" alt="Balsamiq wireframes"></div>
-
-    <h3>High-Fidelity UI</h3>
-    <p>Dashboard, Assessment List (Card &amp; List views), Quick Filters &amp; Search, Record Assessment, Assessment Summary.</p>
-    <div class="placeholder">
-      <img width="70%" src="../images/Assessments/UI/dashboardhover.png" alt="Dashboard UI">
-      <img width="70%" src="../images/Assessments/UI/cardsview.png" alt="Cards view UI">
-      <img width="70%" src="../images/Assessments/UI/assessment.png" alt="Assessment UI">
-      <img width="70%" src="../images/Assessments/UI/summary.png" alt="Summary UI">
-    </div>
-    <div class="side-by-side-imgs">
-      <img src="../images/Assessments/UI/mobile-1.png" alt="Mobile UI 1">
-      <img src="../images/Assessments/UI/mobile-2.png" alt="Mobile UI 2">
-      <img src="../images/Assessments/UI/mobile-3.png" alt="Mobile UI 3">
-    </div>
-
-    <a class="next-phase" href="compliance-product-led-adoption.html">
-      Continue to Phase 2 → Product-Led Adoption
-      <span>Activation, feature adoption &amp; retention analysis (illustrative learning exercise)</span>
-    </a>
+      <a class="next-phase" href="compliance-product-led-adoption.html">Continue to Phase 2 — Product-Led Adoption →</a>
+    </article>
   </div>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>

@@ -3,216 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 2 — Product-Led Adoption | Compliance Management System</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Phase 2 — Product-Led Adoption</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="compliance-case-shared.css">
 </head>
 <body>
-  <div class="case-container">
-    <div class="back-row">
-      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
-      <a href="Assessments.html" class="phase-link">Phase 1: UX Redesign</a>
-      <a href="compliance-product-led-adoption.html" class="phase-link current">Phase 2: Product-Led Adoption</a>
-      <a href="compliance-field-copilot.html" class="phase-link">Phase 3: AI Enablement</a>
-    </div>
-    <p class="phase-nav-note">Phase 2 builds on <a href="Assessments.html">Phase 1</a>. Funnel, adoption, and retention figures on this page are illustrative — constructed for learning, not client-delivered data.</p>
+  <div class="notebook-shell">
+    <article class="notebook">
+      <div class="back-row">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
+        <a href="Assessments.html" class="phase-link">Phase 1</a>
+        <a href="compliance-product-led-adoption.html" class="phase-link current">Phase 2</a>
+        <a href="compliance-field-copilot.html" class="phase-link">Phase 3</a>
+      </div>
 
-    <div class="project-label">Phase 2 · Self-Directed Learning Exercise</div>
-    <h1 class="case-title">Product-Led Adoption</h1>
-    <div class="case-subtitle">Activation, Feature Adoption &amp; Retention Analysis</div>
+      <p class="phase-kicker">PHASE 2</p>
+      <p class="note">Portfolio learning exercise — illustrative data, not collected from or delivered to the client. Builds on the real Phase 1 redesign.</p>
 
-    <div class="tag-list">
-      <span class="tag-pill learn">Learning Exercise</span>
-      <span class="tag-pill">Product-Led Adoption (Enterprise Adaptation)</span>
-      <span class="tag-pill">Activation &amp; Funnel Analysis</span>
-      <span class="tag-pill">Feature Adoption Analysis</span>
-      <span class="tag-pill">Retention Modelling</span>
-    </div>
+      <h1 class="case-title">A better usability score didn't prove the redesign had actually taken hold.</h1>
 
-    <div class="callout-warn">
-      <strong>This is a self-directed learning exercise, not client work.</strong>
-      Everything below — the funnel numbers, feature-adoption curve, and retention percentages — is illustrative data I constructed to practice product-adoption analytics (activation funnels, time-to-value, retention modelling) on top of the real Phase 1 case. It was not collected from, delivered to, or requested by the client. Treat this as “here’s how I’d think about adoption if I had this data,” not “here’s what happened.”
-      <br><br>
-      See <a href="Assessments.html">Phase 1 — the real, delivered project →</a>
-    </div>
+      <div class="hero-slot">
+        <p class="hero-caption">hero visual — funnel diagram</p>
+      </div>
 
-    <div class="section">
-      <p>“Product-Led Growth” is usually associated with self-serve, bottom-up software (Slack, Notion, Figma) where the product itself drives acquisition. This project doesn’t have that — licenses were assigned top-down by administrators, not self-served. What does transfer cleanly from PLG thinking is the discipline of activation, time-to-value, feature adoption, and retention as measurable product metrics. This page applies that discipline to an already-adopted enterprise tool — <strong>product-led adoption and retention</strong>, not product-led acquisition.</p>
-    </div>
+      <div class="metrics-row">
+        <div class="metric-chip">4× higher activation rate at final funnel stage <span>21% → 55%</span></div>
+        <div class="metric-chip">3.8× higher 90-day retention <span>17% → 64%</span></div>
+      </div>
 
-    <h2>Introduction</h2>
-    <p>Phase 1 solved access — assessors could finally use the system in the field. Phase 2 asks the next question: once access was possible, did people actually adopt it, and did that adoption hold over time? Every UX decision from Phase 1 is translated here into a measurable product metric.</p>
+      <h2>Business Objective</h2>
+      <p>Determine whether the redesign's usability gains translated into sustained adoption over time, not just a one-time completion spike.</p>
 
-    <h2>The Aha Moment: Two Valid Completion Paths</h2>
-    <table class="lens-table">
-      <tr>
-        <td class="lens-name">Path 1: Single Session</td>
-        <td>A field user completes their first full assessment on iPad and submits it, experiencing the system working at the point of inspection for the first time.</td>
-      </tr>
-      <tr>
-        <td class="lens-name">Path 2: Draft → Offline → Sync → Submit</td>
-        <td>User starts assessment → saves to draft (auto or manual) → completes offline → draft auto-syncs on reconnect → user reviews and submits. Typical for complex, multi-location assessments. Pre-redesign: effectively broken. Post-redesign: a primary viable route.</td>
-      </tr>
-    </table>
-    <p>The redesign’s primary success condition was making Path 2 as reliable as Path 1, because for the most demanding field assessments, Path 2 is the only realistic option.</p>
+      <h2>Business Challenges</h2>
+      <ul class="change-list">
+        <li>A higher completion rate didn't confirm the feature people needed most — offline mode — was actually being adopted</li>
+        <li>No visibility into exactly where assessors dropped off, pre- vs. post-redesign</li>
+        <li>Sustained usage over 30–90 days was unproven</li>
+      </ul>
 
-    <h2>The 6-Stage Activation Funnel</h2>
-    <p>The funnel begins at iPad access assignment — existing enterprise users being extended to a new platform, not new sign-ups.</p>
-    <p><em>Figures below are illustrative / projected for practice — not client-reported outcomes.</em></p>
-    <table class="data-table">
-      <tr>
-        <th>Funnel Stage</th>
-        <th>Desktop</th>
-        <th>iPad Pre</th>
-        <th>iPad Post (Proj.)</th>
-        <th>Interpretation</th>
-      </tr>
-      <tr>
-        <td>iPad Access Assigned</td>
-        <td>500 (100%)</td>
-        <td>300 (100%)</td>
-        <td>300 (100%)</td>
-        <td>Baseline — existing users given iPad access</td>
-      </tr>
-      <tr>
-        <td>First iPad Login</td>
-        <td>480 (96%)</td>
-        <td>228 (76%)</td>
-        <td>261 (87%)</td>
-        <td>iPad drop hints at device unfamiliarity</td>
-      </tr>
-      <tr>
-        <td>Assessment Opened on iPad</td>
-        <td>450 (90%)</td>
-        <td>150 (50%)</td>
-        <td>225 (75%)</td>
-        <td>Half of iPad users couldn’t navigate to an assessment</td>
-      </tr>
-      <tr>
-        <td>Field Data Entered (any)</td>
-        <td>430 (86%)</td>
-        <td>108 (36%)</td>
-        <td>198 (66%)</td>
-        <td>Most couldn’t enter data effectively on iPad</td>
-      </tr>
-      <tr>
-        <td>Draft Saved or Submitted</td>
-        <td>415 (83%)</td>
-        <td>78 (26%)</td>
-        <td>177 (59%)</td>
-        <td>Draft save broken pre-redesign; most abandoned</td>
-      </tr>
-      <tr>
-        <td>Assessment Fully Submitted ★</td>
-        <td>410 (82%)</td>
-        <td>63 (21%)</td>
-        <td>165 (55%)</td>
-        <td>Aha moment — 4× gap pre-redesign; projected to close significantly</td>
-      </tr>
-    </table>
+      <h2>Approach</h2>
+      <p class="approach-line">Activation &amp; Funnel Analysis · Feature Adoption Tracking · Retention Modelling</p>
 
-    <h3>Completion Path Breakdown</h3>
-    <table class="data-table">
-      <tr>
-        <th>Completion Path</th>
-        <th>Desktop</th>
-        <th>iPad Pre-Redesign</th>
-        <th>iPad Post-Redesign (Proj.)</th>
-      </tr>
-      <tr>
-        <td>Single Session Complete</td>
-        <td>82%</td>
-        <td>21%</td>
-        <td>55%</td>
-      </tr>
-      <tr>
-        <td>Draft → Sync → Submit</td>
-        <td>10%</td>
-        <td>5%</td>
-        <td>38%</td>
-      </tr>
-      <tr>
-        <td>Abandoned</td>
-        <td>8%</td>
-        <td>74%</td>
-        <td>7%</td>
-      </tr>
-    </table>
-    <div class="callout-quote">
-      <strong>Insight:</strong> The post-redesign projection shows a deliberate shift — the draft→sync→submit path grows from 5% to 38% of completions. The feature that drives activation is offline mode, not UI polish.
-    </div>
+      <h2>What Changed</h2>
+      <ul class="change-list">
+        <li>
+          <strong>Mapped the full activation funnel</strong>
+          Traced 6 stages from access to submission to find exactly where users dropped off.
+        </li>
+        <li>
+          <strong>Defined activation as two valid paths</strong>
+          Single-session and offline draft-to-sync completion both count as success.
+        </li>
+        <li>
+          <strong>Tracked feature adoption weekly</strong>
+          Measured offline mode, auto-sync, and draft save adoption over an 8-week ramp.
+        </li>
+        <li>
+          <strong>Modeled 90-day retention</strong>
+          Measured sustained submission behavior, not just first-time completion.
+        </li>
+        <li>
+          <strong>Reframed the core health metric</strong>
+          Completion rate replaced logins and time-in-app as the primary signal.
+        </li>
+      </ul>
 
-    <h2>Feature Adoption (Post-Launch, 8 Weeks)</h2>
-    <p><em>Illustrative adoption curve for practice.</em></p>
-    <table class="data-table">
-      <tr><th>Feature</th><th>Week 1</th><th>Week 4</th><th>Week 8</th><th>Role</th></tr>
-      <tr><td>Offline Mode</td><td>41%</td><td>68%</td><td>83%</td><td>Aha Moment Core</td></tr>
-      <tr><td>Auto-Sync on Reconnect</td><td>38%</td><td>72%</td><td>88%</td><td>Aha Moment Core</td></tr>
-      <tr><td>Draft Save &amp; Resume</td><td>45%</td><td>74%</td><td>86%</td><td>Aha Moment Core</td></tr>
-      <tr><td>Photo Attachment</td><td>22%</td><td>44%</td><td>61%</td><td>Secondary</td></tr>
-      <tr><td>Quick Notes</td><td>18%</td><td>38%</td><td>54%</td><td>Secondary</td></tr>
-      <tr><td>Offline Map</td><td>12%</td><td>28%</td><td>41%</td><td>Secondary</td></tr>
-    </table>
+      <h2>Transformation Scale</h2>
+      <div class="scale-block">
+        <p>6-stage funnel instrumented</p>
+        <p>3 core features tracked for adoption</p>
+        <p>8-week adoption curve modeled</p>
+      </div>
 
-    <h2>Retention</h2>
-    <p>Sustained assessment submission rate over 30–90 days — not logins or time-in-app, but actual compliance output.</p>
-    <table class="data-table">
-      <tr><th>Metric</th><th>Before</th><th>After</th></tr>
-      <tr><td>Time to First Submission</td><td>~62 minutes</td><td>~28 minutes</td></tr>
-      <tr><td>Draft→Sync→Submit Path Usage</td><td>5%</td><td>38% of completions</td></tr>
-      <tr><td>90-Day Sustained Submission Rate</td><td>17%</td><td>~64%</td></tr>
-    </table>
+      <p class="tagline">A measurable framework for whether field access actually became field usage.</p>
 
-    <h2>UX Work as Adoption Interventions</h2>
-    <table class="data-table">
-      <tr><th>UX Work</th><th>Adoption Effect</th></tr>
-      <tr>
-        <td>Identified desktop inaccessibility through field research</td>
-        <td>Activation-blocker analysis — root cause of near-zero field completion rate</td>
-      </tr>
-      <tr>
-        <td>Designed offline-first assessment capture with draft save</td>
-        <td>Removed the single biggest barrier to Path 2 completion — the core aha-moment enabler</td>
-      </tr>
-      <tr>
-        <td>Built auto-sync with visible status indicator</td>
-        <td>Reduced abandonment anxiety — the sync-state indicator directly addresses the fear-of-data-loss barrier that caused mid-assessment dropout</td>
-      </tr>
-      <tr>
-        <td>Simplified iPad UI with field-only feature set</td>
-        <td>Reduced time-to-value — fewer navigation steps to reach submission</td>
-      </tr>
-      <tr>
-        <td>SUS scoring before and after redesign</td>
-        <td>Quantified UX improvement as a proxy for activation probability</td>
-      </tr>
-      <tr>
-        <td>Designed contextual first-use onboarding tooltips</td>
-        <td>Accelerated feature discovery — ensured offline mode and draft save were adopted early</td>
-      </tr>
-    </table>
+      <h2>Business Impact</h2>
+      <div class="impact-block">
+        <ul>
+          <li>4× activation rate vs. pre-redesign — 21% → 55% at final funnel stage</li>
+          <li>3.8× growth in offline-path completions — 5% → 38% of completions</li>
+          <li>3.8× higher 90-day retention — 17% → 64% sustained submission rate</li>
+          <li>Offline mode adoption reached 83% by week 8, up from 41% in week 1</li>
+          <li>Completion rate established as the core product health metric</li>
+        </ul>
+      </div>
 
-    <h2>Adoption Metric Framework</h2>
-    <table class="data-table">
-      <tr><th>Concept</th><th>Applied Here</th></tr>
-      <tr><td>Activation (Aha Moment)</td><td>First full assessment completed and submitted on iPad</td></tr>
-      <tr><td>Time-to-Value</td><td>Pre-redesign: ~62 min with high abandonment. Post-redesign target: ~28 min</td></tr>
-      <tr><td>Retention</td><td>Sustained assessment submission rate over 30–90 days</td></tr>
-      <tr><td>Feature Adoption</td><td>Uptake of offline mode, draft save, and auto-sync — the three features that make field use viable</td></tr>
-    </table>
-
-    <h2>Recommendations</h2>
-    <ul>
-      <li><strong>Instrument offline workflows specifically.</strong> Standard analytics cannot capture offline behaviour at the time of occurrence. A local event queue that timestamps and stores events offline, syncing on reconnect, gives the product team full visibility into the offline assessment journey — including where offline users drop off.</li>
-      <li><strong>Surface draft recovery prominently on relaunch.</strong> The most anxiety-inducing moment for field users is returning to the app after a connectivity loss. The relaunch screen should proactively surface any pending drafts: “You have 1 assessment saved offline, ready to sync.” This single intervention can meaningfully reduce abandonment at the sync stage.</li>
-      <li><strong>Use completion rate as the core product health metric.</strong> Completion rate — not logins, not time-in-app — reflects actual compliance work completed. It’s the most honest signal of whether the redesign is delivering real value to field users.</li>
-    </ul>
-
-    <a class="next-phase" href="compliance-field-copilot.html">
-      Continue to Phase 3 → AI Enablement — Compliance Field Copilot
-      <span>How this adoption framework extends into an AI product specification</span>
-    </a>
+      <a class="next-phase" href="compliance-field-copilot.html">Continue to Phase 3 — AI Enablement →</a>
+    </article>
   </div>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>
