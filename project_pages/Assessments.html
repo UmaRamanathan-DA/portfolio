@@ -33,6 +33,66 @@
         <div class="metric-chip">65% improvement in usability score <span>SUS 49 → 81</span></div>
       </div>
 
+      <h2>Introduction</h2>
+      <p>This case study documents the end-to-end redesign of a legacy enterprise compliance management system for field-based users. The platform was mature and well-adopted on desktop, used by compliance managers, administrators, and office-based assessors. However, field users conducting on-site inspections, audits, and assessments at remote locations and live facilities had no way to use the system directly in the field. Without a portable, field-ready interface, assessors were forced into a two-step workaround: making notes outside the system on-site, then returning to a desktop to manually enter or update the assessment record. This broke the workflow at its most critical point — the moment of observation — and introduced delays, transcription errors, and compliance risk.</p>
+      <p>The strategic response was purpose-built field-native features that field assessors could carry into any environment and use to fill in assessment forms directly and offline, without needing to revert to pen and paper or defer data entry to a later desktop session. The offline-first architecture, draft save, and auto-sync features were not enhancements — they were the core enablers that made direct field use viable.</p>
+      <p>This case study covers the research, design, and validation of that redesign: diagnosing user pain, mapping journeys, designing for the field context, and validating through usability testing.</p>
+      <p class="approach-line">Approach: Research → Design → Validation</p>
+      <div class="note">
+        This project continues in two follow-on explorations:
+        <a href="compliance-product-led-adoption.html">Phase 2 — Product-Led Adoption</a>
+        applies product-adoption analytics thinking to this redesign, and
+        <a href="compliance-field-copilot.html">Phase 3 — AI Enablement</a>
+        specs out an AI copilot layer on top of it. Both are self-directed learning exercises built on this real project, not additional client work.
+      </div>
+
+      <h2>Skills Used</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">UX Research &amp; Design</div>
+          <p>User Research (interviews, field observation) · Persona Development · Empathy Mapping · Customer Journey Mapping (As-Is &amp; To-Be) · Workshop Facilitation · Wireframing · Interaction Design · Prototyping · Usability Testing (SUS scoring)</p>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Product Thinking</div>
+          <p>Product Discovery · Feature Prioritisation · Roadmap Planning</p>
+        </div>
+      </div>
+
+      <h2>Problem Statement</h2>
+      <h3 class="subhead">The Core Access Failure</h3>
+      <p>Field assessors were conducting compliance inspections at remote sites, live facilities, and outdoor environments where a laptop or desktop was neither available nor practical. The compliance system had only a basic mobile interface, which produced a structural problem: the moment of assessment — when evidence was fresh, context was visible, and accuracy was highest — was exactly when the system could not be used, forcing assessors into a two-step workaround. The solution was to extend the system across multiple touchpoints — desktop, iPad, and mobile — with a seamless experience that allowed assessors to fill forms, work offline, and sync data without any break in workflow.</p>
+
+      <h3 class="subhead">Two Costly Workarounds Emerged</h3>
+      <div class="two-col">
+        <div class="info-card">
+          <strong>Paper-Based Workaround</strong>
+          <p>Assessors took handwritten notes on-site and manually re-entered data at the desktop later. This introduced transcription errors, duplicated effort, and created compliance gaps between the moment of observation and the point of record.</p>
+        </div>
+        <div class="info-card">
+          <strong>Deferred Completion</strong>
+          <p>Assessors waited until returning to a fixed location to complete digital records, hours or days after the site visit. Observations faded, context was lost, and time-sensitive incidents were flagged late.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">The Quantified Usability Gap</h3>
+      <div class="gap-list">
+        <div class="gap-row"><span>Desktop Completion Rate</span><span>82%, the baseline for a well-functioning system</span></div>
+        <div class="gap-row"><span>iPad Pre-Redesign Completion Rate</span><span>21%, 4× below desktop baseline</span></div>
+        <div class="gap-row"><span>Primary Abandonment Point</span><span>Draft save and offline sync — the exact moments the field workflow required most</span></div>
+      </div>
+
+      <h3 class="subhead">Problem Statement Summary</h3>
+      <div class="scale-block">
+        <p>Field-based compliance assessors were unable to complete assessments at the point of inspection because the existing iOS interface was very basic and did not support offline capture, reliable draft save, or seamless sync — resulting in a 61-percentage-point gap in completion rate compared to desktop users, and creating compliance risk and data quality issues for field operations.</p>
+        <ul class="change-list">
+          <li>Manual note-taking</li>
+          <li>No offline access</li>
+          <li>Frequent data loss</li>
+          <li>Delayed validations</li>
+          <li>Poor mobile compatibility</li>
+        </ul>
+      </div>
+
       <h2>Business Objective</h2>
       <p>Give field-based compliance assessors a mobile-first way to complete inspections at the point of observation, without reverting to pen, paper, or a desktop workaround.</p>
 
@@ -46,7 +106,7 @@
       <h2>Approach</h2>
       <p class="approach-line">UX Research · Interaction Design · Offline-First Architecture</p>
 
-      <h2>The Research</h2>
+      <h2>Research & Discovery Methodology</h2>
       <div class="artifact-grid">
         <figure class="artifact-card">
           <img src="../images/Assessments/Persona.png" alt="Persona — Adam, Field &amp; Survey Officer">
