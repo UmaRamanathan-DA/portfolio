@@ -143,6 +143,54 @@
       </div>
       <p>Field observation, interviews, and journey mapping surfaced the same failure point from four different angles — the moment of inspection was exactly when the app couldn't be used.</p>
 
+      <h2>Design Solution: Offline-First, Field-Native</h2>
+      <div class="note">
+        <strong>Design principle:</strong> the iPad interface must work reliably in the worst-case field scenario — no connectivity, one hand occupied, gloves possible, time pressure real. Everything else follows from that constraint.
+      </div>
+
+      <h3 class="subhead">From As-Is to To-Be: The Redesigned Journey</h3>
+      <figure class="diagram-block journey-figure">
+        <img src="../images/Assessments/To-Be-Scenario.png" alt="To-Be Scenario — redesigned customer journey">
+        <figcaption>To-Be Scenario</figcaption>
+      </figure>
+
+      <h3 class="subhead">Before &amp; After: Key Design Changes</h3>
+      <table class="notion-table">
+        <thead>
+          <tr><th>Before</th><th>After</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>No offline mode, data lost on disconnection</td>
+            <td>Offline-first architecture: assessments work fully without any connectivity</td>
+          </tr>
+          <tr>
+            <td>Manual, hidden draft save</td>
+            <td>Auto-save every 60 seconds + persistent draft recovery on relaunch</td>
+          </tr>
+          <tr>
+            <td>Opaque sync, no user feedback</td>
+            <td>Sync status bar: Saved Offline → Syncing… → Submitted, visible at all times</td>
+          </tr>
+          <tr>
+            <td>Desktop navigation (5+ taps to reach assessment)</td>
+            <td>Flat field navigation, assessment launch in 2 taps from home screen</td>
+          </tr>
+          <tr>
+            <td>Small touch targets, desktop form controls</td>
+            <td>iOS-native controls, large tap targets, optimised for gloved/one-hand use</td>
+          </tr>
+          <tr>
+            <td>No photo or note capture within the flow</td>
+            <td>In-context photo attachment and quick notes embedded within each assessment field</td>
+          </tr>
+          <tr>
+            <td>No onboarding for new iPad users</td>
+            <td>Contextual first-use tooltips on offline mode, draft save, and sync</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h2>What Changed</h2>
       <ul class="change-list">
         <li>
@@ -169,10 +217,6 @@
 
       <h2>The Design Artifacts</h2>
       <div class="artifact-grid">
-        <figure class="artifact-card">
-          <img src="../images/Assessments/To-Be-Scenario.png" alt="To-Be Journey Map">
-          <figcaption>To-Be Journey Map</figcaption>
-        </figure>
         <figure class="artifact-card">
           <img src="../images/Assessments/UI/summary.png" alt="High-fidelity UI — Assessment Summary screen">
           <figcaption>High-fidelity UI — Assessment Summary screen</figcaption>

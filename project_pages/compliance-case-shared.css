@@ -323,6 +323,82 @@ p {
   }
 }
 
+.notion-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1.5rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--notion-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.notion-table th,
+.notion-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75rem 0.9rem;
+  border-top: 1px solid var(--notion-border);
+  color: var(--notion-text);
+  line-height: 1.5;
+}
+
+.notion-table th {
+  background: var(--notion-hover);
+  font-weight: 600;
+  border-top: none;
+  color: var(--notion-muted);
+  font-size: 0.85rem;
+}
+
+.notion-table tr:first-child td { border-top: none; }
+
+.notion-table td:first-child {
+  width: 45%;
+  color: var(--notion-muted);
+}
+
+@media (max-width: 640px) {
+  .notion-table,
+  .notion-table thead,
+  .notion-table tbody,
+  .notion-table tr,
+  .notion-table th,
+  .notion-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .notion-table thead { display: none; }
+
+  .notion-table tr {
+    border-top: 1px solid var(--notion-border);
+    padding: 0.65rem 0;
+  }
+
+  .notion-table tr:first-child { border-top: none; }
+
+  .notion-table td {
+    border: none;
+    padding: 0.25rem 0.9rem;
+  }
+
+  .notion-table td:first-child {
+    width: 100%;
+    font-weight: 600;
+    color: var(--notion-muted);
+    font-size: 0.82rem;
+  }
+
+  .notion-table td:first-child::before { content: "Before — "; }
+  .notion-table td:last-child::before {
+    content: "After — ";
+    font-weight: 600;
+    color: var(--notion-muted);
+    font-size: 0.82rem;
+  }
+}
+
 .change-list {
   list-style: none;
   margin: 0.25rem 0 1rem;
@@ -497,7 +573,7 @@ p {
 }
 
 .diagram-block {
-  margin: 0.75rem 0 0.35rem;
+  margin: 0.75rem 0 1.25rem;
   border: 1px solid var(--notion-border);
   border-radius: 6px;
   overflow: hidden;
@@ -508,6 +584,20 @@ p {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.journey-figure {
+  margin: 0.5rem 0 1.5rem;
+  padding: 0;
+}
+
+.journey-figure figcaption {
+  font-size: 0.85rem;
+  color: var(--notion-muted);
+  padding: 0.65rem 0.85rem;
+  margin: 0;
+  border-top: 1px solid var(--notion-border);
+  background: #fafafa;
 }
 
 @media (max-width: 720px) {
