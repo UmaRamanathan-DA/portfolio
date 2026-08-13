@@ -245,6 +245,33 @@
 
         .decision p { margin: 0; }
 
+        mark.keyword {
+            background: #fdecc8;
+            color: #7a5c00;
+            padding: 0.05rem 0.35rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .keyword-chip {
+            display: inline-block;
+            margin: -0.35rem 0 0.85rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: #fdecc8;
+            color: #7a5c00;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.88em;
+            background: var(--notion-hover);
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+        }
+
         .skills-block {
             margin: 0.5rem 0 1rem;
             padding: 0.9rem 1rem;
@@ -340,6 +367,8 @@
                 <a href="#overview">Overview</a>
                 <a href="#problem">The Problem</a>
                 <a href="#built">What I Built</a>
+                <a href="#architecture">Model &amp; Architecture</a>
+                <a href="#orchestration">Scheduling &amp; Orchestration</a>
                 <a href="#decisions">Key Product Decisions</a>
                 <a href="#skills">Skills Demonstrated</a>
                 <a href="#outcome">Outcome</a>
@@ -359,6 +388,13 @@
                 <li><strong>Delivery &amp; scheduling layer</strong> — a scheduled agent run fires daily, dedupes against the last two weeks of results before searching, and drops a same-morning email digest of the day's top matches into Gmail.</li>
             </ol>
             <p>Also packaged as a reusable, on-demand skill — the same logic can be invoked manually anytime, independent of the schedule.</p>
+
+            <h2 class="notion-h2" id="architecture">Model &amp; Architecture</h2>
+            <p>A single LLM agent (Claude), tool-augmented with web search and API connectors — not a multi-model pipeline. The model itself does the reasoning at every step: turning search intent into queries, judging which results are real individual postings versus category pages, scoring each posting against my profile, deciding what counts as a duplicate, and drafting the digest copy. No separate embedding model, vector database, or classifier — retrieval and judgment happen in one continuous LLM loop, orchestrated by a written skill and a daily schedule trigger.</p>
+
+            <h2 class="notion-h2" id="orchestration">Scheduling &amp; Orchestration</h2>
+            <span class="keyword-chip">single-agent orchestration</span>
+            <p>No external automation tool — no Zapier, Make, n8n, or Airflow. Scheduling runs on the platform's native cron-based trigger (<code>30 2 * * *</code>, daily at 8:00 AM IST), which starts a completely fresh, stateless agent session on each fire — it has no memory of prior runs. State is reconstructed by the agent itself each time, by reading the last ~2 weeks of tracker files back out of Drive before searching, rather than relying on any external workflow engine or database. It's <mark class="keyword">single-agent orchestration</mark> throughout: one Claude session sources, scores, writes, and drafts the email sequentially in one loop, rather than a multi-agent pipeline or DAG.</p>
 
             <h2 class="notion-h2" id="decisions">Key Product Decisions</h2>
             <div class="decision">
