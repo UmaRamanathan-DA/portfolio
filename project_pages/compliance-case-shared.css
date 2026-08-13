@@ -160,14 +160,22 @@ body {
   display: block;
 }
 
-.hero-slot video,
-.hero-slot img {
+.hero-slot video {
   display: block;
   width: 100%;
   height: auto;
   max-height: 420px;
   object-fit: cover;
   background: #2f2e2b;
+}
+
+.hero-slot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  background: #fafafa;
 }
 
 .hero-caption {
