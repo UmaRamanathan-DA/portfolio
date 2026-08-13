@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Job Search Agent - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --notion-bg: #ffffff;
+            --notion-page: #ffffff;
+            --notion-text: #37352f;
+            --notion-muted: #787774;
+            --notion-border: rgba(55, 53, 47, 0.09);
+            --notion-hover: rgba(55, 53, 47, 0.04);
+            --notion-callout: #f1f1ef;
+            --notion-callout-blue: #e7f3f8;
+            --notion-callout-amber: #fbf3db;
+            --notion-callout-green: #edf3ec;
+            --notion-callout-pink: #f4e0e9;
+            --notion-accent: #2383e2;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #f7f6f3;
+            color: var(--notion-text);
+            font-family: "DM Sans", ui-sans-serif, sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-shell {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 1.25rem 1rem 4rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1.25rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+            color: var(--notion-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .back-link:hover {
+            background: var(--notion-hover);
+            color: var(--notion-text);
+        }
+
+        .notion-page {
+            background: var(--notion-page);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
+            padding: 3rem 3.25rem 3.5rem;
+        }
+
+        .notion-cover {
+            height: 8px;
+            margin: -3rem -3.25rem 2.25rem;
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(90deg, #d3e5ef 0%, #f5e0dc 45%, #e8deee 100%);
+        }
+
+        .notion-title {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: clamp(1.85rem, 4vw, 2.55rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--notion-text);
+            margin: 0 0 1.25rem;
+        }
+
+        .notion-props {
+            display: grid;
+            gap: 0.35rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--notion-border);
+        }
+
+        .prop-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 0.75rem;
+            align-items: start;
+            padding: 0.35rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.92rem;
+        }
+
+        .prop-row:hover { background: var(--notion-hover); }
+
+        .prop-label {
+            color: var(--notion-muted);
+            font-weight: 500;
+        }
+
+        .prop-value { color: var(--notion-text); }
+
+        .prop-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .prop-tag {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            background: #e8deee;
+            color: #5a3e6b;
+        }
+
+        .prop-tag.blue { background: #d3e5ef; color: #1a5270; }
+        .prop-tag.green { background: #dbeddb; color: #2d5a2d; }
+        .prop-tag.amber { background: #fdecc8; color: #7a5c00; }
+
+        .notion-h2 {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin: 2.35rem 0 0.85rem;
+            color: var(--notion-text);
+            scroll-margin-top: 1.5rem;
+        }
+
+        .notion-h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 1.35rem 0 0.55rem;
+            color: var(--notion-text);
+        }
+
+        .notion-page p {
+            margin: 0 0 0.9rem;
+            color: var(--notion-text);
+        }
+
+        .notion-page ul,
+        .notion-page ol {
+            margin: 0.25rem 0 1rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .notion-page li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .notion-page ul li::before {
+            content: "";
+            position: absolute;
+            left: 0.35rem;
+            top: 0.65rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--notion-text);
+            opacity: 0.55;
+        }
+
+        .notion-page ol {
+            counter-reset: notion-ol;
+        }
+
+        .notion-page ol li {
+            counter-increment: notion-ol;
+        }
+
+        .notion-page ol li::before {
+            content: counter(notion-ol) ".";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.4rem;
+            color: var(--notion-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .callout {
+            display: flex;
+            gap: 0.85rem;
+            align-items: flex-start;
+            margin: 1rem 0 1.25rem;
+            padding: 0.95rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-callout);
+        }
+
+        .callout.blue { background: var(--notion-callout-blue); }
+        .callout.amber { background: var(--notion-callout-amber); }
+        .callout.green { background: var(--notion-callout-green); }
+
+        .callout-mark {
+            flex-shrink: 0;
+            width: 1.35rem;
+            height: 1.35rem;
+            margin-top: 0.1rem;
+            border-radius: 4px;
+            background: rgba(55, 53, 47, 0.08);
+            color: var(--notion-muted);
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            letter-spacing: 0;
+        }
+
+        .callout-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .callout-body p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .decision {
+            margin: 0.85rem 0;
+            padding: 0.9rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+            border: 1px solid var(--notion-border);
+        }
+
+        .decision p { margin: 0; }
+
+        .skills-block {
+            margin: 0.5rem 0 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+        }
+
+        .skills-block p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        .toc {
+            margin: 0.5rem 0 1.5rem;
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+        }
+
+        .toc-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--notion-muted);
+            margin-bottom: 0.45rem;
+        }
+
+        .toc a {
+            display: block;
+            color: var(--notion-accent);
+            text-decoration: none;
+            font-size: 0.92rem;
+            padding: 0.2rem 0;
+        }
+
+        .toc a:hover { text-decoration: underline; }
+
+        @media (max-width: 720px) {
+            .notion-page {
+                padding: 2rem 1.25rem 2.5rem;
+            }
+
+            .notion-cover {
+                margin: -2rem -1.25rem 1.75rem;
+            }
+
+            .prop-row {
+                grid-template-columns: 1fr;
+                gap: 0.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Portfolio
+        </a>
+
+        <article class="notion-page">
+            <div class="notion-cover" aria-hidden="true"></div>
+
+            <h1 class="notion-title">AI Job Search Agent</h1>
+
+            <div class="notion-props" aria-label="Page properties">
+                <div class="prop-row">
+                    <span class="prop-label">Role</span>
+                    <span class="prop-value">AI Product Manager / AI Ops</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Built on</span>
+                    <span class="prop-value">Claude (Cowork)</span>
+                </div>
+                <div class="prop-row">
+                    <span class="prop-label">Category</span>
+                    <div class="prop-tags">
+                        <span class="prop-tag amber">Workflow Tools</span>
+                        <span class="prop-tag green">Generative AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-mark" aria-hidden="true">▶</div>
+                <div class="callout-body">
+                    <p>🎥 Demo video here</p>
+                </div>
+            </div>
+
+            <nav class="toc" aria-label="On this page">
+                <div class="toc-title">On this page</div>
+                <a href="#overview">Overview</a>
+                <a href="#problem">The Problem</a>
+                <a href="#built">What I Built</a>
+                <a href="#decisions">Key Product Decisions</a>
+                <a href="#skills">Skills Demonstrated</a>
+                <a href="#outcome">Outcome</a>
+            </nav>
+
+            <h2 class="notion-h2" id="overview">Overview</h2>
+            <p>An autonomous job-matching agent that searches LinkedIn, Naukri, Indeed, and Glassdoor every morning, scores each posting against my profile, and writes a deduplicated, ranked shortlist to a running tracker — with zero manual searching. Designed, scoped, and shipped end-to-end in a single working session using an AI agent as the build partner.</p>
+
+            <h2 class="notion-h2" id="problem">The Problem</h2>
+            <p>Manual job searching doesn't scale: the same searches get repeated daily across four sites, good matches get buried in noise, and there's no record of what's already been seen or applied to. I wanted a system that runs unattended, respects each site's terms of use, and hands me a clean, scored list every morning instead of a wall of tabs.</p>
+
+            <h2 class="notion-h2" id="built">What I Built</h2>
+            <p>A three-layer system:</p>
+            <ol>
+                <li><strong>Sourcing layer</strong> — searches LinkedIn's public listings, Naukri, Indeed, and Glassdoor daily via web search, filtered to individual postings (not category pages), with an explicit rule to never attempt login-based or authenticated scraping.</li>
+                <li><strong>Scoring &amp; storage layer</strong> — each posting is scored 1–5 against my profile (role fit, seniority band, location) with a one-line rationale, then written to a Google Drive tracker organized as weekly folders containing one dated sheet per day.</li>
+                <li><strong>Delivery &amp; scheduling layer</strong> — a scheduled agent run fires daily, dedupes against the last two weeks of results before searching, and drops a same-morning email digest of the day's top matches into Gmail.</li>
+            </ol>
+            <p>Also packaged as a reusable, on-demand skill — the same logic can be invoked manually anytime, independent of the schedule.</p>
+
+            <h2 class="notion-h2" id="decisions">Key Product Decisions</h2>
+            <div class="decision">
+                <p><strong>Skill + scheduled agent, not a one-off prompt.</strong> A prompt retyped daily drifts and has no memory. Packaging the logic as a reusable skill, triggered by a schedule, gave consistent output and persistent dedup across runs.</p>
+            </div>
+            <div class="decision">
+                <p><strong>Search over scrape.</strong> LinkedIn's terms prohibit automated scraping. I scoped sourcing to rely on publicly indexed search results rather than authenticated crawling — a deliberate compliance trade-off over raw coverage.</p>
+            </div>
+            <div class="decision">
+                <p><strong>Worked around a real tool constraint.</strong> The Drive connector available couldn't edit files in place. Rather than fight it, I redesigned the storage model around it — daily snapshot files in weekly folders — turning a limitation into a clean, auditable structure.</p>
+            </div>
+            <div class="decision">
+                <p><strong>Honest about automation limits.</strong> The Gmail integration can only draft, not send. Rather than overstate the automation, the system surfaces this clearly so the review step stays human.</p>
+            </div>
+
+            <h2 class="notion-h2" id="skills">Skills Demonstrated</h2>
+            <h3 class="notion-h3">Product &amp; AI Ops</h3>
+            <div class="skills-block">
+                <p>Requirements scoping via structured clarifying questions · agentic workflow design · human-in-the-loop review gates · trade-off decisions under real tool/API constraints · compliance-aware system design</p>
+            </div>
+            <h3 class="notion-h3">Technical Build</h3>
+            <div class="skills-block">
+                <p>Prompt &amp; skill engineering · scheduled task / cron-based automation · API integration (Google Drive, Gmail) via MCP connectors · data modeling for a scoring rubric · deduplication logic · structured data output (CSV/Sheets)</p>
+            </div>
+            <h3 class="notion-h3">Tools</h3>
+            <div class="skills-block">
+                <p>Claude (Cowork) · Google Drive &amp; Gmail · Web search (compliance-scoped sourcing) · Scheduled/automated task orchestration</p>
+            </div>
+
+            <h2 class="notion-h2" id="outcome">Outcome</h2>
+            <div class="callout green">
+                <div class="callout-mark" aria-hidden="true">✓</div>
+                <div class="callout-body">
+                    <p>A fully automated daily job shortlist — sourced, scored, deduplicated, and delivered — replacing a repetitive manual search across four sites with a five-minute morning review.</p>
+                </div>
+            </div>
+        </article>
+    </div>
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>
