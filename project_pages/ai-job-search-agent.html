@@ -390,7 +390,7 @@
             <p>Also packaged as a reusable, on-demand skill — the same logic can be invoked manually anytime, independent of the schedule.</p>
 
             <h2 class="notion-h2" id="architecture">Model &amp; Architecture</h2>
-            <p>A single LLM agent (Claude), tool-augmented with web search and API connectors — not a multi-model pipeline. The model itself does the reasoning at every step: turning search intent into queries, judging which results are real individual postings versus category pages, scoring each posting against my profile, deciding what counts as a duplicate, and drafting the digest copy. No separate embedding model, vector database, or classifier — retrieval and judgment happen in one continuous LLM loop, orchestrated by a written skill and a daily schedule trigger.</p>
+            <p>A <mark class="keyword">single LLM agent (Claude)</mark>, tool-augmented with web search and API connectors — <mark class="keyword">not a multi-model pipeline</mark>. The model itself does the reasoning at every step: turning search intent into queries, judging which results are real individual postings versus category pages, scoring each posting against my profile, deciding what counts as a duplicate, and drafting the digest copy. No separate embedding model, vector database, or classifier — retrieval and judgment happen in one continuous LLM loop, orchestrated by a written skill and a daily schedule trigger.</p>
 
             <h2 class="notion-h2" id="orchestration">Scheduling &amp; Orchestration</h2>
             <span class="keyword-chip">single-agent orchestration</span>
