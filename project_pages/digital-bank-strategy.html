@@ -274,6 +274,54 @@
 
         .deck-actions a:hover { text-decoration: underline; }
 
+        .doc-links {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .doc-link {
+            display: block;
+            padding: 0.9rem 1rem;
+            border-radius: 6px;
+            background: var(--notion-hover);
+            border: 1px solid transparent;
+            color: var(--notion-text);
+            text-decoration: none;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .doc-link:hover {
+            background: rgba(55, 53, 47, 0.07);
+            border-color: var(--notion-border);
+        }
+
+        .doc-link-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--notion-text);
+        }
+
+        .doc-link-title .arrow {
+            color: var(--notion-accent);
+            font-weight: 500;
+            font-size: 0.88rem;
+            white-space: nowrap;
+        }
+
+        .doc-link-desc {
+            display: block;
+            margin-top: 0.25rem;
+            color: var(--notion-muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+            font-weight: 400;
+        }
+
         @media (max-width: 720px) {
             .notion-page {
                 padding: 2rem 1.25rem 2.5rem;
@@ -337,6 +385,7 @@
                 <a href="#tasks">Detailed Tasks</a>
                 <a href="#challenges">Key Challenges &amp; Solutions</a>
                 <a href="#outcomes">Project Outcomes</a>
+                <a href="#artifacts">Artifacts Produced</a>
                 <a href="#impact">Business Impact</a>
             </nav>
 
@@ -354,7 +403,6 @@
             <h2 class="notion-h2" id="deck">RFP Deck</h2>
             <div class="deck-actions">
                 <a href="../assets/synpulse%20consulting/UK-Digital-Bank-RFP-Deck.pdf" target="_blank" rel="noopener">Open PDF</a>
-                <a href="../assets/synpulse%20consulting/BaaS-Vendor-RFP-Reference-Document.docx" target="_blank" rel="noopener">RFP document</a>
             </div>
             <div class="deck-embed">
                 <iframe src="../assets/synpulse%20consulting/UK-Digital-Bank-RFP-Deck.pdf" title="UK Digital Bank RFP Deck"></iframe>
@@ -386,6 +434,18 @@
                 <li>Delivered vendor evaluation framework with scored recommendations for BaaS platform selection</li>
                 <li>Created go-to-market roadmap with phased launch approach and customer acquisition strategy</li>
             </ul>
+
+            <h2 class="notion-h2" id="artifacts">Artifacts Produced</h2>
+            <div class="doc-links">
+                <a class="doc-link" href="../assets/synpulse%20consulting/UK-Digital-Bank-RFP-Deck.pdf" target="_blank" rel="noopener">
+                    <span class="doc-link-title">UK Digital Bank RFP Deck<span class="arrow">Open PDF →</span></span>
+                    <span class="doc-link-desc">Vendor evaluation and go-to-market recommendation deck for the UK digital retail bank launch.</span>
+                </a>
+                <a class="doc-link" href="../assets/synpulse%20consulting/BaaS-Vendor-RFP-Reference-Document.docx" target="_blank" rel="noopener">
+                    <span class="doc-link-title">BaaS Vendor RFP Reference Document<span class="arrow">Open →</span></span>
+                    <span class="doc-link-desc">RFP reference used to run the Banking-as-a-Service vendor evaluation and proposal process.</span>
+                </a>
+            </div>
 
             <h2 class="notion-h2" id="impact">Business Impact</h2>
             <div class="callout green">
