@@ -199,10 +199,15 @@ body {
 }
 
 .strategy-question {
-  margin: 0 0 1.75rem;
-  padding: 1rem 1.1rem 1.15rem;
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 1rem;
   border-radius: 6px;
   background: var(--notion-callout-blue);
+  font-weight: 600;
+}
+
+.strategy-question p {
+  margin: 0;
 }
 
 .strategy-kicker {
@@ -211,26 +216,17 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--notion-muted);
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.45rem;
 }
 
-.strategy-type {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0 0 0.35rem;
-  color: var(--notion-text);
+.strategy-why {
+  margin: 1.25rem 0 1.75rem;
+  padding: 1rem 1.1rem 1.15rem;
+  border-radius: 6px;
+  background: var(--notion-callout-amber);
 }
 
-.strategy-def {
-  font-size: 0.95rem;
-  color: var(--notion-muted);
-  margin: 0 0 0.75rem;
-  font-style: italic;
-  line-height: 1.5;
-}
-
-.strategy-justification {
+.strategy-why p {
   margin: 0;
   font-size: 0.98rem;
 }
@@ -239,7 +235,7 @@ body {
   margin: 0.85rem 0 0;
   padding: 0.75rem 0.85rem;
   border-radius: 4px;
-  background: var(--notion-callout-amber);
+  background: rgba(255, 255, 255, 0.55);
   font-size: 0.9rem;
   line-height: 1.55;
 }
