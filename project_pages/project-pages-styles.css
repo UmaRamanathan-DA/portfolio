@@ -259,4 +259,42 @@
     .project-title {
         font-size: 2rem;
     }
+}
+
+.strategy-question {
+    margin: 0 0 2rem;
+    padding: 1.15rem 1.25rem 1.25rem;
+    border-radius: 10px;
+    background: #eef6fb;
+    border-left: 4px solid #2383e2;
+}
+
+.strategy-kicker {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0 0 0.35rem;
+}
+
+.strategy-type {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 0.35rem;
+}
+
+.strategy-def {
+    font-size: 0.98rem;
+    color: #555;
+    font-style: italic;
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+}
+
+.strategy-justification {
+    margin: 0;
+    color: #444;
+    line-height: 1.7;
 } 
