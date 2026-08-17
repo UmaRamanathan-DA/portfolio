@@ -743,24 +743,22 @@ html, body {
 .filter-hint span {
     font-weight: 600;
     color: #222;
-    animation: filter-text-blink 1.4s ease-in-out infinite;
+    animation: filter-text-blink 1.6s ease-in-out infinite;
 }
 
 .filter-hand-icon {
-    font-size: 2rem;
-    color: #ff5722;
-    animation: filter-hand-wave 1.2s ease-in-out infinite;
+    font-size: 1.7rem;
+    color: #e6c200;
+    display: inline-block;
+    animation: filter-hand-bounce 1.35s ease-in-out infinite;
 }
 
-@keyframes filter-hand-wave {
+@keyframes filter-hand-bounce {
     0%, 100% {
-        transform: translateX(0);
+        transform: translateY(0);
     }
-    30% {
-        transform: translateX(5px);
-    }
-    60% {
-        transform: translateX(-3px);
+    45% {
+        transform: translateY(8px);
     }
 }
 
@@ -769,7 +767,7 @@ html, body {
         opacity: 1;
     }
     50% {
-        opacity: 0.3;
+        opacity: 0.45;
     }
 }
 
