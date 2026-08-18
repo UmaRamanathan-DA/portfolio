@@ -362,75 +362,7 @@
                 </div>
             </div>
 
-            <nav class="toc" aria-label="On this page">
-                <div class="toc-title">On this page</div>
-                <a href="#overview">Overview</a>
-                <a href="#problem">The Problem</a>
-                <a href="#built">What I Built</a>
-                <a href="#architecture">Model &amp; Architecture</a>
-                <a href="#orchestration">Scheduling &amp; Orchestration</a>
-                <a href="#decisions">Key Product Decisions</a>
-                <a href="#skills">Skills Demonstrated</a>
-                <a href="#outcome">Outcome</a>
-            </nav>
-
-            <h2 class="notion-h2" id="overview">Overview</h2>
-            <p>An autonomous job-matching agent that searches LinkedIn, Naukri, Indeed, and Glassdoor every morning, scores each posting against my profile, and writes a deduplicated, ranked shortlist to a running tracker — with zero manual searching. Designed, scoped, and shipped end-to-end in a single working session using an AI agent as the build partner.</p>
-
-            <h2 class="notion-h2" id="problem">The Problem</h2>
-            <p>Manual job searching doesn't scale: the same searches get repeated daily across four sites, good matches get buried in noise, and there's no record of what's already been seen or applied to. I wanted a system that runs unattended, respects each site's terms of use, and hands me a clean, scored list every morning instead of a wall of tabs.</p>
-
-            <h2 class="notion-h2" id="built">What I Built</h2>
-            <p>A three-layer system:</p>
-            <ol>
-                <li><strong>Sourcing layer</strong> — searches LinkedIn's public listings, Naukri, Indeed, and Glassdoor daily via web search, filtered to individual postings (not category pages), with an explicit rule to never attempt login-based or authenticated scraping.</li>
-                <li><strong>Scoring &amp; storage layer</strong> — each posting is scored 1–5 against my profile (role fit, seniority band, location) with a one-line rationale, then written to a Google Drive tracker organized as weekly folders containing one dated sheet per day.</li>
-                <li><strong>Delivery &amp; scheduling layer</strong> — a scheduled agent run fires daily, dedupes against the last two weeks of results before searching, and drops a same-morning email digest of the day's top matches into Gmail.</li>
-            </ol>
-            <p>Also packaged as a reusable, on-demand skill — the same logic can be invoked manually anytime, independent of the schedule.</p>
-
-            <h2 class="notion-h2" id="architecture">Model &amp; Architecture</h2>
-            <p>A <mark class="keyword">single LLM agent (Claude)</mark>, tool-augmented with web search and API connectors — <mark class="keyword">not a multi-model pipeline</mark>. The model itself does the reasoning at every step: turning search intent into queries, judging which results are real individual postings versus category pages, scoring each posting against my profile, deciding what counts as a duplicate, and drafting the digest copy. No separate embedding model, vector database, or classifier — retrieval and judgment happen in one continuous LLM loop, orchestrated by a written skill and a daily schedule trigger.</p>
-
-            <h2 class="notion-h2" id="orchestration">Scheduling &amp; Orchestration</h2>
-            <span class="keyword-chip">single-agent orchestration</span>
-            <p>No external automation tool — no Zapier, Make, n8n, or Airflow. Scheduling runs on the platform's native cron-based trigger (<code>30 2 * * *</code>, daily at 8:00 AM IST), which starts a completely fresh, stateless agent session on each fire — it has no memory of prior runs. State is reconstructed by the agent itself each time, by reading the last ~2 weeks of tracker files back out of Drive before searching, rather than relying on any external workflow engine or database. It's <mark class="keyword">single-agent orchestration</mark> throughout: one Claude session sources, scores, writes, and drafts the email sequentially in one loop, rather than a multi-agent pipeline or DAG.</p>
-
-            <h2 class="notion-h2" id="decisions">Key Product Decisions</h2>
-            <div class="decision">
-                <p><strong>Skill + scheduled agent, not a one-off prompt.</strong> A prompt retyped daily drifts and has no memory. Packaging the logic as a reusable skill, triggered by a schedule, gave consistent output and persistent dedup across runs.</p>
-            </div>
-            <div class="decision">
-                <p><strong>Search over scrape.</strong> LinkedIn's terms prohibit automated scraping. I scoped sourcing to rely on publicly indexed search results rather than authenticated crawling — a deliberate compliance trade-off over raw coverage.</p>
-            </div>
-            <div class="decision">
-                <p><strong>Worked around a real tool constraint.</strong> The Drive connector available couldn't edit files in place. Rather than fight it, I redesigned the storage model around it — daily snapshot files in weekly folders — turning a limitation into a clean, auditable structure.</p>
-            </div>
-            <div class="decision">
-                <p><strong>Honest about automation limits.</strong> The Gmail integration can only draft, not send. Rather than overstate the automation, the system surfaces this clearly so the review step stays human.</p>
-            </div>
-
-            <h2 class="notion-h2" id="skills">Skills Demonstrated</h2>
-            <h3 class="notion-h3">Product &amp; AI Ops</h3>
-            <div class="skills-block">
-                <p>Requirements scoping via structured clarifying questions · agentic workflow design · human-in-the-loop review gates · trade-off decisions under real tool/API constraints · compliance-aware system design</p>
-            </div>
-            <h3 class="notion-h3">Technical Build</h3>
-            <div class="skills-block">
-                <p>Prompt &amp; skill engineering · scheduled task / cron-based automation · API integration (Google Drive, Gmail) via MCP connectors · data modeling for a scoring rubric · deduplication logic · structured data output (CSV/Sheets)</p>
-            </div>
-            <h3 class="notion-h3">Tools</h3>
-            <div class="skills-block">
-                <p>Claude (Cowork) · Google Drive &amp; Gmail · Web search (compliance-scoped sourcing) · Scheduled/automated task orchestration</p>
-            </div>
-
-            <h2 class="notion-h2" id="outcome">Outcome</h2>
-            <div class="callout green">
-                <div class="callout-mark" aria-hidden="true">✓</div>
-                <div class="callout-body">
-                    <p>A fully automated daily job shortlist — sourced, scored, deduplicated, and delivered — replacing a repetitive manual search across four sites with a five-minute morning review.</p>
-                </div>
-            </div>
+            <p>An AI agent that automates my daily job search — it checks LinkedIn, Naukri, Indeed, and Glassdoor every morning, scores each posting against my profile, filters out duplicates from past runs, and saves a ranked shortlist to Google Drive along with an email digest, all without any manual searching. I built it end-to-end using Claude as a single AI agent (no separate tools like Zapier or extra AI models) that runs on a daily schedule, reads its own past results to avoid repeats, and works within real constraints — like sourcing only from public search results (not logins, to respect site rules) and drafting rather than auto-sending emails so a human still reviews before anything goes out. The result: a five-minute morning review replaces what used to be repetitive manual searching across four different job sites.</p>
         </article>
     </div>
 <script src="../assets/analytics-config.js"></script>
