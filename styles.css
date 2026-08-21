@@ -439,6 +439,19 @@ html, body {
     margin-bottom: 0;
 }
 
+.hero-bio a {
+    color: #4a4a4a;
+    font-weight: 400;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color 0.2s ease;
+}
+
+.hero-bio a:hover {
+    color: #222;
+}
+
 .hire-me-btn {
     padding: 1rem 2rem;
     background: #000;
