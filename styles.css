@@ -418,6 +418,27 @@ html, body {
     margin-bottom: 8rem;
 }
 
+.hero-bio {
+    font-family: 'Nunito', 'Segoe UI', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.85;
+    letter-spacing: 0.01em;
+    color: #5a5a5a;
+    max-width: 40rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hero-bio p {
+    margin: 0 0 1.15rem;
+}
+
+.hero-bio p:last-child {
+    margin-bottom: 0;
+}
+
 .hire-me-btn {
     padding: 1rem 2rem;
     background: #000;
