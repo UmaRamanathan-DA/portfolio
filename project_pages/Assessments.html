@@ -1,234 +1,740 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 1 — Field Assessment Redesign</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="compliance-case-shared.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Assessment Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee;
+      --ink-soft:#aab6bc;
+      --paper:#111a20;
+      --surface:#17222a;
+      --line:rgba(238,241,238,0.14);
+      --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d;
+      --accent-ink:#f0b878;
+      --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f;
+      --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee;
+    --ink-soft:#aab6bc;
+    --paper:#111a20;
+    --surface:#17222a;
+    --line:rgba(238,241,238,0.14);
+    --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d;
+    --accent-ink:#f0b878;
+    --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f;
+    --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
+
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px);
+    line-height:1.22;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:26ch;
+  }
+
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 28px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
+
+  /* ---- friction (before) ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+
+  .problem-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .problem-list li{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:10px 14px;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  /* ---- what changed + exhibit ---- */
+  .change-layout{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:36px;
+    align-items:start;
+  }
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  .exhibit{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:12px 12px 14px;
+  }
+  .exhibit-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .exhibit-images img{
+    width:100%;
+    display:block;
+    border:1px solid var(--line);
+    cursor:zoom-in;
+  }
+  .exhibit-images button{
+    appearance:none;
+    background:none;
+    border:0;
+    padding:0;
+    margin:0;
+    cursor:zoom-in;
+  }
+  .exhibit-images button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+  .exhibit figcaption{
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+
+  /* ---- prototype video ---- */
+  .proto{
+    margin:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+  }
+  .proto video{
+    display:block;
+    width:100%;
+    height:auto;
+    background:#16222c;
+  }
+  .proto figcaption{
+    padding:10px 14px 12px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+
+  /* ---- artifacts ---- */
+  .artifact-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:12px;
+  }
+  .artifact-card{
+    grid-column:span 2;
+    display:flex;
+    flex-direction:column;
+    background:var(--surface);
+    border:1px solid var(--line);
+    text-decoration:none;
+    color:inherit;
+    overflow:hidden;
+    cursor:zoom-in;
+    transition:border-color 0.15s ease;
+  }
+  .artifact-card:nth-child(4),
+  .artifact-card:nth-child(5){
+    grid-column:span 3;
+  }
+  .artifact-card:hover,
+  .artifact-card:focus-visible{
+    border-color:var(--accent-ink);
+    outline:none;
+  }
+  .artifact-card img{
+    width:100%;
+    height:128px;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .artifact-card .k{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+    padding:12px 14px 14px;
+    font-weight:500;
+  }
+
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(22px, 3.4vw, 28px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .impact-list{
+    list-style:none;
+    margin:14px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .impact-list li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:44ch;
+    text-wrap:balance;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    .change-layout{ grid-template-columns:1fr; }
+    .exhibit-images{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .artifact-card,
+    .artifact-card:nth-child(4),
+    .artifact-card:nth-child(5){ grid-column:1 / -1; }
+    .artifact-card img{ height:160px; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+
+  /* ---- lightbox ---- */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(17,26,32,0.94);
+    padding:28px 64px 56px;
+  }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{
+    max-width:min(96vw, 1400px);
+    max-height:calc(100vh - 96px);
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    box-shadow:0 18px 48px rgba(0,0,0,0.45);
+    background:var(--surface);
+  }
+  .lightbox-caption{
+    position:absolute;
+    left:0; right:0; bottom:16px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:#d5ddd8;
+    padding:0 72px;
+  }
+  .lightbox-close,
+  .lightbox-nav{
+    position:absolute;
+    appearance:none;
+    background:transparent;
+    border:1px solid rgba(238,241,238,0.28);
+    color:#eef1ee;
+    cursor:pointer;
+    font-family:var(--font-mono);
+  }
+  .lightbox-close{
+    top:16px; right:16px;
+    width:40px; height:40px;
+    font-size:22px;
+    line-height:1;
+  }
+  .lightbox-nav{
+    top:50%;
+    transform:translateY(-50%);
+    width:40px; height:40px;
+    font-size:22px;
+  }
+  .lightbox-nav.prev{ left:16px; }
+  .lightbox-nav.next{ right:16px; }
+  .lightbox-close:hover,
+  .lightbox-nav:hover,
+  .lightbox-close:focus-visible,
+  .lightbox-nav:focus-visible{
+    border-color:#dd9a4d;
+    color:#f0b878;
+    outline:none;
+  }
+  .lightbox-nav[hidden]{ display:none; }
+  body.lightbox-open{ overflow:hidden; }
+  @media (max-width:620px){
+    .lightbox{ padding:56px 12px 52px; }
+    .lightbox-nav.prev{ left:8px; }
+    .lightbox-nav.next{ right:8px; }
+  }
+</style>
 </head>
 <body>
-  <div class="notebook-shell">
-    <article class="notebook">
-      <div class="back-row">
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
-        <a href="Assessments.html" class="phase-link current">Phase 1</a>
-        <a href="compliance-product-led-adoption.html" class="phase-link">Phase 2</a>
-        <a href="compliance-field-copilot.html" class="phase-link">Phase 3</a>
-      </div>
 
-      <p class="phase-kicker">PHASE 1</p>
-      <h1 class="case-title">Field assessors couldn't complete compliance work where the work actually happened.</h1>
+<div class="page">
 
-      <aside class="strategy-question">
-        <p>This is a Product Strategy Optimisation problem.</p>
-      </aside>
-
-      <div class="hero-slot">
-        <video controls preload="metadata" playsinline poster="../images/OGP/ogp_thumbnail.png">
-          <source src="../images/OGP/ogp_output.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video>
-        <p class="hero-caption">before/after mobile UI</p>
-      </div>
-
-      <div class="metrics-row">
-        <div class="metric-chip">2.6× increase in field assessment completion <span>21% → 55%</span></div>
-        <div class="metric-chip">65% improvement in usability score <span>SUS 49 → 81</span></div>
-      </div>
-
-      <h2>Introduction</h2>
-      <p>This case study documents the end-to-end redesign of a legacy enterprise compliance management system for field-based users. The platform was mature and well-adopted on desktop, used by compliance managers, administrators, and office-based assessors. However, field users conducting on-site inspections, audits, and assessments at remote locations and live facilities had no way to use the system directly in the field. Without a portable, field-ready interface, assessors were forced into a two-step workaround: making notes outside the system on-site, then returning to a desktop to manually enter or update the assessment record. This broke the workflow at its most critical point — the moment of observation — and introduced delays, transcription errors, and compliance risk.</p>
-      <p>The strategic response was purpose-built field-native features that field assessors could carry into any environment and use to fill in assessment forms directly and offline, without needing to revert to pen and paper or defer data entry to a later desktop session. The offline-first architecture, draft save, and auto-sync features were not enhancements — they were the core enablers that made direct field use viable.</p>
-      <p>This case study covers the research, design, and validation of that redesign: diagnosing user pain, mapping journeys, designing for the field context, and validating through usability testing.</p>
-      <p class="approach-line">Approach: Research → Design → Validation</p>
-      <div class="note">
-        This project continues in two follow-on explorations:
-        <a href="compliance-product-led-adoption.html">Phase 2 — Product-Led Adoption</a>
-        applies product-adoption analytics thinking to this redesign, and
-        <a href="compliance-field-copilot.html">Phase 3 — AI Enablement</a>
-        specs out an AI copilot layer on top of it. Both are self-directed learning exercises built on this real project, not additional client work.
-      </div>
-
-      <h2>Skills Used</h2>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <div class="skill-group-title">UX Research &amp; Design</div>
-          <p>User Research (interviews, field observation) · Persona Development · Empathy Mapping · Customer Journey Mapping (As-Is &amp; To-Be) · Workshop Facilitation · Wireframing · Interaction Design · Prototyping · Usability Testing (SUS scoring)</p>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Product Thinking</div>
-          <p>Product Strategy · Product Discovery · Feature Prioritisation · Roadmap Planning</p>
-        </div>
-      </div>
-
-      <h2>Problem Statement</h2>
-      <h3 class="subhead">The Core Access Failure</h3>
-      <p>Field assessors were conducting compliance inspections at remote sites, live facilities, and outdoor environments where a laptop or desktop was neither available nor practical. The compliance system had only a basic mobile interface, which produced a structural problem: the moment of assessment — when evidence was fresh, context was visible, and accuracy was highest — was exactly when the system could not be used, forcing assessors into a two-step workaround. The solution was to extend the system across multiple touchpoints — desktop, iPad, and mobile — with a seamless experience that allowed assessors to fill forms, work offline, and sync data without any break in workflow.</p>
-
-      <h3 class="subhead">Two Costly Workarounds Emerged</h3>
-      <div class="two-col">
-        <div class="info-card">
-          <strong>Paper-Based Workaround</strong>
-          <p>Assessors took handwritten notes on-site and manually re-entered data at the desktop later. This introduced transcription errors, duplicated effort, and created compliance gaps between the moment of observation and the point of record.</p>
-        </div>
-        <div class="info-card">
-          <strong>Deferred Completion</strong>
-          <p>Assessors waited until returning to a fixed location to complete digital records, hours or days after the site visit. Observations faded, context was lost, and time-sensitive incidents were flagged late.</p>
-        </div>
-      </div>
-
-      <h3 class="subhead">The Quantified Usability Gap</h3>
-      <div class="gap-list">
-        <div class="gap-row"><span>Desktop Completion Rate</span><span>82%, the baseline for a well-functioning system</span></div>
-        <div class="gap-row"><span>iPad Pre-Redesign Completion Rate</span><span>21%, 4× below desktop baseline</span></div>
-        <div class="gap-row"><span>Primary Abandonment Point</span><span>Draft save and offline sync — the exact moments the field workflow required most</span></div>
-      </div>
-
-      <h3 class="subhead">Problem Statement Summary</h3>
-      <div class="scale-block">
-        <p>Field-based compliance assessors were unable to complete assessments at the point of inspection because the existing iOS interface was very basic and did not support offline capture, reliable draft save, or seamless sync — resulting in a 61-percentage-point gap in completion rate compared to desktop users, and creating compliance risk and data quality issues for field operations.</p>
-        <ul class="change-list">
-          <li>Manual note-taking</li>
-          <li>No offline access</li>
-          <li>Frequent data loss</li>
-          <li>Delayed validations</li>
-          <li>Poor mobile compatibility</li>
-        </ul>
-      </div>
-
-      <aside class="strategy-why">
-        <p class="strategy-kicker">Why this is a Product Strategy Optimisation problem</p>
-        <p>The desktop process already worked (82% completion) — the field channel of that same process was structurally under-optimized (iPad completion 21%, SUS 49, 62 min to first submission). This is workflow redesign on a known process (offline-first capture, autosave, fewer taps), not a diagnosis of why something suddenly broke.</p>
-      </aside>
-
-      <h2>Business Objective</h2>
-      <p>Give field-based compliance assessors a mobile-first way to complete inspections at the point of observation, without reverting to pen, paper, or a desktop workaround.</p>
-
-      <h2>Business Challenges</h2>
-      <ul class="change-list">
-        <li>Field assessors had no reliable way to complete assessments on-site</li>
-        <li>Manual paper workarounds caused transcription errors and compliance gaps</li>
-        <li>The existing iPad interface had a 61-point completion gap vs. desktop</li>
-      </ul>
-
-      <h2>Approach</h2>
-      <p class="approach-line">UX Research · Interaction Design · Offline-First Architecture</p>
-
-      <h2>Research & Discovery Methodology</h2>
-      <div class="artifact-grid">
-        <figure class="artifact-card">
-          <img src="../images/Assessments/Persona.png" alt="Persona — Adam, Field &amp; Survey Officer">
-          <figcaption>Persona — Adam, Field &amp; Survey Officer</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/Empathy Map.png" alt="Empathy Map">
-          <figcaption>Empathy Map</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/As-Is-Scenario.png" alt="As-Is Customer Journey">
-          <figcaption>As-Is Customer Journey</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/Feedback Grid.png" alt="Stakeholder Feedback Grid">
-          <figcaption>Stakeholder Feedback Grid</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/experience based road map.png" alt="Feature roadmap — short-term/long-term">
-          <figcaption>Feature roadmap — short-term/long-term</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/prioritisation-grid.png" alt="Prioritisation grid">
-          <figcaption>Prioritisation grid</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/stakeholder-map.png" alt="Stakeholder map">
-          <figcaption>Stakeholder map</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/users-hopes-fears.png" alt="Users' hopes and fears">
-          <figcaption>Users' hopes and fears</figcaption>
-        </figure>
-      </div>
-      <p>Field observation, interviews, and journey mapping surfaced the same failure point from four different angles — the moment of inspection was exactly when the app couldn't be used.</p>
-
-      <h2>Design Solution: Offline-First, Field-Native</h2>
-      <div class="note">
-        <strong>Design principle:</strong> the iPad interface must work reliably in the worst-case field scenario — no connectivity, one hand occupied, gloves possible, time pressure real. Everything else follows from that constraint.
-      </div>
-
-      <h3 class="subhead">From As-Is to To-Be: The Redesigned Journey</h3>
-      <figure class="diagram-block journey-figure">
-        <img src="../images/Assessments/To-Be-Scenario.png" alt="To-Be Scenario — redesigned customer journey">
-        <figcaption>To-Be Scenario</figcaption>
-      </figure>
-
-      <h2>What Changed</h2>
-      <ul class="change-list">
-        <li>
-          <strong>Designed offline-first assessment capture</strong>
-          Assessors can now complete forms fully without connectivity — no data lost.
-        </li>
-        <li>
-          <strong>Designed automatic draft recovery</strong>
-          Auto-save every 60 seconds, with persistent recovery on relaunch.
-        </li>
-        <li>
-          <strong>Redesigned navigation for field use</strong>
-          Assessment launch cut from 5+ taps to 2, built for one-handed, gloved use.
-        </li>
-        <li>
-          <strong>Added visible sync status</strong>
-          A persistent status bar removes the anxiety of not knowing if data saved.
-        </li>
-      </ul>
-
-      <h2>The Design Artifacts</h2>
-      <div class="artifact-grid">
-        <figure class="artifact-card">
-          <img src="../images/Assessments/UI/summary.png" alt="High-fidelity UI — Assessment Summary screen">
-          <figcaption>High-fidelity UI — Assessment Summary screen</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/balsymiq.png" alt="Balsamiq wireframes">
-          <figcaption>Balsamiq wireframes</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/UI/dashboardhover.png" alt="High-fidelity UI — Dashboard">
-          <figcaption>High-fidelity UI — Dashboard</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/UI/cardsview.png" alt="High-fidelity UI — Card view">
-          <figcaption>High-fidelity UI — Card view</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/UI/mobile-1.png" alt="Mobile UI 1">
-          <figcaption>Mobile UI 1</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/UI/mobile-2.png" alt="Mobile UI 2">
-          <figcaption>Mobile UI 2</figcaption>
-        </figure>
-        <figure class="artifact-card">
-          <img src="../images/Assessments/UI/mobile-3.png" alt="Mobile UI 3">
-          <figcaption>Mobile UI 3</figcaption>
-        </figure>
-      </div>
-    
-      <h2>Business Impact</h2>
-      <div class="impact-block">
-        <ul>
-          <li>2.6× increase in field assessment completion — 21% → 55%</li>
-          <li>55% reduction in time to first submission — 62 min → 28 min</li>
-          <li>65% improvement in usability score — SUS 49 (Poor) → 81 (Excellent)</li>
-          <li>Fewer manual errors and compliance gaps from paper workarounds</li>
-          <li>Consistent, field-native experience across desktop, iPad, and mobile</li>
-        </ul>
-      </div>
-
-      <a class="next-phase" href="compliance-product-led-adoption.html">Continue to Phase 2 — Product-Led Adoption →</a>
-    </article>
+  <p class="eyebrow">Product Case &middot; Field Operations</p>
+  <h1 class="headline">Field assessors could not complete compliance assessments onsite due to network and device unavailability.</h1>
+  <p class="subhead">Inspectors visiting remote sites had no working app to log what they found — so they scribbled notes on paper and retyped everything back at a desk, hours or days later, by which point details had faded and the record no longer matched what actually happened. <strong>I redesigned the field experience so assessors could finish the job on the spot — completion rates rose 2.6&times;, from 21% to 55%.</strong></p>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">Field compliance assessor</span>
+      <span class="d">Conducts on-site inspections at remote sites and live facilities.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Complete the assessment on the spot</span>
+      <span class="d">Fill in and submit the full record at the point of inspection, connected or not.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">2.6&times; more finished on-site</span>
+      <span class="d">Completion rose from 21% to 55%, cutting paper workarounds and compliance risk.</span>
+    </div>
   </div>
+
+  <section>
+    <h2 class="label">Problems</h2>
+    <ul class="problem-list">
+      <li>Manual note-taking onsite</li>
+      <li>No offline access and sync</li>
+      <li>Frequent data loss</li>
+      <li>Delayed validations</li>
+      <li>Poor mobile compatibility</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Two workarounds, both broken</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>Paper, then re-typed</strong>
+        <p>Handwritten notes on-site, entered into the system later — introducing transcription errors and a gap between what was seen and what got recorded.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Finished days later</strong>
+        <p>Assessors waited until they were back at a desk to complete the record. Observations faded and time-sensitive issues got flagged late.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What we changed</h2>
+    <div class="change-layout">
+      <ul class="changes">
+        <li><strong>Works with zero signal</strong><span>Forms can be filled in and completed fully offline — nothing depends on a connection at the site.</span></li>
+        <li><strong>Never loses a note</strong><span>Auto-saves every 60 seconds and recovers a draft automatically if the app closes.</span></li>
+        <li><strong>Built for one hand</strong><span>Starting an assessment dropped from 5+ taps to 2 — usable one-handed, gloves on.</span></li>
+        <li><strong>Always shows it saved</strong><span>A persistent status bar removes the guesswork about whether the record went through.</span></li>
+      </ul>
+      <figure class="exhibit">
+        <div class="exhibit-images">
+          <button type="button" data-gallery="ui" data-index="0" aria-label="View capture screen full screen">
+            <img src="../images/Assessments/UI/mobile-1.png" alt="Redesigned field assessment screen — capture view">
+          </button>
+          <button type="button" data-gallery="ui" data-index="1" aria-label="View draft and sync screen full screen">
+            <img src="../images/Assessments/UI/mobile-2.png" alt="Redesigned field assessment screen — draft and sync view">
+          </button>
+        </div>
+        <figcaption>Redesigned field capture screens — usable offline, one-handed, at the point of inspection. Click to view full screen.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">This fix introduces some new features and digital touch points to enhance adoption.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it moved</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">2.6&times;</div>
+        <div class="desc">Increase in field assessment completion</div>
+        <div class="raw">21% &rarr; 55%</div>
+      </div>
+      <div class="stat">
+        <div class="num">55%</div>
+        <div class="desc">Reduction in time to first submission</div>
+        <div class="raw">62 min &rarr; 28 min</div>
+      </div>
+      <div class="stat">
+        <div class="num">65%</div>
+        <div class="desc">Improvement in usability score</div>
+        <div class="raw">SUS 49 (Poor) &rarr; 81 (Excellent)</div>
+      </div>
+    </div>
+    <ul class="impact-list">
+      <li>Fewer manual errors and compliance gaps from paper workarounds</li>
+      <li>Consistent, field-native experience across desktop, iPad, and mobile</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Prototype</h2>
+    <figure class="proto">
+      <video controls preload="metadata" playsinline poster="../images/OGP/ogp_thumbnail.png">
+        <source src="../images/OGP/ogp_output.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+      <figcaption>before/after mobile UI</figcaption>
+    </figure>
+  </section>
+
+  
+
+  <section>
+    <h2 class="label">Project artifacts</h2>
+    <div class="artifact-grid">
+      <a class="artifact-card" href="../images/Assessments/Persona.png" data-gallery="research">
+        <img src="../images/Assessments/Persona.png" alt="Persona — Adam, Field &amp; Survey Officer">
+        <span class="k">User Research</span>
+      </a>
+      <a class="artifact-card" href="../images/Assessments/As-Is-Scenario.png" data-gallery="journey">
+        <img src="../images/Assessments/As-Is-Scenario.png" alt="As-is customer journey">
+        <span class="k">Journey Mapping</span>
+      </a>
+      <a class="artifact-card" href="../images/Assessments/UI/mobile-1.png" data-gallery="ui">
+        <img src="../images/Assessments/UI/mobile-1.png" alt="Field assessment mobile UI">
+        <span class="k">Interaction Design</span>
+      </a>
+      <a class="artifact-card" href="../images/Assessments/Feedback%20Grid.png" data-gallery="usability">
+        <img src="../images/Assessments/Feedback Grid.png" alt="Stakeholder feedback grid">
+        <span class="k">Usability Testing</span>
+      </a>
+      <a class="artifact-card" href="../images/Assessments/experience%20based%20road%20map.png" data-gallery="strategy">
+        <img src="../images/Assessments/experience based road map.png" alt="Experience-based roadmap">
+        <span class="k">Product Strategy</span>
+      </a>
+    </div>
+  </section>
+
+ 
+
+  <footer>
+    <div class="credit">Uma Ramanathan &middot; UX Research &amp; Product Strategy</div>
+  </footer>
+
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full screen image">
+  <button type="button" class="lightbox-close" aria-label="Close full screen">&times;</button>
+  <button type="button" class="lightbox-nav prev" aria-label="Previous image">&#8249;</button>
+  <img alt="">
+  <button type="button" class="lightbox-nav next" aria-label="Next image">&#8250;</button>
+  <p class="lightbox-caption"></p>
+</div>
+
+<script>
+(function () {
+  var galleries = {
+    research: [
+      { src: "../images/Assessments/Persona.png", caption: "Persona — Adam, Field & Survey Officer" },
+      { src: "../images/Assessments/Empathy Map.png", caption: "Empathy Map" },
+      { src: "../images/Assessments/users-hopes-fears.png", caption: "Users' hopes and fears" },
+      { src: "../images/Assessments/stakeholder-map.png", caption: "Stakeholder map" }
+    ],
+    journey: [
+      { src: "../images/Assessments/As-Is-Scenario.png", caption: "As-Is customer journey" },
+      { src: "../images/Assessments/To-Be-Scenario.png", caption: "To-Be scenario — redesigned journey" }
+    ],
+    ui: [
+      { src: "../images/Assessments/UI/mobile-1.png", caption: "Mobile UI — capture view" },
+      { src: "../images/Assessments/UI/mobile-2.png", caption: "Mobile UI — draft and sync" },
+      { src: "../images/Assessments/UI/mobile-3.png", caption: "Mobile UI — assessment flow" },
+      { src: "../images/Assessments/UI/summary.png", caption: "High-fidelity UI — Assessment Summary" },
+      { src: "../images/Assessments/UI/dashboardhover.png", caption: "High-fidelity UI — Dashboard" },
+      { src: "../images/Assessments/UI/cardsview.png", caption: "High-fidelity UI — Card view" },
+      { src: "../images/Assessments/balsymiq.png", caption: "Balsamiq wireframes" }
+    ],
+    usability: [
+      { src: "../images/Assessments/Feedback Grid.png", caption: "Stakeholder feedback grid" }
+    ],
+    strategy: [
+      { src: "../images/Assessments/experience based road map.png", caption: "Experience-based roadmap" },
+      { src: "../images/Assessments/prioritisation-grid.png", caption: "Prioritisation grid" },
+      { src: "../images/Assessments/Assumptions.png", caption: "Assumptions" }
+    ]
+  };
+
+  var box = document.getElementById("lightbox");
+  var img = box.querySelector("img");
+  var caption = box.querySelector(".lightbox-caption");
+  var prevBtn = box.querySelector(".prev");
+  var nextBtn = box.querySelector(".next");
+  var closeBtn = box.querySelector(".lightbox-close");
+  var items = [];
+  var index = 0;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var item = items[index];
+    img.src = item.src;
+    img.alt = item.caption;
+    caption.textContent = items.length > 1
+      ? (index + 1) + " / " + items.length + "  ·  " + item.caption
+      : item.caption;
+    var multi = items.length > 1;
+    prevBtn.hidden = !multi;
+    nextBtn.hidden = !multi;
+  }
+
+  function open(name, start) {
+    items = galleries[name] || [];
+    if (!items.length) return;
+    show(start || 0);
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.removeAttribute("src");
+  }
+
+  document.querySelectorAll("[data-gallery]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      var start = parseInt(el.getAttribute("data-index") || "0", 10);
+      open(el.getAttribute("data-gallery"), start);
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  prevBtn.addEventListener("click", function () { show(index - 1); });
+  nextBtn.addEventListener("click", function () { show(index + 1); });
+  box.addEventListener("click", function (e) {
+    if (e.target === box) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>
 </body>
