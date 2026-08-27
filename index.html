@@ -260,6 +260,26 @@
     border:1px solid var(--line-strong);
     padding:3px 7px;
   }
+  .status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border:1px dashed var(--line-strong);
+    padding:3px 8px;
+    margin-bottom:10px;
+  }
+  .status-badge::before{
+    content:"";
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--ink-soft);
+    display:inline-block;
+  }
   .project-card h4{
     font-family:var(--font-display);
     font-weight:500;
@@ -540,6 +560,7 @@
         </div>
 
         <div class="project-card">
+          <span class="status-badge">Under construction</span>
           <div class="tag-row"><span>SQL</span><span>Data viz</span><span>Decision management</span></div>
           <h4>Banking Issue Remediation Data Platform</h4>
           <span class="meta">Personal Project &middot; Fictitious banking client &middot; In ideation</span>
@@ -592,6 +613,7 @@
         </div>
 
         <div class="project-card">
+          <span class="status-badge">Under construction</span>
           <div class="tag-row"><span>Automation</span><span>Personal tools</span><span>Job search</span></div>
           <h4>Work Tools</h4>
           <span class="meta">Personal workflow tools &middot; built to use every day</span>
