@@ -214,11 +214,81 @@
     grid-template-columns:1fr 1fr;
     gap:8px;
   }
+  .exhibit-images.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
   .exhibit-images img{
     width:100%;
     display:block;
     border:1px solid var(--line);
+    cursor:zoom-in;
   }
+
+  /* ---- lightbox ---- */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.86);
+    padding:28px 64px 56px;
+  }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{
+    max-width:min(96vw, 1400px);
+    max-height:calc(100vh - 96px);
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    box-shadow:0 18px 48px rgba(0,0,0,0.5);
+    background:var(--surface);
+  }
+  .lightbox-caption{
+    position:absolute;
+    left:0; right:0; bottom:16px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink);
+    padding:0 72px;
+  }
+  .lightbox-close,
+  .lightbox-nav{
+    position:absolute;
+    appearance:none;
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--ink);
+    cursor:pointer;
+    font-family:var(--font-mono);
+  }
+  .lightbox-close{
+    top:16px; right:16px;
+    width:40px; height:40px;
+    font-size:22px;
+    line-height:1;
+  }
+  .lightbox-nav{
+    top:50%;
+    transform:translateY(-50%);
+    width:40px; height:40px;
+    font-size:22px;
+  }
+  .lightbox-nav.prev{ left:16px; }
+  .lightbox-nav.next{ right:16px; }
+  .lightbox-close:hover,
+  .lightbox-nav:hover,
+  .lightbox-close:focus-visible,
+  .lightbox-nav:focus-visible{
+    border-color:var(--accent-ink);
+    color:var(--accent-ink);
+    outline:none;
+  }
+  .lightbox-nav[hidden]{ display:none; }
+  body.lightbox-open{ overflow:hidden; }
+
   .exhibit figcaption{
     margin-top:10px;
     font-size:12.5px;
@@ -347,8 +417,12 @@
     .friction-grid{ grid-template-columns:1fr; }
     ul.changes{ grid-template-columns:1fr; }
     .exhibit-images{ grid-template-columns:1fr; }
+    .exhibit-images.cols-3{ grid-template-columns:1fr; }
     .stat-strip{ grid-template-columns:1fr; }
     .page{ padding:40px 20px 56px; }
+    .lightbox{ padding:56px 12px 52px; }
+    .lightbox-nav.prev{ left:8px; }
+    .lightbox-nav.next{ right:8px; }
   }
 
   @media (prefers-reduced-motion:no-preference){
@@ -364,11 +438,12 @@
   <p class="eyebrow">Product Case &middot; Credit Risk Scoring</p>
   <h1 class="headline">LoanTap-style consumer lending generates high application volume, but manual credit review is slow and inconsistent.</h1>
   <p class="methodology">Academic project (Scaler), Aug&ndash;Sep 2024, applied to LoanTap-style consumer lending data.</p>
-  <p class="subhead">Analysts need a repeatable way to score new applicants against patterns learned from historical loan outcomes. <strong>I trained a logistic-regression risk model on historical loan outcomes and wrapped its output into a risk score, repayment odds, and a tiered approve/review/reject recommendation.</strong></p>
+  <p class="subhead">Analysts need a repeatable way to score new applicants against patterns learned from historical loan outcomes. <strong>I trained a logistic-regression risk model on historical loan outcomes, then built a derived dataset that scores every applicant and feeds a working underwriting console — risk score, repayment odds, and tiered recommendation, per applicant, not just a model demo.</strong></p>
   <a class="proto-link" href="https://credit-clarity-flow.lovable.app/" target="_blank" rel="noopener">Analyst UX prototype</a>
   <a class="proto-link" href="https://loantap-credit-risk-prediction-uma-ramanathan.streamlit.app/" target="_blank" rel="noopener">ML model dashboard</a>
-  
-  <p class="methodology">The risk model is a functioning backend trained on ~396,000 historical loans; the analyst-facing interface is a separate clickable UX prototype (built with Lovable AI) not yet wired to live model scores.</p><div class="triad">
+  <a class="proto-link" href="https://github.com/UmaRamanathan-DA/portfolio/tree/main/apps/credit-risk-staff-tool" target="_blank" rel="noopener">Underwriting console (source)</a>
+
+  <p class="methodology">The risk model is a functioning backend trained on ~396,000 historical loans. The Lovable UX above remains a clickable design mock; the underwriting console is a separate Flask app that runs on real model output &mdash; a derived dataset scores every applicant offline, and the console reads that, not a live model call.</p><div class="triad">
     <div>
       <span class="k">Who</span>
       <span class="v">Credit analysts reviewing loan applications</span>
@@ -415,14 +490,22 @@
       <li><strong>Trained on what actually happened</strong><span>Logistic regression fit on ~396,000 historical loans, learning real repayment and default patterns, not assumptions.</span></li>
       <li><strong>Turned one score into decisions</strong><span>The same default probability reformatted into a risk score, repayment odds, and a four-tier recommendation.</span></li>
       <li><strong>Made the reasoning visible</strong><span>Logistic regression coefficients and rule-based risk tags (e.g. high DTI, low income), not a black-box number.</span></li>
-      <li><strong>Prototyped the analyst workflow separately</strong><span>A clickable UX showing how scoring would fit into day-to-day review, ahead of wiring it to live data.</span></li>
+      <li><strong>Closed the loop from model to staff tool</strong><span>Built a derived dataset that scores every applicant against the trained model, then feeds a working underwriting console &mdash; not a UI mock running on placeholder numbers.</span></li>
+      <li><strong>Validated the tiers against real outcomes</strong><span>Because the scored applicants are closed historical loans, I could check whether the recommendation tiers actually track repayment &mdash; and they do.</span></li>
     </ul>
     <figure class="exhibit">
       <div class="exhibit-images">
-        <img src="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" alt="Loan application prototype interface">
-        <img src="../images/loantap/feature-importance.png" alt="Feature importance analysis from the risk model">
+        <img src="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" alt="Loan application prototype interface" data-gallery="all" data-index="0">
+        <img src="../images/loantap/feature-importance.png" alt="Feature importance analysis from the risk model" data-gallery="all" data-index="1">
       </div>
       <figcaption>The analyst-facing UX prototype alongside the feature-importance analysis behind the scoring model.</figcaption>
+    </figure>
+    <figure class="exhibit">
+      <div class="exhibit-images">
+        <img src="../images/loantap/lovable%20prototype/decision%20explained.png" alt="Explainability screen showing the top factors behind a risk score" data-gallery="all" data-index="2">
+        <img src="../images/loantap/lovable%20prototype/application%20approved.png" alt="Application approved screen with the recommendation shown" data-gallery="all" data-index="3">
+      </div>
+      <figcaption>The reasoning behind a score, and the recommendation it produces — not a black-box number.</figcaption>
     </figure>
   </section>
 
@@ -452,6 +535,28 @@
   </section>
 
   <section>
+    <h2 class="label">Does the tiering actually work?</h2>
+    <p class="insight-text">The derived dataset scores the full historical portfolio, and because those loans are already closed, the actual outcome is known. Charge-off rate rises monotonically across the four tiers &mdash; the check that was missing when the staff tool ran on disconnected mock data.</p>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">5.9% &rarr; 43%</div>
+        <div class="desc">Actual charge-off rate, APPROVE to REJECT</div>
+        <div class="raw">5,000-applicant derived dataset, sampled from the full ~396K portfolio</div>
+      </div>
+      <div class="stat">
+        <div class="num">4 tiers, monotonic</div>
+        <div class="desc">Every tier riskier than the one before it</div>
+        <div class="raw">APPROVE 5.9% &middot; APPROVE_W/_COND 14.6% &middot; REVIEW 26.2% &middot; REJECT 43.1%</div>
+      </div>
+      <div class="stat">
+        <div class="num">Per-applicant factors</div>
+        <div class="desc">Not just a score &mdash; the top drivers behind it</div>
+        <div class="raw">Derived from the model's own coefficients, shown per applicant in the console</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2 class="label">Business impact</h2>
     <ul class="changes">
       <li><strong>Faster decisions</strong><span>Streamlined workflows cut review time, enabling higher application throughput.</span></li>
@@ -464,6 +569,14 @@
   <section>
     <h2 class="label">Key insights from the data</h2>
     <p class="insight-text">Analysis of the ~396k-record training set showed debt consolidation loans comprise a large share of applications, with interest rate and credit grade among the strongest default predictors. Borrowers with verified income, individual (non-joint) applications, and 36-month terms tended to show better repayment performance &mdash; patterns reflected in the engineered feature set.</p>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-3">
+        <img src="../images/loantap/titles.png" alt="Distribution of loan purpose titles, split by fully paid vs charged off" data-gallery="all" data-index="4">
+        <img src="../images/loantap/predictors-target.png" alt="Repayment outcomes by loan term, income verification, and application type" data-gallery="all" data-index="5">
+        <img src="../images/loantap/predictors-target-3.png" alt="Repayment outcomes by loan grade, sub-grade, and employment length" data-gallery="all" data-index="6">
+      </div>
+      <figcaption>Debt consolidation dominates loan purpose; term, verification, and application type separate repayment outcomes; credit grade tracks cleanly with default risk.</figcaption>
+    </figure>
   </section>
 
   <footer>
@@ -478,5 +591,77 @@
   </footer>
 
 </div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full screen image">
+  <button type="button" class="lightbox-close" aria-label="Close full screen">&times;</button>
+  <button type="button" class="lightbox-nav prev" aria-label="Previous image">&#8249;</button>
+  <img alt="">
+  <button type="button" class="lightbox-nav next" aria-label="Next image">&#8250;</button>
+  <p class="lightbox-caption"></p>
+</div>
+
+<script>
+(function () {
+  var items = [];
+  document.querySelectorAll('[data-gallery="all"]').forEach(function (el) {
+    var i = parseInt(el.getAttribute("data-index"), 10);
+    items[i] = {
+      src: el.getAttribute("src"),
+      caption: el.getAttribute("alt")
+    };
+  });
+
+  var box = document.getElementById("lightbox");
+  var img = box.querySelector("img");
+  var caption = box.querySelector(".lightbox-caption");
+  var prevBtn = box.querySelector(".prev");
+  var nextBtn = box.querySelector(".next");
+  var closeBtn = box.querySelector(".lightbox-close");
+  var index = 0;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var item = items[index];
+    img.src = item.src;
+    img.alt = item.caption;
+    caption.textContent = (index + 1) + " / " + items.length + "  ·  " + item.caption;
+  }
+
+  function open(start) {
+    if (!items.length) return;
+    show(start || 0);
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.removeAttribute("src");
+  }
+
+  document.querySelectorAll('[data-gallery="all"]').forEach(function (el) {
+    el.addEventListener("click", function () {
+      open(parseInt(el.getAttribute("data-index"), 10));
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  prevBtn.addEventListener("click", function () { show(index - 1); });
+  nextBtn.addEventListener("click", function () { show(index + 1); });
+  box.addEventListener("click", function (e) {
+    if (e.target === box) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
 </body>
 </html>

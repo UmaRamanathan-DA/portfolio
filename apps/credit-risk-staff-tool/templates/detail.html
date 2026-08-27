@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}{{ a.app_id }} — Underwriting Console{% endblock %}
+{% block content %}
+
+<a class="back-link" href="{{ url_for('main.index') }}">&larr; Back to portfolio</a>
+
+<section class="applicant-header">
+  <div>
+    <p class="eyebrow">Applicant {{ a.app_id }}</p>
+    <h1>Risk score {{ a.risk_score }} <span class="badge badge-{{ a.recommendation|lower }}">{{ a.recommendation.replace('_', ' ') }}</span></h1>
+    <p class="subhead">Confidence: <strong>{{ a.confidence }}</strong> &middot; Risk category: <strong>{{ a.risk_category }}</strong></p>
+  </div>
+</section>
+
+<section class="decision-block">
+  <span class="tag">System recommendation</span>
+  {% if a.recommendation == 'APPROVE' %}
+  <p>Low modeled default risk. Route for straight-through approval; no manual review required.</p>
+  {% elif a.recommendation == 'APPROVE_WITH_CONDITIONS' %}
+  <p>Moderate risk. Approve with conditions — e.g. rate adjustment, income re-verification, or lower approved amount.</p>
+  {% elif a.recommendation == 'REVIEW_MANUAL' %}
+  <p>Elevated risk. Route to a credit analyst for manual review before a decision is issued.</p>
+  {% else %}
+  <p>High modeled default risk. Default recommendation is reject; requires senior underwriter override to proceed.</p>
+  {% endif %}
+</section>
+
+<section class="prob-strip">
+  <div class="stat">
+    <span class="k">Default probability</span>
+    <span class="v">{{ a.default_probability }}%</span>
+  </div>
+  <div class="stat">
+    <span class="k">Repayment probability</span>
+    <span class="v">{{ a.repayment_probability }}%</span>
+  </div>
+</section>
+
+<section>
+  <h2 class="label">Top factors driving this score</h2>
+  <ul class="factor-list">
+    {% for factor in a.top_risk_factors.split(';') %}
+    <li>{{ factor.strip() }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h2 class="label">Applicant profile</h2>
+  <div class="profile-grid">
+    <div><span class="k">Loan amount</span><span class="v">${{ "{:,.0f}".format(a.loan_amnt) }}</span></div>
+    <div><span class="k">Term</span><span class="v">{{ a.term }}</span></div>
+    <div><span class="k">Interest rate</span><span class="v">{{ a.int_rate }}%</span></div>
+    <div><span class="k">Installment</span><span class="v">${{ "{:,.2f}".format(a.installment) }}</span></div>
+    <div><span class="k">Grade / sub-grade</span><span class="v">{{ a.grade }} / {{ a.sub_grade }}</span></div>
+    <div><span class="k">Purpose</span><span class="v">{{ a.purpose.replace('_', ' ') }}</span></div>
+    <div><span class="k">Annual income</span><span class="v">${{ "{:,.0f}".format(a.annual_inc) }}</span></div>
+    <div><span class="k">Income verification</span><span class="v">{{ a.verification_status }}</span></div>
+    <div><span class="k">DTI</span><span class="v">{{ a.dti }}</span></div>
+    <div><span class="k">Open credit lines</span><span class="v">{{ a.open_acc|int }}</span></div>
+    <div><span class="k">Total credit lines</span><span class="v">{{ a.total_acc|int }}</span></div>
+    <div><span class="k">Revolving utilization</span><span class="v">{{ a.revol_util }}%</span></div>
+    <div><span class="k">Mortgage accounts</span><span class="v">{{ a.mort_acc|int }}</span></div>
+    <div><span class="k">Public bankruptcies</span><span class="v">{{ a.pub_rec_bankruptcies|int }}</span></div>
+    <div><span class="k">Application type</span><span class="v">{{ a.application_type }}</span></div>
+    <div><span class="k">State</span><span class="v">{{ a.state or "—" }}</span></div>
+    <div><span class="k">Loan issued</span><span class="v">{{ a.issue_d }}</span></div>
+  </div>
+</section>
+
+<section class="callout">
+  <span class="tag">Historical backtest &middot; not shown to the model</span>
+  <p>This is a closed historical loan. What actually happened: <strong>{{ a.actual_outcome }}</strong>. This field is for validating the tiering — it was withheld from the model at scoring time.</p>
+</section>
+
+{% endblock %}

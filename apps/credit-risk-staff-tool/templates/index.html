@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Underwriting Console — Applicant Portfolio{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <p class="eyebrow">Underwriting Console</p>
+  <h1>Every scored applicant, one decision layer</h1>
+  <p class="subhead">The same logistic-regression model behind the risk dashboard, run over the full historical portfolio. Each row is a real applicant with a risk score, a tiered recommendation, and — since these are closed historical loans — the outcome that actually happened.</p>
+</section>
+
+<section class="stat-strip">
+  <div class="stat">
+    <span class="k">Applicants scored</span>
+    <span class="v">{{ "{:,}".format(summary.total_applicants) }}</span>
+    <span class="d">Sampled from the full ~396k-loan training population</span>
+  </div>
+  <div class="stat">
+    <span class="k">Average risk score</span>
+    <span class="v">{{ summary.avg_risk_score }}</span>
+    <span class="d">0&ndash;100 scale, higher = riskier</span>
+  </div>
+</section>
+
+<section class="tier-grid">
+  {% for t in summary.tiers %}
+  <div class="tier-card tier-{{ t.tier|lower }}">
+    <span class="tier-name">{{ t.tier.replace('_', ' ') }}</span>
+    <span class="tier-count">{{ "{:,}".format(t.count) }}<span class="tier-share">{{ t.share }}%</span></span>
+    <span class="tier-outcome">{{ t.actual_charge_off_rate }}% actually charged off</span>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="callout">
+  <span class="tag">Why this matters</span>
+  <p>The tiers aren't arbitrary — actual historical charge-off rate rises monotonically from APPROVE to REJECT. That's the check that was missing before: the analyst tool now runs on the same population the model was validated against, not a disconnected mock.</p>
+</section>
+
+<section class="console">
+  <div class="filters">
+    <input type="search" id="q" placeholder="Search applicant ID, purpose, or state&hellip;">
+    <select id="tier">
+      <option value="">All tiers</option>
+      <option value="APPROVE">Approve</option>
+      <option value="APPROVE_WITH_CONDITIONS">Approve with conditions</option>
+      <option value="REVIEW_MANUAL">Review (manual)</option>
+      <option value="REJECT">Reject</option>
+    </select>
+    <select id="grade">
+      <option value="">All grades</option>
+      {% for g in grades %}<option value="{{ g }}">Grade {{ g }}</option>{% endfor %}
+    </select>
+    <select id="sort">
+      <option value="risk_score_desc">Risk score, high to low</option>
+      <option value="risk_score_asc">Risk score, low to high</option>
+      <option value="loan_amnt_desc">Loan amount, high to low</option>
+      <option value="annual_inc_desc">Income, high to low</option>
+    </select>
+  </div>
+
+  <div class="table-wrap">
+    <table id="applicant-table">
+      <thead>
+        <tr>
+          <th>Applicant</th>
+          <th>Risk score</th>
+          <th>Decision</th>
+          <th>Grade</th>
+          <th>Purpose</th>
+          <th>Loan amount</th>
+          <th>Income</th>
+          <th>DTI</th>
+          <th>State</th>
+          <th>Actual outcome</th>
+        </tr>
+      </thead>
+      <tbody id="applicant-rows">
+        <tr><td colspan="10" class="loading">Loading applicants&hellip;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <button id="prev-page" type="button">&larr; Prev</button>
+    <span id="page-info"></span>
+    <button id="next-page" type="button">Next &rarr;</button>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}
