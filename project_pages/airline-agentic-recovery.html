@@ -1,310 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agentic AI Orchestration for Post-Disruption Customer Recovery - Uma Ramanathan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="project-pages-styles.css">
-    <style>
-        .project-header-s {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #FFD700;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Airline Recovery — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
-        .project-title-s {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-        }
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
 
-        .project-meta-s {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
 
-        .meta-item-s {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #666;
-            font-size: 0.95rem;
-        }
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
 
-        .meta-item-s i {
-            color: #FFD700;
-        }
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
 
-        .scenario-section,
-        .content-section {
-            background: #f8f9fa;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            border-left: 4px solid #FFD700;
-        }
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(24px, 3.2vw, 31px);
+    line-height:1.24;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:36ch;
+  }
 
-        .scenario-section h2,
-        .content-section h3 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 0.5rem;
-        }
+  .methodology{
+    margin:0 0 18px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
 
-        .content-section h4 {
-            color: #333;
-            font-size: 1.4rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 0.5rem;
-        }
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 18px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
 
-        .scenario-section p,
-        .content-section p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
+  a.proto-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:0 8px 28px 0;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--accent-ink);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:7px 12px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  a.proto-link:hover,
+  a.proto-link:focus-visible{
+    color:var(--ink);
+    border-color:var(--accent-ink);
+  }
 
-        .scenario-label {
-            display: inline-block;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.75rem;
-        }
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .content-section ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
 
-        .content-section li {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 0.5rem;
-        }
+  /* ---- friction (before) ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
 
-        .deliverable-item {
-            background: #fff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            border-top: 3px solid #FFD700;
-        }
+  /* ---- what changed ---- */
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 24px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .deliverable-item h4 {
-            margin-top: 0;
-            border-bottom: none;
-            padding-bottom: 0;
-            font-size: 1.2rem;
-        }
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(19px, 2.8vw, 24px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
 
-        .deliverable-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            padding: 0.6rem 1.2rem;
-            background: #FFD700;
-            color: #222;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background 0.2s, transform 0.2s;
-        }
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:48ch;
+    text-wrap:balance;
+  }
 
-        .deliverable-link:hover {
-            background: #e6c200;
-            transform: translateY(-1px);
-        }
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:56ch;
+  }
+  .skills a{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .skills a:hover,
+  .skills a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
 
-        .pdf-embed-container {
-            margin-top: 1.5rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #dee2e6;
-            background: #fff;
-        }
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    ul.changes{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
 
-        .pdf-embed-container iframe {
-            display: block;
-            width: 100%;
-            height: 720px;
-            border: none;
-        }
-
-        .pdf-open-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            color: #333;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .pdf-open-link:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .project-title-s {
-                font-size: 1.8rem;
-            }
-
-            .scenario-section,
-            .content-section {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-    <div class="project-detail-container">
-        <a href="../index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
 
-        <div class="project-header-s">
-            <h1 class="project-title-s">Designing an Agentic AI Orchestration System for Post-Disruption Customer Recovery at a Major Airline</h1>
-            <div class="project-meta-s">
-                <div class="meta-item-s"><i class="fas fa-building"></i>Mock Consulting | Case Study Project | Solution Design & Architecture</div>
-                <div class="meta-item-s"><i class="fas fa-user"></i>Product Analyst</div>
-                <div class="meta-item-s"><i class="fas fa-plane"></i>Airline · IROPS · Customer Recovery</div>
-            </div>
-        </div>
+<div class="page">
 
-        <div class="project-content">
-            <div class="project-description">
-                <div class="scenario-section">
-                    <h2>Scenario</h2>
-                    <p>A large airline faces massive call center overload during irregular operations (IROPS) — flight cancellations, delays, rebooking chaos. I explore this scenario as an Agentic Product Analyst designing an end-to-end AI agent solution.</p>
-                </div>
-
-                <div class="content-section">
-                    <h3>Business Objective</h3>
-                    <p>Deploy a Netomi Agentic AI solution that autonomously handles 70%+ of IROPS-related customer contacts — including flight status queries, rebooking requests, compensation claims, and proactive outreach — while maintaining CSAT above 4.2/5.0 and reducing contact center cost per contact by 55%.</p>
-
-                    <h4>Executive Summary</h4>
-                    <p>SkyWave Airlines operates over 1,200 daily flights serving 85 destinations across North America and Europe. During Irregular Operations (IROPS) events — which include weather disruptions, mechanical delays, crew shortages, and air traffic control holds — the airline's contact center experiences a 400–600% surge in inbound customer contacts within 60–90 minutes. The current model relies almost entirely on human agents, resulting in extended hold times averaging 47 minutes, customer defection to self-help channels, and significant compensation costs driven by unmanaged expectations.</p>
-
-                    <div class="pdf-embed-container">
-                        <iframe src="../assets/agentic-ai-orch/executive-presentation.pdf" title="Executive Presentation"></iframe>
-                    </div>
-                    <a href="../assets/agentic-ai-orch/executive-presentation.pdf" target="_blank" class="pdf-open-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        Open Executive Presentation (PDF)
-                    </a>
-                </div>
-
-                <div class="content-section">
-                    <h3>Key Deliverables to Produce</h3>
-
-                    <div class="deliverable-item">
-                        <h4>1. Discovery &amp; Requirements Document</h4>
-                        <ul>
-                            <li>Stakeholder map (CX Ops, Engineering, Legal/Compliance)</li>
-                            <li>Current-state process pain points</li>
-                            <li>KPIs defined: containment rate, CSAT, average handle time, rebooking speed</li>
-                        </ul>
-                        <a href="../assets/agentic-ai-orch/discovery-requirements.html" target="_blank" class="deliverable-link">
-                            <i class="fas fa-file-alt"></i>
-                            View Full Document
-                        </a>
-                    </div>
-
-                    <div class="deliverable-item">
-                        <h4>2. Agentic Workflow Blueprint</h4>
-                        <ul>
-                            <li>Visual flowchart of agent decision logic (intents → actions → escalation paths)</li>
-                            <li>Guardrails and fallback conditions</li>
-                            <li>Human-in-the-loop triggers</li>
-                        </ul>
-                        <a href="../assets/agentic-ai-orch/agentic-workflow-blueprint.html" target="_blank" class="deliverable-link">
-                            <i class="fas fa-file-alt"></i>
-                            View Full Document
-                        </a>
-                    </div>
-
-                    <div class="deliverable-item">
-                        <h4>3. Integration Architecture Diagram</h4>
-                        <ul>
-                            <li>API touchpoints: GDS (flight inventory), PNR system, CRM, ticketing (e.g. Zendesk), SSO</li>
-                            <li>Event-driven triggers (e.g. flight status webhooks → agent activation)</li>
-                        </ul>
-                        <a href="../assets/agentic-ai-orch/integration-architecture.html" target="_blank" class="deliverable-link">
-                            <i class="fas fa-file-alt"></i>
-                            View Full Document
-                        </a>
-                    </div>
-
-                    <div class="deliverable-item">
-                        <h4>4. Agent Behavior Specification</h4>
-                        <ul>
-                            <li>Intent library (rebooking, refund, compensation, status inquiry)</li>
-                            <li>Sample conversation flows with decision branching</li>
-                            <li>Tone/persona guidelines</li>
-                        </ul>
-                        <a href="../assets/agentic-ai-orch/agent-behavior-specification.html" target="_blank" class="deliverable-link">
-                            <i class="fas fa-file-alt"></i>
-                            View Full Document
-                        </a>
-                    </div>
-
-                    <div class="deliverable-item">
-                        <h4>5. Test Plan &amp; Acceptance Criteria</h4>
-                        <ul>
-                            <li>Scenario matrix (cancellation, delay, missed connection, weather event)</li>
-                            <li>Success thresholds per scenario</li>
-                        </ul>
-                        <a href="../assets/agentic-ai-orch/test-plan-acceptance-criteria.html" target="_blank" class="deliverable-link">
-                            <i class="fas fa-file-alt"></i>
-                            View Full Document
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Core Skills</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Product Analysis</span>
-                        <span class="skill-tag">Solution Architecture</span>
-                        <span class="skill-tag">API/Systems Integration</span>
-                        <span class="skill-tag">Agentic Workflow Design</span>
-                        <span class="skill-tag">Generative AI</span>
-                        <span class="skill-tag">Customer Experience</span>
-                    </div>
-                </div>
-                <div class="tech-section">
-                    <h4>Domain</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Irregular Operations (IROPS)</span>
-                        <span class="skill-tag">Contact Center Automation</span>
-                        <span class="skill-tag">Rebooking &amp; Compensation</span>
-                        <span class="skill-tag">Proactive Outreach</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <p class="eyebrow">Product Case &middot; Agentic AI Design</p>
+  <h1 class="headline">A major airline's contact center saw inbound volume spike 400&ndash;600% within 90 minutes of every disruption — with almost no way to absorb it but more phone agents.</h1>
+  <p class="methodology">Self-directed case study exercise, not a real client engagement &mdash; a Product Analyst design exploration of agentic AI architecture for airline IROPS (irregular operations) recovery, using a fictional airline (SkyWave) and illustrative figures throughout.</p>
+  <p class="subhead">During weather delays, mechanical issues, or crew shortages, an all-human contact model couldn't keep up with the surge — hold times stretched to 47 minutes and customers defected to self-help. <strong>I designed an end-to-end agentic AI system: discovery, decision logic, systems integration, and conversation behavior, all the way through to a test plan.</strong></p>
+  <a class="proto-link" href="../assets/agentic-ai-orch/executive-presentation.pdf" target="_blank" rel="noopener">Executive presentation (PDF)</a>
+  <a class="proto-link" href="../assets/agentic-ai-orch/agentic-workflow-blueprint.html" target="_blank" rel="noopener">Agentic workflow blueprint</a>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">Airline CX operations and contact-center leadership</span>
+      <span class="d">Manage customer contact volume during flight disruptions.</span>
     </div>
-<script src="../assets/analytics-config.js"></script>
-<script src="../assets/analytics.js"></script>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Absorb the surge without just adding headcount</span>
+      <span class="d">Resolve routine cases autonomously, and know exactly when to hand off to a human.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">70% target containment</span>
+      <span class="d">The design objective for the system — not a measured result from a live deployment.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Two things that were broken</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>Hold times spiked to 47 minutes</strong>
+        <p>A 400&ndash;600% surge in contacts within 60&ndash;90 minutes overwhelmed an all-human model, pushing customers to defect to self-help channels.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Compensation costs nobody was managing</strong>
+        <p>Unmanaged customer expectations during disruption drove significant, avoidable compensation payouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What we designed</h2>
+    <ul class="changes">
+      <li><strong>Mapped the problem before the solution</strong><span>Stakeholder map, current-state pain points, and KPIs (containment rate, CSAT, handle time, rebooking speed).</span></li>
+      <li><strong>Specified the agent's decision logic</strong><span>A workflow blueprint of intents, actions, and escalation paths — with guardrails and human-in-the-loop triggers.</span></li>
+      <li><strong>Designed how it connects to real systems</strong><span>Integration architecture across flight inventory, PNR, CRM, and ticketing, triggered by live flight-status events.</span></li>
+      <li><strong>Specified how the agent behaves</strong><span>An intent library, sample conversation flows, and tone/persona guidelines — not a generic chatbot script.</span></li>
+      <li><strong>Built a test plan before building the agent</strong><span>A scenario matrix (cancellation, delay, missed connection, weather event) with success thresholds for each.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="tagline">The agent isn't designed to handle everything — it's designed to know exactly when to hand off to a human.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it was designed to move</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">400&ndash;600% surge</div>
+        <div class="desc">Contact volume within 60&ndash;90 minutes</div>
+        <div class="raw">the spike the system had to be designed to absorb</div>
+      </div>
+      <div class="stat">
+        <div class="num">5 deliverables</div>
+        <div class="desc">Discovery through test plan</div>
+        <div class="raw">workflow blueprint, integration architecture, agent behavior spec, and more</div>
+      </div>
+      <div class="stat">
+        <div class="num">70% / 4.2 / 55%</div>
+        <div class="desc">Containment, CSAT, and cost-per-contact targets</div>
+        <div class="raw">design objectives, not measured outcomes</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a href="airline-agentic-recovery.html">Agentic Workflow Design</a>
+      <a href="airline-agentic-recovery.html">Solution Architecture</a>
+      <a href="airline-agentic-recovery.html">API/Systems Integration</a>
+      <a href="airline-agentic-recovery.html">Generative AI</a>
+      <a href="airline-agentic-recovery.html">Customer Experience</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Product Analyst</div>
+  </footer>
+
+</div>
 </body>
 </html>

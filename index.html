@@ -1,1023 +1,745 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uma Ramanathan - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="project_pages/UX_project_card.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma Ramanathan — Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+  a{ color:inherit; }
+
+  .page{
+    max-width:960px;
+    margin:0 auto;
+    padding:64px 28px 80px;
+  }
+
+  /* ---- hero ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .hero-name{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(36px, 6vw, 52px);
+    line-height:1.08;
+    letter-spacing:-0.015em;
+    margin:0 0 10px;
+  }
+  .hero-tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(18px, 2.4vw, 22px);
+    color:var(--ink-soft);
+    margin:0 0 28px;
+  }
+  .hero-bio{
+    max-width:66ch;
+  }
+  .hero-bio p{
+    font-size:15.5px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+  .hero-bio a{
+    color:var(--accent-ink);
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .hero-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:24px;
+  }
+  a.pill-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.02em;
+    color:var(--ink);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:8px 14px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  a.pill-link:hover,
+  a.pill-link:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+    outline:none;
+  }
+
+  /* ---- section rhythm ---- */
+  .section{
+    margin-top:72px;
+    padding-top:48px;
+    border-top:1px solid var(--line);
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.4vw, 32px);
+    letter-spacing:-0.01em;
+    margin:0 0 10px;
+  }
+  .section-lede{
+    font-size:15px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:64ch;
+    margin:0 0 28px;
+  }
+
+  /* ---- discipline jump nav ---- */
+  .work-jump{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:0 0 8px;
+  }
+  .work-jump a{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:6px 13px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .work-jump a:hover,
+  .work-jump a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+    outline:none;
+  }
+
+  /* ---- discipline blocks ---- */
+  .discipline{
+    margin-top:52px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+    scroll-margin-top:24px;
+  }
+  .discipline:first-of-type{
+    margin-top:44px;
+  }
+  .discipline-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .discipline-title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(21px, 2.6vw, 25px);
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .discipline-count{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .discipline-lede{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+
+  /* ---- project cards ---- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:16px;
+  }
+  .project-card{
+    display:flex;
+    flex-direction:column;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-top:3px solid var(--accent);
+    padding:18px 19px 17px;
+  }
+  .project-card-image{
+    margin:-18px -19px 14px;
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .project-card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-bottom:10px;
+  }
+  .tag-row span{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:3px 7px;
+  }
+  .project-card h4{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:17px;
+    line-height:1.3;
+    margin:0 0 5px;
+    color:var(--ink);
+  }
+  .project-card .meta{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--accent-ink);
+    margin-bottom:10px;
+  }
+  .project-card .desc{
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+    flex:1;
+  }
+  .card-links{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:auto;
+  }
+  .card-links a.primary{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--accent-ink);
+    background:var(--accent-soft);
+    border:1px solid var(--line-strong);
+    padding:6px 11px;
+    text-decoration:none;
+  }
+  .card-links a.primary:hover,
+  .card-links a.primary:focus-visible{
+    border-color:var(--accent-ink);
+    outline:none;
+  }
+
+  /* ---- toolkit ---- */
+  .toolkit-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+    gap:14px;
+  }
+  .toolkit-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:16px 17px 17px;
+  }
+  .toolkit-card h4{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 11px;
+    font-weight:600;
+  }
+  .tool-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .tool-chip{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+  }
+
+  /* ---- contact ---- */
+  .contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:0 0 22px;
+  }
+  .contact-detail{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:6px 0;
+  }
+  .contact-detail i{
+    color:var(--accent-ink);
+    width:16px;
+  }
+
+  footer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:640px){
+    .page{ padding:48px 20px 64px; }
+    .discipline-head{ flex-direction:column; align-items:flex-start; gap:4px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Main Content -->
-        <main class="main-content single-column">
-            
-            <!-- Hero Section -->
-            <section id="hero" class="hero-section">
-                <div class="hero-content">
-                    <h1 class="hero-title-1">Hello!</h1>
-                    <h1 class="hero-title">I'm Uma Ramanathan</h1>
-                    <h2 class="hero-subtitle">exploring AI for product strategy</h2>
-                    
-                    <div class="hero-bio">
-                        <p>I love solving data, software, and UX problems. I hold an MSc in Business Analysis &amp; Consulting from Strathclyde Business School, and I'm currently exploring and building AI-enabled tools and processes for product strategy - using AI to speed up discovery, prototyping, and decision-making.</p>
-                        <p>Outside of product work, I run Ksaradecor, my own design and gifting business (<a href="https://www.instagram.com/ksaradecor?igsi=MmdlamZ5bHphaWdx" target="_blank" rel="noopener noreferrer">View Ksaradecor collection</a>), paint marine inspired art and ocean-conservation talking pieces from discarded and rescued glass bottles through an initiative "Through The Glass Artly". I also practice as career and life coach, and once redesigned a home end-to-end for a client, as an interior designer. I'm carbon literate and try to build — and live — with sustainability in mind.</p>
-                    </div>
-                 </div> 
-            </section>
 
-            <!-- Strategy problems — primary navigation -->
-            <section id="work" class="my-work-section">
-                <div class="section-header">
-                    <h2>My problem space</h2>
-                    <p>usually comes with one of five questions.</p>
-                </div>
+<div class="page">
 
-                <nav class="strategy-nav" aria-label="Strategy problem types">
-                    <a href="#strategy-optimisation" class="strategy-nav-card" data-tone="opt">
-                        <span class="strategy-num">01</span>
-                        <h3>Optimisation</h3>
-                        <p>Something isn’t optimized.</p>
-                    </a>
-                    <a href="#strategy-metrics" class="strategy-nav-card" data-tone="metric">
-                        <span class="strategy-num">02</span>
-                        <h3>Metric Deterioration</h3>
-                        <p>A number moved. Why?</p>
-                    </a>
-                    <a href="#strategy-growth" class="strategy-nav-card" data-tone="growth">
-                        <span class="strategy-num">03</span>
-                        <h3>Growth</h3>
-                        <p>It works. How far can it scale?</p>
-                    </a>
-                    <a href="#strategy-zero-one" class="strategy-nav-card" data-tone="zero">
-                        <span class="strategy-num">04</span>
-                        <h3>0 to 1</h3>
-                        <p>No baseline to anchor on.</p>
-                    </a>
-                    <a href="#strategy-org" class="strategy-nav-card" data-tone="org">
-                        <span class="strategy-num">05</span>
-                        <h3>Org Building</h3>
-                        <p>A people / structure problem.</p>
-                    </a>
-                </nav>
+  <header class="hero">
+    <p class="eyebrow">Portfolio &middot; Product Strategy, UX &amp; Data, Builder PM</p>
+    <h1 class="hero-name">Uma Ramanathan</h1>
+    <p class="hero-tagline">Building AI with AI for improving strategy, products and processes.</p>
+    <div class="hero-bio">
+      <p>I love solving data, software, and UX problems. I hold an MSc in Business Analysis &amp; Consulting from Strathclyde Business School and have about 12 years of experience working full time in technology in data architecture, product and UX roles, building data products, UX and UI design deliverables, rapid prototyping proof of concepts and managing technical deliveries. <br><br>I'm currently exploring and building AI-enabled/powered products, processes and continuous improvement strategies — using AI to speed up discovery, prototyping, and decision-making. </p>
+      <p>Outside of product work, I run Ksara Decor, my own design and gifting business (<a href="https://www.instagram.com/ksaradecor?igsi=MmdlamZ5bHphaWdx" target="_blank" rel="noopener noreferrer">view the collection</a>), paint marine-inspired art and ocean-conservation pieces from rescued glass bottles through an initiative called "Through The Glass Artly." I also practice as a career and life coach, and once redesigned a home end-to-end as an interior designer. I'm carbon literate and try to build — and live — with sustainability in mind.</p>
+    </div>
+    <div class="hero-links">
+      <a class="pill-link" href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a class="pill-link" href="https://www.linkedin.com/in/ramanathan-uma" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a class="pill-link" href="https://github.com/UmaRamanathan-DA" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+      <a class="pill-link" href="https://public.tableau.com/app/profile/uma.ramanathan.tableau" target="_blank" rel="noopener"><i class="fas fa-chart-bar"></i> Tableau</a>
+    </div>
+  </header>
 
-                <article id="strategy-optimisation" class="strategy-block" data-tone="opt">
-                    <header class="strategy-block-header">
-                        <span class="strategy-block-kicker">01 · Optimisation</span>
-                        <h3>Something isn’t optimized</h3>
-                        <p>Steady-state improvement on an existing metric or process — not a root-cause investigation of a drop.</p>
-                        <span class="strategy-count">1 project</span>
-                    </header>
-                    <div class="strategy-projects">
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Compliance Management System</h3>
-                                <span class="work-company">NoMoBo Client · Redesign · Phase 1</span>
-                                <div class="work-tags">
-                                    <span>UX</span>
-                                    <span>Offline-first</span>
-                                    <span>iPad</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>Redesign concept of an outdated Compliance Management System for a NoMoBo's client, to improve usability and enable assessment recording via iPads and iPhones for field assessors.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/Assessments.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+  <section class="section" id="work">
+    <h2 class="section-title">Selected work</h2>
+    <p class="section-lede">Organized by discipline, not by consulting jargon. Each card links straight to the project.</p>
 
-                <article id="strategy-metrics" class="strategy-block" data-tone="metric">
-                    <header class="strategy-block-header">
-                        <span class="strategy-block-kicker">02 · Metric Deterioration</span>
-                        <h3>A number moved, and I need to know why</h3>
-                        <p>Time-based and comparative — YoY, MoM, or post-event. What changed, and why?</p>
-                        <span class="strategy-count">2 projects</span>
-                    </header>
-                    <div class="strategy-projects strategy-projects-pair">
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Compliance Management System — Product-Led Adoption</h3>
-                                <span class="work-company">Learning extension · Phase 2</span>
-                                <div class="work-tags">
-                                    <span>PLG analytics</span>
-                                    <span>Funnel</span>
-                                    <span>Retention</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>Product-led adoption analysis (illustrative) applying activation, feature adoption, and retention thinking to the field assessment redesign.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/compliance-product-led-adoption.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Workforce Attrition Analytics</h3>
-                                <span class="work-company">Self-directed · Data &amp; Analytics Briefing · 2026</span>
-                                <div class="work-tags">
-                                    <span>Logistic regression</span>
-                                    <span>Workforce analytics</span>
-                                    <span>Intervention design</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>Predicted employee flight-risk scores from IBM HR attrition data and mapped each score to an intervention plan — so HR can act before the exit interview, not after.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/workforce-attrition.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+    <nav class="work-jump" aria-label="Jump to a discipline">
+      <a href="#strategy">Product &amp; UX Strategy</a>
+      <a href="#data">Data Science &amp; Analytics</a>
+      <a href="#ai">AI &amp; Agentic Product Design</a>
+      <a href="#exploration">UI &amp; Concept Exploration</a>
+    </nav>
 
-                <article id="strategy-growth" class="strategy-block" data-tone="growth">
-                    <header class="strategy-block-header">
-                        <span class="strategy-block-kicker">03 · Growth</span>
-                        <h3>Something works — how far can it scale?</h3>
-                        <p>Capacity and channel-mix questions, not “should this exist.” What breaks first?</p>
-                        <span class="strategy-count">2 projects</span>
-                    </header>
-                    <div class="strategy-projects strategy-projects-pair">
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Digital Retail Bank Launch Strategy leveraging BaaS</h3>
-                                <span class="work-company">Academic Project for Synpulse Consulting</span>
-                                <div class="work-tags">
-                                    <span>Consulting</span>
-                                    <span>GTM</span>
-                                    <span>Banking</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>Delivered a launch strategy for a fictitious digital retail bank leveraging BaaS (Banking-as-a-Service), focusing on vendor evaluation, regulatory alignment, and digital-first product design.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/digital-bank-strategy.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Haggis Hopper Taxi Business Insights - Data Analysis and Forecasting</h3>
-                                <span class="work-company">Academic Project for Kin Karta Consulting</span>
-                                <div class="work-tags">
-                                    <span>Tableau</span>
-                                    <span>Forecasting</span>
-                                    <span>Python</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>Comprehensive Data Analysis of taxi trip logs uncovering demand patterns, customer behavior, and geographic hotspots using advanced analytics. Built forecasting models and performed time series analysis to predict demand and drive data-informed resource allocation.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/haggis-hopper.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+    <!-- ============ PRODUCT & UX STRATEGY ============ -->
+    <div class="discipline" id="strategy">
+      <div class="discipline-head">
+        <h3 class="discipline-title">Product &amp; UX Strategy</h3>
+        <span class="discipline-count">7 projects</span>
+      </div>
+      <p class="discipline-lede">Diagnosing broken workflows, proving adoption held, and advising on go-to-market and organizational structure.</p>
+      <div class="project-grid">
 
-                <article id="strategy-zero-one" class="strategy-block" data-tone="zero">
-                    <header class="strategy-block-header">
-                        <span class="strategy-block-kicker">04 · 0 to 1</span>
-                        <h3>There’s no baseline to anchor on</h3>
-                        <p>New market, new product line, new GTM motion. The work is defining the category, not filling an existing one.</p>
-                        <span class="strategy-count">2 projects</span>
-                    </header>
-                    <div class="strategy-projects strategy-projects-pair">
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Ad Copilot — AI Co-Pilot for Performance Marketing Teams</h3>
-                                <span class="work-company">Case Study Project · Zero-to-One AI Product Design</span>
-                                <div class="work-tags">
-                                    <span>GenAI</span>
-                                    <span>Product</span>
-                                    <span>Performance marketing</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>A zero-to-one AI product design for performance marketers, combining automated ad creative generation and budget/bid recommendations behind a confidence-based human review system. Built end-to-end across strategy, requirements, AI system design, and technical architecture to demonstrate readiness for AI-driven marketing tech products.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/ad-copilot.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>PeopleOps &amp; Legal Intelligence Hub</h3>
-                                <span class="work-company">Self-directed · Zero-to-One Data Product · 2026</span>
-                                <div class="work-tags">
-                                    <span>Semantic modeling</span>
-                                    <span>Data governance</span>
-                                    <span>AI/ML</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>A unified semantic data product for HR and Legal: one governed layer over Workday, Agiloft, SFDC, and ServiceNow, with an ROI-informed roadmap and confidence-based review lanes so AI flags attrition and contract risk without deciding unsupervised.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/peopleops.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+        <div class="project-card">
+          <div class="tag-row"><span>UX</span><span>Offline-first</span><span>iPad</span></div>
+          <h4>Field Assessment Redesign</h4>
+          <span class="meta">NoMoBo Client &middot; Redesign &middot; Phase 1</span>
+          <p class="desc">Redesigned an outdated compliance system so field assessors could complete assessments on iPads and iPhones on-site, instead of on paper.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/Assessments.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-                <article id="strategy-org" class="strategy-block" data-tone="org">
-                    <header class="strategy-block-header">
-                        <span class="strategy-block-kicker">05 · Org Building</span>
-                        <h3>This is a people / structure problem</h3>
-                        <p>Restructuring, capacity gaps, role redesign. The output is structure, not just a number.</p>
-                        <span class="strategy-count">1 project</span>
-                    </header>
-                    <div class="strategy-projects">
-                        <div class="work-card">
-                            <div class="work-header">
-                                <h3>Performance Management System for NSAR Operations</h3>
-                                <span class="work-company">Capstone project for NSAR Academic Project Team</span>
-                                <div class="work-tags">
-                                    <span>Org design</span>
-                                    <span>Logic models</span>
-                                    <span>Metrics</span>
-                                </div>
-                            </div>
-                            <div class="work-description">
-                                <p>Designed a performance management system for NSAR (Strathclyde capstone) using logic models to map how operations are meant to produce outcomes, metric causal maps to surface how individual indicators drive each other, and a tiered metric hierarchy to separate what should be directly tracked from what's derived or periodic — with Bayesian network integration scoped as the next step for probabilistic forecasting.</p>
-                            </div>
-                            <div class="work-actions">
-                                <a href="project_pages/nsar-operations.html" target="_blank" class="work-btn">View case</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+        <div class="project-card">
+          <div class="tag-row"><span>PLG analytics</span><span>Funnel</span><span>Retention</span></div>
+          <h4>Compliance — Product-Led Adoption</h4>
+          <span class="meta">Learning extension &middot; Phase 2</span>
+          <p class="desc">Instrumented the activation funnel and 90-day retention curves to prove Phase 1's completion gains were durable, not a launch-day spike.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/compliance-product-led-adoption-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-                <div class="work-divider" id="more-work">
-                    <h2>More projects</h2>
-                    <p>The rest of the archive, by craft — data, AI, product, consulting, and UI exploration.</p>
-                </div>
+        <div class="project-card">
+          <div class="tag-row"><span>Agentic AI</span><span>Voice UX</span><span>Guardrails</span></div>
+          <h4>Compliance Field Copilot</h4>
+          <span class="meta">Learning extension &middot; Phase 3</span>
+          <p class="desc">Specified an AI copilot layer — voice capture, smart templates, pre-submit validation — to speed up field completion without taking control from the assessor.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/compliance-field-copilot-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-            <div class="filter-hint">
-                <i class="far fa-hand-point-down filter-hand-icon" aria-hidden="true"></i>
-                <span>Filter by focus area</span>
-            </div>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="data-science">Data Science & Analytics</button>
-                <button class="filter-btn" data-filter="data-viz">Data Visualisation</button>
-                <button class="filter-btn" data-filter="gen-ai">Generative AI</button>
-                <button class="filter-btn" data-filter="teardown">Website Teardown & UX Audit</button>
-                <button class="filter-btn" data-filter="product">Product</button>
-                <button class="filter-btn" data-filter="business-ideation">Business Ideation</button>
-                <button class="filter-btn" data-filter="consulting">Consulting</button>
-                <button class="filter-btn" data-filter="decision">Decision Management</button>
-                <button class="filter-btn" data-filter="workflow-tools">Workflow Tools</button>
-            </div>
-            <div class="work-grid-container">
-                <div class="work-grid">
-                    <!-- <div class="work-card" data-category="workflow-tools gen-ai">
-                        <div class="work-header">
-                            <h3>Work Tools — Daily AI agents I actually run</h3>
-                            <span class="work-company">Personal workflow tools · Built to use every day</span>
-                            <span class="work-details">AI Job Search Agent · ATS Resume Tuner (next)</span>
-                        </div>
-                        <div class="work-description">
-                            <p>A single page for the workflow tools I built for myself. Live now: an AI job-search agent that checks LinkedIn, Naukri, Indeed, and Glassdoor each morning and writes a ranked shortlist to Drive. Next: an ATS resume tuner. More daily tools will be added here as I ship them.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/work-tools.html" target="_blank" class="work-btn">Open tools</a>
-                        </div>
-                    </div> -->
-                    <div class="work-card" data-category="gen-ai product consulting">
-                        <div class="work-header">
-                            <h3>Designing an Agentic AI Orchestration System for Post-Disruption Customer Recovery at a Major Airline</h3>
-                            <span class="work-company">Mock Consulting | Case Study Project | Solution Design & Architecture</span>
-                            <span class="work-details">Product Analyst . Solution Architecture . API/Systems Integration . Agentic Workflow Design</span>
-                        </div>
-                        <div class="work-description">
-                            <p>Designed an agentic AI orchestration system to streamline post-disruption customer recovery for a major airline mapping recovery workflows, defining multi-agent handoffs, and specifying API and systems integration points to reduce manual handling and restore service faster after operational disruptions.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/airline-agentic-recovery.html" target="_blank" class="work-btn">View Details</a>
-                        </div>
-                    </div>
-                    <div class="work-card" data-category="gen-ai product">
-                        <div class="work-header">
-                            <h3>Compliance Field Copilot</h3>
-                            <span class="work-company">Learning extension · Phase 3 of the NoMoBo case series</span>
-                            <span class="work-details">AI Copilot Spec · Voice UX · Offline-First</span>
-                        </div>
-                        <div class="work-description">
-                            <p>AI enablement specification for field assessors — a copilot layer on top of the redesigned compliance workflow, covering autonomy boundaries, voice UX, and offline-first constraints.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/compliance-field-copilot.html" target="_blank" class="work-btn">View Details</a>
-                        </div>
-                    </div>
-                    <div class="work-card" data-category="data-science consulting">
-                        <div class="work-header">
-                            <h3>Workforce Attrition Analytics</h3>
-                            <span class="work-company">Self-directed · Data &amp; Analytics Briefing · 2026</span>
-                            <span class="work-details">Logistic Regression · Workforce Analytics · Intervention Design</span>
-                        </div>
-                        <div class="work-description">
-                            <p>Predicted employee flight-risk scores from IBM HR attrition data and mapped each score to an intervention plan — so HR can act before the exit interview, not after.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/workforce-attrition.html" target="_blank" class="work-btn">View Details</a>
-                        </div>
-                    </div>
-                    <div class="work-card" data-category="data-science data-viz">
-                        <div class="work-header">
-                            <h3>Visualising Interactive Loan Distributions using Tableau</h3>
-                            <span class="work-company">Client Project . Technical Assessment</span>
-                            <span class="work-details">Tableau . US Census Data . Spatial Analytics</span>
-                        </div>
-                        <div class="work-description">
-                            <p>Interactive and multi-level spatial analysis dashboard using US census shapefiles with drill-down capability from national to state to census tract level.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/loan_dist.html" target="_blank" class="work-btn">View Details</a>
-                        </div>
-                    </div>
-                    <div class="work-card" data-category="data-science data-viz">
-                        <div class="work-header">
-                            <h3>Walmart Black Friday Sales Analysis</h3>
-                            <span class="work-company">Case Study Exercise for Scaler Academy </span>
-                            <span class="work-details">Business Analytics . Walmart Data . Ecommerce Industry</span>                            
-                        </div>
-                        <div class="work-description">
-                            <p>Conducted comprehensive analysis of Walmart's Black Friday sales data to identify purchasing patterns, customer behavior, and revenue optimization opportunities.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/walmart-analysis.html" target="_blank" class="work-btn">View Details</a>                            
-                        </div>
-                    </div>                    
-                    
-                    <!-- <div class="work-card" data-category="product">
-                        <div class="work-header">
-                            <h3>Proof Space</h3>
-                            <span class="work-details">Product Ideation . Personal Project</span>                            
-                        </div>
-                        <div class="work-description">
-                            <p>Revolutionizing tech hiring by prioritizing verifiable technical contributions over social engagement, creating a platform where developers trade performance metrics for visibility and recruiters discover talent based on impact rather than activity.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/Product_Ideation/Proof Space.html" target="_blank" class="work-btn">View Details</a>                            
-                        </div>
-                    </div> -->
+        <div class="project-card">
+          <div class="tag-row"><span>Consulting</span><span>GTM</span><span>Banking</span></div>
+          <h4>Digital Retail Bank Launch Strategy</h4>
+          <span class="meta">Academic Project for Synpulse Consulting</span>
+          <p class="desc">Ran a BaaS vendor evaluation and go-to-market strategy for a US bank's first digital retail launch in the UK.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/digital-bank-strategy-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-                    <div class="work-card" data-category="data-science product Product_Ideation">
-                        <div class="work-header">
-                            <h3>Credit Risk Assessment Platform</h3>
-                            <span class="work-company">Assignment</span>
-                            <span class="work-details">Scaler Academy . Loan Tap Data . Fintech</span>                            
-                        </div>
-                        <div class="work-description">
-                            <p>A fintech credit-risk app that scores loan applications with ML and surfaces explainable decisions through a Lovable-built UX. Outcome: faster analyst review with clearer rationale behind each risk score, improving speed and confidence in automated underwriting.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/credit-risk.html" target="_blank" class="work-btn">View Details</a>                            
-                        </div>
-                    </div>
-                    
-                    <div class="work-card" data-category="product teardown">
-                        <div class="work-header">
-                            <h3>Website Teardown & UX Audit: Product Space PM Fellowship Website</h3>
-                            <span class="work-company">Competition hosted by ProductSpace</span>
-                            <span class="work-details">Product Analyst . UX Strategist . UX Research </span>                            
-                        </div>
-                        <div class="work-description">
-                            <p>Tear down/UX audit and strategic redesign recommendations for Product Space PM Fellowship website.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/website-teardown.html" target="_blank" class="work-btn">View Details</a>                            
-                        </div>
-                    </div>
-                   
-                  
-                    
-                    <div class="work-card" data-category="data-viz data-science decision">
-                        <div class="work-header">
-                            <h3>Banking Client Issue Remediation Data Platform</h3>
-                            <span class="work-company"> Personal Project . Fictitious Banking Client </span>                                                  
-                            <span class="work-details"> Decision Management </span>                                                  
-                        </div>
-                        <div class="work-description">
-                            <p> In Ideation: End-to-End Banking Client Issue Remediation Data Platform with lifecycle of identifying, analyzing, and resolving customer-impacting issues for a retail bank, featuring SQL analysis, data visualization, and regulatory-ready documentation.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/issue-remediation-project.html" target="_blank" class="work-btn">View Details</a>                            
-                        </div>
-                    </div>
-                    <!-- <div class="work-card" data-category="gen-ai">
-                        <div class="work-header">
-                            <h3>AI-Powered DORA Metrics Analyzer: DevOps Analytics</h3>
-                            <span class="work-company">Personal Project</span>
-                            <span class="work-details">Software Engineering . DevOps . LLM-RAG · Agentic AI (Phase 2)</span>                            
-                        </div>
-                        <div class="work-description">
-                            <p>Prototyping a Flask-based web app using LLM with Retrieval-Augmented Generation to analyze DORA metrics via natural language prompts. Phase 2 spec extends this into an agentic DevOps copilot with tool orchestration and voice interaction.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/dora-metrics.html" target="_blank" class="work-btn">Phase 1</a>
-                            <a href="project_pages/dora-devops-copilot.html" target="_blank" class="work-btn" style="background:#9a8200;">Case study</a>
-                            <a href="#" target="_blank" rel="noopener" class="work-btn" style="background:#123047;color:#FFD700;" id="dora-live-btn">Launch app</a>
-                            <a href="#" target="_blank" rel="noopener" class="work-btn" style="background:#333;color:#fff;" id="dora-repo-btn">App repo</a>
-                        </div>
-                    </div> -->
-                    <div class="work-card" data-category="consulting">
-                        <div class="work-header">
-                            <h3>Strategic Advisory Consulting Proposal for District Heating Networks</h3>
-                            <span class="work-company">Academic Project for Sustainable Glasgow</span>
-                            <span class="work-details">University of Strathclyde . Capstone Consulting Project . United Kingdom</span>                            
-                        </div>
-                        <div class="work-description">
-                            <p>Developed a strategic advisory proposal to accelerate District Heating Networks, aligning with Net Zero goals.</p>
-                        </div>
-                        <div class="work-actions">
-                            <a href="project_pages/district-heating.html" target="_blank" class="work-btn">View Details</a>                            
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="project-showcase-card cafe" style="background: #82b8bc;" data-category="product">
-                        <div class="project-images">
-                            <img src="images\PetMe\petme_thumbnail_1.png" alt="Tablet UI" class="tablet-img">
-                          </div>
-                        <div class="project-info">
-                          <h3 style="color:#111">Pet Me</h3>
-                          <span class="work-company">Marketplace/platform model . Personal Project . Fun UI Exploration . Figma Practice</span>
-                          <span class="work-details">Product Ideation . Mobile App · Hybrid . UX-UI Concept</span>
-                          <div class="project-desc">
-                            <br>
-                            <p style="color:#111">
-                                Designed a mobile app concept for pet care management for pet owners and pet care service providers, enabling pet owners manage grooming, adoption, and scheduling.
-                            </p>
-                          </div>
-                          <a href="project_pages/petme.html" target="_blank" class="view-project-btn">View Details</a>      
-                        </div>                       
-                    </div>       
+        <div class="project-card">
+          <div class="tag-row"><span>Strategic advisory</span><span>MCDA</span><span>Governance</span></div>
+          <h4>District Heating Networks Advisory</h4>
+          <span class="meta">Academic Project for Sustainable Glasgow</span>
+          <p class="desc">Proposed governance, prioritization, and investment-appraisal frameworks to accelerate Glasgow's district heating rollout toward Net Zero.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/district-heating-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-                    <div class="project-showcase-card cafe" style="background: #e6b8af;" data-category="business-ideation product">
-                        <div class="project-images">
-                          <img src="images/KsaraDecor/ksd_thumbnail.png" alt="Ksara Decor webshop concept" class="tablet-img">
-                        </div>
-                        <div class="project-info">
-                          <h3 style="font-size:1.5rem;font-weight: 700;color:#333">Ksara Decor</h3>
-                          <span class="work-company">D2C . Personal Project · Business Ideation · Figma Practice</span>
-                          <span class="work-details">Webshop Concept . Hand-painted Bottle Art . Marine-inspired Upcycling</span>
-                          <div class="project-desc">
-                            <br>
-                            <p style="color:#333">
-                                Ksara Decor upcycles glass bottles with hand-painted marine-inspired art. A business ideation project for a webshop to sell these one-of-a-kind bottles online.
-                            </p>
-                          </div>
-                          <!-- <a href="project_pages/ksaradecor.html" target="_blank" class="view-project-btn">View Details</a> -->
-                        </div>
-                    </div>
+        <div class="project-card">
+          <div class="tag-row"><span>Org design</span><span>Logic models</span><span>Metrics</span></div>
+          <h4>Performance Management System — NSAR</h4>
+          <span class="meta">Capstone for NSAR Academic Project Team</span>
+          <p class="desc">Designed six pathway-specific logic models and a metric hierarchy connecting Arctic search-and-rescue activities to outcomes.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/nsar-operations.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-                    <div class="project-showcase-card cafe" style="background: #b9a291;" data-category="product">
-                        <div class="project-images">
-                          <img src="images\BobaBean cafe\device_tablet.png" alt="Tablet UI" class="tablet-img">
-                        </div>
-                        <div class="project-info">
-                          <h3 style="font-size:1.5rem;font-weight: 700;color:#333">BobaBean</h3>
-                          <span class="work-company">D2C . Personal Project . Fun UI Exploration . Figma Practice</span>
-                          <span class="work-details">Product Ideation . Mobile App · Hybrid | Tablet</span>
-                          <div class="project-desc">
-                            <br>
-                            <p style="color:#333">
-                                BobaBean is a mobile app concept for a boutique vegan café, designed to let coffee lovers customize their brew soul-deep. It recreates the cozy, intuitive feel of in-store ordering through playful layouts and tactile interactions. A fun UI exploration and Figma practice, the project reflects the café’s warm personality.
-                            </p>
-                          </div>
-                          <a href="project_pages/bobabean.html" target="_blank" class="view-project-btn">View Details</a>      
-                        </div>
-                    </div>                          
-                
-                    <div class="project-showcase-card project-showcase-card-1 cafe" style="background: #f7d8d8; width: 100%;" data-category="product">
-                        <div class="project-images">
-                            <div>
-                                <img style="width:100%" src="images/Boards and Paddles/boardspaddles_thumbnail.png" alt="State 1" />
-                            </div>                              
-                        </div>
-                        <div class="project-info" >
-                          <h3 style="font-size:1.5rem;font-weight: 700;color:#333">Boards and Paddles</h3>
-                          <span class="work-company">Personal Project . Fun UI Exploration . Figma Practice</span>
-                          <span class="work-details">Product Ideation . Mobile App · Hybrid</span>
-                          <div class="project-desc">
-                            <br>
-                            <p style="color:#333">
-                                Boards and Paddles is a concept platform designed to build a vibrant community of ocean sports enthusiasts. It focuses on making events, reviews, and themes more engaging and accessible for fun-loving, curious users.
-                            </p>
-                          </div>
-                          <a href="project_pages/boards-paddles/boards-paddles.html" target="_blank" class="view-project-btn">View Details</a>      
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </section>
+        <div class="project-card">
+          <div class="tag-row"><span>UX audit</span><span>Teardown</span><span>Strategy</span></div>
+          <h4>Website Teardown — Product Space PM Fellowship</h4>
+          <span class="meta">Competition hosted by ProductSpace</span>
+          <p class="desc">Tore down and proposed a strategic redesign for the Product Space PM Fellowship website.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/website-teardown.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-            <!-- How I Work Section
-            <section id="services" class="services-section">
-                <div class="section-header">
-                    <h2>Across the Problem-to-solution Spectrum</h2>
-                    <p class="section-intro-wide">I explore the full arc of a problem — from understanding users in the field, to prototyping experiences, to designing data and AI architectures, to specifying agentic systems for enterprise contexts. Depending on the project, this leads to a shippable product, a proof of concept that validates feasibility, or a data/AI solution delivered within a client or academic project. My strength is connecting human-centred design, quantitative intelligence, and AI solution design into one coherent approach or product story, whatever the output ends up being.</p>
-                </div>
-
-                <div class="capability-journey" aria-label="Product capability journey">
-                    <span class="journey-step">User insight</span>
-                    <span class="journey-arrow" aria-hidden="true">→</span>
-                    <span class="journey-step">Prototype experiences</span>
-                    <span class="journey-arrow" aria-hidden="true">→</span>
-                    <span class="journey-step">Measure &amp; model</span>
-                    <span class="journey-arrow" aria-hidden="true">→</span>
-                    <span class="journey-step">Identify AI opportunities</span>
-                    <span class="journey-arrow" aria-hidden="true">→</span>
-                    <span class="journey-step">Architect integrations</span>
-                    <span class="journey-arrow" aria-hidden="true">→</span>
-                    <span class="journey-step">Specify agentic AI</span>
-                </div>
-            </section> -->
-
-            <!-- Toolkit Section -->
-            <section id="toolkit" class="toolkit-section">
-                <div class="section-header">
-                    <h2>Tools I Reach For</h2>
-                    <p class="section-intro-wide">The stack behind discovery, analysis, prototyping, and AI delivery — grouped by how I actually use them, not by résumé keyword density.</p>
-                </div>
-                <div class="toolkit-block">
-                    <div class="toolkit-categories">
-                        <article class="toolkit-category-card">
-                            <h3 class="toolkit-category">Data &amp; languages</h3>
-                            <ul class="toolkit-values">
-                                <li><span class="tool-chip">Python</span></li>
-                                <li><span class="tool-chip">SQL</span></li>
-                                <li><span class="tool-chip">BigQuery</span></li>
-                            </ul>
-                        </article>
-                        <article class="toolkit-category-card">
-                            <h3 class="toolkit-category">Analysis &amp; modeling</h3>
-                            <ul class="toolkit-values">
-                                <li><span class="tool-chip">Pandas</span></li>
-                                <li><span class="tool-chip">NumPy</span></li>
-                                <li><span class="tool-chip">SciPy</span></li>
-                                <li><span class="tool-chip">scikit-learn</span></li>
-                                <li><span class="tool-chip">Hypothesis testing</span></li>
-                                <li><span class="tool-chip">Time-series forecasting</span></li>
-                            </ul>
-                        </article>
-                        <article class="toolkit-category-card">
-                            <h3 class="toolkit-category">Visualization &amp; BI</h3>
-                            <ul class="toolkit-values">
-                                <li><span class="tool-chip">Tableau</span></li>
-                                <li><span class="tool-chip">Advanced Excel</span></li>
-                                <li><span class="tool-chip">Streamlit</span></li>
-                                <li><span class="tool-chip">Matplotlib</span></li>
-                                <li><span class="tool-chip">Seaborn</span></li>
-                                <li><span class="tool-chip">Plotly</span></li>
-                            </ul>
-                        </article>
-                        <article class="toolkit-category-card">
-                            <h3 class="toolkit-category">Product &amp; prototyping</h3>
-                            <ul class="toolkit-values">
-                                <li><span class="tool-chip">Figma</span></li>
-                                <li><span class="tool-chip">Miro</span></li>
-                                <li><span class="tool-chip">Lovable AI</span></li>
-                            </ul>
-                        </article>
-                        <article class="toolkit-category-card">
-                            <h3 class="toolkit-category">AI-assisted workflow</h3>
-                            <ul class="toolkit-values">
-                                <li><span class="tool-chip">Claude Code</span></li>
-                                <li><span class="tool-chip">Cursor</span></li>
-                                <li><span class="tool-chip">Notion</span></li>
-                            </ul>
-                        </article>
-                        <article class="toolkit-category-card">
-                            <h3 class="toolkit-category">Automation &amp; integrations</h3>
-                            <ul class="toolkit-values">
-                                <li><span class="tool-chip">n8n</span></li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="contact-section">
-                <div class="section-header">
-                    <h2>Get in touch</h2>                    
-                </div>
-                <div class="contact-socials" style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 2rem;">
-      
-                    <div class="portfolio-buttons" style="display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0 3rem; flex-wrap: wrap;">
-                        <a href="https://www.linkedin.com/in/ramanathan-uma" target="_blank" class="portfolio-btn" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: #0077b5; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <i class="fab fa-linkedin-in" style="font-size: 1.2rem;"></i>
-                            <span>LinkedIn</span>
-                        </a>
-
-                        <a href="https://public.tableau.com/app/profile/uma.ramanathan.tableau" target="_blank" class="portfolio-btn" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: #E97627; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <i class="fas fa-chart-bar" style="font-size: 1.2rem;"></i>
-                            <span>Tableau</span>
-                        </a>
-                        
-                        <a href="https://github.com/UmaRamanathan-DA" target="_blank" class="portfolio-btn" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: #aa33d5; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <i class="fas fa-chart-bar" style="font-size: 1.2rem;"></i>
-                            <span>Github</span>
-                        </a>
-                    </div>
-            </div>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>umaramanathan54@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span><p>WhatsApp: +91 7550013096 (India)</p></span>
-                        </div>
-                        
-                    </div>
-                </div>
-            </section>
-
-            <p id="site-views" class="gc-views" data-gc-views hidden aria-live="polite"></p>
-        </main>
-
+      </div>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const filterableCards = [
-            ...document.querySelectorAll('.work-grid .work-card'),
-            ...document.querySelectorAll('.project-showcase-card')
-        ];
+    <!-- ============ DATA SCIENCE & ANALYTICS ============ -->
+    <div class="discipline" id="data">
+      <div class="discipline-head">
+        <h3 class="discipline-title">Data Science &amp; Analytics</h3>
+        <span class="discipline-count">5 projects</span>
+      </div>
+      <p class="discipline-lede">Modeling, forecasting, and dashboards built to inform a specific decision, not just to visualize data.</p>
+      <div class="project-grid">
 
-        function applyFilter(selected) {
-            filterableCards.forEach((element) => {
-                const categories = (element.getAttribute('data-category') || '').split(/\s+/);
-                if (selected === 'all' || categories.includes(selected)) {
-                    element.style.display = '';
-                } else {
-                    element.style.display = 'none';
-                }
-            });
-        }
+        <div class="project-card">
+          <div class="tag-row"><span>Logistic regression</span><span>Workforce analytics</span><span>Intervention design</span></div>
+          <h4>Workforce Attrition Analytics</h4>
+          <span class="meta">Self-directed &middot; Data &amp; Analytics Briefing &middot; 2026</span>
+          <p class="desc">Predicted flight-risk scores from IBM HR data and matched each score to an intervention — so HR can act before the exit interview, not after.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/workforce-attrition.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-        filterButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach((b) => b.classList.toggle('active', b === button));
-                applyFilter(button.dataset.filter);
-            });
-        });
+        <div class="project-card">
+          <div class="tag-row"><span>Tableau</span><span>Forecasting</span><span>Python</span></div>
+          <h4>Haggis Hopper Taxi Business Insights</h4>
+          <span class="meta">Academic Project for Kin Karta Consulting</span>
+          <p class="desc">Mapped Glasgow taxi demand by hour and postcode, and validated pricing against 3,068 real trips.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/haggis-hopper-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-        const initiallyActive = document.querySelector('.filter-btn.active');
-        if (initiallyActive) {
-            applyFilter(initiallyActive.dataset.filter);
-        }
+        <div class="project-card">
+          <div class="tag-row"><span>Credit risk</span><span>Logistic regression</span><span>Explainable AI</span></div>
+          <h4>Credit Risk Assessment Platform</h4>
+          <span class="meta">Assignment &middot; Scaler Academy &middot; LoanTap data</span>
+          <p class="desc">Trained a logistic-regression default model on ~396K historical loans, wrapped into a risk score, repayment odds, and a recommendation.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/credit-risk-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-        const strategyNavCards = document.querySelectorAll('.strategy-nav-card');
-        const strategyBlocks = document.querySelectorAll('.strategy-block');
+        <div class="project-card">
+          <div class="tag-row"><span>Tableau</span><span>US census data</span><span>Spatial analytics</span></div>
+          <h4>Visualising Interactive Loan Distributions</h4>
+          <span class="meta">Client Project &middot; Technical Assessment</span>
+          <p class="desc">Built a drill-down spatial dashboard from national to census-tract level using US census shapefiles.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/loan_dist.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-        function setActiveStrategyNav(id) {
-            strategyNavCards.forEach((c) => c.classList.toggle('is-active', c.getAttribute('href') === '#' + id));
-        }
+        <div class="project-card">
+          <div class="tag-row"><span>SQL</span><span>Data viz</span><span>Decision management</span></div>
+          <h4>Banking Issue Remediation Data Platform</h4>
+          <span class="meta">Personal Project &middot; Fictitious banking client &middot; In ideation</span>
+          <p class="desc">End-to-end remediation platform concept for identifying, analyzing, and resolving customer-impacting issues at a retail bank.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/issue-remediation-project.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-        strategyNavCards.forEach((card) => {
-            card.addEventListener('click', () => {
-                setActiveStrategyNav(card.getAttribute('href').slice(1));
-            });
-        });
+      </div>
+    </div>
 
-        if ('IntersectionObserver' in window && strategyBlocks.length) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveStrategyNav(entry.target.id);
-                    }
-                });
-            }, { rootMargin: '-25% 0px -55% 0px', threshold: 0.15 });
-            strategyBlocks.forEach((block) => observer.observe(block));
-        }
-    });
-    
-    </script>
+    <!-- ============ AI & AGENTIC PRODUCT DESIGN ============ -->
+    <div class="discipline" id="ai">
+      <div class="discipline-head">
+        <h3 class="discipline-title">AI &amp; Agentic Product Design</h3>
+        <span class="discipline-count">4 projects</span>
+      </div>
+      <p class="discipline-lede">Designing what an AI system is allowed to decide on its own, and where a human has to stay in the loop.</p>
+      <div class="project-grid">
 
-    <script>
-        const images = [
-        "images/Boards and Paddles/boardspaddles_thumbnail_1.png",
-        "images/Boards and Paddles/boardspaddles_thumbnail_2.png",
-        "images/Boards and Paddles/boardspaddles_thumbnail_3.png",
-        "images/Boards and Paddles/boardspaddles_thumbnail_4.png"
-        ];
-        
-        let current = 0;
-    
-        function cycleImage() {
-        const img = document.getElementById("animated-img");
-        img.style.opacity = 0;
-        setTimeout(() => {
-            current = (current + 1) % images.length;
-            img.src = images[current];
-            img.style.opacity = 1;
-        }, 300);
-        }
-    </script>
-  
-    <style>
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
-  display: block;
-}
+        <div class="project-card">
+          <div class="tag-row"><span>GenAI</span><span>Product</span><span>Performance marketing</span></div>
+          <h4>Ad Copilot</h4>
+          <span class="meta">Case Study Project &middot; Zero-to-One AI Product Design</span>
+          <p class="desc">Designed automated ad-creative generation and budget recommendations behind a confidence-based human review system.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/ad-copilot.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.main-content.single-column {
-  width: 100%;
-  margin-left: 0;
-  padding: 0;
-  background: transparent;
-}
+        <div class="project-card">
+          <div class="tag-row"><span>Semantic modeling</span><span>Data governance</span><span>AI/ML</span></div>
+          <h4>PeopleOps &amp; Legal Intelligence Hub</h4>
+          <span class="meta">Self-directed &middot; Zero-to-One Data Product &middot; 2026</span>
+          <p class="desc">One governed semantic layer over Workday, Agiloft, SFDC, and ServiceNow, with confidence-based AI review lanes for HR and Legal.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/peopleops-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.hero-section,
-.services-section,
-.toolkit-section,
-.contact-section {
-  max-width: 900px;
-  margin: 0 auto 3rem;
-}
+        <div class="project-card">
+          <div class="tag-row"><span>Agentic workflow</span><span>Solution architecture</span><span>CX</span></div>
+          <h4>Agentic Airline Recovery</h4>
+          <span class="meta">Mock Consulting &middot; Case Study Project</span>
+          <p class="desc">Designed an end-to-end agent system to absorb 400&ndash;600% contact-center surges during airline disruptions.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/airline-agentic-recovery-elevator-pitch.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.my-work-section {
-  max-width: 980px;
-  margin: 0 auto 3rem;
-}
+        <div class="project-card">
+          <div class="tag-row"><span>Automation</span><span>Personal tools</span><span>Job search</span></div>
+          <h4>Work Tools</h4>
+          <span class="meta">Personal workflow tools &middot; built to use every day</span>
+          <p class="desc">A daily AI job-search agent that checks LinkedIn, Naukri, Indeed, and Glassdoor each morning and writes a ranked shortlist to Drive.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/work-tools.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.hero-content,
-.section-header {
-  text-align: center;
-}
+      </div>
+    </div>
 
-.services-section .section-header p {
-  margin-bottom: 2.5rem;
-}
+    <!-- ============ UI & CONCEPT EXPLORATION ============ -->
+    <div class="discipline" id="exploration">
+      <div class="discipline-head">
+        <h3 class="discipline-title">UI &amp; Concept Exploration</h3>
+        <span class="discipline-count">4 projects</span>
+      </div>
+      <p class="discipline-lede">Personal Figma practice and product ideation — lighter weight, but real design thinking end to end.</p>
+      <div class="project-grid">
 
-html {
-  scroll-behavior: smooth;
-}
+        <div class="project-card">
+          <div class="project-card-image"><img src="images/homepage-cards/petme-card.jpg" alt="PetMe app concept"></div>
+          <div class="tag-row"><span>Marketplace</span><span>Mobile app</span><span>Figma</span></div>
+          <h4>PetMe</h4>
+          <span class="meta">Personal Project &middot; Figma Practice</span>
+          <p class="desc">A mobile app concept for pet care management, letting owners manage grooming, adoption, and scheduling with local providers.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/petme.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.strategy-nav {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.65rem;
-  margin: 0 0 2.75rem;
-}
+        <div class="project-card">
+          <div class="project-card-image"><img src="images/homepage-cards/ksaradecor-card.jpg" alt="Ksara Decor webshop concept"></div>
+          <div class="tag-row"><span>D2C</span><span>Business ideation</span><span>Figma</span></div>
+          <h4>Ksara Decor</h4>
+          <span class="meta">Personal Project &middot; Business Ideation</span>
+          <p class="desc">Webshop concept for hand-painted, marine-inspired bottle art — upcycling rescued glass into one-of-a-kind pieces.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/ksaradecor.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.strategy-nav-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 0.9rem 0.85rem 1rem;
-  background: #fff;
-  border: 1px solid rgba(55, 53, 47, 0.1);
-  border-top: 3px solid #c9a800;
-  border-radius: 10px;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
+        <div class="project-card">
+          <div class="project-card-image"><img src="images/homepage-cards/bobabean-card.jpg" alt="BobaBean app concept"></div>
+          <div class="tag-row"><span>D2C</span><span>Mobile app</span><span>Figma</span></div>
+          <h4>BobaBean</h4>
+          <span class="meta">Personal Project &middot; Figma Practice</span>
+          <p class="desc">A mobile app concept for a boutique vegan café, recreating the cozy feel of in-store ordering through playful, tactile layouts.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/bobabean.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.strategy-nav-card:hover,
-.strategy-nav-card.is-active {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
+        <div class="project-card">
+          <div class="project-card-image"><img src="images/homepage-cards/boardspaddles-card.jpg" alt="Boards and Paddles app concept"></div>
+          <div class="tag-row"><span>Community</span><span>Mobile app</span><span>Figma</span></div>
+          <h4>Boards and Paddles</h4>
+          <span class="meta">Personal Project &middot; Figma Practice</span>
+          <p class="desc">A concept platform for ocean-sports enthusiasts — making events, reviews, and local scenes easy to discover.</p>
+          <div class="card-links">
+            <a class="primary" href="project_pages/boards-paddles/boards-paddles.html" target="_blank">View project &rarr;</a>
+          </div>
+        </div>
 
-.strategy-nav-card[data-tone="opt"] { border-top-color: #3d7ab5; }
-.strategy-nav-card[data-tone="metric"] { border-top-color: #c45a3a; }
-.strategy-nav-card[data-tone="growth"] { border-top-color: #7b5ea7; }
-.strategy-nav-card[data-tone="zero"] { border-top-color: #4a8f6a; }
-.strategy-nav-card[data-tone="org"] { border-top-color: #b08a5c; }
+      </div>
+    </div>
 
-.strategy-num {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #888;
-}
+  </section>
 
-.strategy-nav-card h3 {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #222;
-  line-height: 1.25;
-}
+  <section class="section" id="toolkit">
+    <h2 class="section-title">Tools I reach for</h2>
+    <p class="section-lede">Grouped by how I actually use them — discovery, analysis, prototyping, and AI-assisted delivery — not by résumé keyword density.</p>
+    <div class="toolkit-grid">
+      <div class="toolkit-card">
+        <h4>Data &amp; languages</h4>
+        <div class="tool-chips">
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">SQL</span>
+          <span class="tool-chip">BigQuery</span>
+        </div>
+      </div>
+      <div class="toolkit-card">
+        <h4>Analysis &amp; modeling</h4>
+        <div class="tool-chips">
+          <span class="tool-chip">Pandas</span>
+          <span class="tool-chip">NumPy</span>
+          <span class="tool-chip">SciPy</span>
+          <span class="tool-chip">scikit-learn</span>
+          <span class="tool-chip">Hypothesis testing</span>
+          <span class="tool-chip">Time-series forecasting</span>
+        </div>
+      </div>
+      <div class="toolkit-card">
+        <h4>Visualization &amp; BI</h4>
+        <div class="tool-chips">
+          <span class="tool-chip">Tableau</span>
+          <span class="tool-chip">Advanced Excel</span>
+          <span class="tool-chip">Streamlit</span>
+          <span class="tool-chip">Matplotlib</span>
+          <span class="tool-chip">Seaborn</span>
+          <span class="tool-chip">Plotly</span>
+        </div>
+      </div>
+      <div class="toolkit-card">
+        <h4>Product &amp; prototyping</h4>
+        <div class="tool-chips">
+          <span class="tool-chip">Figma</span>
+          <span class="tool-chip">Miro</span>
+          <span class="tool-chip">Lovable AI</span>
+        </div>
+      </div>
+      <div class="toolkit-card">
+        <h4>AI-assisted workflow</h4>
+        <div class="tool-chips">
+          <span class="tool-chip">Claude Code</span>
+          <span class="tool-chip">Cursor</span>
+          <span class="tool-chip">Notion</span>
+        </div>
+      </div>
+      <div class="toolkit-card">
+        <h4>Automation &amp; integrations</h4>
+        <div class="tool-chips">
+          <span class="tool-chip">n8n</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-.strategy-nav-card p {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.35;
-  color: #666;
-}
+  <section class="section" id="contact">
+    <h2 class="section-title">Get in touch</h2>
+    <div class="hero-links contact-links">
+      <a class="pill-link" href="mailto:umaramanathan54@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a class="pill-link" href="https://www.linkedin.com/in/ramanathan-uma" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a class="pill-link" href="https://github.com/UmaRamanathan-DA" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+      <a class="pill-link" href="https://public.tableau.com/app/profile/uma.ramanathan.tableau" target="_blank" rel="noopener"><i class="fas fa-chart-bar"></i> Tableau</a>
+    </div>
+    <p class="contact-detail"><i class="fas fa-envelope"></i> umaramanathan54@gmail.com</p>
+    <p class="contact-detail"><i class="fab fa-whatsapp"></i> WhatsApp: +91 7550013096 (India)</p>
+  </section>
 
-.strategy-block {
-  margin: 0 0 2.25rem;
-  padding: 1.5rem 1.5rem 1.65rem;
-  border-radius: 14px;
-  border: 1px solid transparent;
-  scroll-margin-top: 1.25rem;
-}
+  <footer>Uma Ramanathan &middot; Product Strategy, UX &amp; Data</footer>
 
-.strategy-block[data-tone="opt"] {
-  background: #eef4fa;
-  border-color: #d5e4f2;
-  border-left: 4px solid #3d7ab5;
-}
-.strategy-block[data-tone="metric"] {
-  background: #faf0ec;
-  border-color: #f0d8d0;
-  border-left: 4px solid #c45a3a;
-}
-.strategy-block[data-tone="growth"] {
-  background: #f4f0f9;
-  border-color: #e2d8ef;
-  border-left: 4px solid #7b5ea7;
-}
-.strategy-block[data-tone="zero"] {
-  background: #eef6f1;
-  border-color: #d3eadc;
-  border-left: 4px solid #4a8f6a;
-}
-.strategy-block[data-tone="org"] {
-  background: #f7f1e8;
-  border-color: #eadcc8;
-  border-left: 4px solid #b08a5c;
-}
+</div>
 
-.strategy-block-header {
-  margin-bottom: 1.15rem;
-}
+<p id="site-views" class="gc-views" data-gc-views hidden aria-live="polite"></p>
 
-.strategy-block-kicker {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 0.35rem;
-}
-
-.strategy-block-header h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1.35rem;
-  color: #222;
-  line-height: 1.3;
-}
-
-.strategy-block-header p {
-  margin: 0;
-  color: #555;
-  font-size: 0.98rem;
-  line-height: 1.55;
-}
-
-.strategy-count {
-  display: inline-block;
-  margin-top: 0.7rem;
-  padding: 0.18rem 0.55rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
-  color: #444;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.strategy-projects {
-  display: grid;
-  gap: 1rem;
-}
-
-.strategy-projects-pair {
-  grid-template-columns: 1fr 1fr;
-}
-
-.strategy-projects .work-card {
-  background: #fff;
-  border: 1px solid rgba(55, 53, 47, 0.12);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-  padding: 1.4rem 1.45rem 1.45rem;
-  border-radius: 12px;
-}
-
-.strategy-projects .work-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}
-
-.strategy-projects .work-header {
-  margin-bottom: 0.85rem;
-}
-
-.strategy-projects .work-header h3 {
-  font-size: 1.2rem;
-}
-
-.work-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.55rem;
-}
-
-.work-tags span {
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  background: #f4f1ea;
-  color: #555;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.work-divider {
-  text-align: center;
-  margin: 3.25rem 0 1.75rem;
-  padding-top: 2.25rem;
-  border-top: 1px solid rgba(55, 53, 47, 0.12);
-}
-
-.work-divider h2 {
-  margin: 0 0 0.4rem;
-  font-size: 1.85rem;
-  color: #222;
-}
-
-.work-divider p {
-  margin: 0;
-  color: #666;
-  font-size: 1rem;
-}
-
-.project-filters {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-.filter-btn {
-  background: #fff;
-  border: 1.5px solid #e6c200;
-  color: #333;
-  padding: 0.55rem 1.1rem;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.88rem;
-  transition: background 0.2s, color 0.2s;
-}
-.filter-btn.active, .filter-btn:hover {
-  background: #FFD700;
-  color: #222;
-}
-
-@media (max-width: 860px) {
-  .strategy-nav {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .strategy-projects-pair {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .strategy-nav {
-    grid-template-columns: 1fr;
-  }
-}
-    </style>
-<script src="assets/apps-config.js"></script>
-<script>
-  (function () {
-    var cfg = window.PORTFOLIO_APPS || {};
-    var live = document.getElementById("dora-live-btn");
-    var repo = document.getElementById("dora-repo-btn");
-    if (live && cfg.doraCopilot) live.href = cfg.doraCopilot;
-    if (repo && cfg.doraCopilotRepo) repo.href = cfg.doraCopilotRepo;
-  })();
-</script>
 <script src="assets/analytics-config.js"></script>
 <script src="assets/analytics.js"></script>
 </body>
-</html> 
+</html>

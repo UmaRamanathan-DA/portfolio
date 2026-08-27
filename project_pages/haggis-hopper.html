@@ -1,826 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haggis Hopper Taxi Business Insights - Uma Ramanathan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="project-pages-styles.css">
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haggis Hopper Taxi Business Insights — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
-.quantitative-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 1.5rem;
-        margin: 1.5rem 0 0;
-    }
-    @media (max-width: 768px) {
-        .quantitative-gallery {
-            grid-template-columns: 1fr;
-        }
-    }
-    .quantitative-card {
-        background: white;
-        border-radius: 10px;
-        padding: 1rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        text-align: center;
-    }
+<style>
+  :root{
+    --ink:#eef0f5;
+    --ink-soft:#b3b8d1;
+    --paper:#14172a;
+    --surface:#1c2038;
+    --line:rgba(238,240,245,0.14);
+    --line-strong:rgba(238,240,245,0.26);
+    --accent:#d4af52;
+    --accent-ink:#e8c878;
+    --accent-soft:rgba(212,175,82,0.16);
+    --resolved:#c17a89;
+    --resolved-soft:rgba(193,122,137,0.14);
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
 
-    .quantitative-card img {
-        width: 100%;
-        height: auto;
-        border-radius: 6px;
-    }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
 
-    .quantitative-card figcaption {
-        margin-top: 0.75rem;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #333;
-    }
-        .project-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))
-                        ; 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 400px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .project-title {
-            color: rgb(240, 240, 240);
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            z-index: 2;
-            padding: 0 1rem;
-        }
-        
-        .project-meta-s {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-        }
-        
-        .meta-item-s {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        .meta-item-s i {
-            color: #FFD700;
-        }
-        
-        .project-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-        }
-        
-        .project-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: #FFD700;
-            color: #333;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .project-btn:hover {
-            background: #e6c200;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        
-        .introduction-section {
-            background: #f8f9fa;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            border-radius: 12px;
-            border-left: 4px solid #FFD700;
-        }
-        
-        .introduction-section h2 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 0.5rem;
-        }
-        
-        .introduction-section p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-        
-        .introduction-section ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .introduction-section li {
-            margin-bottom: 0.5rem;
-            color: #555;
-        }
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
 
-        .deck-embed-container {
-            margin-top: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #dee2e6;
-            background: #fff;
-        }
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
 
-        .deck-embed-container iframe {
-            display: block;
-            width: 100%;
-            height: 900px;
-            border: none;
-        }
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px);
+    line-height:1.22;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:30ch;
+  }
 
-        .deck-open-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            color: #1a3c5e;
-            font-weight: 600;
-            text-decoration: none;
-        }
+  .strategy-tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
 
-        .deck-open-link:hover {
-            text-decoration: underline;
-        }
-        
-        .case-study-diagram {
-            text-align: center;
-            margin: 2rem 0;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .diagram-image {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        
-        .diagram-caption {
-            color: #666;
-            font-style: italic;
-            font-size: 0.9rem;
-            margin: 0;
-            text-align: center;
-        }
-        
-        .eda-content, .time-series-content, .demand-prediction-content, .innovation-content, .data-sources-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 4px solid #FFD700;
-        }
-        
-        .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 0.5rem;
-        }
-        
-        .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
-            color: #333;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 0.5rem;
-            margin-top: 2rem;
-        }
-        
-        .eda-section p, .time-series-section p, .demand-prediction-section p, .innovation-section p, .data-sources-section p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-        
-        .approach-steps {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem 0;
-        }
-        
-        .step-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .step-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            position: relative;
-        }
-        
-        .step-card:hover {
-            border-color: #FFD700;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            background: #FFD700;
-            color: #333;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        
-        .card-icon {
-            font-size: 2.5rem;
-            color: #FFD700;
-            margin-bottom: 1rem;
-        }
-        
-        .step-card h4 {
-            color: #333;
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-        }
-        
-        .step-card p {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-        
-        .step-arrow {
-            color: #FFD700;
-            font-size: 1.5rem;
-            margin: 1rem 0;
-        }
-        
-        .project-sidebar {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-        
-        .skills-section, .tech-section {
-            margin-bottom: 2rem;
-        }
-        
-        .skills-section h4, .tech-section h4 {
-            color: #333;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 0.5rem;
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .skill-tag {
-            background: #f8f9fa;
-            color: #333;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            background: #FFD700;
-            color: #333;
-            transform: translateY(-1px);
-        }
+  .methodology{
+    margin:14px 0 0;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
+  .methodology.intro{
+    margin:0 0 18px;
+  }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 1200px) {
-            .eda-content, .time-series-content, .demand-prediction-content, .innovation-content, .data-sources-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .project-sidebar {
-                order: -1;
-                margin-bottom: 2rem;
-            }
-            
-            .project-title {
-                font-size: 2.2rem;
-            }
-            
-            .introduction-section h2 {
-                font-size: 1.6rem;
-            }
-            
-            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
-                font-size: 1.6rem;
-            }
-        }
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 18px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
 
-        @media (max-width: 768px) {
-            .project-header {
-                height: 300px;
-            }
-            
-            .project-title {
-                font-size: 1.8rem;
-                padding: 0 0.5rem;
-            }
-            
-            .project-meta-s {
-                gap: 1rem;
-                padding: 0 0.5rem;
-            }
-            
-            .meta-item-s {
-                font-size: 0.85rem;
-            }
-            
-            .project-buttons {
-                gap: 0.75rem;
-                padding: 0 0.5rem;
-            }
-            
-            .project-btn {
-                padding: 0.625rem 1.25rem;
-                font-size: 0.9rem;
-            }
-            
-            .introduction-section {
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-            
-            .introduction-section h2 {
-                font-size: 1.4rem;
-                margin-bottom: 1rem;
-            }
-            
-            .introduction-section p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-            
-            .introduction-section ul {
-                margin-left: 1rem;
-            }
-            
-            .introduction-section li {
-                font-size: 0.9rem;
-            }
-            
-            .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
-                padding: 1.5rem;
-            }
-            
-            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
-                font-size: 1.4rem;
-                margin-bottom: 1rem;
-            }
-            
-            .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
-                font-size: 1.1rem;
-                margin-top: 1.5rem;
-            }
-            
-            .eda-section p, .time-series-section p, .demand-prediction-section p, .innovation-section p, .data-sources-section p {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .step-card {
-                width: 100%;
-                max-width: 280px;
-                padding: 1.25rem;
-            }
-            
-            .card-icon {
-                font-size: 2rem;
-            }
-            
-            .step-card h4 {
-                font-size: 1rem;
-            }
-            
-            .step-card p {
-                font-size: 0.85rem;
-            }
-            
-            .project-sidebar {
-                padding: 1rem;
-            }
-            
-            .skills-section h4, .tech-section h4 {
-                font-size: 1rem;
-            }
-            
-            .skill-tag {
-                font-size: 0.8rem;
-                padding: 0.3rem 0.6rem;
-            }
-        }
+  a.proto-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:0 8px 28px 0;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--accent-ink);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:7px 12px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  a.proto-link:hover,
+  a.proto-link:focus-visible{
+    color:var(--ink);
+    border-color:var(--accent-ink);
+  }
 
-        @media (max-width: 480px) {
-            .project-header {
-                height: 250px;
-            }
-            
-            .project-title {
-                font-size: 1.5rem;
-            }
-            
-            .project-meta-s {
-                flex-direction: column;
-                gap: 0.5rem;
-                align-items: center;
-            }
-            
-            .meta-item-s {
-                font-size: 0.8rem;
-            }
-            
-            .project-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .project-btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-                padding: 0.75rem 1rem;
-            }
-            
-            .introduction-section {
-                padding: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .introduction-section h2 {
-                font-size: 1.3rem;
-            }
-            
-            .introduction-section p {
-                font-size: 0.9rem;
-            }
-            
-            .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
-                padding: 1rem;
-            }
-            
-            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
-                font-size: 1.3rem;
-            }
-            
-            .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
-                font-size: 1rem;
-            }
-            
-            .step-card {
-                max-width: 260px;
-                padding: 1rem;
-            }
-            
-            .card-icon {
-                font-size: 1.8rem;
-            }
-            
-            .step-card h4 {
-                font-size: 0.95rem;
-            }
-            
-            .step-card p {
-                font-size: 0.8rem;
-            }
-            
-            .project-sidebar {
-                padding: 0.75rem;
-            }
-            
-            .skill-tag {
-                font-size: 0.75rem;
-                padding: 0.25rem 0.5rem;
-            }
-        }
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        @media (max-width: 360px) {
-            .project-title {
-                font-size: 1.3rem;
-            }
-            
-            .introduction-section h2 {
-                font-size: 1.2rem;
-            }
-            
-            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
-                font-size: 1.2rem;
-            }
-            
-            .step-card {
-                max-width: 240px;
-            }
-        }
-    </style>
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
+
+  /* ---- friction (before) ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+
+  /* ---- what changed ---- */
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 24px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- exhibit ---- */
+  .exhibit{
+    margin-top:24px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:12px 12px 14px;
+  }
+  .exhibit-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .exhibit-images img{
+    width:100%;
+    display:block;
+    border:1px solid var(--line);
+  }
+  .exhibit figcaption{
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+
+  /* ---- supporting visuals gallery ---- */
+  .gallery-lede{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    max-width:62ch;
+  }
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+    gap:12px;
+  }
+  .gallery figure{
+    margin:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:8px 8px 10px;
+  }
+  .gallery img{
+    width:100%;
+    display:block;
+    border:1px solid var(--line);
+  }
+  .gallery figcaption{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.02em;
+    color:var(--ink-soft);
+    text-align:center;
+    line-height:1.3;
+  }
+  .gallery-group + .gallery-group{ margin-top:16px; }
+  .gallery-group-title{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 10px;
+  }
+  .gallery img{ cursor:zoom-in; }
+
+  /* ---- lightbox ---- */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.86);
+    padding:28px 64px 56px;
+  }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{
+    max-width:min(96vw, 1400px);
+    max-height:calc(100vh - 96px);
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    box-shadow:0 18px 48px rgba(0,0,0,0.5);
+    background:var(--surface);
+  }
+  .lightbox-caption{
+    position:absolute;
+    left:0; right:0; bottom:16px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink);
+    padding:0 72px;
+  }
+  .lightbox-close,
+  .lightbox-nav{
+    position:absolute;
+    appearance:none;
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--ink);
+    cursor:pointer;
+    font-family:var(--font-mono);
+  }
+  .lightbox-close{
+    top:16px; right:16px;
+    width:40px; height:40px;
+    font-size:22px;
+    line-height:1;
+  }
+  .lightbox-nav{
+    top:50%;
+    transform:translateY(-50%);
+    width:40px; height:40px;
+    font-size:22px;
+  }
+  .lightbox-nav.prev{ left:16px; }
+  .lightbox-nav.next{ right:16px; }
+  .lightbox-close:hover,
+  .lightbox-nav:hover,
+  .lightbox-close:focus-visible,
+  .lightbox-nav:focus-visible{
+    border-color:var(--accent-ink);
+    color:var(--accent-ink);
+    outline:none;
+  }
+  .lightbox-nav[hidden]{ display:none; }
+  body.lightbox-open{ overflow:hidden; }
+
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(20px, 3vw, 26px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:46ch;
+    text-wrap:balance;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:56ch;
+  }
+  .skills a{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .skills a:hover,
+  .skills a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    ul.changes{ grid-template-columns:1fr; }
+    .exhibit-images{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+    .lightbox{ padding:56px 12px 52px; }
+    .lightbox-nav.prev{ left:8px; }
+    .lightbox-nav.next{ right:8px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-    <div class="project-detail-container">
-        <a href="../index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
-        
-        <div>
-            <h1 class="project-title" style="color: black;">Haggis Hopper Taxi Business Insights - Case Study</h1>
-        </div>
-        
-        <div class="project-meta-s">
-            <div class="meta-item-s">
-                <i class="fas fa-building"></i>
-                <span>Kin Karta Consulting</span>
-            </div>
-            <div class="meta-item-s">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>United Kingdom</span>
-            </div>
-            <div class="meta-item-s">
-                <i class="fas fa-calendar"></i>
-                <span>Academic Project (Strathclyde Business School)</span>
-            </div>
-            <div class="meta-item-s">
-                <i class="fas fa-user"></i>
-                <span>Data Analyst/Data Scientist</span>
-            </div>
-        </div>
 
-        <aside class="strategy-question">
-            <p>This is a Product Strategy Growth problem.</p>
-        </aside>
-        
-        <div class="project-buttons">
-            <a href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&:origin=viz_share_link" class="action-btn github-btn" target="_blank">
-                <i class="fas fa-chart-bar"></i>
-                Interactive Tableau Dashboard for business stakeholders
-            </a>
-           
-            <a href="https://haggishopper-uramanathan.streamlit.app/" class="action-btn github-btn" target="_blank">
-                <i class="fas fa-chart-line"></i>
-                View Analysis Dashboard in Streamlit App
-            </a>
-            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="action-btn github-btn"" target="_blank">
-                <i class="fab fa-github"></i>
-                View on GitHub
-            </a>
-        </div>
+<div class="page">
 
-        <div class="project-content">
-            
-            <div class="introduction-section">
-            <h2>Project Goal</h2>
-            <p>
-                Use Haggis Hopper’s historical trip data to uncover where, when, and how demand fluctuates across Glasgow so the company can allocate its fleet more efficiently, improve passenger experience, and support sustainable growth.
-            </p>
+  <p class="eyebrow">Product Case &middot; Data Analysis &amp; Forecasting</p>
+  <h1 class="headline">A Glasgow taxi company had trip data — and no clear view of demand patterns, pricing anomalies, or fleet allocation.</h1>
+  <p class="strategy-tag">This is a Product Strategy Growth problem.</p>
+  <p class="methodology intro">Academic data science project completed with Kin Karta Consulting at the University of Strathclyde Business School, using Haggis Hopper's real historical trip data across Glasgow.</p>
+  <p class="subhead">Demand wasn't the mystery — Haggis Hopper already had the trip volume. What was missing was where fleet capacity should sit by hour and postcode, and whether the pricing riders were charged actually held up against the data. <strong>I turned raw trip records into live dashboards and a forecasting model, so fleet deployment and pricing could be decided from evidence instead of instinct.</strong></p>
+  <a class="proto-link" href="https://haggishopper-uramanathan.streamlit.app/" target="_blank" rel="noopener">Streamlit analysis app</a>
+  <a class="proto-link" href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&amp;:origin=viz_share_link" target="_blank" rel="noopener">Tableau dashboard</a>
+  <a class="proto-link" href="haggis_hoppers_pricing_analysis.html" target="_blank" rel="noopener">Pricing deep-dive deck</a>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">Haggis Hopper's operations team</span>
+      <span class="d">Decides where to position the fleet and how trips should be priced across Glasgow.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">See where and when demand happens — and act on it</span>
+      <span class="d">Turn raw trip records into a live view of demand, revenue, and fleet performance.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">Demand mapped by hour and postcode</span>
+      <span class="d">Two live tools let stakeholders see where demand concentrates, instead of reading a static report.</span>
+    </div>
+  </div>
 
-            <aside class="strategy-why">
-                <p class="strategy-kicker">Why this is a Product Strategy Growth problem</p>
-                <p>Demand already exists at a known volume — the question is where fleet capacity should sit by hour and geography, and where the model runs out of road (surge windows, hotspot saturation).</p>
-            </aside>
+  <section>
+    <h2 class="label">Two things that were invisible</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>Fleet allocation was a guess</strong>
+        <p>Demand across Glasgow shifts by hour and postcode, but without mapped patterns, vehicles couldn't be positioned where and when riders actually needed them.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Pricing wasn't checked against the data</strong>
+        <p>Fares hadn't been validated against actual trips, leaving the fare-distance relationship and pricing anomalies unexamined.</p>
+      </div>
+    </div>
+  </section>
 
-            <h2>Key Activities</h2>
-            <ul>
-                <li>Cleaned and prepared multi-source trip data for robust analysis and forecasting.</li>
-                <li>Explored temporal and geospatial demand patterns to identify hotspots and under-served areas.</li>
-                <li>Built Tableau dashboards for business stakeholders to monitor demand, revenue, and fleet performance.</li>
-                <li>Experimented with time-series and machine learning models to forecast short-term taxi demand.</li>
-                <li>Translated findings into concrete recommendations on fleet deployment and service design.</li>
-            </ul>
+  <section>
+    <h2 class="label">What we changed</h2>
+    <ul class="changes">
+      <li><strong>Mapped demand by hour and place</strong><span>Temporal and geospatial patterns surfaced hotspots and under-served postcodes, not just a citywide average.</span></li>
+      <li><strong>Built live dashboards, not static reports</strong><span>Tableau dashboards let stakeholders monitor demand, revenue, and fleet performance themselves, on demand.</span></li>
+      <li><strong>Tested whether demand is predictable</strong><span>Time-series and machine learning models forecast short-term demand, moving allocation from reactive to planned.</span></li>
+      <li><strong>Put pricing under the microscope</strong><span>A dedicated pricing deep-dive checked tariff logic, fare-distance correlation, and flagged anomalies.</span></li>
+    </ul>
+  </section>
 
-            <h2>Detailed Pricing Analysis</h2>
-            <p>
-                Customer-facing deck focused on pricing — tariff inference, fare–distance correlations, anomaly detection, and dynamic pricing recommendations (February 2024, 3,068 trips). Analysis of other features (demand patterns, geospatial trends, duration, and revenue) is summarised in the Quantitative Analysis Visuals section below.
-            </p>
-            <div class="deck-embed-container">
-                <iframe src="haggis_hoppers_pricing_analysis.html" title="Haggis Hoppers — Detailed Pricing Analysis"></iframe>
-            </div>
-            <a href="haggis_hoppers_pricing_analysis.html" target="_blank" rel="noopener noreferrer" class="deck-open-link">
-                <i class="fas fa-external-link-alt"></i>
-                Open full detailed pricing analysis
-            </a>
+  <section>
+    <p class="tagline">Where demand happens, and whether pricing holds up — now visible, not assumed.</p>
+  </section>
 
+  <section>
+    <h2 class="label">What it moved</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">3,068 trips</div>
+        <div class="desc">Modeled in the pricing deep-dive</div>
+        <div class="raw">February 2024 &middot; tariff inference, fare-distance correlation, anomaly detection</div>
+      </div>
+      <div class="stat">
+        <div class="num">8 demand views</div>
+        <div class="desc">Temporal and geospatial patterns mapped</div>
+        <div class="raw">hour, postcode, duration, fare &mdash; not a single summary chart</div>
+      </div>
+      <div class="stat">
+        <div class="num">2 live tools shipped</div>
+        <div class="desc">Tableau dashboard + Streamlit app</div>
+        <div class="raw">built for stakeholders to explore, not just read a report</div>
+      </div>
+    </div>
+  </section>
 
-            <h2>Quantitative Analysis Visuals</h2>
-            <div class="quantitative-gallery">
-                
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/python da/duration-analysis.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/python da/duration-analysis.png" alt="Trip duration trends by weekday and hour">
-                    </a>
-                    <figcaption>Duration Analysis</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/python da/dropoffpostcode-hour.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/python da/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour">
-                    </a>
-                    <figcaption>Drop-off Postcode vs Hour</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/python da/pickup-hourofday.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/python da/pickup-hourofday.png" alt="Pickup demand by hour of day">
-                    </a>
-                    <figcaption>Pickup Hour-of-Day</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/python da/tripcounts-postcode.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/python da/tripcounts-postcode.png" alt="Trip counts per postcode">
-                    </a>
-                    <figcaption>Trip Counts by Postcode</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/python da/fare-analysis.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/python da/fare-analysis.png" alt="Fare and tip amount distributions">
-                    </a>
-                    <figcaption>Fare and Tip Analysis</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/outlier-analysis.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot">
-                    </a>
-                    <figcaption>Outlier Analysis</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/revenue-km.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre">
-                    </a>
-                    <figcaption>Revenue per Km</figcaption>
-                </figure>
-               
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/avg-trip-duration.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution">
-                    </a>
-                    <figcaption>Average Trip Duration</figcaption>
-                </figure>
-            </div>
-            
-            <h2>Interactive Tableau Highlights</h2>
-            <div class="quantitative-gallery">
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard">
-                    </a>
-                    <figcaption>Demand Temporal Patterns</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard">
-                    </a>
-                    <figcaption>Trip Volume Analysis</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/Trip%20Demand%20Density.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap">
-                    </a>
-                    <figcaption>Trip Demand Density</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/Passenger%20Behaviour.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard">
-                    </a>
-                    <figcaption>Passenger Behaviour</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/Fare%20Analysis.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard">
-                    </a>
-                    <figcaption>Fare Analysis</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/revenue%20analysis%201.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis">
-                    </a>
-                    <figcaption>Revenue Analysis 1</figcaption>
-                </figure>
-                <figure class="quantitative-card">
-                    <a href="../images/haggishopper/tableau/revenue%20analysis%202.png" target="_blank" rel="noopener noreferrer">
-                        <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis">
-                    </a>
-                    <figcaption>Revenue Analysis 2</figcaption>
-                </figure>
-            </div>
-        </div>
+  <section>
+    <h2 class="label">Supporting visuals</h2>
+    <p class="gallery-lede">Every chart and dashboard view behind the numbers above, pulled directly from the full analysis.</p>
 
-        <div class="project-sidebar" style="margin-top: 2rem;">
-            <div class="skills-section">
-                <h4>Skills Used</h4>
-                <div class="skill-tags">
-                    <span class="skill-tag">Product Strategy</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Geospatial Analysis</span>
-                    <span class="skill-tag">Time Series Analysis</span>
-                    <span class="skill-tag">Forecasting</span>
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Dashboard Design</span>
-                </div>
-            </div>
+    <div class="gallery-group">
+      <p class="gallery-group-title">Quantitative analysis (Python)</p>
+      <div class="gallery">
+        <figure>
+          <img src="../images/haggishopper/python da/duration-analysis.png" alt="Trip duration trends by weekday and hour" data-gallery="all" data-index="0">
+          <figcaption>Duration Analysis</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/python da/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour" data-gallery="all" data-index="1">
+          <figcaption>Drop-off Postcode vs Hour</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/python da/pickup-hourofday.png" alt="Pickup demand by hour of day" data-gallery="all" data-index="2">
+          <figcaption>Pickup Hour-of-Day</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/python da/tripcounts-postcode.png" alt="Trip counts per postcode" data-gallery="all" data-index="3">
+          <figcaption>Trip Counts by Postcode</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/python da/fare-analysis.png" alt="Fare and tip amount distributions" data-gallery="all" data-index="4">
+          <figcaption>Fare and Tip Analysis</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot" data-gallery="all" data-index="5">
+          <figcaption>Outlier Analysis</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre" data-gallery="all" data-index="6">
+          <figcaption>Revenue per Km</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution" data-gallery="all" data-index="7">
+          <figcaption>Average Trip Duration</figcaption>
+        </figure>
+      </div>
+    </div>
 
-            <div class="tech-section">
-                <h4>Tech Stack</h4>
+    <div class="gallery-group">
+      <p class="gallery-group-title">Interactive Tableau highlights</p>
+      <div class="gallery">
+        <figure>
+          <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard" data-gallery="all" data-index="8">
+          <figcaption>Demand Temporal Patterns</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard" data-gallery="all" data-index="9">
+          <figcaption>Trip Volume Analysis</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap" data-gallery="all" data-index="10">
+          <figcaption>Trip Demand Density</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard" data-gallery="all" data-index="11">
+          <figcaption>Passenger Behaviour</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard" data-gallery="all" data-index="12">
+          <figcaption>Fare Analysis</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis" data-gallery="all" data-index="13">
+          <figcaption>Revenue Analysis 1</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis" data-gallery="all" data-index="14">
+          <figcaption>Revenue Analysis 2</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-                <div class="tech-category">
-                    <h5>Programming &amp; Tools</h5>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">Streamlit</span>
-                    </div>
-                </div>
+  <footer>
+    
+    <div class="credit">Uma Ramanathan &middot; Data Analyst / Data Scientist</div>
+  </footer>
 
-                <div class="tech-category">
-                    <h5>Data &amp; Time Series Analysis</h5>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Time Series Analysis</span>
-                        <span class="skill-tag">Forecasting</span>
-                        <span class="skill-tag">Outlier Analysis</span>
-                        <span class="skill-tag">Feature Engineering</span>
-                    </div>
-                </div>
+</div>
 
-                <div class="tech-category">
-                    <h5>Visualization &amp; Dashboards</h5>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Interactive Dashboards</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Stakeholder Reporting</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
-<script src="../assets/analytics-config.js"></script>
-<script src="../assets/analytics.js"></script>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full screen image">
+  <button type="button" class="lightbox-close" aria-label="Close full screen">&times;</button>
+  <button type="button" class="lightbox-nav prev" aria-label="Previous image">&#8249;</button>
+  <img alt="">
+  <button type="button" class="lightbox-nav next" aria-label="Next image">&#8250;</button>
+  <p class="lightbox-caption"></p>
+</div>
+
+<script>
+(function () {
+  var items = [];
+  document.querySelectorAll('[data-gallery="all"]').forEach(function (el) {
+    var i = parseInt(el.getAttribute("data-index"), 10);
+    items[i] = {
+      src: el.getAttribute("src"),
+      caption: el.closest("figure").querySelector("figcaption").textContent
+    };
+  });
+
+  var box = document.getElementById("lightbox");
+  var img = box.querySelector("img");
+  var caption = box.querySelector(".lightbox-caption");
+  var prevBtn = box.querySelector(".prev");
+  var nextBtn = box.querySelector(".next");
+  var closeBtn = box.querySelector(".lightbox-close");
+  var index = 0;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var item = items[index];
+    img.src = item.src;
+    img.alt = item.caption;
+    caption.textContent = (index + 1) + " / " + items.length + "  ·  " + item.caption;
+  }
+
+  function open(start) {
+    if (!items.length) return;
+    show(start || 0);
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.removeAttribute("src");
+  }
+
+  document.querySelectorAll('[data-gallery="all"]').forEach(function (el) {
+    el.addEventListener("click", function () {
+      open(parseInt(el.getAttribute("data-index"), 10));
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  prevBtn.addEventListener("click", function () { show(index - 1); });
+  nextBtn.addEventListener("click", function () { show(index + 1); });
+  box.addEventListener("click", function (e) {
+    if (e.target === box) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
 </body>
-</html> 
+</html>

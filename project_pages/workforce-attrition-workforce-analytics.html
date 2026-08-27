@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workforce Analytics — Workforce Attrition Analytics</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 28px 72px;
+  }
+
+  a.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:0 0 28px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-decoration:none;
+  }
+  a.back-link:hover,
+  a.back-link:focus-visible{ color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 33px);
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    text-wrap:balance;
+    max-width:26ch;
+  }
+
+  p.lede{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+    max-width:62ch;
+  }
+  p.lede strong{ color:var(--ink); font-weight:600; }
+
+  section{
+    margin-top:36px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+    font-weight:500;
+  }
+
+  .scenario-board{
+    display:grid;
+    grid-template-columns:1fr 1fr auto;
+    grid-template-areas:
+      "fine alarm ."
+      "missed caught callout";
+    gap:14px 20px;
+    align-items:stretch;
+  }
+  .scenario-card:nth-child(1){ grid-area:fine; }
+  .scenario-card:nth-child(2){ grid-area:alarm; }
+  .scenario-card:nth-child(3){ grid-area:missed; }
+  .scenario-card:nth-child(4){ grid-area:caught; }
+  .scenario-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:16px 18px;
+  }
+  .leavers-callout{
+    grid-area:callout;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:9.5rem;
+    max-width:11.5rem;
+    color:var(--accent-ink);
+  }
+  .leavers-brace{
+    position:relative;
+    flex:0 0 18px;
+    align-self:stretch;
+    border:2px solid var(--accent);
+    border-right:none;
+    border-radius:8px 0 0 8px;
+  }
+  .leavers-brace svg{
+    position:absolute;
+    left:-13px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--accent);
+    overflow:visible;
+  }
+  .leavers-math{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+  }
+  .leavers-math .eq{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:-0.02em;
+    line-height:1.35;
+  }
+  .leavers-math .rate{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+  .scenario-card .count{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(22px, 3vw, 28px);
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .scenario-card.caught .count{ color:var(--resolved); }
+  .scenario-card.missed .count{ color:var(--accent); }
+  .scenario-card .tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:4px 0 8px;
+  }
+  .scenario-card strong{
+    display:block;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .scenario-card p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  .lane-row{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    margin-top:4px;
+  }
+  .lane{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:2px solid var(--resolved);
+    padding:16px 18px;
+  }
+  .lane strong{
+    display:block;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .lane p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  a.deck-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--accent-ink);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:7px 12px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  a.deck-link:hover,
+  a.deck-link:focus-visible{
+    color:var(--ink);
+    border-color:var(--accent-ink);
+  }
+
+  footer{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:620px){
+    .scenario-board{
+      grid-template-columns:1fr 1fr;
+      grid-template-areas:
+        "fine alarm"
+        "missed caught"
+        "callout callout";
+    }
+    .leavers-callout{
+      max-width:none;
+      min-width:0;
+      flex-direction:column;
+      align-items:stretch;
+      gap:8px;
+    }
+    .leavers-brace{
+      flex:none;
+      height:16px;
+      width:100%;
+      border:2px solid var(--accent);
+      border-bottom:none;
+      border-radius:8px 8px 0 0;
+    }
+    .leavers-brace svg{
+      left:50%;
+      top:-13px;
+      transform:translateX(-50%) rotate(-90deg);
+    }
+    .leavers-math{ flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:8px 14px; }
+    .lane-row{ grid-template-columns:1fr; }
+    .page{ padding:36px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <a class="back-link" href="workforce-attrition.html">&larr; Workforce Attrition Analytics</a>
+
+  <p class="eyebrow">Business Case &middot; People Analytics</p>
+  <h1>Turning a risk score into a business case HR could act on</h1>
+  <p class="lede">A single accuracy number doesn't tell HR who needs what. So the 294 held-out employees were broken into four real-world outcomes — and each one was priced.</p>
+
+  <section>
+    <h2 class="label">Four scenarios on the hold-out set</h2>
+    <p class="lede">Every one of the 294 held-out employees falls into one of four groups. That is how we briefed HR: not a single accuracy number, but who needs what.</p>
+    <div class="scenario-board">
+      <div class="scenario-card">
+        <div class="count">192</div>
+        <span class="tag">Quietly fine</span>
+        <strong>Stayed &middot; not flagged</strong>
+        <p>No intervention. Confirms the model is not over-flagging.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="count">55</div>
+        <span class="tag">False alarm</span>
+        <strong>Stayed &middot; flagged</strong>
+        <p>A brief, low-key check-in. Cheap even when the flag is wrong.</p>
+      </div>
+      <div class="scenario-card missed">
+        <div class="count">18</div>
+        <span class="tag">Missed entirely</span>
+        <strong>Left &middot; looked low-risk</strong>
+        <p>The blind spot — about 4 in 10 leavers. High-value roles still need a manual safety net.</p>
+      </div>
+      <div class="scenario-card caught">
+        <div class="count">29</div>
+        <span class="tag">Caught in time</span>
+        <strong>Left &middot; flagged</strong>
+        <p>Where the value lives. Retention conversation within days.</p>
+      </div>
+      <aside class="leavers-callout" aria-label="18 plus 29 equals 47 leavers, 16 percent of 294">
+        <span class="leavers-brace" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="16" height="16">
+            <path d="M15 8H2M2 8l5.5-5.5M2 8l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="leavers-math">
+          <span class="eq">18 + 29 = 47 leavers</span>
+          <span class="rate">16% of 294</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">The business case</h2>
+    <p class="lede">SHRM puts replacement cost at 50&ndash;200% of annual salary. Average pay in this dataset is about $57K. Of the 29 leavers the model caught, retaining even one in three — roughly 10 people — avoids about <strong>$290K to $1.1M</strong> in replacement cost. False alarms are conversations. Missed resignations are replacement cycles. That is why we optimised for recall, not accuracy.</p>
+    <p class="lede">The 84 flagged employees are not treated the same:</p>
+    <div class="lane-row">
+      <div class="lane">
+        <strong>Low risk</strong>
+        <p>Quarterly check-in for the HRBP. No urgency; logged for trend tracking.</p>
+      </div>
+      <div class="lane">
+        <strong>Elevated risk</strong>
+        <p>Retention conversation within two weeks. The human still makes the call.</p>
+      </div>
+      <div class="lane">
+        <strong>High risk, high value</strong>
+        <p>Escalate to manager and HRBP together — the costliest miss to allow.</p>
+      </div>
+    </div>
+    <a class="deck-link" href="../assets/peopleops/Attrition_Signal_HR_Leadership_Deck.pdf" target="_blank" rel="noopener">Full HR leadership deck (PDF) &rarr;</a>
+  </section>
+
+  <footer>Uma Ramanathan &middot; Senior Consultant, Data &amp; Analytics</footer>
+
+</div>
+</body>
+</html>

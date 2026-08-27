@@ -1,98 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 3 — AI Enablement</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="compliance-case-shared.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Field Copilot — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
+
+  a.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:0 0 20px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-decoration:none;
+  }
+  a.back-link:hover,
+  a.back-link:focus-visible{ color:var(--accent-ink); }
+
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(24px, 3.2vw, 31px);
+    line-height:1.26;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:34ch;
+  }
+
+  .methodology{
+    margin:0 0 18px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
+
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 18px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- exhibit ---- */
+  .exhibit{
+    margin-top:24px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:12px 12px 14px;
+  }
+  .exhibit > img{
+    width:100%;
+    display:block;
+    border:1px solid var(--line);
+  }
+  .exhibit figcaption{
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+    text-align:center;
+  }
+
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
+  h2.label.impact-label{ margin-top:24px; }
+
+  /* ---- friction (before) ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+
+  /* ---- what we specified ---- */
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- transformation scale ---- */
+  .scale-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .scale-list li{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--resolved);
+    padding:10px 14px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(20px, 3vw, 26px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  .impact-list{
+    list-style:none;
+    margin:14px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .impact-list li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:46ch;
+    text-wrap:balance;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:56ch;
+  }
+  .skills a{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .skills a:hover,
+  .skills a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-  <div class="notebook-shell">
-    <article class="notebook">
-      <div class="back-row">
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portfolio</a>
-        <a href="Assessments.html" class="phase-link">Phase 1</a>
-        <a href="compliance-product-led-adoption.html" class="phase-link">Phase 2</a>
-        <a href="compliance-field-copilot.html" class="phase-link current">Phase 3</a>
-      </div>
 
-      <p class="phase-kicker">PHASE 3</p>
-      <p class="note">Portfolio learning exercise — a product specification only, not built or delivered. Builds on Phase 1 (real) and Phase 2 (illustrative).</p>
+<div class="page">
 
-      <h1 class="case-title">Field access was solved. Completion still depended on manual template search, typing, and self-checking.</h1>
+  <a class="back-link" href="compliance-product-led-adoption-elevator-pitch.html">&larr; Phase 2: Product-Led Adoption</a>
 
-      <div class="hero-slot">
-        <img src="../images/Assessments/phase3-agent-architecture.png" alt="Compliance Field Copilot orchestrator and 6-tool architecture">
-        <p class="hero-caption">agent architecture diagram</p>
-      </div>
-
-      <div class="metrics-row">
-        <div class="metric-chip">15–20% targeted lift in field activation</div>
-        <div class="metric-chip">20–30% additional targeted reduction in time-to-value</div>
-      </div>
-
-      <h2>Business Objective</h2>
-      <p>Design an AI layer that helps assessors move faster and with more confidence at the point of inspection, without removing their control over what gets submitted.</p>
-
-      <h2>Business Challenges</h2>
-      <ul class="change-list">
-        <li>Template selection and long-form data entry still slowed assessors down</li>
-        <li>Manual capture kept transcription errors alive even after the redesign</li>
-        <li>Managers had no plain-language way to see where adoption was still breaking down</li>
-      </ul>
-
-      <h2>Approach</h2>
-      <p class="approach-line">Agentic Workflow Design · Voice UX · Product Analytics · Guardrails &amp; Governance</p>
-
-      <h2>What Changed</h2>
-      <ul class="change-list">
-        <li>
-          <strong>Designed a smart template recommender</strong>
-          Suggests the right template by GPS and history, replacing manual search.
-        </li>
-        <li>
-          <strong>Specified voice-to-form capture</strong>
-          Assessors speak observations; the copilot maps them to structured fields.
-        </li>
-        <li>
-          <strong>Built a pre-submit validation agent</strong>
-          Checks completeness before submission — assessor keeps final say.
-        </li>
-        <li>
-          <strong>Modeled adoption-risk scoring</strong>
-          Flags assessors likely to abandon before they do, not after.
-        </li>
-        <li>
-          <strong>Specified a manager insights copilot</strong>
-          Plain-language queries over field adoption data, no custom reports needed.
-        </li>
-      </ul>
-
-      <h2>Transformation Scale</h2>
-      <div class="scale-block">
-        <p>7 AI-assisted capabilities specified end-to-end</p>
-        <p>1 orchestrator coordinating 6 specialised agent tools</p>
-        <p>4-phase rollout roadmap defined — Foundation → Capture → Intelligence → Admin</p>
-      </div>
-
-      <p class="tagline">A specification for faster, more confident field capture, with a human always in the loop.</p>
-
-      <h2>Business Impact</h2>
-      <div class="impact-block">
-        <ul>
-          <li>+15–20% targeted lift in field activation</li>
-          <li>Additional 20–30% targeted reduction in time-to-value beyond Phase 1</li>
-          <li>Abandonment rate targeted to hold at ≤7%, vs. 74% pre-redesign baseline</li>
-          <li>+10% targeted lift in sustained 30–90 day submission rate</li>
-          <li>Full audit trail and human-in-the-loop guardrails specified for every AI suggestion</li>
-        </ul>
-      </div>
-
-      <a class="next-phase" href="Assessments.html">← Back to Phase 1</a>
-    </article>
+  <p class="eyebrow">Product Case &middot; Phase 3 of 3 &middot; NoMoBo Case Series</p>
+  <h1 class="headline">Field access was solved. Completion still depended on manual template search, typing, and self-checking.</h1>
+  <p class="methodology">Portfolio learning exercise &mdash; a product specification only, not built or delivered. Builds on Phase 1 (real) and Phase 2 (illustrative). Every number below is a design target, not a measured result.</p>
+  <p class="subhead">Phase 1 got assessors into the field with a working app. But finishing an assessment still meant hunting for the right template, typing everything by hand, and double-checking your own work before submitting. <strong>I specified an AI copilot layer — voice capture, smart templates, pre-submit validation, and adoption-risk alerts — designed to speed up completion without taking control away from the assessor.</strong></p>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">Field assessors and their managers</span>
+      <span class="d">Assessors still doing manual template search and typing; managers with no visibility into adoption breakdowns.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Make completion faster and more confident</span>
+      <span class="d">Voice capture, smart templates, and pre-submit checks — the assessor always keeps final say.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">7 capabilities, 1 orchestrator</span>
+      <span class="d">Six specialized agent tools coordinated by one orchestrator, not seven disconnected features.</span>
+    </div>
   </div>
-<script src="../assets/analytics-config.js"></script>
-<script src="../assets/analytics.js"></script>
+
+  <figure class="exhibit">
+    <img src="../images/Assessments/phase3-agent-architecture.png" alt="Compliance Field Copilot orchestrator and 6-tool architecture">
+    <figcaption>The Compliance Field Copilot orchestrator and its 6-tool architecture.</figcaption>
+  </figure>
+
+  <section>
+    <h2 class="label">Two things field access didn't fix</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>Manual capture, still slow and error-prone</strong>
+        <p>Template selection and long-form typing still slowed assessors down, and manual capture kept transcription errors alive even after field access was solved.</p>
+      </div>
+      <div class="friction-card">
+        <strong>No plain-language view into adoption</strong>
+        <p>Managers had no way to see where adoption was still breaking down without digging through raw data.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What we specified</h2>
+    <ul class="changes">
+      <li><strong>A smart template recommender</strong><span>Suggests the right template by GPS and history, replacing manual search.</span></li>
+      <li><strong>Voice-to-form capture</strong><span>Assessors speak observations; the copilot maps them to structured fields.</span></li>
+      <li><strong>A pre-submit validation agent</strong><span>Checks completeness before submission — the assessor keeps final say.</span></li>
+      <li><strong>Adoption-risk scoring</strong><span>Flags assessors likely to abandon before they do, not after.</span></li>
+      <li><strong>A manager insights copilot</strong><span>Plain-language queries over field adoption data, no custom reports needed.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Transformation scale</h2>
+    <ul class="scale-list">
+      <li>7 AI-assisted capabilities specified end-to-end</li>
+      <li>1 orchestrator coordinating 6 specialised agent tools</li>
+      <li>4-phase rollout roadmap defined — Foundation &rarr; Capture &rarr; Intelligence &rarr; Admin</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="tagline">A specification for faster, more confident field capture, with a human always in the loop.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it's targeted to move</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">15&ndash;20%</div>
+        <div class="desc">Targeted lift in field activation</div>
+        <div class="raw">a design target, not a measured result</div>
+      </div>
+      <div class="stat">
+        <div class="num">20&ndash;30%</div>
+        <div class="desc">Targeted reduction in time-to-value</div>
+        <div class="raw">additional, beyond Phase 1's real gains</div>
+      </div>
+      <div class="stat">
+        <div class="num">&le;7%</div>
+        <div class="desc">Targeted abandonment rate</div>
+        <div class="raw">vs. 74% pre-redesign baseline</div>
+      </div>
+    </div>
+    <h2 class="label impact-label">Business impact (targeted)</h2>
+    <ul class="impact-list">
+      <li>+15&ndash;20% targeted lift in field activation</li>
+      <li>Additional 20&ndash;30% targeted reduction in time-to-value beyond Phase 1</li>
+      <li>Abandonment rate targeted to hold at &le;7%, vs. 74% pre-redesign baseline</li>
+      <li>+10% targeted lift in sustained 30&ndash;90 day submission rate</li>
+      <li>Full audit trail and human-in-the-loop guardrails specified for every AI suggestion</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a href="compliance-field-copilot.html">Agentic Workflow Design</a>
+      <a href="compliance-field-copilot.html">Voice UX</a>
+      <a href="compliance-field-copilot.html">Product Analytics</a>
+      <a href="compliance-field-copilot.html">Guardrails &amp; Governance</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Product Strategy</div>
+  </footer>
+
+</div>
 </body>
 </html>

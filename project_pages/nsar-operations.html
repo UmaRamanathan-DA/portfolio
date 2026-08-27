@@ -1,195 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSAR Performance Management System - Uma Ramanathan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="project-pages-styles.css">
-    <style>
-        .project-header-s {
-           text-align: center;
-           margin-bottom: 3rem;
-           padding-bottom: 2rem;
-           border-bottom: 2px solid #FFD700;
-       }
-       
-       .project-title-s {
-           font-size: 2.5rem;
-           color: #333;
-           margin-bottom: 1rem;
-       }
-       
-       .project-meta-s {
-           display: flex;
-           justify-content: center;
-           gap: 2rem;
-           margin-bottom: 1rem;
-           flex-wrap: wrap;
-       }
-       
-       .meta-item-s {
-           display: flex;
-           align-items: left;
-           gap: 0.5rem;
-           color: #666;
-       }
-       
-       .meta-item-s i {
-           color: #FFD700;
-       }
-   </style>    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSAR Performance Management System — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#eef0f5;
+    --ink-soft:#b3b8d1;
+    --paper:#14172a;
+    --surface:#1c2038;
+    --line:rgba(238,240,245,0.14);
+    --line-strong:rgba(238,240,245,0.26);
+    --accent:#d4af52;
+    --accent-ink:#e8c878;
+    --accent-soft:rgba(212,175,82,0.16);
+    --resolved:#c17a89;
+    --resolved-soft:rgba(193,122,137,0.14);
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
+
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(23px, 3vw, 30px);
+    line-height:1.26;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:38ch;
+  }
+
+  .strategy-tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+
+  .methodology{
+    margin:0 0 18px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
+
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 18px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
+
+  /* ---- challenge / solution ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14px; color:var(--ink); line-height:1.5; }
+  .friction-card .tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:5px;
+  }
+  .friction-card .tag.solved{
+    color:var(--resolved);
+    margin-top:14px;
+  }
+  .friction-card .solution-text{ color:var(--ink-soft); }
+
+  /* ---- what changed ---- */
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 24px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(20px, 3vw, 26px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:46ch;
+    text-wrap:balance;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:56ch;
+  }
+  .skills a{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .skills a:hover,
+  .skills a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    ul.changes{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
-
 <body>
-    <div class="project-detail-container">
-        <a href="../index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
-        
-        <div class="project-header-s">
-            <h1 class="project-title-s">Performance Management System for NSAR Operations</h1>
-            
-            <div class="project-meta-s">
-                <div class="meta-item-s">
-                    <i class="fas fa-building"></i>
-                    <span>NSAR Project Team, University of Strathclyde</span>
-                </div>
-                <div class="meta-item-s">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>United Kingdom</span>
-                </div>
-                <div class="meta-item-s">
-                    <i class="fas fa-calendar"></i>
-                    <span>Oct 2024 – December 2024</span>
-                </div>
-                <div class="meta-item-s">
-                    <i class="fas fa-user"></i>
-                    <span>Business Analyst / Researcher</span>
-                </div>
-            </div>
-            
-           
-        </div>
 
-        <aside class="strategy-question">
-            <p>This is a Product Strategy Org Building problem.</p>
-        </aside>
+<div class="page">
 
-        <div class="project-actions">               
-            <a href="#" class="action-btn dashboard-btn">
-                <i class="fas fa-chart-line"></i>
-                View Project Report
-            </a>
-        </div>
-        <div><br><br></div>
-        
-        <div class="project-content">
-            <div class="project-description">
-                <h3>Project Overview</h3>
-                <p>Developed a comprehensive Performance Management System (PMS) for Nunavut Search and Rescue (NSAR) to evaluate and improve the effectiveness of recent SAR interventions. This system integrates logic models, metric causal maps (MCMs), and proposes Bayesian Networks for future expansion. The project aims to bridge traditional Inuit knowledge, operational efficiency, and strategic planning in Arctic SAR missions.</p>
-                
-                <h3>System Architecture</h3>
-                <p>This project developed a structured Performance Management System (PMS) for Nunavut Search and Rescue (NSAR) to evaluate the effectiveness of operational changes and support data-driven decision-making in Arctic SAR operations.</p>
-                
-                <p>The PMS is built on pathway-specific logic models that trace the journey from inputs and activities to measurable outcomes and long-term impacts across six critical SAR pathways—ranging from training and resource readiness to community engagement and incident response. By using Metric Causal Maps (MCMs), the framework visualizes relationships between metrics, enabling stakeholders to understand how different factors influence SAR performance.</p>
-                
-                <p>This pathway-driven approach allows for clear impact measurement, simplifies performance tracking, and helps identify leverage points for focused interventions. It ensures strategic alignment across teams and provides a foundation for advanced analytics, including future integration with Bayesian Networks for predictive modeling and scenario simulation.</p>
-                
-                <h3>Detailed Tasks</h3>
-                <p>• Researched literature review and stakeholder consultations to identify key NSAR changes expected to bring impact, key SAR goals and challenges</p>
-                <p>• Designed six Logic Model pathways covering recruitment, training, engagement, interagency trust, resources, and incidents</p>
-                <p>• Identified the key performance indicators (KPIs) for each pathway</p>
-                <p>• Developed a hierarchical KPI framework to track and optimize operational inputs, activities, and outcomes</p>
-                <p>• Developed a comprehensive Data Collection Strategy to gather performance data from various sources</p>
-                <p>• Developed performance metrics categorized into Core, Inferred, Composite, and Impact</p>
-                <p>• Built Metric Causal Maps (MCMs) to visualize dependencies and decision-making levers</p>
-                <p>• Outlined the key future integrations for this project such as integrating Bayesian Networks for probabilistic forecasting</p>
-                
-                <h3>Key Challenges & Solutions</h3>
-                <p><strong>Challenge:</strong> Aligning metrics across diverse SAR operational activities</p>
-                <p><strong>Solution:</strong> Created modular logic models tailored to each SAR pathway for clarity</p>
-                
-                <p><strong>Challenge:</strong> Lack of centralized performance data</p>
-                <p><strong>Solution:</strong> Designed an integrated data collection strategy leveraging both primary (community feedback) and secondary (SAR logs) sources</p>
-                
-                <p><strong>Challenge:</strong> Balancing traditional knowledge with modern analytics</p>
-                <p><strong>Solution:</strong> Embedded Inuit knowledge within environmental adaptation and training metrics</p>
-                
-                <p><strong>Challenge:</strong> Anticipating future risks due to climate change</p>
-                <p><strong>Solution:</strong> Proposed Bayesian Network integration to model environmental variables and their impact on SAR readiness</p>
-
-                <aside class="strategy-why">
-                    <p class="strategy-kicker">Why this is a Product Strategy Org Building problem</p>
-                    <p>NSAR had activities and outcomes with no structure connecting them — the deliverable wasn't a single metric or dashboard but an operating system for the organization: six logic-model pathways, metric hierarchy, and causal maps defining how activities are supposed to produce outcomes — a structural output, not a KPI.</p>
-                </aside>
-                
-                <h3>Business Impact</h3>
-                <p>• The PMS enables NSAR to trace impact to specific pathways, measure cross-pathway performance, and identify leverage points through linked metrics and composite indicators</p>
-                <p>• It supports focused, pathway-driven decision-making and simplifies the management of interventions by highlighting where strategic actions will have the most effect</p>
-                <p>• It provides all stakeholders with clear visibility into how metrics are connected across pathways, ensuring shared understanding and alignment in performance evaluation and decision-making</p>
-                <p>• These deliverables form a foundational layer for quantitative reasoning using Bayesian Network models, enabling future extension into predictive analysis, scenario simulation, and risk-informed planning</p>
-            </div>
-            
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Skills Used</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Product Strategy</span>
-                        <span class="skill-tag">Performance Metrics</span>
-                        <span class="skill-tag">Strategic Analysis</span>
-                        <span class="skill-tag">Process Optimization</span>
-                        <span class="skill-tag">Data Modeling</span>
-                        <span class="skill-tag">Bayesian Networks</span>
-                        <span class="skill-tag">Business Intelligence</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Logic Models</span>
-                        <span class="skill-tag">Causal Maps</span>
-                        <span class="skill-tag">Hierarchical Metric Causal Map</span>
-                    </div>
-                </div>
-                
-                <div class="tech-section">
-                    <h4>Tech Stack</h4>
-                    
-                    <div class="tech-category">
-                        <h5>Analysis & Modeling</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Bayesian Network Models</span>
-                            <span class="skill-tag">Metrics Framework</span>
-                            <span class="skill-tag">Process Mapping</span>
-                            <span class="skill-tag">Logic Models</span>
-                            <span class="skill-tag">Causal Maps</span>
-                            <span class="skill-tag">Hierarchical Metric Causal Map</span>
-                            <span class="skill-tag">KPI Frameworks</span>
-                        </div>
-                    </div>
-                    
-                    <div class="tech-category">
-                        <h5>Tools Used</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">Miro</span>
-                            <span class="skill-tag">Excel</span>
-                        </div>
-                    </div>
-                    
-                    <div class="tech-category">
-                        <h5>Business Impact</h5>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Performance Tracking</span>
-                            <span class="skill-tag">Strategic Alignment</span>
-                            <span class="skill-tag">Decision Support</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <p class="eyebrow">Product Case &middot; Performance Management Strategy</p>
+  <h1 class="headline">Arctic search-and-rescue missions are life-or-death — and NSAR had no way to tell which of its training, resourcing, or community efforts actually helped.</h1>
+  <p class="strategy-tag">This is a Product Strategy Org Building problem.</p>
+  <p class="methodology">Academic strategic analysis project completed with the NSAR Project Team at the University of Strathclyde (Oct&ndash;Dec 2024), applied to Nunavut Search and Rescue's real Arctic SAR operations.</p>
+  <p class="subhead">NSAR had years of SAR intervention data and community knowledge, but no structure linking day-to-day activities to the outcomes they were meant to produce — no way to see where effort was working, or where it wasn't. <strong>I designed six pathway-specific logic models, a hierarchical KPI framework, and causal maps connecting inputs to impact — giving NSAR a structure to evaluate performance, not just record it.</strong></p>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">NSAR leadership and SAR program managers</span>
+      <span class="d">Oversee training, resourcing, and incident response across Arctic search-and-rescue operations.</span>
     </div>
-<script src="../assets/analytics-config.js"></script>
-<script src="../assets/analytics.js"></script>
+    <div>
+      <span class="k">What</span>
+      <span class="v">See whether activities are producing outcomes</span>
+      <span class="d">Trace a straight line from what NSAR does to what it actually achieves, pathway by pathway.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">6 pathways, one connected system</span>
+      <span class="d">Recruitment, training, and incident response each traced from input to impact, not measured in isolation.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Key challenges &amp; solutions</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Aligning metrics across diverse SAR operational activities.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Modular logic models tailored to each SAR pathway, instead of one generic scorecard.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>No centralized performance data.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">An integrated data collection strategy combining community feedback with SAR logs.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Balancing traditional knowledge with modern analytics.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Inuit knowledge embedded directly into environmental-adaptation and training metrics.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Anticipating future risk from climate change.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">A proposed Bayesian Network to model environmental variables against SAR readiness.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What we changed</h2>
+    <ul class="changes">
+      <li><strong>Mapped 6 pathways end-to-end</strong><span>Logic models tracing inputs and activities through to outcomes and long-term impact, not a single scorecard.</span></li>
+      <li><strong>Built a metric hierarchy, not a flat list</strong><span>Core, Inferred, Composite, and Impact metrics, so leverage points are visible instead of buried.</span></li>
+      <li><strong>Visualized how metrics influence each other</strong><span>Metric Causal Maps showing the decision-making levers across pathways.</span></li>
+      <li><strong>Combined two data sources into one strategy</strong><span>Primary community feedback and secondary SAR logs merged into a single collection plan.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="tagline">The deliverable wasn't a metric or a dashboard — it was the structure connecting activities to outcomes.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it moved</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">6 pathways</div>
+        <div class="desc">Mapped end-to-end, input to impact</div>
+        <div class="raw">recruitment, training, engagement, interagency trust, resources, incidents</div>
+      </div>
+      <div class="stat">
+        <div class="num">4 metric tiers</div>
+        <div class="desc">A hierarchy, not a flat KPI list</div>
+        <div class="raw">Core, Inferred, Composite, Impact</div>
+      </div>
+      <div class="stat">
+        <div class="num">2 data sources merged</div>
+        <div class="desc">One collection strategy, not two records</div>
+        <div class="raw">primary community feedback + secondary SAR logs</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a href="nsar-operations.html">Performance Metrics</a>
+      <a href="nsar-operations.html">Strategic Analysis</a>
+      <a href="nsar-operations.html">Logic Models</a>
+      <a href="nsar-operations.html">Causal Maps</a>
+      <a href="nsar-operations.html">Bayesian Networks</a>
+      <a href="nsar-operations.html">Data Modeling</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Business Analyst / Researcher</div>
+  </footer>
+
+</div>
 </body>
-</html> 
+</html>

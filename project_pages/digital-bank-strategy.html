@@ -1,477 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Bank Strategy - Synpulse Consulting</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --notion-bg: #ffffff;
-            --notion-page: #ffffff;
-            --notion-text: #37352f;
-            --notion-muted: #787774;
-            --notion-border: rgba(55, 53, 47, 0.09);
-            --notion-hover: rgba(55, 53, 47, 0.04);
-            --notion-callout: #f1f1ef;
-            --notion-callout-blue: #e7f3f8;
-            --notion-callout-amber: #fbf3db;
-            --notion-callout-green: #edf3ec;
-            --notion-accent: #2383e2;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Retail Bank Launch Strategy — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
-        * { box-sizing: border-box; }
+<style>
+  :root{
+    --ink:#eef0f5;
+    --ink-soft:#b3b8d1;
+    --paper:#14172a;
+    --surface:#1c2038;
+    --line:rgba(238,240,245,0.14);
+    --line-strong:rgba(238,240,245,0.26);
+    --accent:#d4af52;
+    --accent-ink:#e8c878;
+    --accent-soft:rgba(212,175,82,0.16);
+    --resolved:#c17a89;
+    --resolved-soft:rgba(193,122,137,0.14);
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
 
-        body {
-            margin: 0;
-            background: #f7f6f3;
-            color: var(--notion-text);
-            font-family: "DM Sans", ui-sans-serif, sans-serif;
-            font-size: 16px;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-        }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
 
-        .page-shell {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 1.25rem 1rem 4rem;
-        }
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            margin-bottom: 1.25rem;
-            padding: 0.35rem 0.65rem;
-            border-radius: 6px;
-            color: var(--notion-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background 0.15s, color 0.15s;
-        }
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
 
-        .back-link:hover {
-            background: var(--notion-hover);
-            color: var(--notion-text);
-        }
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px);
+    line-height:1.22;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:30ch;
+  }
 
-        .notion-page {
-            background: var(--notion-page);
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
-            padding: 3rem 3.25rem 3.5rem;
-        }
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 18px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
 
-        .notion-cover {
-            height: 8px;
-            margin: -3rem -3.25rem 2.25rem;
-            border-radius: 12px 12px 0 0;
-            background: linear-gradient(90deg, #d3e5ef 0%, #f5e0dc 45%, #e8deee 100%);
-        }
+  a.proto-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 28px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--accent-ink);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:7px 12px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  a.proto-link:hover,
+  a.proto-link:focus-visible{
+    color:var(--ink);
+    border-color:var(--accent-ink);
+  }
 
-        .notion-title {
-            font-family: "Source Serif 4", Georgia, serif;
-            font-size: clamp(1.85rem, 4vw, 2.55rem);
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            color: var(--notion-text);
-            margin: 0 0 1.25rem;
-        }
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .notion-props {
-            display: grid;
-            gap: 0.35rem;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid var(--notion-border);
-        }
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
 
-        .prop-row {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 0.75rem;
-            align-items: start;
-            padding: 0.35rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.92rem;
-        }
+  /* ---- friction (before) ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14px; color:var(--ink); line-height:1.5; }
+  .friction-card .tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:5px;
+  }
+  .friction-card .tag.solved{
+    color:var(--resolved);
+    margin-top:14px;
+  }
+  .friction-card .solution-text{ color:var(--ink-soft); }
 
-        .prop-row:hover { background: var(--notion-hover); }
+  /* ---- strategy tag ---- */
+  .strategy-tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.03em;
+    font-style:italic;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
 
-        .prop-label {
-            color: var(--notion-muted);
-            font-weight: 500;
-        }
+  /* ---- what changed ---- */
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 24px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .prop-value { color: var(--notion-text); }
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(20px, 3vw, 26px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
 
-        .prop-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-        }
+  .methodology{
+    margin:14px 0 0;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
+  .methodology.intro{
+    margin:0 0 18px;
+  }
 
-        .prop-tag {
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            background: #e8deee;
-            color: #5a3e6b;
-        }
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:46ch;
+    text-wrap:balance;
+  }
 
-        .prop-tag.blue { background: #d3e5ef; color: #1a5270; }
-        .prop-tag.green { background: #dbeddb; color: #2d5a2d; }
-        .prop-tag.amber { background: #fdecc8; color: #7a5c00; }
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:56ch;
+  }
+  .skills a{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .skills a:hover,
+  .skills a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
 
-        .notion-h2 {
-            font-family: "Source Serif 4", Georgia, serif;
-            font-size: 1.55rem;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            margin: 2.35rem 0 0.85rem;
-            color: var(--notion-text);
-            scroll-margin-top: 1.5rem;
-        }
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    ul.changes{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
 
-        .notion-page p {
-            margin: 0 0 0.9rem;
-            color: var(--notion-text);
-        }
-
-        .notion-page ul {
-            margin: 0.25rem 0 1rem;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .notion-page li {
-            position: relative;
-            padding-left: 1.6rem;
-            margin-bottom: 0.55rem;
-        }
-
-        .notion-page ul li::before {
-            content: "";
-            position: absolute;
-            left: 0.35rem;
-            top: 0.65rem;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--notion-text);
-            opacity: 0.55;
-        }
-
-        .callout {
-            display: flex;
-            gap: 0.85rem;
-            align-items: flex-start;
-            margin: 1rem 0 1.25rem;
-            padding: 0.95rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-callout);
-        }
-
-        .callout.amber { background: var(--notion-callout-amber); }
-        .callout.green { background: var(--notion-callout-green); }
-        .callout.blue { background: var(--notion-callout-blue); }
-
-        .callout-mark {
-            flex-shrink: 0;
-            width: 1.35rem;
-            height: 1.35rem;
-            margin-top: 0.1rem;
-            border-radius: 4px;
-            background: rgba(55, 53, 47, 0.08);
-            color: var(--notion-muted);
-            font-size: 0.7rem;
-            font-weight: 700;
-            display: grid;
-            place-items: center;
-        }
-
-        .callout-body {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .callout-body p {
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .decision {
-            margin: 0.85rem 0;
-            padding: 0.9rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-            border: 1px solid var(--notion-border);
-        }
-
-        .decision p { margin: 0; }
-
-        .decision p + p { margin-top: 0.55rem; }
-
-        .toc {
-            margin: 0.5rem 0 1.5rem;
-            padding: 0.85rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-        }
-
-        .toc-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--notion-muted);
-            margin-bottom: 0.45rem;
-        }
-
-        .toc a {
-            display: block;
-            color: var(--notion-accent);
-            text-decoration: none;
-            font-size: 0.92rem;
-            padding: 0.2rem 0;
-        }
-
-        .toc a:hover { text-decoration: underline; }
-
-        .deck-embed {
-            margin: 1rem 0 1.5rem;
-            border: 1px solid var(--notion-border);
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--notion-hover);
-        }
-
-        .deck-embed iframe {
-            display: block;
-            width: 100%;
-            height: 560px;
-            border: none;
-            background: #fff;
-        }
-
-        .deck-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin: 0 0 0.5rem;
-        }
-
-        .deck-actions a {
-            color: var(--notion-accent);
-            text-decoration: none;
-            font-size: 0.92rem;
-            font-weight: 500;
-        }
-
-        .deck-actions a:hover { text-decoration: underline; }
-
-        .doc-links {
-            display: grid;
-            gap: 0.5rem;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .doc-link {
-            display: block;
-            padding: 0.9rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-            border: 1px solid transparent;
-            color: var(--notion-text);
-            text-decoration: none;
-            transition: background 0.15s, border-color 0.15s;
-        }
-
-        .doc-link:hover {
-            background: rgba(55, 53, 47, 0.07);
-            border-color: var(--notion-border);
-        }
-
-        .doc-link-title {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 0.75rem;
-            font-weight: 600;
-            font-size: 0.98rem;
-            color: var(--notion-text);
-        }
-
-        .doc-link-title .arrow {
-            color: var(--notion-accent);
-            font-weight: 500;
-            font-size: 0.88rem;
-            white-space: nowrap;
-        }
-
-        .doc-link-desc {
-            display: block;
-            margin-top: 0.25rem;
-            color: var(--notion-muted);
-            font-size: 0.88rem;
-            line-height: 1.45;
-            font-weight: 400;
-        }
-
-        @media (max-width: 720px) {
-            .notion-page {
-                padding: 2rem 1.25rem 2.5rem;
-            }
-
-            .notion-cover {
-                margin: -2rem -1.25rem 1.75rem;
-            }
-
-            .prop-row {
-                grid-template-columns: 1fr;
-                gap: 0.15rem;
-            }
-        }
-    </style>
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-    <div class="page-shell">
-        <a href="../index.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
 
-        <article class="notion-page">
-            <div class="notion-cover" aria-hidden="true"></div>
+<div class="page">
 
-            <h1 class="notion-title">Digital Retail Bank Launch Strategy with BaaS - Case Study</h1>
-
-            <div class="callout blue">
-                <div class="callout-mark" aria-hidden="true">i</div>
-                <div class="callout-body">
-                    <p style="margin:0;font-weight:600;">This is a Product Strategy Growth problem.</p>
-                </div>
-            </div>
-
-            <div class="notion-props" aria-label="Page properties">
-                <div class="prop-row">
-                    <span class="prop-label">Client</span>
-                    <span class="prop-value">Synpulse Consulting</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Location</span>
-                    <span class="prop-value">United Kingdom</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Context</span>
-                    <span class="prop-value">Academic Project (Strathclyde Business School)</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Role</span>
-                    <span class="prop-value">Strategy Consulting</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Analysis &amp; Strategy</span>
-                    <div class="prop-tags">
-                        <span class="prop-tag blue">Product Strategy</span>
-                        <span class="prop-tag blue">MCDA Framework</span>
-                        <span class="prop-tag amber">Vendor Assessment</span>
-                        <span class="prop-tag green">Market Analysis</span>
-                    </div>
-                </div>
-            </div>
-
-            <nav class="toc" aria-label="On this page">
-                <div class="toc-title">On this page</div>
-                <a href="#challenge">The Challenge</a>
-                <a href="#deck">RFP Deck</a>
-                <a href="#description">Project Description</a>
-                <a href="#tasks">Detailed Tasks</a>
-                <a href="#challenges">Key Challenges &amp; Solutions</a>
-                <a href="#outcomes">Project Outcomes</a>
-                <a href="#artifacts">Artifacts Produced</a>
-                <a href="#impact">Business Impact</a>
-            </nav>
-
-            <h2 class="notion-h2" id="challenge">The Challenge</h2>
-            <p>Client X is a multi-billion-dollar bank headquartered in the United States, with a substantial existing market capitalization and a well-established domestic customer base. As part of its international growth strategy, Client X wanted to launch a digital retail banking proposition in the United Kingdom — a market it did not yet operate in.</p>
-            <p>Entering the UK required two connected decisions: which Banking-as-a-Service (BaaS) platform to build the new digital bank on, and how to position and design a competitive digital product in an already crowded UK market.</p>
-            <p>The engagement scope was to run a vendor evaluation and Request for Proposal (RFP) process across BaaS providers, and to develop a go-to-market strategy covering customer segmentation, product roadmap, and digital channel design aligned with UK banking regulations.</p>
-            <div class="callout amber">
-                <div class="callout-mark" aria-hidden="true">→</div>
-                <div class="callout-body">
-                    <p style="margin:0 0 0.45rem;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--notion-muted);">Why this is a Product Strategy Growth problem</p>
-                    <p style="margin:0;">The bank model already worked in the US — the question wasn't “does this work,” it was whether it travels to the UK: which BaaS partner carries UK-scale regulatory and volume requirements, and what GTM/channel mix lands the first cohort without breaking vendor or compliance capacity. Use this version when they want strategy and GTM.</p>
-                </div>
-            </div>
-            <div class="callout">
-                <div class="callout-mark" aria-hidden="true">i</div>
-                <div class="callout-body">
-                    <p>(Client name anonymized. This was completed as an academic consulting project with Synpulse Consulting at Strathclyde Business School.)</p>
-                </div>
-            </div>
-
-            <h2 class="notion-h2" id="deck">RFP Deck</h2>
-            <div class="deck-embed">
-                <iframe src="../assets/synpulse%20consulting/UK-Digital-Bank-RFP-Deck.pdf" title="UK Digital Bank RFP Deck"></iframe>
-            </div>
-
-            <h2 class="notion-h2" id="description">Project Description</h2>
-            <p>Supported vendor evaluation and go-to-market strategy for a UK digital bank launch, focusing on Banking-as-a-Service (BaaS) platform selection and digital product design.</p>
-            <p>Conducted a multi-criteria analysis to evaluate 8 BaaS vendors across key factors including technology architecture, scalability, regulatory compliance, and cost structure. Developed a go-to-market framework covering customer segmentation, product roadmap, and digital channel strategy aligned with UK banking regulations. Proposed digital-first capabilities including AI-driven budgeting tools, embedded finance features, and sustainable banking options targeting urban professionals aged 25–45.</p>
-
-            <h2 class="notion-h2" id="tasks">Detailed Tasks</h2>
-            <ul>
-                <li>Analyzed UK digital banking market landscape and identified competitive positioning opportunities</li>
-                <li>Evaluated BaaS vendor capabilities using MCDA (Multi-Criteria Decision Analysis) framework, weighted scoring model across technical and strategic criteria</li>
-                <li>Designed phased go-to-market strategy with launch timeline and customer acquisition approach</li>
-            </ul>
-
-            <h2 class="notion-h2" id="challenges">Key Challenges &amp; Solutions</h2>
-            <div class="decision">
-                <p><strong>Challenge:</strong> Selecting the right BaaS partner balancing immediate needs with long-term scalability</p>
-                <p><strong>Solution:</strong> Developed vendor scorecard evaluating both current capabilities and future roadmap alignment</p>
-            </div>
-            <div class="decision">
-                <p><strong>Challenge:</strong> Differentiating in a saturated digital banking market</p>
-                <p><strong>Solution:</strong> Identified underserved customer segments and designed targeted product features addressing specific pain points</p>
-            </div>
-
-            <h2 class="notion-h2" id="outcomes">Project Outcomes</h2>
-            <ul>
-                <li>Delivered vendor evaluation framework with scored recommendations for BaaS platform selection</li>
-                <li>Created go-to-market roadmap with phased launch approach and customer acquisition strategy</li>
-            </ul>
-
-            <h2 class="notion-h2" id="artifacts">Artifacts Produced</h2>
-            <div class="doc-links">
-                <a class="doc-link" href="../assets/synpulse%20consulting/UK-Digital-Bank-RFP-Deck.pdf" target="_blank" rel="noopener">
-                    <span class="doc-link-title">UK Digital Bank RFP Deck<span class="arrow">Open PDF →</span></span>
-                    <span class="doc-link-desc">Vendor evaluation and go-to-market recommendation deck for the UK digital retail bank launch.</span>
-                </a>
-                <a class="doc-link" href="../assets/synpulse%20consulting/BaaS-Vendor-RFP-Reference-Document.docx" target="_blank" rel="noopener">
-                    <span class="doc-link-title">BaaS Vendor RFP Reference Document<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">RFP reference used to run the Banking-as-a-Service vendor evaluation and proposal process.</span>
-                </a>
-            </div>
-
-            <h2 class="notion-h2" id="impact">Business Impact</h2>
-            <div class="callout green">
-                <div class="callout-mark" aria-hidden="true">✓</div>
-                <div class="callout-body">
-                    <ul style="margin:0;">
-                        <li>Provided a strategic foundation for differentiated market entry through informed vendor selection, digital-first product design, and go-to-market planning.</li>
-                        <li>Enhanced customer experience and brand positioning by addressing unmet needs identified through market research.</li>
-                    </ul>
-                </div>
-            </div>
-        </article>
+  <p class="eyebrow">Product Case &middot; Digital Banking Strategy</p>
+  <h1 class="headline">A multi-billion-dollar US bank wanted to launch a digital retail bank in the UK — a market it had never operated in.</h1>
+  <p class="strategy-tag">This is a Product Strategy Growth problem.</p>
+  <p class="methodology intro">Academic strategy consulting engagement completed with Synpulse Consulting at the University of Strathclyde Business School. Client anonymized as "Client X" &mdash; a multi-billion-dollar US retail bank entering the UK for the first time.</p>
+  <p class="subhead">Entering meant two decisions at once: which banking-as-a-service platform to build on, and how to stand out in an already crowded UK digital banking market. Get either one wrong in isolation and the other unravels. <strong>I ran the vendor evaluation and shaped the go-to-market strategy within the same engagement, so the platform chosen could actually support the launch plan built around it.</strong></p>
+  <!-- <a class="proto-link" href="../assets/synpulse%20consulting/UK-Digital-Bank-RFP-Deck.pdf" target="_blank" rel="noopener">UK Digital Bank RFP deck</a> -->
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">US retail bank entering the UK</span>
+      <span class="d">A multi-billion-dollar bank expanding into a market it doesn't yet operate in.</span>
     </div>
-<script src="../assets/analytics-config.js"></script>
-<script src="../assets/analytics.js"></script>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Choose a platform the strategy can actually run on</span>
+      <span class="d">Vendor evaluation and go-to-market strategy run in the same engagement, so neither one ignored the other.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">One engagement, two connected decisions</span>
+      <span class="d">The BaaS partner had to support the launch plan, and the launch plan had to fit what the partner could deliver.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">What we changed</h2>
+    <ul class="changes">
+      <li><strong>Scored vendors on where they're going</strong><span>A weighted scorecard (MCDA Framework)combining current capability with long-term roadmap fit, so the platform choice wouldn't need revisiting a year in.</span></li>
+      <li><strong>Found the underserved segment first</strong><span>Urban professionals aged 25&ndash;45 became the entry wedge, not "everyone who needs a bank account."</span></li>
+      <li><strong>Designed features around that segment</strong><span>AI-driven budgeting, embedded finance, and sustainable banking options — not a generic account-opening flow.</span></li>
+      <li><strong>Sequenced the launch in phases</strong><span>A go-to-market roadmap that staged customer acquisition, instead of one big-bang rollout.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="tagline">The vendor evaluation and the go-to-market strategy came out of the same engagement — built to fit each other, not decided in isolation.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Key challenges &amp; solutions</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Selecting the right BaaS partner, balancing immediate needs with long-term scalability.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Developed a vendor scorecard evaluating both current capabilities and future roadmap alignment.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Differentiating in an already saturated digital banking market.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Identified underserved customer segments and designed targeted product features addressing specific pain points.</p>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <section>
+    <h2 class="label">What it moved</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">8 vendors</div>
+        <div class="desc">Scored on one weighted framework</div>
+        <div class="raw">technology, scalability, compliance, cost &mdash; not pitch decks</div>
+      </div>
+      <div class="stat">
+        <div class="num">1 engagement, 2 decisions</div>
+        <div class="desc">Platform and market strategy built to fit each other</div>
+        <div class="raw">run together, not as separate workstreams</div>
+      </div>
+      <div class="stat">
+        <div class="num">25&ndash;45</div>
+        <div class="desc">Urban professionals — the entry wedge</div>
+        <div class="raw">chosen as the underserved segment, not a mass-market guess</div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+</div>
 </body>
 </html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanTap Credit Risk Scoring System - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="project-pages-styles.css">
+    <style>
+         .project-header-s {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #FFD700;
+        }
+        
+        .project-title-s {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .project-meta-s {
+            display: flex;
+            justify-content: left;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item-s {
+            display: flex;
+            align-items: left;
+            gap: 0.5rem;
+            color: #666;
+        }
+        
+        .meta-item-s i {
+            color: #FFD700;
+        }
+
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #FFD700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .project-btn:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .project-btn.btn-live {
+            background: #DC143C;
+            color: #fff;
+        }
+        .project-btn.btn-live:hover {
+            background: #b31234;
+            color: #fff;
+        }
+        .project-btn.btn-dashboard {
+            background: #000;
+            color: #fff;
+        }
+        .project-btn.btn-dashboard:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .content-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .content-section h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .impact-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .impact-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+        
+        .impact-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-tag {
+            background: #e9ecef;
+            color: #333;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .project-sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .project-body-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .project-main {
+            min-width: 0;
+        }
+
+        .project-sidebar-sticky {
+            position: sticky;
+            top: 1.25rem;
+            max-height: calc(100vh - 2.5rem);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-gutter: stable;
+        }
+
+        .project-sidebar-sticky::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .project-sidebar-sticky::-webkit-scrollbar-thumb {
+            background: #dee2e6;
+            border-radius: 999px;
+        }
+        
+        .skills-section, .tech-section {
+            margin-bottom: 2rem;
+        }
+        
+        .skills-section h4, .tech-section h4 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #f8f9fa;
+            color: #333;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: #FFD700;
+            color: #333;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .project-title-s {
+                font-size: 2rem;
+            }
+            
+            .project-meta-s {
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .meta-item-s {
+                font-size: 0.9rem;
+            }
+            
+            .project-buttons {
+                gap: 0.75rem;
+                padding: 0 0.5rem;
+            }
+            
+            .project-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .project-body-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .project-sidebar-sticky {
+                position: static;
+                max-height: none;
+                overflow: visible;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title-s {
+                font-size: 1.8rem;
+            }
+            
+            .project-meta-s {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .meta-item-s {
+                font-size: 0.85rem;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        .prototype-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .prototype-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .prototype-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .prototype-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .prototype-card figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .prototype-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .prototype-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-callout {
+            background: #fffbea;
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0 0;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .summary-callout strong {
+            color: #333;
+        }
+
+        .pipeline-block {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+        }
+
+        .pipeline-block h4 {
+            margin: 0 0 0.75rem;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .pipeline-flow {
+            font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: #444;
+            background: #f1f3f5;
+            border-radius: 6px;
+            padding: 1rem 1.15rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 0;
+            font-size: 0.92rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.65rem 0.85rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .data-table th {
+            background: #fffbea;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            color: #555;
+        }
+
+        .stage-list {
+            margin: 0.5rem 0 0;
+            padding-left: 1.25rem;
+        }
+
+        .stage-list li {
+            margin-bottom: 0.45rem;
+        }
+
+        .ml-badge {
+            display: inline-block;
+            background: #333;
+            color: #FFD700;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            margin-left: 0.35rem;
+            vertical-align: middle;
+        }
+
+        .project-summary-top {
+            max-width: 820px;
+            margin: 1.5rem auto 0;
+            padding: 1.15rem 1.35rem;
+            background: #fffbea;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.75;
+            text-align: left;
+        }
+
+        .project-summary-top strong {
+            color: #333;
+        }
+   </style>
+</head>
+<body>
+    <div class="project-detail-container">
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Portfolio
+        </a>
+        
+        <div class="project-header-s">
+            <h1 class="project-title-s">LoanTap Credit Risk Scoring System</h1>
+            <p style="max-width: 780px; margin: 0.75rem auto 0; color: #666; line-height: 1.7;">
+                Predicts whether a loan applicant is likely to <strong>Fully Pay</strong> or <strong>Charge Off</strong> (default), then wraps that probability into risk scores, repayment odds, and approve/reject-style recommendations for credit analysts.
+            </p>
+            <p class="project-summary-top">
+                I used <strong>Lovable</strong> to rapidly prototype an explainable credit-decision UX, and separately built a working <strong>logistic-regression risk model + API</strong> on historical loan data (~396k records, ~77% accuracy / ~80% AUC). The UI is currently a clickable prototype; the model is a functioning backend. <strong>Next step:</strong> wiring them so the UI is driven by real scores.
+            </p>
+        </div>
+        
+        <div class="project-meta-s">
+            <div class="meta-item-s">
+                <i class="fas fa-building"></i>
+                <span>Loan Tap</span>
+            </div>
+            <div class="meta-item-s">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>India</span>
+            </div>
+            <div class="meta-item-s">
+                <i class="fas fa-calendar"></i>
+                <span>Duration: Aug 2024 – Sep 2024</span>
+            </div>
+            <div class="meta-item-s">
+                <i class="fas fa-calendar"></i>
+                <span>Academic Project (Scaler)</span>
+            </div>
+        </div>
+
+        <div class="project-buttons">
+            <a href="https://credit-clarity-flow.lovable.app/" class="project-btn btn-live" target="_blank">
+                <i class="fas fa-chart-line"></i>
+                View live application (made with Lovable AI)
+            </a>
+            <a href="https://loantap-credit-risk-prediction-uma-ramanathan.streamlit.app/" class="project-btn btn-dashboard" target="_blank">
+                <i class="fas fa-chart-line"></i>
+                View Dashboard showing Machine Learning Model
+            </a>
+        </div>
+
+        <div class="project-body-layout">
+            <main class="project-main">
+
+        <div class="content-section">
+            <h2>Problem Statement</h2>
+            <p>
+                LoanTap-style consumer lending generates high application volume, but manual credit review is slow and inconsistent. Analysts need a repeatable way to score new applicants against patterns learned from historical loan outcomes — not gut feel alone.
+            </p>
+            <p>
+                The core question this system answers: <strong>given an applicant’s profile (amount, term, rate, grade, income, DTI, credit history, purpose, etc.), how likely are they to default?</strong> That default probability is then translated into operational outputs analysts can act on — a 0–100 risk score, repayment odds, and tiered recommendations such as APPROVE, APPROVE_WITH_CONDITIONS, REVIEW_MANUAL, or REJECT.
+            </p>
+            <div class="summary-callout">
+                <strong>Bottom line:</strong> An offline-trained logistic regression credit-default model for LoanTap-style applications. Training used ~396k historical loans; live use only scores new applications and does <em>not</em> update the model from API or UI users.
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>The Solution</h2>
+            <p>
+                The project has two complementary layers. First, a <strong>classical ML scoring engine</strong> (Python, scikit-learn, FastAPI, Streamlit): logistic regression trained once on historical loan records, saved as <code>.joblib</code> artifacts, and deployed for inference-only scoring. Second, a <strong>Lovable AI UX prototype</strong> that shows how analysts could interact with risk outputs in a polished loan-review workflow — upload data, see flags, and explain decisions to stakeholders.
+            </p>
+            <p>
+                The ML backend is not generative AI. It is supervised binary classification — Fully Paid vs Charged Off — with rule-based recommendation thresholds applied on top of the predicted default probability.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>ML &amp; AI Approach <span class="ml-badge">CLASSICAL ML</span></h2>
+            <ul>
+                <li><strong>Algorithm:</strong> Logistic regression (scikit-learn)</li>
+                <li><strong>Training:</strong> Offline, one-time fit on historical loan CSV via <code>train_model.py</code></li>
+                <li><strong>Reported performance:</strong> ~77% accuracy, ~80% ROC AUC</li>
+                <li><strong>Deployment:</strong> FastAPI + Streamlit app loads saved <code>models/loan_risk_model.joblib</code> and <code>models/preprocessor.joblib</code> — inference only, no retraining at runtime</li>
+                <li><strong>Not used:</strong> Generative AI, LLMs, or continuous online learning from live applicants</li>
+            </ul>
+
+            <h3>Training vs live scoring</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>What happens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Training</strong> (<code>train_model.py</code>)</td>
+                        <td>Fits the model once on the historical CSV (<code>input dataset/logistic_regression.csv</code>). ~396,030 loan records split ~80/20 train/validation (~316k / ~79k). Predictions are not written back into the training set.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serving</strong> (API / Streamlit UI)</td>
+                        <td>Does not retrain. New applications are scored with the frozen model. There is no fixed user capacity at inference — it can score one application, a batch, or a whole CSV; throughput depends on the host machine.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section">
+            <h2>Pipeline: Input → Output</h2>
+
+            <div class="pipeline-block">
+                <h4>Training path (offline, run once)</h4>
+                <p class="pipeline-flow">Historical CSV → Preprocess → Train logistic regression → Saved model + preprocessor (.joblib)</p>
+            </div>
+
+            <div class="pipeline-block">
+                <h4>Runtime path (every new application)</h4>
+                <p class="pipeline-flow">New application (JSON / UI / CSV) → Validate → Preprocess → Predict → Risk score / approve / repay outputs</p>
+            </div>
+
+            <h3>1. Training input</h3>
+            <p>CSV of past loans with fields such as loan amount, term, interest rate, grade, income, debt-to-income (DTI), credit history, purpose, address, and the label <code>loan_status</code> (<strong>Fully Paid</strong> / <strong>Charged Off</strong>).</p>
+
+            <h3>2. Preprocessing</h3>
+            <ul class="stage-list">
+                <li>Fill missing values</li>
+                <li>Engineer features — credit history years, high-DTI flags, term/grade/purpose risk flags, income/loan buckets, and related derived signals</li>
+                <li>Label-encode categoricals and scale numerics</li>
+                <li>→ ~35 model features fed to logistic regression</li>
+            </ul>
+
+            <h3>3. Model training</h3>
+            <ul class="stage-list">
+                <li>Binary target: Fully Paid = 0, Charged Off = 1</li>
+                <li>Artifacts saved to <code>models/loan_risk_model.joblib</code> and <code>models/preprocessor.joblib</code></li>
+            </ul>
+
+            <h3>4. Runtime input (one applicant)</h3>
+            <p>Same application fields as training (loan amount, term, income, DTI, grade, etc.) submitted via API or Streamlit — <strong>without</strong> <code>loan_status</code>, since that is the outcome being predicted.</p>
+
+            <h3>5. Runtime outputs (one probability, multiple wrappers)</h3>
+            <p>The core output is a default probability. Different endpoints and UI views format that same score for different analyst tasks. Recommendations are threshold rules on default probability (e.g. risk score &lt; 30 → APPROVE) — not a separate approval model.</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint / view</th>
+                        <th>Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Default risk</strong></td>
+                        <td>Prediction (0/1), default probability, risk score (0–100), recommendation (APPROVE / APPROVE_WITH_CONDITIONS / REVIEW_MANUAL / REJECT), confidence</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repayment</strong></td>
+                        <td>Repayment probability, default probability, risk category (Low / Med / High)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Approval</strong></td>
+                        <td>Approval/rejection probabilities, recommendation, rule-based risk factor tags (e.g. high DTI, low income)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Batch / CSV</strong></td>
+                        <td>List of the above per row, plus summary counts</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Lovable Prototype Visuals -->
+        <div class="content-section">
+            <h3>Lovable AI Prototype Screenshots</h3>
+            <p>UX concept for how analysts could interact with scoring outputs in day-to-day credit operations. This layer is separate from the logistic regression backend — it demonstrates workflow, explainability presentation, and approval UX rather than model training logic.</p>
+            <div class="prototype-gallery">
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" alt="Loan application prototype interface">
+                    </a>
+                    <figcaption>Loan Application Interface</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/demo%20of%20loan%20approval%20worflow.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/demo%20of%20loan%20approval%20worflow.png" alt="Loan approval workflow demonstration">
+                    </a>
+                    <figcaption>Loan Approval Workflow</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/decision%20explained.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/decision%20explained.png" alt="Decision explanation with explainable AI">
+                    </a>
+                    <figcaption>Decision Explanation</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/application%20approved.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/application%20approved.png" alt="Application approved screen">
+                    </a>
+                    <figcaption>Application Approved</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/lovable%20prototype/admin%20dashboard.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/lovable%20prototype/admin%20dashboard.png" alt="Admin dashboard view">
+                    </a>
+                    <figcaption>Admin Dashboard</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <!-- Predictor Model Screenshots -->
+        <div class="content-section">
+            <h3>Predictor Model Screenshots</h3>
+            <p>Exploratory analysis and model diagnostics from the historical LoanTap training dataset — feature importance, repayment patterns, and geographic trends that informed preprocessing and feature engineering.</p>
+            <div class="prototype-gallery">
+                
+                <figure class="prototype-card">
+                    <a href="../images/loantap/feature-importance.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/feature-importance.png" alt="Feature importance analysis">
+                    </a>
+                    <figcaption>Feature Importance</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/homeownership-loanamount.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/homeownership-loanamount.png" alt="Homeownership vs loan amount analysis">
+                    </a>
+                    <figcaption>Homeownership vs Loan Amount</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/loan-paid-status.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/loan-paid-status.png" alt="Loan paid status analysis">
+                    </a>
+                    <figcaption>Loan Paid Status Distribution</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/loan-perf-cities.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/loan-perf-cities.png" alt="Loan performance by cities">
+                    </a>
+                    <figcaption>Loan Performance by Cities</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/state-trends-repayment-behaviour.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/state-trends-repayment-behaviour.png" alt="State trends and repayment behaviour">
+                    </a>
+                    <figcaption>State Trends & Repayment Behaviour</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/titles.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/titles.png" alt="Titles analysis">
+                    </a>
+                    <figcaption>Titles Analysis</figcaption>
+                </figure>
+                <figure class="prototype-card">
+                    <a href="../images/loantap/credit-risk-thumbnail.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/loantap/credit-risk-thumbnail.png" alt="Credit risk thumbnail">
+                    </a>
+                    <figcaption>Credit Risk Overview</figcaption>
+                </figure>
+               
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>What the Model Learns</h2>
+            <p>Logistic regression was chosen for its balance of accuracy and interpretability — important for regulated lending decisions. Key signal groups in the ~35-feature set include:</p>
+            <ul>
+                <li><strong>Interest rate and loan grade:</strong> Higher rates and lower grades correlate with elevated default risk</li>
+                <li><strong>Credit utilization and DTI:</strong> High revolving credit use and debt-to-income ratios signal repayment strain</li>
+                <li><strong>Employment and income:</strong> Job tenure and verified income reduce default likelihood</li>
+                <li><strong>Loan characteristics:</strong> Term length (36 vs 60 months), purpose (e.g. debt consolidation patterns), and home ownership status</li>
+                <li><strong>Application details:</strong> Individual vs joint applications, verification status, and payment method</li>
+            </ul>
+            <p>Validated with an ~80/20 train/validation split; reported metrics are ~77% accuracy and ~80% ROC AUC on held-out data.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Why Explainability Matters</h2>
+            <p>Because the core model is logistic regression — not a black-box deep learner — coefficients and engineered features support clearer reasoning about <strong>which factors drive each risk score</strong>. The approval view adds rule-based risk factor tags (e.g. high DTI, low income) on top of the default probability. That transparency:</p>
+            <ul>
+                <li>Builds analyst confidence in ML-assisted recommendations</li>
+                <li>Supports fair-lending documentation and stakeholder review</li>
+                <li>Enables clearer customer conversations about approval conditions</li>
+                <li>Keeps recommendations auditable — thresholds are explicit rules, not opaque model stacks</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Business Impact</h2>
+            <ul class="impact-list">
+                <li><strong>Faster decisions:</strong> Streamlined workflows cut review time, enabling higher application throughput</li>
+                <li><strong>Lower credit losses:</strong> Better risk detection reduces defaults and charge-offs by identifying high-risk patterns in applicant profiles</li>
+                <li><strong>Stronger adoption:</strong> An intuitive interface made the ML technology accessible to non-technical users from day one</li>
+                <li><strong>Consistent risk assessment:</strong> Standardized scoring reduces analyst variability and improves portfolio quality</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Key Insights from the Data</h2>
+            <p>Analysis of the ~396k-record training set showed debt consolidation loans comprise a large share of applications, with interest rate and credit grade among the strongest default predictors. Borrowers with verified income, individual (non-joint) applications, and 36-month terms tended to show better repayment performance — patterns reflected in the engineered feature set.</p>
+        </div>
+
+            </main>
+
+            <aside class="project-sidebar project-sidebar-sticky" aria-label="Tech stack and skills">
+                <div class="tech-section">
+                    <h4>Tech Stack</h4>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">Logistic Regression</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">joblib</span>
+                        <span class="tech-tag">Lovable AI</span>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <h4>Skills</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Credit Risk Modeling</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">Model Validation</span>
+                        <span class="skill-tag">ML Deployment (inference)</span>
+                        <span class="skill-tag">API Design</span>
+                        <span class="skill-tag">UX Prototyping</span>
+                        <span class="skill-tag">Explainable AI</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>

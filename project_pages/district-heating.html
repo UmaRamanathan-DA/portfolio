@@ -1,170 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Advisory Consulting Proposal - Strathclyde & Sustainable Glasgow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="project-pages-styles.css">
-    <style>
-        
-        .project-header-s {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #FFD700;
-        }
-        
-        .project-title-s {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        
-        .project-meta-s {
-            display: flex;
-            justify-content: left;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .meta-item-s {
-            display: flex;
-            align-items: left;
-            gap: 0.5rem;
-            color: #666;
-        }
-        
-        .meta-item-s i {
-            color: #FFD700;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>District Heating Networks Advisory — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
-        .project-header {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            text-align: left;
-            background: #fff;
-            padding: 1.5rem 1.5rem 1.2rem 1.5rem;
-            border-radius: 10px;
-            color: #222;
-        }
-        .project-title {
-            font-size: 1.15rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-        }
-        .project-meta > div {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            color: #444;
-        }
-        .project-meta > div:last-child {
-            margin-bottom: 0;
-        }
-        .project-description h2, .project-description h3, .project-description h4 {
-            margin-top: 2.2rem;
-            margin-bottom: 1rem;
-            color: #333;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        .project-description h3 {
-            font-size: 1.1rem;
-        }
-        .project-description h4 {
-            font-size: 1rem;
-        }
-    </style>
+<style>
+  :root{
+    --ink:#eef0f5;
+    --ink-soft:#b3b8d1;
+    --paper:#14172a;
+    --surface:#1c2038;
+    --line:rgba(238,240,245,0.14);
+    --line-strong:rgba(238,240,245,0.26);
+    --accent:#d4af52;
+    --accent-ink:#e8c878;
+    --accent-soft:rgba(212,175,82,0.16);
+    --resolved:#c17a89;
+    --resolved-soft:rgba(193,122,137,0.14);
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
+
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(24px, 3.2vw, 31px);
+    line-height:1.24;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:36ch;
+  }
+
+  .methodology{
+    margin:0 0 18px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
+
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 18px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
+
+  /* ---- challenge / solution ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14px; color:var(--ink); line-height:1.5; }
+  .friction-card .tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:5px;
+  }
+  .friction-card .tag.solved{
+    color:var(--resolved);
+    margin-top:14px;
+  }
+  .friction-card .solution-text{ color:var(--ink-soft); }
+
+  /* ---- what changed ---- */
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 24px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ---- impact stats ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(20px, 3vw, 26px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:48ch;
+    text-wrap:balance;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:56ch;
+  }
+  .skills a{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .skills a:hover,
+  .skills a:focus-visible{
+    color:var(--accent-ink);
+    border-color:var(--accent-ink);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    ul.changes{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-    <div class="project-detail-container">
-        <a href="../index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
-        <div class="project-header-s">
-            <h1 class="project-title-s">Strategic Advisory Consulting Proposal for accelerating District Heating Networks</h1>            
-        </div>
-        <div class="project-meta-s">
-            <div class="meta-item-s">
-                <i class="fas fa-building"></i>
-                <span>Organization: University of Strathclyde, Sustainable Glasgow and Partners</span>
-            </div>
-            <div class="meta-item-s">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Location: Glasgow, United Kingdom</span>
-            </div>
-            <div class="meta-item-s">
-                <i class="fas fa-calendar"></i>
-                <span>Duration: Aug 2024 – Sep 2024</span>
-            </div>
-            <div class="meta-item-s">
-                <i class="fas fa-briefcase"></i>
-                <span>Type: Academic</span>
-            </div>
-        </div>
-        <div class="project-content">
-            <div class="project-description">
-                <h3>Project Description</h3>
-                <p>Developed a strategic advisory proposal to accelerate District Heating Networks, aligning with Net Zero goals. Applied data-driven tools strategy modelling —including MCDA, scenario modelling, and probabilistic risk assessment—to prioritize projects and evaluate impact. Recommended governance models, performance monitoring frameworks, and investment appraisal methods (including causal mapping) to support evidence-based decision-making and long-term sustainability.</p>
-                 <p>Recommended data-driven tools such as MCDA frameworks, scenario modelling (System Dynamics), and probabilistic risk assessments to evaluate acceleration potential. Advised on governance structures and stakeholder collaboration models to support coordinated public-private investment efforts.</p>
-                <p>Suggested PESTEL and SWOT methods for strategic analysis to assess enabling conditions for DHNs in Glasgow.</p>
-                <p>Suggested cost-benefit and investment appraisal approaches, including Discounted Cash Flow and causal mapping, to attract and de-risk funding sources. Provided strategic recommendations to improve performance monitoring and impact evaluation, supporting the client's long-term organizational objectives.</p>
-                
-                <h3>Key Challenges & Solutions</h3>
-                <ul>
-                    <li><strong>Challenge:</strong> Complex governance and stakeholder alignment for DHN acceleration<br><strong>Solution:</strong> Proposed clear governance models and collaborative frameworks to coordinate public-private investment and decision-making.</li>
-                    <li><strong>Challenge:</strong> Uncertainty in project prioritization and impact assessment<br><strong>Solution:</strong> Recommended MCDA, scenario modeling, and probabilistic risk assessment to enable data-driven prioritization and risk mitigation.</li>
-                    <li><strong>Challenge:</strong> Attracting and de-risking funding for large-scale infrastructure<br><strong>Solution:</strong> Recommended investment appraisal methods (including DCF and causal mapping) and cost-benefit analysis to support evidence-based funding decisions.</li>
-                    <li><strong>Challenge:</strong> Ensuring long-term sustainability and performance monitoring<br><strong>Solution:</strong> Proposed performance monitoring frameworks and sustainability planning tools to track progress and align with Net Zero goals.</li>
-                </ul>
-                <h3>Business Impact</h3>
-                <ul>
-                    <li><strong>Informed Project Prioritization</strong><br>→ The proposed use of MCDA and scenario modelling is expected to support transparent, data-driven prioritization of DHN projects based on technical, economic, and social factors.</li>
-                    <li><strong>Improved Strategic Planning Under Uncertainty</strong><br>→ Scenario analysis and probabilistic risk assessment are anticipated to help stakeholders plan adaptively, identify long-term risks, and explore viable acceleration pathways.</li>
-                    <li><strong>Stronger Investment Readiness</strong><br>→ Investment appraisal methodologies (e.g. DCF, causal mapping) are expected to support more credible funding strategies by clarifying value, risk, and return for potential investors.</li>
-                    <li><strong>Alignment with Net Zero Goals</strong><br>→ The proposed performance monitoring frameworks are intended to guide future implementation efforts, ensuring DHN initiatives stay aligned with Glasgow's Net Zero targets and deliver measurable impact.</li>
-                </ul>
-            </div>
-            <div class="project-sidebar">
-                <div class="skills-section">
-                    <h4>Core Skills</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Strategic Advisory</span>
-                        <span class="skill-tag">Multi-Criteria Decision Analysis (MCDA)</span>
-                        <span class="skill-tag">Scenario Modeling</span>
-                        <span class="skill-tag">Risk Assessment</span>
-                        <span class="skill-tag">Governance Models</span>
-                        <span class="skill-tag">Performance Monitoring</span>
-                        <span class="skill-tag">Investment Appraisal</span>
-                        <span class="skill-tag">Sustainability Planning</span>
-                    </div>
-                </div>
-                <div class="tech-section">
-                    <h4>Analysis & Modeling</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MCDA Tools</span>
-                        <span class="skill-tag">Scenario Analysis</span>
-                        <span class="skill-tag">Probabilistic Risk Assessment</span>
-                        <span class="skill-tag">Causal Mapping</span>
-                    </div>
-                </div>
-                <div class="tech-section">
-                    <h4>Business Impact</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Governance Framework</span>
-                        <span class="skill-tag">Performance Monitoring</span>
-                        <span class="skill-tag">Investment Strategy</span>
-                        <span class="skill-tag">Sustainability Goals</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<div class="page">
+
+  <p class="eyebrow">Product Case &middot; Strategic Advisory</p>
+  <h1 class="headline">Glasgow wanted to accelerate district heating toward Net Zero — without a structured way to prioritize projects, govern delivery, or de-risk funding.</h1>
+  <p class="methodology">Academic strategic advisory project completed with the University of Strathclyde, Sustainable Glasgow and Partners (Aug&ndash;Sep 2024). This is a strategic proposal &mdash; the recommended frameworks and their business impact are anticipated outcomes, not measured results from implementation.</p>
+  <p class="subhead">District heating could help Glasgow hit its Net Zero targets, but accelerating it meant coordinating public and private stakeholders, prioritizing projects under real uncertainty, and attracting funding that was hard to de-risk. <strong>I proposed a set of data-driven frameworks — from MCDA and scenario modelling to investment appraisal and performance monitoring — giving Sustainable Glasgow and partners a structured way to evaluate and govern DHN acceleration.</strong></p>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">Sustainable Glasgow and DHN partners</span>
+      <span class="d">Coordinate investment and delivery decisions across public and private organizations.</span>
     </div>
-<script src="../assets/analytics-config.js"></script>
-<script src="../assets/analytics.js"></script>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Prioritize projects and de-risk funding with evidence</span>
+      <span class="d">A shared set of frameworks for governance, prioritization, and investment appraisal.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">8 tools, 3 categories</span>
+      <span class="d">Strategic analysis, decision modelling, and investment appraisal, proposed as one coordinated toolkit.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Key challenges &amp; solutions</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Complex governance and stakeholder alignment for DHN acceleration.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Clear governance models and collaborative frameworks to coordinate public-private investment and decision-making.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Uncertainty in project prioritization and impact assessment.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">MCDA, scenario modelling, and probabilistic risk assessment for data-driven prioritization and risk mitigation.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Attracting and de-risking funding for large-scale infrastructure.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Investment appraisal methods (DCF, causal mapping) and cost-benefit analysis to support evidence-based funding decisions.</p>
+      </div>
+      <div class="friction-card">
+        <span class="tag">Challenge</span>
+        <p>Ensuring long-term sustainability and performance monitoring.</p>
+        <span class="tag solved">Solution</span>
+        <p class="solution-text">Performance monitoring frameworks and sustainability planning tools to track progress against Net Zero goals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What we changed</h2>
+    <ul class="changes">
+      <li><strong>Proposed governance that spans organizations</strong><span>Collaborative frameworks to coordinate public and private investment decisions, not siloed sign-off.</span></li>
+      <li><strong>Recommended a prioritization method, not gut calls</strong><span>MCDA and scenario modelling to rank projects on technical, economic, and social factors together.</span></li>
+      <li><strong>Built risk assessment in before funding, not after</strong><span>Probabilistic risk assessment and investment appraisal (DCF, causal mapping) to de-risk funding cases up front.</span></li>
+      <li><strong>Proposed a way to track progress against Net Zero</strong><span>Performance monitoring frameworks tied directly to the target, not a generic dashboard.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="tagline">The proposal wasn't a single recommendation — it was a shared toolkit for governance, prioritization, and funding decisions.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it moved</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">4 challenges, 4 solutions</div>
+        <div class="desc">Each paired with a specific framework</div>
+        <div class="raw">governance, prioritization, funding, and long-term monitoring</div>
+      </div>
+      <div class="stat">
+        <div class="num">8 strategic tools</div>
+        <div class="desc">Recommended across the proposal</div>
+        <div class="raw">MCDA, scenario modelling, risk assessment, PESTEL, SWOT, DCF, causal mapping, performance monitoring</div>
+      </div>
+      <div class="stat">
+        <div class="num">3 tool categories</div>
+        <div class="desc">Strategic analysis, decision modelling, investment appraisal</div>
+        <div class="raw">one coordinated toolkit, not disconnected recommendations</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a>Strategic Advisory</a>
+      <a>MCDA</a>
+      <a>Scenario Modeling</a>
+      <a>Risk Assessment</a>
+      <a>Governance Models</a>
+      <a>Investment Appraisal</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Strategy Consulting</div>
+  </footer>
+
+</div>
 </body>
-</html> 
+</html>

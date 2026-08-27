@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haggis Hopper Taxi Business Insights - Uma Ramanathan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="project-pages-styles.css">
+    <style>
+
+.quantitative-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0 0;
+    }
+    @media (max-width: 768px) {
+        .quantitative-gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+    .quantitative-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        text-align: center;
+    }
+
+    .quantitative-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    .quantitative-card figcaption {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #333;
+    }
+        .project-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))
+                        ; 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 400px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .project-title {
+            color: rgb(240, 240, 240);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 2;
+            padding: 0 1rem;
+        }
+        
+        .project-meta-s {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        
+        .meta-item-s {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .meta-item-s i {
+            color: #FFD700;
+        }
+        
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #FFD700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .project-btn:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .introduction-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .introduction-section h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .introduction-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .introduction-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .introduction-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .deck-embed-container {
+            margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            background: #fff;
+        }
+
+        .deck-embed-container iframe {
+            display: block;
+            width: 100%;
+            height: 900px;
+            border: none;
+        }
+
+        .deck-open-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: #1a3c5e;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .deck-open-link:hover {
+            text-decoration: underline;
+        }
+        
+        .case-study-diagram {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .diagram-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .diagram-caption {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .eda-content, .time-series-content, .demand-prediction-content, .innovation-content, .data-sources-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .eda-section p, .time-series-section p, .demand-prediction-section p, .innovation-section p, .data-sources-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .approach-steps {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position: relative;
+        }
+        
+        .step-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: #FFD700;
+            color: #333;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        
+        .step-card h4 {
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        .step-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .step-arrow {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .project-sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .skills-section, .tech-section {
+            margin-bottom: 2rem;
+        }
+        
+        .skills-section h4, .tech-section h4 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #f8f9fa;
+            color: #333;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: #FFD700;
+            color: #333;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1200px) {
+            .eda-content, .time-series-content, .demand-prediction-content, .innovation-content, .data-sources-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .project-sidebar {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .project-title {
+                font-size: 2.2rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-header {
+                height: 300px;
+            }
+            
+            .project-title {
+                font-size: 1.8rem;
+                padding: 0 0.5rem;
+            }
+            
+            .project-meta-s {
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .meta-item-s {
+                font-size: 0.85rem;
+            }
+            
+            .project-buttons {
+                gap: 0.75rem;
+                padding: 0 0.5rem;
+            }
+            
+            .project-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .introduction-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .introduction-section p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            
+            .introduction-section ul {
+                margin-left: 1rem;
+            }
+            
+            .introduction-section li {
+                font-size: 0.9rem;
+            }
+            
+            .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
+                padding: 1.5rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
+                font-size: 1.1rem;
+                margin-top: 1.5rem;
+            }
+            
+            .eda-section p, .time-series-section p, .demand-prediction-section p, .innovation-section p, .data-sources-section p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            .step-card {
+                width: 100%;
+                max-width: 280px;
+                padding: 1.25rem;
+            }
+            
+            .card-icon {
+                font-size: 2rem;
+            }
+            
+            .step-card h4 {
+                font-size: 1rem;
+            }
+            
+            .step-card p {
+                font-size: 0.85rem;
+            }
+            
+            .project-sidebar {
+                padding: 1rem;
+            }
+            
+            .skills-section h4, .tech-section h4 {
+                font-size: 1rem;
+            }
+            
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-header {
+                height: 250px;
+            }
+            
+            .project-title {
+                font-size: 1.5rem;
+            }
+            
+            .project-meta-s {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .meta-item-s {
+                font-size: 0.8rem;
+            }
+            
+            .project-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+            }
+            
+            .introduction-section {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .introduction-section p {
+                font-size: 0.9rem;
+            }
+            
+            .eda-section, .time-series-section, .demand-prediction-section, .innovation-section, .data-sources-section {
+                padding: 1rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .eda-section h4, .time-series-section h4, .demand-prediction-section h4, .innovation-section h4, .data-sources-section h4 {
+                font-size: 1rem;
+            }
+            
+            .step-card {
+                max-width: 260px;
+                padding: 1rem;
+            }
+            
+            .card-icon {
+                font-size: 1.8rem;
+            }
+            
+            .step-card h4 {
+                font-size: 0.95rem;
+            }
+            
+            .step-card p {
+                font-size: 0.8rem;
+            }
+            
+            .project-sidebar {
+                padding: 0.75rem;
+            }
+            
+            .skill-tag {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .project-title {
+                font-size: 1.3rem;
+            }
+            
+            .introduction-section h2 {
+                font-size: 1.2rem;
+            }
+            
+            .eda-section h3, .time-series-section h3, .demand-prediction-section h3, .innovation-section h3, .data-sources-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .step-card {
+                max-width: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="project-detail-container">
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Portfolio
+        </a>
+        
+        <div>
+            <h1 class="project-title" style="color: black;">Haggis Hopper Taxi Business Insights - Case Study</h1>
+        </div>
+        
+        <div class="project-meta-s">
+            <div class="meta-item-s">
+                <i class="fas fa-building"></i>
+                <span>Kin Karta Consulting</span>
+            </div>
+            <div class="meta-item-s">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>United Kingdom</span>
+            </div>
+            <div class="meta-item-s">
+                <i class="fas fa-calendar"></i>
+                <span>Academic Project (Strathclyde Business School)</span>
+            </div>
+            <div class="meta-item-s">
+                <i class="fas fa-user"></i>
+                <span>Data Analyst/Data Scientist</span>
+            </div>
+        </div>
+
+        <aside class="strategy-question">
+            <p>This is a Product Strategy Growth problem.</p>
+        </aside>
+        
+        <div class="project-buttons">
+            <a href="https://public.tableau.com/shared/FBJ3RPNGS?:display_count=n&:origin=viz_share_link" class="action-btn github-btn" target="_blank">
+                <i class="fas fa-chart-bar"></i>
+                Interactive Tableau Dashboard for business stakeholders
+            </a>
+           
+            <a href="https://haggishopper-uramanathan.streamlit.app/" class="action-btn github-btn" target="_blank">
+                <i class="fas fa-chart-line"></i>
+                View Analysis Dashboard in Streamlit App
+            </a>
+            <a href="https://github.com/UmaRamanathan-DA/HaggisHopper" class="action-btn github-btn"" target="_blank">
+                <i class="fab fa-github"></i>
+                View on GitHub
+            </a>
+        </div>
+
+        <div class="project-content">
+            
+            <div class="introduction-section">
+            <h2>Project Goal</h2>
+            <p>
+                Use Haggis Hopper’s historical trip data to uncover where, when, and how demand fluctuates across Glasgow so the company can allocate its fleet more efficiently, improve passenger experience, and support sustainable growth.
+            </p>
+
+            <aside class="strategy-why">
+                <p class="strategy-kicker">Why this is a Product Strategy Growth problem</p>
+                <p>Demand already exists at a known volume — the question is where fleet capacity should sit by hour and geography, and where the model runs out of road (surge windows, hotspot saturation).</p>
+            </aside>
+
+            <h2>Key Activities</h2>
+            <ul>
+                <li>Cleaned and prepared multi-source trip data for robust analysis and forecasting.</li>
+                <li>Explored temporal and geospatial demand patterns to identify hotspots and under-served areas.</li>
+                <li>Built Tableau dashboards for business stakeholders to monitor demand, revenue, and fleet performance.</li>
+                <li>Experimented with time-series and machine learning models to forecast short-term taxi demand.</li>
+                <li>Translated findings into concrete recommendations on fleet deployment and service design.</li>
+            </ul>
+
+            <h2>Detailed Pricing Analysis</h2>
+            <p>
+                Customer-facing deck focused on pricing — tariff inference, fare–distance correlations, anomaly detection, and dynamic pricing recommendations (February 2024, 3,068 trips). Analysis of other features (demand patterns, geospatial trends, duration, and revenue) is summarised in the Quantitative Analysis Visuals section below.
+            </p>
+            <div class="deck-embed-container">
+                <iframe src="haggis_hoppers_pricing_analysis.html" title="Haggis Hoppers — Detailed Pricing Analysis"></iframe>
+            </div>
+            <a href="haggis_hoppers_pricing_analysis.html" target="_blank" rel="noopener noreferrer" class="deck-open-link">
+                <i class="fas fa-external-link-alt"></i>
+                Open full detailed pricing analysis
+            </a>
+
+
+            <h2>Quantitative Analysis Visuals</h2>
+            <div class="quantitative-gallery">
+                
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/duration-analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/duration-analysis.png" alt="Trip duration trends by weekday and hour">
+                    </a>
+                    <figcaption>Duration Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/dropoffpostcode-hour.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/dropoffpostcode-hour.png" alt="Drop-off postcode demand by hour">
+                    </a>
+                    <figcaption>Drop-off Postcode vs Hour</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/pickup-hourofday.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/pickup-hourofday.png" alt="Pickup demand by hour of day">
+                    </a>
+                    <figcaption>Pickup Hour-of-Day</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/tripcounts-postcode.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/tripcounts-postcode.png" alt="Trip counts per postcode">
+                    </a>
+                    <figcaption>Trip Counts by Postcode</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/python da/fare-analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/python da/fare-analysis.png" alt="Fare and tip amount distributions">
+                    </a>
+                    <figcaption>Fare and Tip Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/outlier-analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/outlier-analysis.png" alt="Outlier detection plot">
+                    </a>
+                    <figcaption>Outlier Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/revenue-km.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/revenue-km.png" alt="Revenue earned per kilometre">
+                    </a>
+                    <figcaption>Revenue per Km</figcaption>
+                </figure>
+               
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/avg-trip-duration.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/avg-trip-duration.png" alt="Average trip duration distribution">
+                    </a>
+                    <figcaption>Average Trip Duration</figcaption>
+                </figure>
+            </div>
+            
+            <h2>Interactive Tableau Highlights</h2>
+            <div class="quantitative-gallery">
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Demand%20Temporal%20Patterns.png" alt="Demand temporal patterns dashboard">
+                    </a>
+                    <figcaption>Demand Temporal Patterns</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Trip%20Volume%20Analysis.png" alt="Trip volume analysis dashboard">
+                    </a>
+                    <figcaption>Trip Volume Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Trip%20Demand%20Density.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Trip%20Demand%20Density.png" alt="Trip demand density heatmap">
+                    </a>
+                    <figcaption>Trip Demand Density</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Passenger%20Behaviour.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Passenger%20Behaviour.png" alt="Passenger behavior dashboard">
+                    </a>
+                    <figcaption>Passenger Behaviour</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/Fare%20Analysis.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/Fare%20Analysis.png" alt="Fare analysis dashboard">
+                    </a>
+                    <figcaption>Fare Analysis</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/revenue%20analysis%201.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/revenue%20analysis%201.png" alt="Revenue analysis">
+                    </a>
+                    <figcaption>Revenue Analysis 1</figcaption>
+                </figure>
+                <figure class="quantitative-card">
+                    <a href="../images/haggishopper/tableau/revenue%20analysis%202.png" target="_blank" rel="noopener noreferrer">
+                        <img src="../images/haggishopper/tableau/revenue%20analysis%202.png" alt="Revenue analysis">
+                    </a>
+                    <figcaption>Revenue Analysis 2</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="project-sidebar" style="margin-top: 2rem;">
+            <div class="skills-section">
+                <h4>Skills Used</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Product Strategy</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Geospatial Analysis</span>
+                    <span class="skill-tag">Time Series Analysis</span>
+                    <span class="skill-tag">Forecasting</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Dashboard Design</span>
+                </div>
+            </div>
+
+            <div class="tech-section">
+                <h4>Tech Stack</h4>
+
+                <div class="tech-category">
+                    <h5>Programming &amp; Tools</h5>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Streamlit</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h5>Data &amp; Time Series Analysis</h5>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Time Series Analysis</span>
+                        <span class="skill-tag">Forecasting</span>
+                        <span class="skill-tag">Outlier Analysis</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h5>Visualization &amp; Dashboards</h5>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Interactive Dashboards</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Stakeholder Reporting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html> 

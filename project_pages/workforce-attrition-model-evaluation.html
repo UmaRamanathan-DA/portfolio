@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Evaluation — Workforce Attrition Analytics</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:680px;
+    margin:0 auto;
+    padding:48px 28px 72px;
+  }
+
+  a.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:0 0 28px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-decoration:none;
+  }
+  a.back-link:hover,
+  a.back-link:focus-visible{ color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 33px);
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    text-wrap:balance;
+  }
+
+  p.lede{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    margin:0 0 20px;
+    max-width:60ch;
+  }
+  p.lede strong{ color:var(--ink); font-weight:600; }
+
+  .compare-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin:0 0 24px;
+  }
+  .compare-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:16px 18px;
+  }
+  .compare-card.bad{ border-left:3px solid var(--accent); }
+  .compare-card.good{ border-left:3px solid var(--resolved); }
+  .compare-card .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .compare-card strong{
+    display:block;
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:22px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .compare-card p{
+    margin:0;
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  footer{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:560px){
+    .compare-row{ grid-template-columns:1fr; }
+    .page{ padding:36px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <a class="back-link" href="workforce-attrition.html">&larr; Workforce Attrition Analytics</a>
+
+  <p class="eyebrow">Method &middot; People Analytics</p>
+  <h1>Why recall, not accuracy, was the metric that mattered</h1>
+
+  <p class="lede">A model that predicts "everyone stays" is 84% accurate — and catches nobody. Accuracy rewards being right about the majority; it says nothing about whether the model finds the people who actually leave. That mismatch is why <strong>recall</strong>, not accuracy, was the metric we optimized for.</p>
+
+  <div class="compare-row">
+    <div class="compare-card bad">
+      <span class="k">"Everyone stays" baseline</span>
+      <strong>84% accurate &middot; 0% recall</strong>
+      <p>Technically hard to beat on accuracy. Catches zero leavers. Useless in practice.</p>
+    </div>
+    <div class="compare-card good">
+      <span class="k">Logistic regression</span>
+      <strong>75.2% accurate &middot; 61.7% recall</strong>
+      <p>Lower accuracy, but catches 6 in 10 people who actually leave. The right trade.</p>
+    </div>
+  </div>
+
+  <p class="lede">A false alarm costs a quiet check-in. A missed resignation costs a full replacement cycle — 50&ndash;200% of salary, per SHRM. That cost asymmetry is why a lower-precision, higher-recall model is the right trade, not a weaker one.</p>
+
+  <p class="lede">The 0.5 probability threshold used to flag someone as "at risk" is a dial HR can move — raise it to flag fewer people, lower it to catch more — not a fixed scientific result. And because the 294 test employees were held out entirely from training, in the same 16.1% attrition mix as the full dataset, this performance isn't inflated by an easier test set.</p>
+
+  <footer>Uma Ramanathan &middot; Senior Consultant, Data &amp; Analytics</footer>
+
+</div>
+</body>
+</html>

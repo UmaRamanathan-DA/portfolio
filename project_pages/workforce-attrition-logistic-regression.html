@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logistic Regression — Workforce Attrition Analytics</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{
+    max-width:680px;
+    margin:0 auto;
+    padding:48px 28px 72px;
+  }
+
+  a.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:0 0 28px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-decoration:none;
+  }
+  a.back-link:hover,
+  a.back-link:focus-visible{ color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 33px);
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    text-wrap:balance;
+  }
+
+  p.lede{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+    max-width:60ch;
+  }
+  p.lede strong{ color:var(--ink); font-weight:600; }
+
+  .fact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 24px;
+    margin:0 0 26px;
+    padding:16px 18px;
+    background:var(--surface);
+    border:1px solid var(--line);
+  }
+  .fact-row div{ font-size:13px; }
+  .fact-row span.k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .fact-row span.v{ color:var(--ink); font-weight:600; }
+
+  .metric-row{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:12px;
+    margin:0 0 22px;
+  }
+  .metric{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-top:3px solid var(--accent);
+    padding:14px 14px 16px;
+  }
+  .metric .k{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .metric .v{
+    display:block;
+    margin:4px 0 6px;
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:22px;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .metric p{
+    margin:0;
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+
+  footer{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:560px){
+    .metric-row{ grid-template-columns:1fr 1fr; }
+    .page{ padding:36px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <a class="back-link" href="workforce-attrition.html">&larr; Workforce Attrition Analytics</a>
+
+  <p class="eyebrow">Model &middot; People Analytics</p>
+  <h1>Class-weighted logistic regression, chosen over a random forest</h1>
+
+  <div class="fact-row">
+    <div><span class="k">Dataset</span><span class="v">IBM HR Analytics Employee Attrition (Kaggle)</span></div>
+    <div><span class="k">Employees</span><span class="v">1,470 &middot; 16.1% attrition</span></div>
+    <div><span class="k">Split</span><span class="v">80/20 stratified &middot; 294 held out</span></div>
+  </div>
+
+  <p class="lede">Both a class-weighted logistic regression and a random forest were trained on the same 80/20 stratified split, which kept the dataset's 16.1% attrition rate consistent in both the training data and the 294 held-out test employees. <strong>Logistic regression is the model we shipped</strong> — it's explainable to HR without a data science background, and it catches more of the people who actually leave.</p>
+
+  <div class="metric-row">
+    <div class="metric">
+      <span class="k">AUC</span>
+      <span class="v">0.798</span>
+      <p>Ranks at-risk employees well above chance</p>
+    </div>
+    <div class="metric">
+      <span class="k">Recall</span>
+      <span class="v">61.7%</span>
+      <p>Share of actual leavers correctly flagged — the metric we optimized for</p>
+    </div>
+    <div class="metric">
+      <span class="k">Accuracy</span>
+      <span class="v">75.2%</span>
+      <p>Below the 84% "everyone stays" baseline — expected, and the right trade</p>
+    </div>
+    <div class="metric">
+      <span class="k">Precision</span>
+      <span class="v">34.5%</span>
+      <p>About 1 in 3 flags is a real leaver</p>
+    </div>
+  </div>
+
+  <p class="lede">Random forest scored higher on raw accuracy (83.3%) but recalled only 38.3% of leavers — it would have missed 6 in 10 people who actually left. Logistic regression trades some accuracy for the ability to actually catch them, and its coefficients are simple enough to explain to HR in a sentence, not a black box.</p>
+
+  <footer>Uma Ramanathan &middot; Senior Consultant, Data &amp; Analytics</footer>
+
+</div>
+</body>
+</html>
