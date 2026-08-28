@@ -214,6 +214,9 @@
     grid-template-columns:1fr 1fr;
     gap:8px;
   }
+  .exhibit-images.cols-1{
+    grid-template-columns:1fr;
+  }
   .exhibit-images.cols-3{
     grid-template-columns:1fr 1fr 1fr;
   }
@@ -417,6 +420,7 @@
     .friction-grid{ grid-template-columns:1fr; }
     ul.changes{ grid-template-columns:1fr; }
     .exhibit-images{ grid-template-columns:1fr; }
+    .exhibit-images.cols-1{ grid-template-columns:1fr; }
     .exhibit-images.cols-3{ grid-template-columns:1fr; }
     .stat-strip{ grid-template-columns:1fr; }
     .page{ padding:40px 20px 56px; }
@@ -493,18 +497,22 @@
       <li><strong>Validated the tiers against real outcomes</strong><span>Because the scored applicants are closed historical loans, I could check whether the recommendation tiers actually track repayment &mdash; and they do.</span></li>
     </ul>
     <figure class="exhibit">
-      <div class="exhibit-images">
-        <img src="../images/loantap/lovable%20prototype/loan%20application%20prototype.png" alt="Loan application prototype interface" data-gallery="all" data-index="0">
-        <img src="../images/loantap/feature-importance.png" alt="Feature importance analysis from the risk model" data-gallery="all" data-index="1">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/underwriter%20workbench.png" alt="Underwriter Workbench with a selected case, risk score, policy recommendation, and score drivers" data-gallery="all" data-index="0">
       </div>
-      <figcaption>The analyst-facing UX prototype alongside the feature-importance analysis behind the scoring model.</figcaption>
+      <figcaption>The working underwriting console: pick a case from the queue, see the risk score, the drivers behind it, and a policy recommendation &mdash; not a UI mock on placeholder numbers.</figcaption>
     </figure>
     <figure class="exhibit">
-      <div class="exhibit-images">
-        <img src="../images/loantap/lovable%20prototype/decision%20explained.png" alt="Explainability screen showing the top factors behind a risk score" data-gallery="all" data-index="2">
-        <img src="../images/loantap/lovable%20prototype/application%20approved.png" alt="Application approved screen with the recommendation shown" data-gallery="all" data-index="3">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/ub2.png" alt="AI case summary and underwriter decision controls for the same loan" data-gallery="all" data-index="1">
       </div>
-      <figcaption>The reasoning behind a score, and the recommendation it produces — not a black-box number.</figcaption>
+      <figcaption>Same case: an AI summary the underwriter can accept or override, with Approve / Escalate / Decline on the same screen.</figcaption>
+    </figure>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard2.png" alt="Loan explorer table of scored applicants with plain-English reasoning and policy action" data-gallery="all" data-index="2">
+      </div>
+      <figcaption>A scored queue with the reasoning on every row &mdash; risk score, tier, and policy action, filterable by the analyst.</figcaption>
     </figure>
   </section>
 
@@ -531,6 +539,12 @@
         <div class="raw">APPROVE &rarr; APPROVE WITH CONDITIONS &rarr; REVIEW MANUAL &rarr; REJECT</div>
       </div>
     </div>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard7.png" alt="Analyst panel showing logistic regression, 77% accuracy, 0.80 ROC AUC, and train/validation split" data-gallery="all" data-index="3">
+      </div>
+      <figcaption>The same accuracy and AUC, shown in the analyst panel &mdash; with the calibration caveat that keeps the risk tiers percentile-based rather than fixed probability cutoffs.</figcaption>
+    </figure>
   </section>
 
   <section>
@@ -553,6 +567,18 @@
         <div class="raw">Derived from the model's own coefficients, shown per applicant in the console</div>
       </div>
     </div>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard1.png" alt="Credit Portfolio Analytics overview with 396,030 loans and a four-tier risk mix" data-gallery="all" data-index="4">
+      </div>
+      <figcaption>Across the full 396k book, historical default rate climbs from 6.9% (Low) to 45.3% (Very High) &mdash; a clean, monotonic climb across tiers.</figcaption>
+    </figure>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard3.png" alt="Low-risk and very-high-risk loan examples side by side with underwriter-style reasoning" data-gallery="all" data-index="5">
+      </div>
+      <figcaption>Concrete cases at both ends of the book &mdash; including one Very High-risk loan that still paid in full, a reminder that the score sets probabilities, not certainties.</figcaption>
+    </figure>
   </section>
 
   <section>
@@ -569,12 +595,22 @@
     <h2 class="label">Key insights from the data</h2>
     <p class="insight-text">Analysis of the ~396k-record training set showed debt consolidation loans comprise a large share of applications, with interest rate and credit grade among the strongest default predictors. Borrowers with verified income, individual (non-joint) applications, and 36-month terms tended to show better repayment performance &mdash; patterns reflected in the engineered feature set.</p>
     <figure class="exhibit">
-      <div class="exhibit-images cols-3">
-        <img src="../images/loantap/titles.png" alt="Distribution of loan purpose titles, split by fully paid vs charged off" data-gallery="all" data-index="4">
-        <img src="../images/loantap/predictors-target.png" alt="Repayment outcomes by loan term, income verification, and application type" data-gallery="all" data-index="5">
-        <img src="../images/loantap/predictors-target-3.png" alt="Repayment outcomes by loan grade, sub-grade, and employment length" data-gallery="all" data-index="6">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard4.png" alt="Default rate by LoanTap grade, loan purpose, home ownership, and loan term" data-gallery="all" data-index="6">
       </div>
-      <figcaption>Debt consolidation dominates loan purpose; term, verification, and application type separate repayment outcomes; credit grade tracks cleanly with default risk.</figcaption>
+      <figcaption>Default rate sliced four ways: grade, purpose, home ownership, and term. 60-month loans default at roughly double the rate of 36-month loans.</figcaption>
+    </figure>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard6.png" alt="Default rate over time and the model coefficients that push risk up or down" data-gallery="all" data-index="7">
+      </div>
+      <figcaption>What the model itself says is driving risk: grade, DTI, and 60-month terms push it up; income, credit history, and employment tenure push it down.</figcaption>
+    </figure>
+    <figure class="exhibit">
+      <div class="exhibit-images cols-1">
+        <img src="../images/loantap/dashboard5.png" alt="All portfolio segments ranked by default rate, with rows above 25% flagged" data-gallery="all" data-index="8">
+      </div>
+      <figcaption>Every segment ranked &mdash; Grade G, F, E, 60-month terms, and small-business purpose sit above the 25% default-rate watch line.</figcaption>
     </figure>
   </section>
 
