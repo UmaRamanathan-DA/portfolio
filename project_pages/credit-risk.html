@@ -439,10 +439,9 @@
   <h1 class="headline">LoanTap-style consumer lending generates high application volume, but manual credit review is slow and inconsistent.</h1>
   <p class="methodology">Academic project (Scaler), Aug&ndash;Sep 2024, applied to LoanTap-style consumer lending data.</p>
   <p class="subhead">Analysts need a repeatable way to score new applicants against patterns learned from historical loan outcomes. <strong>I trained a logistic-regression risk model on historical loan outcomes, then built a derived dataset that scores every applicant and feeds a working underwriting console — risk score, repayment odds, and tiered recommendation, per applicant, not just a model demo.</strong></p>
-  <a class="proto-link" href="https://credit-clarity-flow.lovable.app/" target="_blank" rel="noopener">Analyst UX prototype</a>
-  <a class="proto-link" href="https://loantap-credit-risk-prediction-uma-ramanathan.streamlit.app/" target="_blank" rel="noopener">ML model dashboard</a>
-  <a class="proto-link" href="https://github.com/UmaRamanathan-DA/portfolio/tree/main/apps/credit-risk-staff-tool" target="_blank" rel="noopener">Underwriting console (source)</a>
-
+  <a class="proto-link" href="https://loantap-underwriter-workbench.netlify.app/" target="_blank" rel="noopener">View Credit Analytics Dashboard</a>
+  <a class="proto-link" href="https://loantap-underwriter-workbench.netlify.app/workbench/" target="_blank" rel="noopener">Underwriter Workbench</a>
+  
   <p class="methodology">The risk model is a functioning backend trained on ~396,000 historical loans. The Lovable UX above remains a clickable design mock; the underwriting console is a separate Flask app that runs on real model output &mdash; a derived dataset scores every applicant offline, and the console reads that, not a live model call.</p><div class="triad">
     <div>
       <span class="k">Who</span>
