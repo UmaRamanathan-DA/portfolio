@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { getStaticProduct } from "@/data/catalog";
-import { CART_COOKIE, CART_COOKIE_MAX_AGE } from "@/lib/constants";
+import { CART_COOKIE_MAX_AGE } from "@/lib/constants";
 
 const DEMO_CART_COOKIE = "ksd_demo_cart";
 
@@ -32,19 +32,11 @@ async function writeDemoCart(cart: DemoCart) {
 }
 
 export async function getDemoCartId() {
-  const cookieStore = await cookies();
-  let cartId = cookieStore.get(CART_COOKIE)?.value;
-  if (!cartId) {
-    cartId = `demo-${crypto.randomUUID()}`;
-    cookieStore.set(CART_COOKIE, cartId, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: CART_COOKIE_MAX_AGE,
-      path: "/",
-    });
-  }
-  return cartId;
+  // Demo mode has no database row to key by — cart contents live entirely in
+  // DEMO_CART_COOKIE, so this id is a display-only placeholder. It must never
+  // write a cookie, since this is called from plain page renders (not just
+  // Route Handlers/Server Actions), where Next.js forbids cookie mutation.
+  return "demo-cart";
 }
 
 export async function getDemoCartWithProducts() {

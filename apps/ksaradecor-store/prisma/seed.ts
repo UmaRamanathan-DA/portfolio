@@ -38,78 +38,8 @@ const catalog = {
         },
       ],
     },
-    {
-      slug: "crab",
-      name: "Crab Collection",
-      description: "Bold crab-themed bottles inspired by coastal life.",
-      heroImage: "/images/collections/crab-collection.png",
-      products: [
-        {
-          slug: "crab-red-claw",
-          name: "Red Claw Crab Bottle",
-          description: "Vibrant red crab on a recycled glass bottle.",
-          priceCents: 4200,
-          images: ["/images/collections/crab-red-claw.png"],
-          isSold: false,
-        },
-        {
-          slug: "crab-sandcastle",
-          name: "Sandcastle Crab Bottle",
-          description: "Beach-day crab scene painted by hand.",
-          priceCents: 4200,
-          images: ["/images/collections/crab-sandcastle.png"],
-          isSold: false,
-        },
-      ],
-    },
-    {
-      slug: "starfish",
-      name: "Starfish Collection",
-      description: "Soft pink starfish and ocean tones on upcycled glass.",
-      heroImage: "/images/collections/starfish-collection.png",
-      products: [
-        {
-          slug: "starfish-pink",
-          name: "Pink Starfish Bottle",
-          description: "Teal base with a pink starfish accent.",
-          priceCents: 4500,
-          images: ["/images/collections/starfish-pink.png"],
-          isSold: false,
-        },
-        {
-          slug: "starfish-coral",
-          name: "Starfish & Coral Bottle",
-          description: "Starfish paired with orange coral details.",
-          priceCents: 4500,
-          images: ["/images/collections/starfish-coral.png"],
-          isSold: true,
-        },
-      ],
-    },
-    {
-      slug: "fish",
-      name: "Fish & Coral Collection",
-      description: "Colourful fish, coral, and reef-inspired bottle art.",
-      heroImage: "/images/collections/fish-collection.png",
-      products: [
-        {
-          slug: "fish-yellow-stripe",
-          name: "Yellow Stripe Fish Bottle",
-          description: "Sunny yellow fish swimming through coral.",
-          priceCents: 4400,
-          images: ["/images/collections/fish-yellow-stripe.png"],
-          isSold: false,
-        },
-        {
-          slug: "fish-reef-garden",
-          name: "Reef Garden Bottle",
-          description: "A miniature reef garden painted with love.",
-          priceCents: 4600,
-          images: ["/images/collections/fish-reef-garden.png"],
-          isSold: false,
-        },
-      ],
-    },
+    // Add more collections here once new pieces are photographed —
+    // each product needs a real file under /public/images first.
   ],
 };
 

@@ -1,6 +1,7 @@
 export const BRAND = {
   name: "Ksara Decor",
-  tagline: "No more out of the box — think out of the bottle.",
+  tagline: "Through the Glass Artly",
+  subtitle: "Rescued bottles, hand-painted with marine life.",
 } as const;
 
 export const COLORS = {

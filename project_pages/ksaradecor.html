@@ -1,247 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <title>Ksara Decor</title>
-  <style>
-    :root {
-      --peach: #e6b8af;
-      --peach-light: #f2d4cc;
-      --charcoal: #2d2d2d;
-      --navy: #1a2b56;
-      --teal: #7bc8d4;
-      --white: #ffffff;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ksara Decor — Through the Glass Artly</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
     }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
 
-    * {
-      box-sizing: border-box;
-    }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: var(--peach);
-      color: var(--charcoal);
-      line-height: 1.6;
-    }
+  .page{ max-width:760px; margin:0 auto; padding:56px 28px 72px; }
 
-    header {
-      padding: 3rem 1.5rem 1.25rem;
-      text-align: center;
-    }
+  .top-links{ display:flex; flex-wrap:wrap; gap:10px; margin:0 0 28px; }
+  .top-link{
+    font-family:var(--font-mono); font-size:12px; text-decoration:none;
+    color:var(--ink-soft); border:1px solid var(--line); padding:8px 14px;
+  }
+  .top-link:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .top-link.accent{ background:var(--accent); color:var(--paper); border-color:var(--accent); }
+  .top-link.accent:hover{ background:var(--accent-ink); border-color:var(--accent-ink); }
 
-    header h1 {
-      font-size: clamp(2rem, 5vw, 2.75rem);
-      font-weight: 600;
-      margin: 0 0 0.35rem;
-      letter-spacing: 0.02em;
-      color: var(--charcoal);
-    }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin:0 0 18px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
 
-    header p {
-      margin: 0;
-      font-size: 0.95rem;
-      font-weight: 400;
-      color: var(--charcoal);
-      opacity: 0.85;
-    }
+  h1.headline{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px); line-height:1.22; letter-spacing:-0.01em;
+    margin:0 0 20px; text-wrap:balance; max-width:30ch;
+  }
+  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 16px; }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+  p.note{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
+    max-width:62ch; line-height:1.5; margin:0 0 28px;
+  }
 
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
+  section{ margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
+  h2.label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; font-weight:500; }
 
-    .intro {
-      margin-bottom: 2rem;
-    }
+  .change-layout{ display:grid; grid-template-columns:1.3fr 0.9fr; gap:36px; align-items:start; }
+  ul.changes{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  ul.changes li{ padding-left:16px; border-left:2px solid var(--resolved); }
+  ul.changes strong{ display:block; font-size:15.5px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+  ul.changes span{ font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
 
-    .intro p {
-      margin: 0 0 0.75rem;
-      font-size: 1rem;
-    }
+  .exhibit{ background:var(--surface); border:1px solid var(--line); padding:12px 12px 14px; }
+  .exhibit-images{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .exhibit-images img{ width:100%; display:block; border:1px solid var(--line); cursor:zoom-in; }
+  .exhibit-images button{ appearance:none; background:none; border:0; padding:0; margin:0; cursor:zoom-in; }
+  .exhibit-images button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .exhibit figcaption{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); line-height:1.4; }
 
-    .intro em {
-      display: block;
-      margin-top: 0.5rem;
-      font-style: italic;
-      opacity: 0.9;
-    }
+  .proto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .proto{ margin:0; background:var(--surface); border:1px solid var(--line); }
+  .proto video{
+    display:block; width:100%; aspect-ratio:1920/1248; background:var(--surface);
+    object-fit:cover; object-position:center;
+  }
+  .proto figcaption{ padding:10px 14px 12px; font-size:12.5px; color:var(--ink-soft); line-height:1.4; }
 
-    .hero-img {
-      width: 100%;
-      border-radius: 8px;
-      display: block;
-      margin-bottom: 2.5rem;
-    }
+  /* ---- ocean panel — matches the deep-ocean wave backdrop in the Figma prototype's
+         case-study frames, wrapped around the real webshop walkthrough videos ---- */
+  .ocean-panel{ position:relative; background:#23262b; overflow:hidden; padding:32px 20px 28px; }
+  .ocean-wave{ position:absolute; left:0; bottom:0; width:100%; height:58%; z-index:0; display:block; }
+  .ocean-content{ position:relative; z-index:1; }
+  .ocean-label{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(255,255,255,0.78); margin:0 0 20px;
+  }
+  .ocean-panel .proto{ background:#fffdf9; border-color:rgba(0,0,0,0.1); }
+  .ocean-panel .proto figcaption{ color:#5a5f66; background:#fffdf9; }
+  .ocean-panel .proto video{ background:#fffdf9; }
 
-    h2 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 0 0 1rem;
-      color: var(--navy);
-    }
+  .artifact-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
+  .artifact-card{ display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--line); text-decoration:none; color:inherit; overflow:hidden; cursor:zoom-in; transition:border-color 0.15s ease; }
+  .artifact-card:hover, .artifact-card:focus-visible{ border-color:var(--accent-ink); outline:none; }
+  .artifact-card img{ width:100%; height:128px; object-fit:cover; object-position:top center; display:block; background:var(--paper); border-bottom:1px solid var(--line); }
+  .artifact-card .k{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink); padding:12px 12px 4px; font-weight:500; }
+  .artifact-card .n{ font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); padding:0 12px 12px; }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
+  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:46ch; text-wrap:balance; }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      display: block;
-    }
+  footer{ margin-top:44px; padding-top:24px; border-top:1px solid var(--line); }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
 
-    .prototype-videos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
+  @media (max-width:620px){
+    .change-layout{ grid-template-columns:1fr; }
+    .exhibit-images{ grid-template-columns:1fr; }
+    .proto-grid{ grid-template-columns:1fr; }
+    .artifact-grid{ grid-template-columns:1fr 1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
 
-    .prototype-video-container {
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--white);
-    }
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
 
-    .prototype-video-container figcaption {
-      padding: 0.5rem 0.75rem;
-      font-size: 0.8rem;
-      color: var(--charcoal);
-      opacity: 0.85;
-      background: var(--white);
-    }
-
-    .prototype-video-container video {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .figma-btn-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-
-    .figma-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.65rem 1.4rem;
-      background: var(--charcoal);
-      color: var(--white);
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 999px;
-      transition: background 0.2s;
-    }
-
-    .figma-btn:hover {
-      background: var(--navy);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-size: 0.8rem;
-      opacity: 0.7;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 2rem 1rem 1.5rem;
-      }
-
-      main {
-        padding: 0 1rem 2rem;
-      }
-
-      .prototype-videos {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  /* ---- lightbox ---- */
+  .lightbox{ position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; background:rgba(17,26,32,0.94); padding:28px 64px 56px; }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{ max-width:min(96vw, 1400px); max-height:calc(100vh - 96px); width:auto; height:auto; object-fit:contain; box-shadow:0 18px 48px rgba(0,0,0,0.45); background:var(--surface); }
+  .lightbox-caption{ position:absolute; left:0; right:0; bottom:16px; text-align:center; font-family:var(--font-mono); font-size:12px; color:#d5ddd8; padding:0 72px; }
+  .lightbox-close, .lightbox-nav{ position:absolute; appearance:none; background:transparent; border:1px solid rgba(238,241,238,0.28); color:#eef1ee; cursor:pointer; font-family:var(--font-mono); }
+  .lightbox-close{ top:16px; right:16px; width:40px; height:40px; font-size:22px; line-height:1; }
+  .lightbox-nav{ top:50%; transform:translateY(-50%); width:40px; height:40px; font-size:22px; }
+  .lightbox-nav.prev{ left:16px; } .lightbox-nav.next{ right:16px; }
+  .lightbox-close:hover, .lightbox-nav:hover, .lightbox-close:focus-visible, .lightbox-nav:focus-visible{ border-color:#dd9a4d; color:#f0b878; outline:none; }
+  .lightbox-nav[hidden]{ display:none; }
+  body.lightbox-open{ overflow:hidden; }
+  @media (max-width:620px){
+    .lightbox{ padding:56px 12px 52px; }
+    .lightbox-nav.prev{ left:8px; } .lightbox-nav.next{ right:8px; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Ksara Decor</h1>
-    <p>Business Ideation · Webshop · Hand-painted Bottle Art</p>
-  </header>
+<div class="page">
 
-  <div class="figma-btn-wrap">
-    <a
-      href="https://www.figma.com/proto/4StAf8ZsPAfoxRXOTUgBvb/MyWork?node-id=225-8683&starting-point-node-id=225%3A7298"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="figma-btn">
-      Open prototype in Figma ↗
-    </a>
-    <a
-      href="http://localhost:3000"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="figma-btn"
-      style="background: var(--navy);">
-      Visit Next.js shop ↗
-    </a>
+  <div class="top-links">
+    <a class="top-link accent" href="https://www.figma.com/proto/4StAf8ZsPAfoxRXOTUgBvb/MyWork?node-id=225-8683&starting-point-node-id=225%3A7298" target="_blank" rel="noopener">Open the Figma prototype &rarr;</a>
+    <a class="top-link" href="https://www.instagram.com/ksaradecor?igsi=MmdlamZ5bHphaWdx" target="_blank" rel="noopener">The real business, on Instagram</a>
   </div>
 
+  <p class="eyebrow">Personal Project &middot; A Hobby, Becoming a Business</p>
+  <h1 class="headline">Through the Glass Artly: rescued bottles, hand-painted with marine life.</h1>
+  <p class="subhead">Ksara Decor rescues glass bottles and hand-paints each one into a marine-themed piece — a small, ongoing act of sustainability before it's anything else. It's shaped to grow the same way: as gifts, and as a corporate social responsibility option for businesses sourcing client, staff, or event gifts that actually say something about reducing waste, not just a logo on a mug. Every bottle carries an ocean-conservation thread through its art, so what someone takes home isn't a product so much as a talking piece — a souvenir with a story attached to it.</p>
+  <p class="note">Personal project &middot; my own hobby, still taking shape into a small business &middot; webshop concept &amp; prototype.</p>
 
-  <main>
-    <div class="intro">
-      <p>
-        Ksaradecor upcycles glass bottles with hand-painted marine-inspired art — fun, one-of-a-kind pieces painted with love. A hobby-turned-business ideation for a webshop to sell these bottles online.
-      </p>
-      <em>No more out of the box — think out of the bottle.</em>
+  <section>
+    <p class="tagline">The most memorable corporate gift that preserves the planet.</p>
+  </section>
+
+  <section id="prototype">
+    <h2 class="label">Live Prototype</h2>
+    <div class="ocean-panel">
+      <svg class="ocean-wave" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="oceanGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0a1454"/>
+            <stop offset="100%" stop-color="#2451ff"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,120 C200,40 400,200 600,110 C800,20 1000,170 1200,90 L1200,260 L0,260 Z" fill="url(#oceanGradient)"/>
+      </svg>
+      <div class="ocean-content">
+        <p class="ocean-label">Ksaradecor &middot; Through the Glass Artly</p>
+        <div class="proto-grid">
+          <figure class="proto">
+            <video controls preload="metadata" playsinline poster="../images/KsaraDecor/ksd_thumbnail.png">
+              <source src="../images/KsaraDecor/ksaradecor.mov" type="video/quicktime">
+              Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor.mov">Download it</a>.
+            </video>
+            <figcaption>Webshop walkthrough — homepage to a collection</figcaption>
+          </figure>
+          <figure class="proto">
+            <video controls preload="metadata" playsinline poster="../images/KsaraDecor/scroller.png">
+              <source src="../images/KsaraDecor/ksaradecor_collections.mov" type="video/quicktime">
+              Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor_collections.mov">Download it</a>.
+            </video>
+            <figcaption>Collections browse — filtering by theme</figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <img
-      class="hero-img"
-      src="../images/KsaraDecor/bottlepaint-2.png"
-      alt="Ksara Decor — hand-painted marine bottles and webshop concept with vibrant fun themes"
-    />
-
-    <h2>Bottle Art</h2>
-    <div class="gallery">
-      <img src="../images/KsaraDecor/bottle_Walrus.png" alt="Hand-painted walrus bottle holding a cup of tea" />
-      <img src="../images/KsaraDecor/bottle_Walrus-1.png" alt="Walrus bottle art — This is not my cup of tea" />
+  <section>
+    <h2 class="label">A closer look</h2>
+    <div class="artifact-grid">
+      <a class="artifact-card" href="../images/KsaraDecor/bottlepaint-2.png" data-gallery="brand">
+        <img src="../images/KsaraDecor/bottlepaint-2.png" alt="Ksara Decor brand mood board — logo, tagline, and homepage concept">
+        <span class="k">Brand &amp; Concept</span>
+        <span class="n">1 board</span>
+      </a>
+      <a class="artifact-card" href="../images/KsaraDecor/bottle_Walrus.png" data-gallery="bottles">
+        <img src="../images/KsaraDecor/bottle_Walrus.png" alt="Hand-painted walrus bottle holding a teacup">
+        <span class="k">Bottle Art</span>
+        <span class="n">2 pieces</span>
+      </a>
+      <a class="artifact-card" href="../images/KsaraDecor/ksd_thumbnail.png" data-gallery="webshop">
+        <img src="../images/KsaraDecor/ksd_thumbnail.png" alt="Webshop homepage and collection page">
+        <span class="k">Webshop</span>
+        <span class="n">2 screens</span>
+      </a>
+      <a class="artifact-card" href="#prototype" style="cursor:pointer;">
+        <img src="../images/KsaraDecor/ksd_thumbnail.png" alt="Prototype walkthrough videos">
+        <span class="k">Prototype</span>
+        <span class="n">2 videos</span>
+      </a>
     </div>
-
-    <h2>Prototype</h2>
-    <div class="prototype-videos">
-      <figure class="prototype-video-container">
-        <video controls preload="metadata" playsinline poster="../images/KsaraDecor/ksd_thumbnail.png" title="Ksara Decor webshop prototype walkthrough">
-          <source src="../images/KsaraDecor/ksaradecor.mov" type="video/quicktime">
-          Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor.mov">Download</a>.
-        </video>
-        <figcaption>Webshop walkthrough</figcaption>
-      </figure>
-      <figure class="prototype-video-container">
-        <video controls preload="metadata" playsinline poster="../images/KsaraDecor/scroller.png" title="Ksara Decor collections browse">
-          <source src="../images/KsaraDecor/ksaradecor_collections.mov" type="video/quicktime">
-          Your browser does not support this video. <a href="../images/KsaraDecor/ksaradecor_collections.mov">Download</a>.
-        </video>
-        <figcaption>Collections browse</figcaption>
-      </figure>
-    </div>
-  </main>
+  </section>
 
   <footer>
-    Ksara Decor · Business Ideation · Webshop Prototype
+    <div class="credit">Uma Ramanathan &middot; a hobby, in motion</div>
   </footer>
 
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full screen image">
+  <button type="button" class="lightbox-close" aria-label="Close full screen">&times;</button>
+  <button type="button" class="lightbox-nav prev" aria-label="Previous image">&#8249;</button>
+  <img alt="">
+  <button type="button" class="lightbox-nav next" aria-label="Next image">&#8250;</button>
+  <p class="lightbox-caption"></p>
+</div>
+
+<script>
+(function () {
+  var base = "../images/KsaraDecor/";
+  var galleries = {
+    brand: [
+      { src: base + "bottlepaint-2.png", caption: "Brand mood board — logo, tagline, intro copy, and homepage concept" }
+    ],
+    bottles: [
+      { src: base + "bottle_Walrus.png", caption: "Hand-painted walrus bottle, holding a teacup" },
+      { src: base + "bottle_Walrus-1.png", caption: "Companion piece — \"This is not my cup of tea!!\"" }
+    ],
+    webshop: [
+      { src: base + "ksd_thumbnail.png", caption: "Homepage — Crab Bottles collection, with a sold-out hero bottle" },
+      { src: base + "scroller.png", caption: "Collection page — Theme Bottles filter, Pole Club listing with price" }
+    ]
+  };
+
+  var box = document.getElementById("lightbox");
+  var img = box.querySelector("img");
+  var caption = box.querySelector(".lightbox-caption");
+  var prevBtn = box.querySelector(".prev");
+  var nextBtn = box.querySelector(".next");
+  var closeBtn = box.querySelector(".lightbox-close");
+  var items = [];
+  var index = 0;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var item = items[index];
+    img.src = item.src;
+    img.alt = item.caption;
+    caption.textContent = items.length > 1
+      ? (index + 1) + " / " + items.length + "  ·  " + item.caption
+      : item.caption;
+    var multi = items.length > 1;
+    prevBtn.hidden = !multi;
+    nextBtn.hidden = !multi;
+  }
+
+  function open(name, start) {
+    items = galleries[name] || [];
+    if (!items.length) return;
+    show(start || 0);
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.removeAttribute("src");
+  }
+
+  document.querySelectorAll("[data-gallery]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      var name = el.getAttribute("data-gallery");
+      e.preventDefault();
+      var start = parseInt(el.getAttribute("data-index") || "0", 10);
+      open(name, start);
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  prevBtn.addEventListener("click", function () { show(index - 1); });
+  nextBtn.addEventListener("click", function () { show(index + 1); });
+  box.addEventListener("click", function (e) { if (e.target === box) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>
 </body>

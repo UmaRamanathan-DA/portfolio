@@ -1,643 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pet Me</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetMe — Designed for What Happens After You Adopt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    /*────────────────────────────────────────────────────────────────────────
-      Variables & Reset
-    ─────────────────────────────────────────────────────────────────────────*/
-    :root {
-      --font-body: 'Roboto', sans-serif;
-      --font-heading: 'Anton', sans-serif;
-
-      --bg-light: #f0f5f9;
-      --bg-dark:  #1a1f23;
-
-      --accent1: #ff6b6e;
-      --accent2: #ffd2a5;
-
-      --text-light: #ffffff;
-      --text-dark:  #24292e;
-
-      --transition: 0.3s ease-in-out;
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
     }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
 
-    body {
-      font-family: var(--font-body);
-      background: var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.5;
-      overflow-x: hidden;
-      transition: background var(--transition), color var(--transition);
-    }
+  .page{ max-width:760px; margin:0 auto; padding:56px 28px 72px; }
 
-    h1, h2 {
-      font-family: var(--font-heading);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent1);
-      margin-bottom: 1rem;
-    }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin:0 0 18px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
 
-    p {
-      margin-bottom: 1rem;
-    }
+  h1.headline{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px); line-height:1.22; letter-spacing:-0.01em;
+    margin:0 0 20px; text-wrap:balance; max-width:30ch;
+  }
+  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 16px; }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+  p.note{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
+    max-width:62ch; line-height:1.5; margin:0 0 28px;
+  }
 
-    a {
-      text-decoration: none;
-    }
+  .triad{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; padding-top:22px; border-top:1px solid var(--line); }
+  .triad .k{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .triad .v{ display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:4px; line-height:1.35; }
+  .triad .d{ font-size:13px; color:var(--ink-soft); line-height:1.5; }
 
-    /*────────────────────────────────────────────────────────────────────────
-      Dark Mode Toggle
-    ─────────────────────────────────────────────────────────────────────────*/
-    .toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      width: 42px;
-      height: 22px;
-      background: var(--accent1);
-      border-radius: 12px;
-      cursor: pointer;
-      z-index: 10;
-    }
+  section{ margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
+  h2.label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; font-weight:500; }
 
-    .toggle::before {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border-radius: 50%;
-      transition: left var(--transition);
-    }
+  .friction-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .friction-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:16px 18px; }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{ display:block; font-family:var(--font-display); font-size:17px; font-weight:500; color:var(--ink); margin-bottom:6px; }
 
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-light);
-    }
+  .problem-list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .problem-list li{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:10px 14px; font-size:14.5px; font-weight:500; color:var(--ink); }
 
-    body.dark .toggle::before {
-      left: 22px;
-    }
+  .change-layout{ display:grid; grid-template-columns:1.3fr 0.9fr; gap:36px; align-items:start; }
+  ul.changes{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  ul.changes li{ padding-left:16px; border-left:2px solid var(--resolved); }
+  ul.changes strong{ display:block; font-size:15.5px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+  ul.changes span{ font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
 
-    /*────────────────────────────────────────────────────────────────────────
-      Hero with Animated Gradient
-    ─────────────────────────────────────────────────────────────────────────*/
-    header.hero {
-      height: 75vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      background-size: 300% 300%;
-      animation: gradientShift 8s infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-      position: relative;
-      overflow: hidden;
-    }
+  .exhibit{ background:var(--surface); border:1px solid var(--line); padding:12px 12px 14px; }
+  .exhibit-images{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .exhibit-images img{ width:100%; display:block; border:1px solid var(--line); cursor:zoom-in; }
+  .exhibit-images button{ appearance:none; background:none; border:0; padding:0; margin:0; cursor:zoom-in; }
+  .exhibit-images button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .exhibit figcaption{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); line-height:1.4; }
 
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  .artifact-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
+  .artifact-card{ display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--line); text-decoration:none; color:inherit; overflow:hidden; cursor:zoom-in; transition:border-color 0.15s ease; }
+  .artifact-card:hover, .artifact-card:focus-visible{ border-color:var(--accent-ink); outline:none; }
+  .artifact-card img{ width:100%; height:128px; object-fit:cover; object-position:top center; display:block; background:var(--paper); border-bottom:1px solid var(--line); }
+  .artifact-card .k{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink); padding:12px 12px 4px; font-weight:500; }
+  .artifact-card .n{ font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); padding:0 12px 12px; }
 
-    header.hero h1 {
-      font-size: 4rem;
-      color: var(--text-light);
-      animation: popIn 0.8s ease-out both;
-    }
+  .stat-strip{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .stat{ background:var(--surface); padding:20px 18px 18px; }
+  .stat .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:clamp(22px, 3.4vw, 28px); font-weight:500; color:var(--resolved); letter-spacing:-0.01em; }
+  .stat .desc{ margin-top:6px; font-size:13.5px; color:var(--ink); font-weight:500; line-height:1.4; }
+  .stat .raw{ margin-top:8px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+  .impact-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .impact-list li{ padding-left:16px; border-left:2px solid var(--resolved); font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
 
-    header.hero p {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      opacity: 0;
-      animation: fadeIn 1.2s 0.5s ease-out forwards;
-    }
+  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:46ch; text-wrap:balance; }
 
-    @keyframes popIn {
-      0%   { transform: scale(0.3); opacity: 0; }
-      80%  { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); }
-    }
+  footer{ margin-top:44px; padding-top:24px; border-top:1px solid var(--line); }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    .change-layout{ grid-template-columns:1fr; }
+    .exhibit-images{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .artifact-grid{ grid-template-columns:1fr 1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
 
-    /*────────────────────────────────────────────────────────────────────────
-      Section Containers & Titles
-    ─────────────────────────────────────────────────────────────────────────*/
-    section {
-      position: relative;
-      padding: 5rem 1rem;
-      max-width: 900px;
-      margin: -4rem auto 4rem;
-    }
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
 
-    section:nth-of-type(even) {
-      background: #fff;
-      clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
-    }
-
-    section h2 {
-      font-size: 2.4rem;
-    }
-
-    /*────────────────────────────────────────────────────────────────────────
-      Cartoon Decoratives
-    ─────────────────────────────────────────────────────────────────────────*/
-    .cartoon {
-      position: absolute;
-      width: 80px;
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .cartoon.dog   { top: 12%;  left: 4%;  }
-    .cartoon.bird  { top: 18%;  right: 6%; }
-    .cartoon.cat   { bottom: 14%; right: 8%; }
-    .cartoon.fish  { bottom: 10%; left: 12%; }
-
-    /*────────────────────────────────────────────────────────────────────────
-      Overview Card (Straight)
-    ─────────────────────────────────────────────────────────────────────────*/
-    .overview {
-      
-      padding: 2rem;
-      background: transparent;
-      border-radius: 12px;
-      transition: transform var(--transition);
-    }
-
-    .overview:hover {
-      transform: scale(1.02);
-    }
-
-    .overview p {
-      font-weight: 400;
-    }
-
-    .overview p strong {
-      font-weight: 700;
-    }
-
-    /*────────────────────────────────────────────────────────────────────────
-      Feature List (Straight)
-    ─────────────────────────────────────────────────────────────────────────*/
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-
-    .features li {
-      list-style: none;
-      background: transparent;
-      padding: 1rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      font-weight: 500;
-      transition: transform var(--transition);
-    }
-
-    .features li:hover {
-      transform: scale(1.03);
-    }
-
-    .features li::before {
-      content: '🐾';
-      margin-right: 0.75rem;
-      font-size: 1.2rem;
-    }
-
-    /*────────────────────────────────────────────────────────────────────────
-      Straightforward Snap Gallery
-    ─────────────────────────────────────────────────────────────────────────*/
-    .snapshots {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5rem;
-      justify-content: center;
-      align-items: center;
-
-    }
-    .snapshots-1 {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5rem;
-      justify-content: center;
-      align-items: center;
-
-    }
-
-    .snapshots img {
-      height: 80%;
-      width: 40%;
-      border-radius: 0;
-      box-shadow: none;
-      object-fit:  cover;
-      transition: transform var(--transition);
-    }
-    .snapshots-1 img {
-      height: auto;
-      width: 100%;
-      border-radius: 0;
-      box-shadow: none;
-      object-fit:  cover;
-      transition: transform var(--transition);
-      justify-content: center;
-      align-items: center;
-    }
-    
-
-    .snapshots img:hover {
-      transform: scale(1.05);
-    }
-
-    /*────────────────────────────────────────────────────────────────────────
-      Prototype CTA
-    ─────────────────────────────────────────────────────────────────────────*/
-    .prototype-link {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      background: var(--accent2);
-      color: var(--accent1);
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .prototype-link:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    }
-
-    .hover-img img {
-    width: 100%;
-  height: auto;
-  transition: opacity 0.4s ease;
-}
-
-/* On hover, change the `src` visually using content swapping */
-.hover-img img:hover {
-  content: url("../images/PetMe/petme_thumbnail.png");
-}
-
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      font-size: 0.85rem;
-      color: var(--text-dark);
-    }
-
-    /*────────────────────────────────────────────────────────────────────────
-      Mobile Responsiveness
-    ─────────────────────────────────────────────────────────────────────────*/
-    
-    /* Tablet and smaller desktop */
-    @media (max-width: 1024px) {
-      header.hero h1 {
-        font-size: 3.5rem;
-      }
-      
-      header.hero p {
-        font-size: 1.1rem;
-      }
-      
-      section {
-        padding: 4rem 1rem;
-        margin: -3rem auto 3rem;
-      }
-      
-      section h2 {
-        font-size: 2.2rem;
-      }
-      
-      .snapshots {
-        gap: 3rem;
-      }
-      
-      .snapshots img {
-        width: 45%;
-      }
-    }
-
-    /* Large mobile devices */
-    @media (max-width: 768px) {
-      header.hero {
-        height: 60vh;
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      }
-      
-      header.hero h1 {
-        font-size: 3rem;
-        text-align: center;
-        padding: 0 1rem;
-      }
-      
-      header.hero p {
-        font-size: 1rem;
-        text-align: center;
-        padding: 0 1rem;
-      }
-      
-      section {
-        padding: 3rem 1rem;
-        margin: -2rem auto 2rem;
-      }
-      
-      section:nth-of-type(even) {
-        clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
-      }
-      
-      section h2 {
-        font-size: 2rem;
-        text-align: center;
-      }
-      
-      .overview {
-        padding: 1.5rem;
-        text-align: center;
-      }
-      
-      .features {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
-      
-      .features li {
-        padding: 0.75rem;
-        font-size: 0.95rem;
-      }
-      
-      .snapshots {
-        gap: 2rem;
-        flex-direction: column;
-      }
-      
-      .snapshots img {
-        width: 100%;
-        height: auto;
-        max-width: 400px;
-      }
-      
-      .snapshots-1 {
-        gap: 2rem;
-      }
-      
-      .snapshots-1 img {
-        max-width: 500px;
-      }
-      
-      .cartoon {
-        width: 60px;
-        opacity: 0.7;
-      }
-      
-      .prototype-link {
-        padding: 0.875rem 1.5rem;
-        font-size: 0.95rem;
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-        margin: 2rem auto 0;
-        display: block;
-      }
-      
-      footer {
-        padding: 2rem 1rem;
-        font-size: 0.8rem;
-      }
-    }
-
-    /* Small mobile devices */
-    @media (max-width: 480px) {
-      header.hero {
-        height: 50vh;
-        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-      }
-      
-      header.hero h1 {
-        font-size: 2.5rem;
-        letter-spacing: 1px;
-      }
-      
-      header.hero p {
-        font-size: 0.9rem;
-      }
-      
-      section {
-        padding: 2rem 0.75rem;
-        margin: -1.5rem auto 1.5rem;
-      }
-      
-      section h2 {
-        font-size: 1.8rem;
-        letter-spacing: 1px;
-      }
-      
-      .overview {
-        padding: 1rem;
-      }
-      
-      .overview p {
-        font-size: 0.95rem;
-      }
-      
-      .features li {
-        padding: 0.625rem;
-        font-size: 0.9rem;
-      }
-      
-      .features li::before {
-        font-size: 1rem;
-        margin-right: 0.5rem;
-      }
-      
-      .snapshots {
-        gap: 1.5rem;
-      }
-      
-      .snapshots-1 {
-        gap: 1.5rem;
-      }
-      
-      .cartoon {
-        width: 50px;
-        opacity: 0.6;
-      }
-      
-      .cartoon.dog   { top: 8%;  left: 2%;  }
-      .cartoon.bird  { top: 12%; right: 3%; }
-      .cartoon.cat   { bottom: 10%; right: 4%; }
-      .cartoon.fish  { bottom: 8%;  left: 8%;  }
-      
-      .prototype-link {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.9rem;
-        max-width: 280px;
-      }
-      
-      footer {
-        padding: 1.5rem 0.75rem;
-        font-size: 0.75rem;
-      }
-    }
-
-    /* Extra small devices */
-    @media (max-width: 360px) {
-      header.hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      header.hero p {
-        font-size: 0.85rem;
-      }
-      
-      section h2 {
-        font-size: 1.6rem;
-      }
-      
-      .overview p {
-        font-size: 0.9rem;
-      }
-      
-      .features li {
-        font-size: 0.85rem;
-      }
-      
-      .cartoon {
-        width: 40px;
-      }
-    }
-
-    /* Landscape orientation adjustments */
-    @media (max-height: 500px) and (orientation: landscape) {
-      header.hero {
-        height: 100vh;
-      }
-      
-      header.hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      header.hero p {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+  /* ---- lightbox ---- */
+  .lightbox{ position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; background:rgba(17,26,32,0.94); padding:28px 64px 56px; }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{ max-width:min(96vw, 1400px); max-height:calc(100vh - 96px); width:auto; height:auto; object-fit:contain; box-shadow:0 18px 48px rgba(0,0,0,0.45); background:var(--surface); }
+  .lightbox-caption{ position:absolute; left:0; right:0; bottom:16px; text-align:center; font-family:var(--font-mono); font-size:12px; color:#d5ddd8; padding:0 72px; }
+  .lightbox-close, .lightbox-nav{ position:absolute; appearance:none; background:transparent; border:1px solid rgba(238,241,238,0.28); color:#eef1ee; cursor:pointer; font-family:var(--font-mono); }
+  .lightbox-close{ top:16px; right:16px; width:40px; height:40px; font-size:22px; line-height:1; }
+  .lightbox-nav{ top:50%; transform:translateY(-50%); width:40px; height:40px; font-size:22px; }
+  .lightbox-nav.prev{ left:16px; } .lightbox-nav.next{ right:16px; }
+  .lightbox-close:hover, .lightbox-nav:hover, .lightbox-close:focus-visible, .lightbox-nav:focus-visible{ border-color:#dd9a4d; color:#f0b878; outline:none; }
+  .lightbox-nav[hidden]{ display:none; }
+  body.lightbox-open{ overflow:hidden; }
+  @media (max-width:620px){
+    .lightbox{ padding:56px 12px 52px; }
+    .lightbox-nav.prev{ left:8px; } .lightbox-nav.next{ right:8px; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="toggle" id="modeToggle" title="Toggle dark mode"></div>
 
-  <header class="hero">
-    <h1>Pet Me</h1>
-    
-    <p class="tagline">Personal Project · Product Ideation · Hybrid Mobile UX-UI</p>
+<div class="page">
 
-  </header>
-  <section><img style="width: 40%;" class="cartoon cat" src="../images/PetMe/rabbit.svg" alt="" /></section>
+  <p class="eyebrow">Personal Project &middot; Mobile UX &middot; Figma Practice &middot; Rapid Prototyping</p>
+  <h1 class="headline">Finding a pet takes one swipe. PetMe helps you keep it alive and well with best practices on feeding, grooming and vaccinations.</h1>
+  <p class="subhead">Pet parenting is scattered by design: adoption listings live on one site, grooming gets booked by phone, and feeding, walks, and vaccinations get tracked nowhere but memory. <strong>I designed PetMe to unify discovery, a full daily care schedule, and a real profile per pet into one app</strong> — from the adoption swipe to the vaccination reminder.</p>
+  <p class="note">Personal project &middot; Figma practice &middot; UI concept exploration for pet adoption &amp; care management.</p>
+
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">Pet parents, before and after</span>
+      <span class="d">People adopting a pet, and people already keeping one alive and well.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">One app, not five systems</span>
+      <span class="d">Discovery, a daily care schedule, and a pet profile, all in one place.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">A missed reminder isn't minor</span>
+      <span class="d">A forgotten feeding is an inconvenience. A forgotten vaccination is a vet bill.</span>
+    </div>
+  </div>
 
   <section>
-    <div class="snapshots-1" style="width: 90%; justify-content: center; place-content: center;">
-    <img  src="../images/PetMe/petme_thumbnail_1.png" 
-           alt="Home Screen" />
-    </div>
-  </section>
-
-  <section>    
-    <div class="overview">      
-      <p>Pet Me unites pet parents and pros with delight in every tap. Book grooming, track vet visits, or browse adoptable fur-friends—all with joyful micro-animations.</p>
-      <p><strong>Scope:</strong> Ideation · UX Strategy · Hi-fi Prototyping</p>
-    </div>
-  </section>  
-  <img class="cartoon fish" src="../images/PetMe/CartoonFish.svg" alt="" /> 
-  
-  <section>
-    <h2>Key Features</h2>
-    <ul class="features">
-      <li>Live scheduler w/ calendar sync</li>
-      <li>Adopt-by-map matching</li>
-      <li>Smart reminders</li>
-      <li>Async chat + media share</li>
+    <h2 class="label">Problems</h2>
+    <ul class="problem-list">
+      <li>Adoption listings scattered across sites</li>
+      <li>No single view of a pet's daily care</li>
+      <li>Grooming and vet visits booked by phone</li>
+      <li>No real profile per pet</li>
+      <li>No shared visibility for sitters or family</li>
     </ul>
-    <img class="cartoon fish" src="../images/PetMe/CartoonFish.svg" alt="" />
   </section>
+
   <section>
-    <h2>UI Gallery</h2>
-  </section>
-  <section>
-    <div style="width: 90%;" class="snapshots-1">
-      <img src="../images/PetMe/petme_thumbnail.png" alt="Home Screen" />   
+    <h2 class="label">What today looks like</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>Adoption is a scavenger hunt</strong>
+        <p>Browsing dogs, cats, and rescues means checking a different site or shelter for each species, with no way to filter by breed or distance in one place.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Care lives in your head</strong>
+        <p>Feeding times, walk schedules, vaccination dates — most of it is memory, a sticky note, or a reminder that never got set.</p>
+      </div>
     </div>
   </section>
+
   <section>
-    <div class="snapshots">     
-      <img src="../images/PetMe/home1.png"        alt="Adoption Flow" />
-      <img src="../images/PetMe/home2.png"    alt="Scheduler UI" />    
+    <h2 class="label">What I designed</h2>
+    <div class="change-layout">
+      <ul class="changes">
+        <li><strong>Species to specific pet, in one flow</strong><span>Dogs &rarr; Beagles &rarr; "Tough, 1yr, available for free, 10km away" in three taps, not three websites.</span></li>
+        <li><strong>A full day mapped, not a to-do list</strong><span>Feed, walk, meds, bath, and grooming each sit on an hourly timeline, so a gap in the day is visible, not forgotten.</span></li>
+        <li><strong>Every pet gets a real profile</strong><span>Name, age, birthday, gender — one place that actually answers "how old is she again?"</span></li>
+        <li><strong>Adoption becomes an ongoing relationship</strong><span>"My Buddies" keeps every adopted pet's posts and updates in view long after the swipe that found them.</span></li>
+      </ul>
+      <figure class="exhibit">
+        <div class="exhibit-images">
+          <button type="button" data-gallery="discovery" data-index="1" aria-label="View adoption home screen full screen">
+            <img src="../images/PetMe/home2.png" alt="PetMe adoption home — search, species tabs, and nearby pet listings">
+          </button>
+          <button type="button" data-gallery="schedule" data-index="0" aria-label="View care schedule full screen">
+            <img src="../images/PetMe/page4.png" alt="PetMe care schedule — grooming, walks, and bath tasks mapped to times">
+          </button>
+        </div>
+        <figcaption>Discovery and daily care, side by side — the two problems PetMe was designed to close. Click to view full screen.</figcaption>
+      </figure>
     </div>
   </section>
+
   <section>
-    <div class="snapshots">     
-      <img src="../images/PetMe/page1.png"         alt="In-App Chat" />
-      <img src="../images/PetMe/page2.png"         alt="In-App Chat" />      
-    </div>
+    <p class="tagline">A pet doesn't need an app that helps you find it. It needs one that helps you keep it.</p>
   </section>
+
   <section>
-    <div class="snapshots"> 
-      <img src="../images/PetMe/page3.png"         alt="In-App Chat" />     
-      <img src="../images/PetMe/page4.png" alt="In-App Chat" />
+    <h2 class="label">What it produced</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">3 taps</div>
+        <div class="desc">From species to a specific, adoptable pet</div>
+        <div class="raw">species &rarr; breed &rarr; distance &amp; price, not five sites</div>
+      </div>
+      <div class="stat">
+        <div class="num">1 timeline</div>
+        <div class="desc">Every recurring care task, one day view</div>
+        <div class="raw">feed, walk, meds, bath &amp; grooming, hour by hour</div>
+      </div>
+      <div class="stat">
+        <div class="num">1 profile</div>
+        <div class="desc">Per pet, not scattered across notes</div>
+        <div class="raw">name, age, birthday, gender, one place</div>
+      </div>
     </div>
+    <ul class="impact-list">
+      <li>Adoption stops being a one-time swipe — "My Buddies" keeps every adopted pet's updates and posts in view afterward, closing the loop the old flow dropped</li>
+      <li>A missed feeding or vaccination becomes a visible gap on the schedule instead of a forgotten mental note, directly answering the reminder problem the project set out to solve</li>
+    </ul>
   </section>
+
   <section>
-    <div class="snapshots">      
-      <img src="../images/PetMe/schedulebiolong.png" alt="In-App Chat" />
+    <h2 class="label">Project artifacts</h2>
+    <div class="artifact-grid">
+      <a class="artifact-card" href="../images/PetMe/petme_thumbnail_1.png" data-gallery="onboarding">
+        <img src="../images/PetMe/petme_thumbnail_1.png" alt="Splash, species picker, and schedule preview">
+        <span class="k">Onboarding</span>
+        <span class="n">2 screens</span>
+      </a>
+      <a class="artifact-card" href="../images/PetMe/home1.png" data-gallery="discovery">
+        <img src="../images/PetMe/home1.png" alt="Species picker and adoption browse">
+        <span class="k">Discovery</span>
+        <span class="n">3 screens</span>
+      </a>
+      <a class="artifact-card" href="../images/PetMe/page2.png" data-gallery="mypets">
+        <img src="../images/PetMe/page2.png" alt="My Buddies and pet profile">
+        <span class="k">My Pets</span>
+        <span class="n">2 screens</span>
+      </a>
+      <a class="artifact-card" href="../images/PetMe/page4.png" data-gallery="schedule">
+        <img src="../images/PetMe/page4.png" alt="Daily and full-day care schedule">
+        <span class="k">Care Schedule</span>
+        <span class="n">2 screens</span>
+      </a>
     </div>
-  </section>
-<section>
-    <a
-      href="https://www.figma.com/proto/your-prototype-link"
-      class="prototype-link"
-      target="_blank">
-      View Prototype ↗
-    </a>
   </section>
 
   <footer>
-    © Vodca · Pet Me Concept · Built with whimsy 🐾
+    <div class="credit">Uma Ramanathan &middot; UX Design &amp; Product Strategy</div>
   </footer>
 
-  <script>
-    // Dark mode toggle
-    const toggle = document.getElementById('modeToggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full screen image">
+  <button type="button" class="lightbox-close" aria-label="Close full screen">&times;</button>
+  <button type="button" class="lightbox-nav prev" aria-label="Previous image">&#8249;</button>
+  <img alt="">
+  <button type="button" class="lightbox-nav next" aria-label="Next image">&#8250;</button>
+  <p class="lightbox-caption"></p>
+</div>
+
+<script>
+(function () {
+  var base = "../images/PetMe/";
+  var galleries = {
+    onboarding: [
+      { src: base + "petme_thumbnail_1.png", caption: "Splash (dog), species picker, and schedule preview — first onboarding variant" },
+      { src: base + "petme_thumbnail.png", caption: "Splash (hamster), species picker, and schedule preview — second onboarding variant" }
+    ],
+    discovery: [
+      { src: base + "home1.png", caption: "Species picker — dogs, cats, parrots, hamsters, fishes, rabbits, squirrels, tortoises, other birds" },
+      { src: base + "home2.png", caption: "Adoption home — search, species tabs, New Pets Near Me / Wishlist, nearby listings" },
+      { src: base + "page1.png", caption: "Adoption browse filtered by breed — Beagles, Boxer, Cocker Spaniel, Dachshund" }
+    ],
+    mypets: [
+      { src: base + "page2.png", caption: "My Buddies — saved pets with post counts, plus a Related Posts tab" },
+      { src: base + "page3.png", caption: "Pet Profile — name, age, birthday, and gender for an adopted pet" }
+    ],
+    schedule: [
+      { src: base + "page4.png", caption: "Schedule — June 2021, grooming, walk, and bath tasks by day" },
+      { src: base + "schedulebiolong.png", caption: "Full day schedule — feed, water, walk, meds, bath, treat, hour by hour" }
+    ]
+  };
+
+  var box = document.getElementById("lightbox");
+  var img = box.querySelector("img");
+  var caption = box.querySelector(".lightbox-caption");
+  var prevBtn = box.querySelector(".prev");
+  var nextBtn = box.querySelector(".next");
+  var closeBtn = box.querySelector(".lightbox-close");
+  var items = [];
+  var index = 0;
+
+  function show(i) {
+    index = (i + items.length) % items.length;
+    var item = items[index];
+    img.src = item.src;
+    img.alt = item.caption;
+    caption.textContent = items.length > 1
+      ? (index + 1) + " / " + items.length + "  ·  " + item.caption
+      : item.caption;
+    var multi = items.length > 1;
+    prevBtn.hidden = !multi;
+    nextBtn.hidden = !multi;
+  }
+
+  function open(name, start) {
+    items = galleries[name] || [];
+    if (!items.length) return;
+    show(start || 0);
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.removeAttribute("src");
+  }
+
+  document.querySelectorAll("[data-gallery]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      var start = parseInt(el.getAttribute("data-index") || "0", 10);
+      open(el.getAttribute("data-gallery"), start);
     });
-  </script>
+  });
+
+  closeBtn.addEventListener("click", close);
+  prevBtn.addEventListener("click", function () { show(index - 1); });
+  nextBtn.addEventListener("click", function () { show(index + 1); });
+  box.addEventListener("click", function (e) { if (e.target === box) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>
 </body>
