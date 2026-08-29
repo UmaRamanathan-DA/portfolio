@@ -94,6 +94,10 @@
   .friction-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:16px 18px; }
   .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
   .friction-card strong{ display:block; font-family:var(--font-display); font-size:17px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .friction-card.with-shot{ display:flex; gap:14px; align-items:flex-start; }
+  .friction-card.with-shot .thumb{ all:unset; flex-shrink:0; cursor:zoom-in; width:96px; }
+  .friction-card.with-shot .thumb img{ width:100%; display:block; border:1px solid var(--line); }
+  .friction-card.with-shot .copy{ flex:1; min-width:0; }
 
   .problem-list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
   .problem-list li{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:10px 14px; font-size:14.5px; font-weight:500; color:var(--ink); }
@@ -186,10 +190,13 @@
 
   <section>
     <h2 class="label">What today looks like</h2>
+  
     <div class="friction-grid">
-      <div class="friction-card">
-        <strong>3.4 stars tells you nothing</strong>
-        <p>An average rating says something's off, not what — not which drink, not which part of the visit, not whether it's getting better or worse.</p>
+      <div class="friction-card with-shot">
+        <div class="copy">
+          <strong>3.4 stars tells you nothing</strong>
+          <p>An average rating says something's off, not what — not which drink, not which part of the visit, not whether it's getting better or worse.</p>
+        </div>
       </div>
       <div class="friction-card">
         <strong>Every reply starts from zero</strong>
@@ -200,10 +207,17 @@
 
   <section>
     <h2 class="label">What I designed</h2>
+    
     <ul class="changes">
       <li><strong>Sentiment tagged on arrival</strong><span>Every review is classified the instant it's posted — a transparent rating + keyword rule today, designed to slot in a real classifier without touching the UI.</span></li>
       <li><strong>Replies drafted for the situation</strong><span>A pickup delay, a wrong order, and a quality miss each get a different, specific line — not one generic "we apologize for any inconvenience."</span></li>
       <li><strong>An insight strip, not just a feed</strong><span>Best-loved drink, top recurring issue, and the sentiment split sit above the reviews themselves — the business answer, not just the raw data.</span></li>
+      <figure class="shot">
+        <button type="button" data-src="../images/bobabean AI review/feature3.png" style="all:unset;cursor:zoom-in;display:block;">
+          <img src="../images/bobabean AI review/feature3.png" alt="Staff Tools panel — bulk draft, export, and import AI replies, styled in a distinct gold banner">
+        </button>
+        <figcaption>Staff Tools, kept deliberately separate — a gold-bannered, collapsible panel for bulk actions, distinct from the customer-facing feed above it.</figcaption>
+      </figure>
       <li><strong>Staff tools, deliberately separate</strong><span>Bulk actions live behind their own gold-bannered, collapsible panel — visually distinct from the customer-facing review feed, not blended into it.</span></li>
       <li><strong>A real pipeline behind the demo</strong><span>A companion Python script calls Claude with a prompt that analyzes aspect-level sentiment and drafts the reply in one call; the demo's export file matches its schema exactly.</span></li>
     </ul>
@@ -220,6 +234,12 @@
     <figure class="shot">
       <button type="button" data-src="../images/bobabean AI review/feature2.png" style="all:unset;cursor:zoom-in;display:block;">
         <img src="../images/bobabean AI review/feature2.png" alt="Staff Tools panel — bulk draft, export, and import AI replies, styled in a distinct gold banner">
+      </button>
+      <figcaption>Staff Tools, kept deliberately separate — a gold-bannered, collapsible panel for bulk actions, distinct from the customer-facing feed above it.</figcaption>
+    </figure>
+    <figure class="shot">
+      <button type="button" data-src="../images/bobabean AI review/feature3.png" style="all:unset;cursor:zoom-in;display:block;">
+        <img src="../images/bobabean AI review/feature3.png" alt="Staff Tools panel — bulk draft, export, and import AI replies, styled in a distinct gold banner">
       </button>
       <figcaption>Staff Tools, kept deliberately separate — a gold-bannered, collapsible panel for bulk actions, distinct from the customer-facing feed above it.</figcaption>
     </figure>
