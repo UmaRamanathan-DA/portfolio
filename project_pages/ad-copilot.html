@@ -1,554 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Copilot — AI Co-Pilot for Performance Marketing Teams - Uma Ramanathan</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --notion-bg: #ffffff;
-            --notion-page: #ffffff;
-            --notion-text: #37352f;
-            --notion-muted: #787774;
-            --notion-border: rgba(55, 53, 47, 0.09);
-            --notion-hover: rgba(55, 53, 47, 0.04);
-            --notion-callout: #f1f1ef;
-            --notion-callout-blue: #e7f3f8;
-            --notion-callout-amber: #fbf3db;
-            --notion-callout-green: #edf3ec;
-            --notion-callout-pink: #f4e0e9;
-            --notion-accent: #2383e2;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Copilot — AI Co-Pilot for Performance Marketing Teams</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
-        * { box-sizing: border-box; }
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee;
+      --ink-soft:#aab6bc;
+      --paper:#111a20;
+      --surface:#17222a;
+      --line:rgba(238,241,238,0.14);
+      --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d;
+      --accent-ink:#f0b878;
+      --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f;
+      --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee;
+    --ink-soft:#aab6bc;
+    --paper:#111a20;
+    --surface:#17222a;
+    --line:rgba(238,241,238,0.14);
+    --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d;
+    --accent-ink:#f0b878;
+    --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f;
+    --resolved-soft:rgba(104,171,143,0.14);
+  }
 
-        body {
-            margin: 0;
-            background: #f7f6f3;
-            color: var(--notion-text);
-            font-family: "DM Sans", ui-sans-serif, sans-serif;
-            font-size: 16px;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-        }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
 
-        .page-shell {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 1.25rem 1rem 4rem;
-        }
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 28px 72px;
+  }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            margin-bottom: 1.25rem;
-            padding: 0.35rem 0.65rem;
-            border-radius: 6px;
-            color: var(--notion-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background 0.15s, color 0.15s;
-        }
+  /* ---- masthead ---- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
 
-        .back-link:hover {
-            background: var(--notion-hover);
-            color: var(--notion-text);
-        }
+  h1.headline{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px);
+    line-height:1.22;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-wrap:balance;
+    max-width:30ch;
+  }
 
-        .notion-page {
-            background: var(--notion-page);
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
-            padding: 3rem 3.25rem 3.5rem;
-        }
+  p.subhead{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 16px;
+  }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
 
-        .notion-cover {
-            height: 8px;
-            margin: -3rem -3.25rem 2.25rem;
-            border-radius: 12px 12px 0 0;
-            background: linear-gradient(90deg, #d3e5ef 0%, #f5e0dc 45%, #e8deee 100%);
-        }
+  p.note{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    font-style:italic;
+    max-width:62ch;
+    line-height:1.5;
+    margin:0 0 28px;
+  }
 
-        .notion-title {
-            font-family: "Source Serif 4", Georgia, serif;
-            font-size: clamp(1.85rem, 4vw, 2.55rem);
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            color: var(--notion-text);
-            margin: 0 0 1.25rem;
-        }
+  .triad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .triad .k{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .triad .v{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+    line-height:1.35;
+  }
+  .triad .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .notion-props {
-            display: grid;
-            gap: 0.35rem;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid var(--notion-border);
-        }
+  /* ---- section rhythm ---- */
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  h2.label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    font-weight:500;
+  }
 
-        .prop-row {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 0.75rem;
-            align-items: start;
-            padding: 0.35rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.92rem;
-        }
+  /* ---- friction (before) ---- */
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+  }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
 
-        .prop-row:hover { background: var(--notion-hover); }
+  .problem-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .problem-list li{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:10px 14px;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--ink);
+  }
 
-        .prop-label {
-            color: var(--notion-muted);
-            font-weight: 500;
-        }
+  /* ---- what changed + exhibit ---- */
+  .change-layout{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:36px;
+    align-items:start;
+  }
+  ul.changes{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  ul.changes li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+  }
+  ul.changes strong{
+    display:block;
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  ul.changes span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .prop-value { color: var(--notion-text); }
+  .exhibit{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:16px 16px 18px;
+  }
+  .exhibit-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+  }
+  .lane{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding:9px 0;
+    border-top:1px solid var(--line);
+  }
+  .lane:first-of-type{ border-top:none; }
+  .lane .lane-name{
+    flex:0 0 88px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    font-weight:500;
+    color:var(--accent-ink);
+  }
+  .lane .lane-desc{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.45;
+  }
+  .exhibit figcaption{
+    margin-top:12px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
 
-        .prop-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-        }
+  /* ---- decisions ---- */
+  .decision-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .decision-list li{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:16px 18px;
+  }
+  .decision-list strong{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .decision-list p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
 
-        .prop-tag {
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            background: #e8deee;
-            color: #5a3e6b;
-        }
+  /* ---- artifacts (docs) ---- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:20px 18px 18px;
+  }
+  .stat .num{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(22px, 3.4vw, 28px);
+    font-weight:500;
+    color:var(--resolved);
+    letter-spacing:-0.01em;
+  }
+  .stat .desc{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.4;
+  }
+  .stat .raw{
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .impact-list{
+    list-style:none;
+    margin:14px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .impact-list li{
+    padding-left:16px;
+    border-left:2px solid var(--resolved);
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
 
-        .prop-tag.blue { background: #d3e5ef; color: #1a5270; }
-        .prop-tag.green { background: #dbeddb; color: #2d5a2d; }
-        .prop-tag.amber { background: #fdecc8; color: #7a5c00; }
+  .artifact-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+  }
+  .artifact-card{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    text-decoration:none;
+    color:inherit;
+    padding:14px 16px 16px;
+    transition:border-color 0.15s ease;
+  }
+  .artifact-card:hover,
+  .artifact-card:focus-visible{
+    border-color:var(--accent-ink);
+    outline:none;
+  }
+  .artifact-card .k{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .artifact-card .t{
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    font-family:var(--font-display);
+  }
+  .artifact-card .d{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.45;
+  }
 
-        .notion-section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--notion-muted);
-            margin: 2rem 0 0.75rem;
-        }
+  /* ---- close ---- */
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(19px, 2.6vw, 23px);
+    line-height:1.4;
+    color:var(--ink);
+    max-width:44ch;
+    text-wrap:balance;
+  }
 
-        .notion-h2 {
-            font-family: "Source Serif 4", Georgia, serif;
-            font-size: 1.55rem;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            margin: 2.35rem 0 0.85rem;
-            color: var(--notion-text);
-            scroll-margin-top: 1.5rem;
-        }
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
 
-        .notion-h2:first-of-type { margin-top: 1.5rem; }
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    .change-layout{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .artifact-grid{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
 
-        .notion-page p {
-            margin: 0 0 0.9rem;
-            color: var(--notion-text);
-        }
-
-        .notion-page ul,
-        .notion-page ol {
-            margin: 0.25rem 0 1rem;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .notion-page li {
-            position: relative;
-            padding-left: 1.6rem;
-            margin-bottom: 0.55rem;
-        }
-
-        .notion-page ul li::before {
-            content: "";
-            position: absolute;
-            left: 0.35rem;
-            top: 0.65rem;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--notion-text);
-            opacity: 0.55;
-        }
-
-        .notion-page ol {
-            counter-reset: notion-ol;
-        }
-
-        .notion-page ol li {
-            counter-increment: notion-ol;
-        }
-
-        .notion-page ol li::before {
-            content: counter(notion-ol) ".";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 1.4rem;
-            color: var(--notion-muted);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .callout {
-            display: flex;
-            gap: 0.85rem;
-            align-items: flex-start;
-            margin: 1rem 0 1.25rem;
-            padding: 0.95rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-callout);
-        }
-
-        .callout.blue { background: var(--notion-callout-blue); }
-        .callout.amber { background: var(--notion-callout-amber); }
-        .callout.green { background: var(--notion-callout-green); }
-        .callout.pink { background: var(--notion-callout-pink); }
-
-        .callout-mark {
-            flex-shrink: 0;
-            width: 1.35rem;
-            height: 1.35rem;
-            margin-top: 0.1rem;
-            border-radius: 4px;
-            background: rgba(55, 53, 47, 0.08);
-            color: var(--notion-muted);
-            font-size: 0.7rem;
-            font-weight: 700;
-            display: grid;
-            place-items: center;
-            letter-spacing: 0;
-        }
-
-        .callout-body {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .callout-body p {
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .callout-body p + p { margin-top: 0.65rem; }
-
-        .decision {
-            margin: 0.85rem 0;
-            padding: 0.9rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-            border: 1px solid var(--notion-border);
-        }
-
-        .decision p { margin: 0; }
-
-        .decision strong:first-child {
-            color: var(--notion-text);
-        }
-
-        .divider {
-            height: 1px;
-            background: var(--notion-border);
-            margin: 2.25rem 0;
-            border: none;
-        }
-
-        .skills-inline {
-            display: grid;
-            gap: 0.55rem;
-            margin: 0.5rem 0 0;
-        }
-
-        .skill-line {
-            padding: 0.7rem 0.85rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .skill-line strong { font-weight: 600; }
-
-        .doc-links {
-            display: grid;
-            gap: 0.5rem;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .doc-link {
-            display: block;
-            padding: 0.9rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-            border: 1px solid transparent;
-            color: var(--notion-text);
-            text-decoration: none;
-            transition: background 0.15s, border-color 0.15s;
-        }
-
-        .doc-link:hover {
-            background: rgba(55, 53, 47, 0.07);
-            border-color: var(--notion-border);
-        }
-
-        .doc-link-title {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 0.75rem;
-            font-weight: 600;
-            font-size: 0.98rem;
-            color: var(--notion-text);
-        }
-
-        .doc-link-title .arrow {
-            color: var(--notion-accent);
-            font-weight: 500;
-            font-size: 0.88rem;
-            white-space: nowrap;
-        }
-
-        .doc-link-desc {
-            display: block;
-            margin-top: 0.25rem;
-            color: var(--notion-muted);
-            font-size: 0.88rem;
-            line-height: 1.45;
-            font-weight: 400;
-        }
-
-        .toc {
-            margin: 0.5rem 0 1.5rem;
-            padding: 0.85rem 1rem;
-            border-radius: 6px;
-            background: var(--notion-hover);
-        }
-
-        .toc-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--notion-muted);
-            margin-bottom: 0.45rem;
-        }
-
-        .toc a {
-            display: block;
-            color: var(--notion-accent);
-            text-decoration: none;
-            font-size: 0.92rem;
-            padding: 0.2rem 0;
-        }
-
-        .toc a:hover { text-decoration: underline; }
-
-        @media (max-width: 720px) {
-            .notion-page {
-                padding: 2rem 1.25rem 2.5rem;
-            }
-
-            .notion-cover {
-                margin: -2rem -1.25rem 1.75rem;
-            }
-
-            .prop-row {
-                grid-template-columns: 1fr;
-                gap: 0.15rem;
-            }
-        }
-    </style>
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
 </head>
 <body>
-    <div class="page-shell">
-        <a href="../index.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Portfolio
-        </a>
 
-        <article class="notion-page">
-            <div class="notion-cover" aria-hidden="true"></div>
+<div class="page">
 
-            <h1 class="notion-title">Ad Copilot: An AI Co-Pilot for Performance Marketing Teams</h1>
-
-            <div class="callout blue">
-                <div class="callout-mark" aria-hidden="true">i</div>
-                <div class="callout-body">
-                    <p style="margin:0;font-weight:600;">This is a Product Strategy 0–1 statement.</p>
-                </div>
-            </div>
-
-            <div class="notion-props" aria-label="Page properties">
-                <div class="prop-row">
-                    <span class="prop-label">Role</span>
-                    <span class="prop-value">Product Manager (self-directed portfolio project)</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Domain</span>
-                    <div class="prop-tags">
-                        <span class="prop-tag blue">Performance Marketing</span>
-                        <span class="prop-tag">Marketing Tech</span>
-                        <span class="prop-tag green">Generative AI</span>
-                    </div>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Skills</span>
-                    <div class="prop-tags">
-                        <span class="prop-tag amber">Product Strategy</span>
-                        <span class="prop-tag amber">AI Product Management</span>
-                        <span class="prop-tag amber">Human-in-the-Loop</span>
-                        <span class="prop-tag amber">System Architecture</span>
-                        <span class="prop-tag amber">PRDs &amp; User Stories</span>
-                    </div>
-                </div>
-            </div>
-
-            <p class="notion-section-label">Summary</p>
-            <p>A zero-to-one AI product design for performance marketers, combining automated ad creative generation and budget/bid recommendations behind a confidence-based human review system. Built end-to-end across strategy, requirements, AI system design, and technical architecture to demonstrate readiness for AI-driven marketing tech products.</p>
-
-            <p class="notion-section-label">Top skills used</p>
-            <div class="skills-inline">
-                <div class="skill-line"><strong>Product Strategy</strong> — 0–1 category definition, no existing baseline</div>
-                <div class="skill-line"><strong>AI Product Management</strong> — confidence scoring, human-in-the-loop design, cost controls</div>
-                <div class="skill-line"><strong>Performance Marketing Analytics</strong> — ROAS/CPA/CPL/CTR, attribution</div>
-                <div class="skill-line"><strong>Technical Product Management</strong> — API integration, system architecture</div>
-                <div class="skill-line"><strong>Product Requirements &amp; Process</strong> — PRDs, user stories, phased release planning</div>
-            </div>
-
-            <hr class="divider">
-
-            <p class="notion-section-label">Case study narrative</p>
-
-            <div class="callout">
-                <div class="callout-mark" aria-hidden="true">i</div>
-                <div class="callout-body">
-                    <p>A self-directed product portfolio project Simulating a 0-to-1 AI product build inside a performance marketing / adtech context. All company names, users, and metrics below are illustrative, built to demonstrate product judgment rather than reported as real company results.</p>
-                </div>
-            </div>
-
-            <nav class="toc" aria-label="Narrative contents">
-                <div class="toc-title">In this page</div>
-                <a href="#premise">1. The Premise</a>
-                <a href="#role">2. My Role</a>
-                <a href="#discovery">3. Discovery: Who Is This For, and What Do They Actually Need</a>
-                <a href="#solution">4. Solution Overview</a>
-                <a href="#decisions">5. Key Product Decisions (and the tradeoffs behind them)</a>
-                <a href="#docs">6. Explore the full product set</a>
-                <a href="#lessons">7. Lessons (framed as retro learnings)</a>
-            </nav>
-
-            <h2 class="notion-h2" id="premise">1. The Premise</h2>
-            <p>Performance marketing teams at mid-market e-commerce and lead-gen companies run 20-100+ live ad variants at any time across Meta and Google. Two things are true at once:</p>
-            <ul>
-                <li>Creative fatigue is constant. Winning ads decay in 1-3 weeks. Marketers can’t hand-write and test replacements fast enough.</li>
-                <li>Budget decisions lag reality. By the time a human notices CPA creeping up on a campaign, days of spend have already been wasted.</li>
-            </ul>
-            <p>The market has AI creative generators (copy/image tools) and it has bid/budget automation (platform-native and third-party). What’s missing is a connective layer: a copilot that watches performance signals, proposes both creative and budget actions, and knows when to act automatically versus when to ask a human first.</p>
-            <div class="callout amber">
-                <div class="callout-mark" aria-hidden="true">→</div>
-                <div class="callout-body">
-                    <p style="margin:0 0 0.45rem;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--notion-muted);">Why this is a Product Strategy 0–1 statement</p>
-                    <p style="margin:0;">The market had disconnected point tools (creative generators, bid automation) but nothing that combined creative and budget decisioning under one system — so the core work was defining the product category itself (what the AI is allowed to decide vs. escalate to a human), not optimizing or scaling an existing one.</p>
-                </div>
-            </div>
-            <div class="callout amber">
-                <div class="callout-mark" aria-hidden="true">★</div>
-                <div class="callout-body">
-                    <p>Thesis: the product isn’t valuable because it uses AI — it’s valuable because it makes a trust boundary explicit: what the AI can do autonomously, what it must escalate, and how a marketer builds confidence in it over time.</p>
-                </div>
-            </div>
-
-            <h2 class="notion-h2" id="role">2. My Role</h2>
-            <p>Acting as the sole PM for a 0-to-1 build, partnered with a (hypothetical) team of 2 backend engineers, 1 ML engineer, and 1 designer. Responsibilities modeled: discovery, PRD ownership, backlog definition, metrics framework, cross-functional alignment with engineering on architecture, and go-to-market/release sequencing.</p>
-
-            <h2 class="notion-h2" id="discovery">3. Discovery: Who Is This For, and What Do They Actually Need</h2>
-            <p>Primary persona: the in-house performance marketer at a company spending $50K-$500K/month on paid social and search, usually a team of 1-4, no dedicated data scientist.</p>
-            <p>Assumed/validated-style pains (framed as research findings for realism, grounded in well-documented industry pain points):</p>
-            <ul>
-                <li>They trust automated bidding less than they trust automated reporting — platform “black box” optimization has burned them before.</li>
-                <li>They will not adopt anything that can spend money without a visible paper trail.</li>
-                <li>Their biggest time sink isn’t analysis, it’s production — writing new ad copy variants fast enough to keep pace with decay.</li>
-            </ul>
-            <div class="callout blue">
-                <div class="callout-mark" aria-hidden="true">→</div>
-                <div class="callout-body">
-                    <p>Key product insight: the adoption barrier isn’t AI capability, it’s AI accountability. This became the design spine for everything downstream — especially the human-in-the-loop review flow and the confidence-threshold system (detailed in the AI Workflow Design doc, next in this series).</p>
-                </div>
-            </div>
-
-            <h2 class="notion-h2" id="solution">4. Solution Overview</h2>
-            <p>Ad Copilot has three connected capabilities:</p>
-            <ol>
-                <li>Creative Generation — generates ad copy/headline variants from a product feed + past top-performing ads, tagged with a predicted performance confidence score.</li>
-                <li>Performance Monitoring &amp; Recommendation — watches live campaigns against ROAS/CPA/CPL targets and proposes budget/bid changes.</li>
-                <li>Human Review Queue — every AI action is classified into one of three lanes: Auto-apply (high confidence, low blast radius), Suggest (needs a human click to approve), or Escalate (flagged as high-risk: new market, low data volume, or budget change above a threshold).</li>
-            </ol>
-            <p>The lane a recommendation lands in is the core AI product mechanic — it’s what separates this from “just call the API and ship whatever it says.”</p>
-
-            <h2 class="notion-h2" id="decisions">5. Key Product Decisions (and the tradeoffs behind them)</h2>
-            <div class="decision">
-                <p>Decision: Default everything to “Suggest” in v1, not “Auto-apply.” Even where the model was confident, early trust had to be earned before autonomy was granted. This slowed down the “wow” of the demo but was the right call for adoption — a lesson pulled directly from how performance marketers described being burned by black-box platform automation.</p>
-            </div>
-            <div class="decision">
-                <p>Decision: Cost controls are a v1 requirement, not a v2 nice-to-have. Because creative generation is called per-product, per-variant, at scale, unmanaged LLM spend could scale faster than the customer’s ad budget itself. This forced early decisions on model tiering (cheaper model for first-pass variant generation, stronger model only for the top-N candidates worth polishing), caching of repeated product-feed inputs, and hard per-account monthly generation caps.</p>
-            </div>
-            <div class="decision">
-                <p>Decision: Attribution stays platform-native in v1; no custom attribution engine. Building a proprietary multi-touch attribution model was tempting but would have doubled the engineering scope and introduced a credibility risk (marketers are skeptical of any attribution numbers that don’t reconcile with their ad platform’s own reporting). v1 ingests Meta/Google’s own conversion data and layers recommendations on top of it, rather than trying to out-attribute the platforms.</p>
-            </div>
-            <div class="decision">
-                <p>Decision: One north-star metric, not a dashboard of everything. Chose Incremental ROAS improvement attributable to accepted AI suggestions as the single success metric for the product itself (distinct from the marketing metrics the tool helps optimize). This kept the team from optimizing for engagement-with-the-tool instead of outcomes-for-the-customer.</p>
-            </div>
-
-            <h2 class="notion-h2" id="docs">6. Explore the full product set</h2>
-            <p>This case study is the narrative spine. Open any doc below to read the same content in Notion style — requirements, backlog, AI behavior, metrics, architecture, and rollout.</p>
-            <div class="doc-links">
-                <a class="doc-link" href="ad-copilot/prd.html">
-                    <span class="doc-link-title">PRD — Product Requirements<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">Goals, non-goals, personas, 15 functional requirements, NFRs, and phased scope.</span>
-                </a>
-                <a class="doc-link" href="ad-copilot/user-stories.html">
-                    <span class="doc-link-title">User Stories &amp; Acceptance Criteria<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">5 epics, 14 stories with Given/When/Then criteria, mapped to PRD FRs.</span>
-                </a>
-                <a class="doc-link" href="ad-copilot/ai-workflow.html">
-                    <span class="doc-link-title">AI Workflow Design<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">Prompt design, confidence scoring, review-lane logic, and cost controls.</span>
-                </a>
-                <a class="doc-link" href="ad-copilot/metrics-attribution.html">
-                    <span class="doc-link-title">Metrics &amp; Attribution Spec<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">ROAS, CPA, CPL, CPC, CTR as product signals — plus platform-native attribution.</span>
-                </a>
-                <a class="doc-link" href="ad-copilot/architecture.html">
-                    <span class="doc-link-title">Architecture &amp; API Integration<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">System components, Meta/Google/LLM integrations, data model, and open eng questions.</span>
-                </a>
-                <a class="doc-link" href="ad-copilot/release-plan.html">
-                    <span class="doc-link-title">Release Plan<span class="arrow">Open →</span></span>
-                    <span class="doc-link-desc">Three trust-gated phases, feature flags, beta strategy, and rollback criteria.</span>
-                </a>
-            </div>
-
-            <h2 class="notion-h2" id="lessons">7. Lessons (framed as retro learnings)</h2>
-            <div class="callout green">
-                <div class="callout-mark" aria-hidden="true">✓</div>
-                <div class="callout-body">
-                    <ul style="margin:0;">
-                        <li>The hardest part of an AI product isn’t the model — it’s designing the escalation logic that earns user trust incrementally.</li>
-                        <li>Cost controls are a product decision, not an infra afterthought, the moment your AI feature is usage-scaled rather than flat-rate.</li>
-                        <li>In performance marketing specifically, credibility with the platforms’ own numbers matters more than technical elegance in your own attribution logic.</li>
-                    </ul>
-                </div>
-            </div>
-        </article>
+  <p class="eyebrow">Product Case &middot; Performance Marketing &middot; 0&ndash;1 AI Product Strategy</p>
+  <h1 class="headline">Marketers had AI that writes ads and AI that manages bids &mdash; nothing that connected the two, or knew when to ask first.</h1>
+  <p class="subhead">Creative fatigue burns out a winning ad in 1&ndash;3 weeks; budget drift wastes spend for days before a human notices. The point tools on the market generate creative or automate bids, but neither watches performance <em>and</em> proposes the next move &mdash; and marketers already distrust anything that spends money without a visible paper trail. <strong>I designed the connective layer: a copilot that routes every AI action through a confidence-based trust boundary &mdash; auto-apply, suggest, or escalate &mdash; instead of shipping another black box.</strong></p>
+  <p class="note">Self-directed portfolio case study &mdash; a simulated 0&ndash;1 AI product build in a performance-marketing context. Company, users, and figures below are illustrative, built to demonstrate product judgment.</p>
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">In-house performance marketer</span>
+      <span class="d">Team of 1&ndash;4 managing $50K&ndash;$500K/month, no dedicated data scientist.</span>
     </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Make the trust boundary explicit</span>
+      <span class="d">Define what the AI can do alone, what it must escalate, and how trust is earned over time.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">Accountability, not capability</span>
+      <span class="d">The adoption barrier was never model quality &mdash; it was proving every dollar spent has a paper trail.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Problems</h2>
+    <ul class="problem-list">
+      <li>Creative fatigue outpaces production</li>
+      <li>Budget drift caught days late</li>
+      <li>Disconnected point tools</li>
+      <li>Black-box distrust from platform automation</li>
+      <li>Unmanaged LLM spend at scale</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Two point tools, neither connected</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>Generators that don't watch</strong>
+        <p>AI creative tools produce copy and images on demand, but have no view of live performance &mdash; they can't tell you a variant is fatiguing until a human goes looking.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Automation that earns no trust</strong>
+        <p>Platform-native and third-party bid automation acts on budget with no visible reasoning, which is exactly what taught marketers to keep automation on a short leash.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What I designed</h2>
+    <div class="change-layout">
+      <ul class="changes">
+        <li><strong>Every action gets one lane</strong><span>Creative variants and budget/bid changes are classified into exactly one of three lanes before a reviewer ever sees them.</span></li>
+        <li><strong>Everything defaults to Suggest in v1</strong><span>Even high-confidence recommendations wait for a human click &mdash; autonomy is granted after trust is earned, not assumed.</span></li>
+        <li><strong>Cost controls are v1, not v2</strong><span>Tiered model routing, feed-hash caching, and hard per-account generation caps ship on day one, before spend can outrun the ad budget it's managing.</span></li>
+        <li><strong>Attribution stays platform-native</strong><span>No proprietary multi-touch model in v1 &mdash; recommendations sit on top of Meta/Google's own numbers, so they reconcile with what marketers already trust.</span></li>
+      </ul>
+      <figure class="exhibit">
+        <p class="exhibit-title">The core mechanic &mdash; review lanes</p>
+        <div class="lane">
+          <span class="lane-name">Auto-apply</span>
+          <span class="lane-desc">High confidence, low blast radius. New/low-data accounts are excluded regardless of model confidence.</span>
+        </div>
+        <div class="lane">
+          <span class="lane-name">Suggest</span>
+          <span class="lane-desc">Needs a human click to approve, reject, or edit before anything executes.</span>
+        </div>
+        <div class="lane">
+          <span class="lane-name">Escalate</span>
+          <span class="lane-desc">Flagged as high-risk &mdash; new market, thin data, or a budget change above threshold.</span>
+        </div>
+        <figcaption>Every AI action &mdash; creative or budget &mdash; is classified into exactly one lane. This is what separates a copilot from "call the API and ship whatever it says."</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">The product isn't valuable because it uses AI &mdash; it's valuable because it makes the trust boundary explicit.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it produced</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">15</div>
+        <div class="desc">Functional requirements defined</div>
+        <div class="raw">creative, monitoring &amp; review lanes</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="desc">Trust-gated release phases</div>
+        <div class="raw">Suggest-only MVP &rarr; multi-platform &rarr; Auto-apply</div>
+      </div>
+      <div class="stat">
+        <div class="num">5 min</div>
+        <div class="desc">Rollback window on any auto-applied action</div>
+        <div class="raw">hard NFR, not a v2 add-on</div>
+      </div>
+    </div>
+    <ul class="impact-list">
+      <li>One north-star metric &mdash; incremental ROAS attributable to accepted suggestions &mdash; instead of a dashboard of everything, so the team can't optimize for engagement-with-the-tool over outcomes-for-the-customer</li>
+      <li>Immutable audit log across every lane, with per-account monthly LLM caps that alert at 80% before they're ever hit</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Explore the full product set</h2>
+    <div class="artifact-grid">
+      <a class="artifact-card" href="ad-copilot/prd.html">
+        <span class="k">PRD<span>&rarr;</span></span>
+        <span class="t">Product Requirements</span>
+        <span class="d">Goals, non-goals, personas, 15 FRs, NFRs, and phased scope.</span>
+      </a>
+      <a class="artifact-card" href="ad-copilot/user-stories.html">
+        <span class="k">Backlog<span>&rarr;</span></span>
+        <span class="t">User Stories &amp; Acceptance Criteria</span>
+        <span class="d">5 epics, 14 stories with Given/When/Then criteria.</span>
+      </a>
+      <a class="artifact-card" href="ad-copilot/ai-workflow.html">
+        <span class="k">AI Design<span>&rarr;</span></span>
+        <span class="t">AI Workflow Design</span>
+        <span class="d">Prompt design, confidence scoring, review-lane logic, cost controls.</span>
+      </a>
+      <a class="artifact-card" href="ad-copilot/metrics-attribution.html">
+        <span class="k">Metrics<span>&rarr;</span></span>
+        <span class="t">Metrics &amp; Attribution Spec</span>
+        <span class="d">ROAS, CPA, CPL, CPC, CTR as product signals; platform-native attribution.</span>
+      </a>
+      <a class="artifact-card" href="ad-copilot/architecture.html">
+        <span class="k">Architecture<span>&rarr;</span></span>
+        <span class="t">Architecture &amp; API Integration</span>
+        <span class="d">System components, Meta/Google/LLM integrations, data model.</span>
+      </a>
+      <a class="artifact-card" href="ad-copilot/release-plan.html">
+        <span class="k">Rollout<span>&rarr;</span></span>
+        <span class="t">Release Plan</span>
+        <span class="d">Three trust-gated phases, feature flags, rollback criteria.</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="credit">Uma Ramanathan &middot; Product Strategy &amp; AI Product Management</div>
+  </footer>
+
+</div>
+
 <script src="../assets/analytics-config.js"></script>
 <script src="../assets/analytics.js"></script>
 </body>

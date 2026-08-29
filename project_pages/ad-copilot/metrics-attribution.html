@@ -1,140 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metrics & Attribution Spec — Ad Copilot - Uma Ramanathan</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="notion-doc.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metrics &amp; Attribution — Ad Copilot</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="doc-pitch.css">
 </head>
 <body>
-    <div class="page-shell">
-        <a href="../ad-copilot.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Case Study
-        </a>
-        <article class="notion-page">
-            <div class="notion-cover" aria-hidden="true"></div>
-            <h1 class="notion-title">Metrics & Attribution Spec</h1>
-            <div class="notion-props" aria-label="Page properties">
-                <div class="prop-row">
-                    <span class="prop-label">Status</span>
-                    <span class="prop-value">Draft v1.0</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Owner</span>
-                    <span class="prop-value">Product, in partnership with Data/Analytics</span>
-                </div>
-                <div class="prop-row">
-                    <span class="prop-label">Series</span>
-                    <div class="prop-tags">
-                        <span class="prop-tag blue">Ad Copilot</span>
-                        <span class="prop-tag">Portfolio Doc</span>
-                    </div>
-                </div>
-            </div>
+<div class="page">
 
-            <nav class="toc" aria-label="On this page">
-                <div class="toc-title">On this page</div>
-                <a href="#why">1. Why this doc</a>
-<a href="#metrics">2. Core metrics</a>
-<a href="#attribution">3. Attribution</a>
-<a href="#tracking">4. Conversion tracking</a>
-<a href="#ai-feed">5. Feeding the AI</a>
-<a href="#northstar">6. North-star</a>
-<a href="#guardrails">7. Guardrails</a>
-<a href="#non">8. Non-goals</a>
-            </nav>
+  <div class="crumb-row">
+    <a href="../ad-copilot.html" class="back-link">&larr; Case study</a>
+    <a href="prd.html" class="pill">PRD</a>
+    <a href="user-stories.html" class="pill">Stories</a>
+    <a href="ai-workflow.html" class="pill">AI Workflow</a>
+    <a href="metrics-attribution.html" class="pill current">Metrics</a>
+    <a href="architecture.html" class="pill">Architecture</a>
+    <a href="release-plan.html" class="pill">Release</a>
+  </div>
 
-            <p>This doc defines the performance marketing metrics Ad Copilot depends on — not as marketing vocabulary, but as precisely-defined product signals with sourcing, calculation, latency, and known limitations. Every drift-detection rule and confidence input in the AI Workflow Design traces back here.</p>
+  <p class="eyebrow">Metrics &amp; Attribution Spec &middot; v1.0</p>
+  <h1 class="doc-title">The numbers the AI is allowed to trust</h1>
+  <p class="dek">Precisely-defined product signals with sourcing and known limitations — every drift rule and confidence input in the AI Workflow traces back here.</p>
+  <p class="meta-line"><b>Owner</b> Product, with Data/Analytics &middot; all five metrics are platform-native — credibility depends on matching what the marketer already sees.</p>
 
-            <h2 class="notion-h2" id="why">1. Why this doc exists</h2>
-            <p>The AI Workflow Design references “target CPA,” “signal strength,” and “data volume.” None of that is trustworthy unless the underlying metrics are defined precisely — performance marketers stop trusting the product the first time its numbers don’t reconcile with Ads Manager.</p>
-
-            <h2 class="notion-h2" id="metrics">2. Core metrics as product signals</h2>
-            <table class="simple-table">
-                <thead><tr><th>Metric</th><th>Definition</th><th>Source</th><th>Used for</th></tr></thead>
-                <tbody>
-                    <tr><td>ROAS</td><td>Attributed revenue ÷ ad spend</td><td>Platform-native</td><td>Primary drift target for e-commerce; north-star input</td></tr>
-                    <tr><td>CPA</td><td>Ad spend ÷ attributed conversions</td><td>Platform-native</td><td>Primary drift target for lead-gen</td></tr>
-                    <tr><td>CPL</td><td>Ad spend ÷ attributed leads</td><td>Platform-native (mapped from account’s lead event)</td><td>Secondary target for multi-stage funnels</td></tr>
-                    <tr><td>CPC</td><td>Ad spend ÷ clicks</td><td>Platform-native</td><td>Leading indicator ahead of CPA/ROAS shifts</td></tr>
-                    <tr><td>CTR</td><td>Clicks ÷ impressions</td><td>Platform-native</td><td>Primary creative-fatigue signal</td></tr>
-                </tbody>
-            </table>
-            <div class="callout blue">
-                <div class="callout-mark" aria-hidden="true">→</div>
-                <div class="callout-body">
-                    <p>All five metrics are sourced from the ad platforms’ own reporting — consistent with the PRD non-goal of building a custom attribution engine. Credibility depends on matching what the marketer already sees natively.</p>
-                </div>
-            </div>
-
-            <h2 class="notion-h2" id="attribution">3. Attribution approach</h2>
-            <p><strong>v1 decision:</strong> platform-native attribution, not a custom multi-touch model.</p>
-            <ul>
-                <li>Meta and Google each report conversions with their own windows/models; Ad Copilot ingests these as-is.</li>
-                <li>No attempt to reconcile or override with an independent model.</li>
-                <li><strong>Why:</strong> disagreement with the platform dashboard is an instant credibility problem and roughly doubles engineering scope for a 0-to-1 build.</li>
-            </ul>
-            <div class="callout amber">
-                <div class="callout-mark" aria-hidden="true">★</div>
-                <div class="callout-body">
-                    <p><strong>Known limitation:</strong> cross-platform journeys can double-count. v1 does not de-duplicate across Meta and Google; this is disclosed in-product via a “platform-reported, not deduplicated” tooltip.</p>
-                </div>
-            </div>
-
-            <h2 class="notion-h2" id="tracking">4. Conversion tracking (product-level)</h2>
-            <ul>
-                <li>Relies on the advertiser’s existing setup (Meta Pixel/CAPI, Google conversion tracking) — no new tracking requirement.</li>
-                <li>Data freshness: pulled hourly (NFR-1); platforms may still attribute retroactively — recent 24–48h weighted less heavily when calculating trend stability.</li>
-            </ul>
-            <h3 class="notion-h3">Data-quality risks surfaced, not hidden</h3>
-            <ul>
-                <li><strong>iOS / ATT</strong> — modeled vs observed conversions flagged where the platform provides it.</li>
-                <li><strong>View-through vs click-through</strong> — reported separately; marketer chooses whether view-through counts toward target.</li>
-                <li><strong>Provisional/sampled API data</strong> — recommendations on provisional windows are annotated as such in reasoning.</li>
-            </ul>
-
-            <h2 class="notion-h2" id="ai-feed">5. How metrics feed the AI system</h2>
-            <ul>
-                <li><strong>Drift detection</strong> — live ROAS or CPA vs target over a rolling window generates recommendations.</li>
-                <li><strong>Signal strength</strong> — magnitude + stability of the deviation.</li>
-                <li><strong>Data volume</strong> — conversion counts / lookback length drive the &lt;100 conversions / &lt;7 days conservative rule.</li>
-                <li><strong>Creative fatigue</strong> — CTR trend decline on a stable audience triggers scheduled refresh (US-4).</li>
-            </ul>
-
-            <h2 class="notion-h2" id="northstar">6. North-star metric (product-level)</h2>
-            <div class="decision">
-                <p><strong>Incremental ROAS improvement attributable to accepted AI suggestions.</strong> Compare campaign performance after acceptance against a trailing baseline for that same campaign (not a control group in v1). Excludes campaigns with no accepted suggestions to avoid diluting the signal.</p>
-            </div>
-
-            <h2 class="notion-h2" id="guardrails">7. Guardrail metrics</h2>
-            <ul>
-                <li><strong>LLM cost as % of managed ad spend</strong> — hard ceiling; rising trend is a product-health alarm.</li>
-                <li><strong>Suggestion acceptance rate</strong> — trust leading indicator; reviewed alongside incremental ROAS to catch “trivially easy suggestions.”</li>
-                <li><strong>Escalation rate</strong> — should decrease as trust tiers mature; sudden drops investigated as threshold miscalibration.</li>
-            </ul>
-
-            <h2 class="notion-h2" id="non">8. Explicit non-goals</h2>
-            <ul>
-                <li>No custom attribution model.</li>
-                <li>No incrementality/lift testing methodology in v1.</li>
-                <li>No cross-platform conversion deduplication (disclosed in-product).</li>
-            </ul>
-
-            <hr class="divider">
-            <p class="notion-section-label">More in this series</p>
-            <div class="doc-nav">
-                <a href="prd.html"><strong>Product Requirements Doc</strong><span>Scope, goals, FRs, NFRs, and out-of-scope calls</span></a>
-<a href="user-stories.html"><strong>User Stories & Acceptance Criteria</strong><span>Epic backlog with Given/When/Then criteria</span></a>
-<a href="ai-workflow.html"><strong>AI Workflow Design</strong><span>Prompts, confidence scoring, lanes, and cost controls</span></a>
-<a href="metrics-attribution.html" class="current"><strong>Metrics & Attribution Spec</strong><span>ROAS/CPA/CTR as product signals</span></a>
-<a href="architecture.html"><strong>Architecture & API Integration</strong><span>System components, Meta/Google/LLM APIs</span></a>
-<a href="release-plan.html"><strong>Release Plan</strong><span>Phased rollout gates, flags, and rollback</span></a>
-            </div>
-        </article>
+  <section>
+    <h2 class="label">Core metrics as product signals</h2>
+    <div class="card-grid">
+      <div class="card"><span class="k">ROAS</span><span class="d">Revenue &divide; spend. North-star input; e-commerce drift target.</span></div>
+      <div class="card"><span class="k">CPA</span><span class="d">Spend &divide; conversions. Drift target for lead-gen.</span></div>
+      <div class="card"><span class="k">CPL</span><span class="d">Spend &divide; leads. Secondary target, multi-stage funnels.</span></div>
+      <div class="card"><span class="k">CPC</span><span class="d">Spend &divide; clicks. Leading indicator ahead of CPA/ROAS shifts.</span></div>
+      <div class="card"><span class="k">CTR</span><span class="d">Clicks &divide; impressions. Primary creative-fatigue signal.</span></div>
     </div>
+  </section>
+
+  <section>
+    <h2 class="label">Attribution — v1 decision</h2>
+    <div class="callout"><strong>Platform-native, not a custom multi-touch model.</strong> Meta and Google's own conversion numbers are ingested as-is. Disagreeing with the platform dashboard is an instant credibility problem and roughly doubles engineering scope for a 0-to-1 build. Known limitation: cross-platform journeys can double-count &mdash; disclosed in-product, not hidden.</div>
+  </section>
+
+  <section>
+    <h2 class="label">North-star metric</h2>
+    <div class="callout north"><strong>Incremental ROAS improvement attributable to accepted AI suggestions.</strong> Measured against a trailing baseline per campaign, excluding campaigns with no accepted suggestions.</div>
+  </section>
+
+  <section>
+    <h2 class="label">Guardrail metrics</h2>
+    <div class="flow-strip">
+      <span class="step">LLM cost % of managed spend</span>
+      <span class="step">Suggestion acceptance rate</span>
+      <span class="step">Escalation rate</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="credit">Uma Ramanathan &middot; Ad Copilot product-set &middot; illustrative portfolio doc</div>
+  </footer>
+
+</div>
 <script src="../../assets/analytics-config.js"></script>
 <script src="../../assets/analytics.js"></script>
 </body>
