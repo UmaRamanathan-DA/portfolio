@@ -1,0 +1,50 @@
+[
+  {
+    "review_id": 2,
+    "Overall": "Negative",
+    "Food Quality": "Positive",
+    "Service": "Negative",
+    "Ambience": "Not Applicable",
+    "manager_response": "Hi Varun, thank you for the kind words about the espresso — and we're sorry about the wait. We've retrained our pickup-ready alerts this week so this shouldn't happen again. Hope to see you soon! — Team bobabean"
+  },
+  {
+    "review_id": 6,
+    "Overall": "Negative",
+    "Food Quality": "Not Applicable",
+    "Service": "Negative",
+    "Ambience": "Not Applicable",
+    "manager_response": "Hi Rahul, we're really sorry — getting your milk choice right is the whole point of the app, and we missed it twice. We're now double-checking every ticket against the order before handoff. Please stop by and we'll make your next latte on us. — Team bobabean"
+  },
+  {
+    "review_id": 8,
+    "Overall": "Negative",
+    "Food Quality": "Neutral",
+    "Service": "Not Applicable",
+    "Ambience": "Not Applicable",
+    "manager_response": "Hi Aryan, thanks for the honest feedback on the cappuccino portion and pricing — we're reviewing our cup sizing this month and this helps. Glad the customization screens landed well! — Team bobabean"
+  },
+  {
+    "review_id": 11,
+    "Overall": "Negative",
+    "Food Quality": "Positive",
+    "Service": "Negative",
+    "Ambience": "Not Applicable",
+    "manager_response": "Hi Shreya, we're sorry the pickup notice came in late — we're tightening the timing on our order-ready alerts so you're not left waiting at the counter. Thanks for sticking with the cold brew! — Team bobabean"
+  },
+  {
+    "review_id": 14,
+    "Overall": "Negative",
+    "Food Quality": "Negative",
+    "Service": "Negative",
+    "Ambience": "Not Applicable",
+    "manager_response": "Hi Siddharth, that's a real miss on our end — a cold remake that still wasn't your blend shouldn't happen. We've flagged this with the counter team directly. Please come back and let us make it right. — Team bobabean"
+  },
+  {
+    "review_id": 18,
+    "Overall": "Negative",
+    "Food Quality": "Neutral",
+    "Service": "Not Applicable",
+    "Ambience": "Not Applicable",
+    "manager_response": "Hi Harsh, sorry the low-sugar setting didn't come through correctly — we're auditing that step in the order build now. Really glad the spice mix worked for you otherwise! — Team bobabean"
+  }
+]

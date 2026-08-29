@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bobabean &mdash; Menu &amp; AI Review Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --mocha:#d8bfa3;
+    --cream:#fdf6f0;
+    --coffee:#3e2c23;
+    --coffee-soft:#6f4e37;
+    --coral:#e07a4c;
+    --coral-dark:#b85c33;
+    --charcoal:#1d1712;
+    --charcoal-card:#2a2119;
+    --charcoal-line:rgba(238,229,216,0.14);
+    --paper-line:rgba(62,44,35,0.14);
+    --good:#5f9c78;
+    --neutral-c:#c9a86c;
+    --bad:#c9634a;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--coffee);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+
+  /* ---- top bar ---- */
+  .topbar{
+    background:var(--cream); border-bottom:1px solid var(--paper-line);
+    padding:14px 0;
+  }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .back-link{
+    font-family:var(--font-mono); font-size:12.5px; text-decoration:none; color:var(--coffee-soft);
+    border:1px solid var(--paper-line); padding:6px 12px;
+  }
+  .back-link:hover{ border-color:var(--coffee-soft); }
+  .topnav{ display:flex; gap:18px; font-size:13.5px; font-weight:500; }
+  .topnav a{ text-decoration:none; color:var(--coffee-soft); }
+  .topnav a:hover{ color:var(--coral-dark); }
+
+  /* ---- hero ---- */
+  .hero{ background:linear-gradient(180deg, var(--mocha) 0%, #c9ab8a 100%); padding:52px 0 0; overflow:visible; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.8fr; align-items:flex-end; gap:20px; }
+  .hero-copy{ padding-bottom:40px; }
+  .hero-visual{ display:flex; justify-content:center; position:relative; z-index:3; }
+  .hero-phone{
+    width:100%; max-width:220px; display:block;
+    margin-bottom:-58px;
+    filter:drop-shadow(0 22px 28px rgba(24,14,6,0.32));
+  }
+  .brand-name{
+    font-family:'Poppins', sans-serif; font-weight:700; font-size:52px;
+    background:linear-gradient(to right, #a36543, #4a2f16);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    margin:0 0 4px;
+  }
+  .tagline{ font-family:'Dancing Script', cursive; font-size:22px; color:#5a3e2c; margin:0 0 26px; }
+  .tagline u{ text-decoration-color:#8b5e3c; }
+  .hero-stats{ display:flex; flex-wrap:wrap; gap:28px; padding-top:20px; border-top:1px solid rgba(74,47,22,0.22); }
+  .hero-stat .k{ font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.07em; color:#5a3e2c; opacity:0.75; }
+  .hero-stat .v{ font-family:'Poppins',sans-serif; font-weight:600; font-size:22px; color:#3a2414; margin-top:3px; }
+
+  /* ---- section rhythm ---- */
+  .section{ padding:52px 0; }
+  #menu{ padding-top:88px; }
+  .section-head{ margin-bottom:28px; }
+  .kicker{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.09em; text-transform:uppercase; color:var(--coral-dark); margin:0 0 8px; }
+  .section h2{ font-family:'Poppins',sans-serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--coffee); }
+  .section .sub{ font-size:14.5px; color:var(--coffee-soft); max-width:62ch; }
+
+  /* ---- coffee menu ---- */
+  .menu-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .coffee-card{
+    background:#fffaf5; border:1px solid var(--paper-line); border-radius:14px;
+    padding:18px 18px 16px; display:flex; flex-direction:column; gap:8px;
+  }
+  .cup-icon{ height:38px; width:auto; flex-shrink:0; display:block; }
+  .coffee-card .row-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .coffee-card h3{ font-family:'Poppins',sans-serif; font-size:16.5px; font-weight:600; margin:0; color:var(--coffee); }
+  .coffee-card .price{ font-family:var(--font-mono); font-weight:500; font-size:14px; color:var(--coral-dark); white-space:nowrap; }
+  .coffee-card p{ font-size:13px; color:var(--coffee-soft); margin:0; line-height:1.5; flex:1; }
+  .stars{ color:var(--coral); font-size:14px; letter-spacing:1px; }
+  .stars .empty{ color:#e6d7c6; }
+  .rating-num{ font-family:var(--font-mono); font-size:11.5px; color:var(--coffee-soft); margin-left:4px; }
+
+  /* ---- AI section (dark) ---- */
+  .ai-section{ background:var(--charcoal); color:#f1e9df; }
+  .ai-section .kicker{ color:#e9ab72; }
+  .ai-section h2{ color:#faf5ee; }
+  .ai-section .sub{ color:#c7b8a8; }
+
+  .insight-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--charcoal-line); border:1px solid var(--charcoal-line); margin-bottom:28px; }
+  .insight{ background:var(--charcoal-card); padding:16px 16px 14px; }
+  .insight .k{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:#b6a595; margin-bottom:6px; }
+  .insight .v{ font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; color:#faf5ee; line-height:1.25; }
+  .insight .v small{ font-family:var(--font-mono); font-weight:400; font-size:11px; color:#b6a595; display:block; margin-top:3px; }
+  .sent-bar{ display:flex; height:7px; border-radius:4px; overflow:hidden; margin-top:8px; }
+  .sent-bar span{ display:block; height:100%; }
+
+  .filter-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .pill{
+    font-family:var(--font-mono); font-size:12px; padding:7px 14px; border-radius:999px;
+    border:1px solid var(--charcoal-line); background:transparent; color:#dcd0c3; cursor:pointer;
+  }
+  .pill .cnt{ opacity:0.65; margin-left:4px; }
+  .pill.active{ background:#e9ab72; border-color:#e9ab72; color:#241a10; font-weight:500; }
+  .pill.active .cnt{ opacity:0.75; }
+
+  .review-list{ display:flex; flex-direction:column; gap:14px; margin-bottom:16px; }
+  .review-card{ background:var(--charcoal-card); border:1px solid var(--charcoal-line); border-radius:10px; padding:18px 20px; }
+  .review-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
+  .person{ display:flex; align-items:center; gap:10px; }
+  .avatar{
+    width:34px; height:34px; border-radius:50%; background:#4a3a2c; color:#f1e9df;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; font-family:var(--font-mono);
+    flex-shrink:0;
+  }
+  .person .name{ font-weight:600; font-size:14px; color:#faf5ee; }
+  .person .date{ font-family:var(--font-mono); font-size:11px; color:#a3937f; }
+  .review-title{ font-weight:600; font-size:15px; margin:0 0 6px; color:#f5ede2; }
+  .review-text{ font-size:13.5px; color:#d7cabb; line-height:1.6; margin:0 0 12px; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+  .tag{ font-family:var(--font-mono); font-size:10.5px; padding:3px 9px; border-radius:999px; border:1px solid var(--charcoal-line); color:#c9bcae; }
+  .tag.sent-positive{ color:#9fd6b6; border-color:#3d5b48; background:rgba(95,156,120,0.12); }
+  .tag.sent-neutral{ color:#e3cd9c; border-color:#5c4f34; background:rgba(201,168,108,0.12); }
+  .tag.sent-negative{ color:#f0a793; border-color:#6b3a2f; background:rgba(201,99,74,0.12); }
+
+  .ai-reply-btn{
+    font-family:var(--font-mono); font-size:12px; background:transparent; color:#e9ab72;
+    border:1px solid #6b552f; padding:7px 13px; border-radius:6px; cursor:pointer;
+  }
+  .ai-reply-btn:hover{ background:rgba(233,171,114,0.1); }
+  .reply-box{
+    margin-top:12px; background:rgba(233,171,114,0.07); border:1px solid rgba(233,171,114,0.28);
+    border-radius:8px; padding:12px 14px; display:none;
+  }
+  .reply-box.shown{ display:block; }
+  .reply-box .label{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:#e9ab72; margin-bottom:6px; }
+  .reply-box textarea{
+    width:100%; min-height:64px; background:transparent; border:none; color:#f5ede2;
+    font-family:var(--font-body); font-size:13px; line-height:1.55; resize:vertical; padding:0;
+  }
+  .reply-box textarea:focus{ outline:none; }
+
+  .load-more{
+    display:block; margin:4px auto 0; font-family:var(--font-mono); font-size:12.5px;
+    background:transparent; border:1px solid var(--charcoal-line); color:#dcd0c3; padding:9px 18px; border-radius:6px; cursor:pointer;
+  }
+  .load-more:hover{ border-color:#e9ab72; color:#e9ab72; }
+
+  /* ---- add review form ---- */
+  .form-card{ background:var(--charcoal-card); border:1px solid var(--charcoal-line); border-radius:10px; padding:22px 24px; margin-top:36px; }
+  .form-card h3{ font-family:'Poppins',sans-serif; font-size:16px; margin:0 0 4px; color:#faf5ee; }
+  .form-card .sub{ margin-bottom:18px; }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .field{ display:flex; flex-direction:column; gap:5px; }
+  .field.full{ grid-column:1 / -1; }
+  .field label{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:#b6a595; }
+  .field input, .field select, .field textarea{
+    background:#221a13; border:1px solid var(--charcoal-line); color:#f1e9df;
+    padding:9px 11px; border-radius:6px; font-family:var(--font-body); font-size:13.5px;
+  }
+  .field textarea{ min-height:80px; resize:vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:none; border-color:#e9ab72; }
+  .star-input{ display:flex; gap:4px; }
+  .star-input button{
+    background:none; border:none; font-size:22px; cursor:pointer; color:#4a3a2c; padding:0; line-height:1;
+  }
+  .star-input button.on{ color:#e9ab72; }
+  .submit-row{ display:flex; align-items:center; gap:14px; margin-top:18px; }
+  .btn-primary{
+    font-family:var(--font-mono); font-size:13px; font-weight:500; background:#e9ab72; color:#241a10;
+    border:1px solid #e9ab72; padding:11px 20px; border-radius:6px; cursor:pointer;
+  }
+  .btn-primary:hover{ background:#f2c193; }
+  .form-status{ font-family:var(--font-mono); font-size:12px; color:#9fd6b6; }
+  .form-status.error{ color:#f0a793; }
+
+  /* ---- staff tools (bulk AI replies) — deliberately distinct from the rest of the AI section ---- */
+  .staff-tools{ margin-top:40px; border:1px solid #6b5423; border-radius:10px; overflow:hidden; background:#241d10; }
+  .staff-toggle{
+    width:100%; display:flex; align-items:center; gap:10px;
+    background:#332811; border:none; color:#f0d999;
+    font-family:var(--font-mono); font-size:13px; font-weight:500;
+    padding:14px 18px; cursor:pointer; text-align:left;
+  }
+  .staff-toggle:hover{ background:#3d3115; }
+  .staff-badge{
+    background:#e0ac3c; color:#241a08; font-size:10px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px;
+  }
+  .staff-chevron{ margin-left:auto; color:#c9a86c; transition:transform 0.15s ease; }
+  .staff-toggle[aria-expanded="true"] .staff-chevron{ transform:rotate(90deg); }
+  .staff-body{ display:none; padding:20px 20px 22px; border-top:1px solid #6b5423; }
+  .staff-body.open{ display:block; }
+  .staff-intro{ font-size:13px; color:#d9c9a3; margin:0 0 16px; line-height:1.55; }
+  .staff-actions{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:10px; }
+  .btn-staff{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:500; padding:10px 16px;
+    border-radius:6px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    border:1px solid #e0ac3c; background:#e0ac3c; color:#241a08;
+  }
+  .btn-staff:hover{ background:#eec167; }
+  .btn-staff-outline{ background:transparent; color:#e0ac3c; }
+  .btn-staff-outline:hover{ background:rgba(224,172,60,0.12); }
+  .staff-status{ display:block; font-family:var(--font-mono); font-size:11.5px; color:#9fd6b6; margin-top:6px; }
+  .staff-status.error{ color:#f0a793; }
+  .tag.reply-source{ color:#e0ac3c; border-color:#6b5423; background:rgba(224,172,60,0.1); }
+
+  footer{ background:var(--cream); border-top:1px solid var(--paper-line); padding:28px 0; }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--coffee-soft); }
+  .disclosure{ font-family:var(--font-mono); font-size:11px; color:var(--coffee-soft); opacity:0.8; max-width:70ch; margin-top:8px; line-height:1.6; }
+
+  @media (max-width:840px){
+    .menu-grid{ grid-template-columns:1fr 1fr; }
+    .insight-strip{ grid-template-columns:1fr 1fr; }
+    .form-grid{ grid-template-columns:1fr; }
+    .hero-phone{ max-width:180px; margin-bottom:-40px; }
+  }
+  @media (max-width:560px){
+    .menu-grid{ grid-template-columns:1fr; }
+    .insight-strip{ grid-template-columns:1fr; }
+    .brand-name{ font-size:38px; }
+    .hero{ padding:40px 0 0; }
+    .section{ padding:40px 0; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-copy{ padding-bottom:24px; }
+    .hero-visual{ order:-1; margin-bottom:8px; }
+    .hero-phone{ max-width:150px; margin-bottom:0; filter:drop-shadow(0 12px 18px rgba(24,14,6,0.28)); }
+    #menu{ padding-top:40px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a class="back-link" href="bobabean.html">&larr; Back to case study</a>
+      <nav class="topnav">
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews &amp; AI</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="brand-name">bobabean</div>
+        <div class="tagline">Coffee for <u>good</u> men</div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="k">Guest rating</div><div class="v" id="heroAvg">&mdash;</div></div>
+          <div class="hero-stat"><div class="k">Reviews</div><div class="v" id="heroCount">&mdash;</div></div>
+          <div class="hero-stat"><div class="k">Menu</div><div class="v">6 signature drinks</div></div>
+          <div class="hero-stat"><div class="k">Pickup</div><div class="v">In-store &amp; QR pickup</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img class="hero-phone" src="../images/BobaBean cafe/bobacafesplash.png" alt="bobabean app splash screen on a phone">
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">The Collection</p>
+        <h2>Six ways to have your coffee</h2>
+        <p class="sub">Every cup is built the way you like it &mdash; blend, size, milk, sugar, and flavor, your call at every step.</p>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <section class="section ai-section" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">AI Review Studio</p>
+        <h2>Every review, sorted and ready to answer</h2>
+        <p class="sub">Each review is sentiment-tagged the moment it's posted. Filter the feed, see what's trending, and let the AI draft a first reply &mdash; you just send it.</p>
+      </div>
+
+      <div class="insight-strip" id="insightStrip"></div>
+
+      <div class="filter-row" id="filterRow"></div>
+
+      <div class="review-list" id="reviewList"></div>
+      <button class="load-more" id="loadMoreBtn" type="button" hidden>Show all reviews</button>
+
+      <div class="form-card">
+        <h3>Leave a review</h3>
+        <p class="sub">Posted reviews are classified live by the same rule-based model powering the feed above.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="fName">Your name</label>
+            <input type="text" id="fName" placeholder="e.g. Priya D.">
+          </div>
+          <div class="field">
+            <label for="fCoffee">Which drink?</label>
+            <select id="fCoffee"></select>
+          </div>
+          <div class="field">
+            <label>Your rating</label>
+            <div class="star-input" id="fStars"></div>
+          </div>
+          <div class="field">
+            <label for="fTitle">Review title</label>
+            <input type="text" id="fTitle" placeholder="Sum it up in a few words">
+          </div>
+          <div class="field full">
+            <label for="fText">Your review</label>
+            <textarea id="fText" placeholder="Tell us how it went (15+ characters)"></textarea>
+          </div>
+        </div>
+        <div class="submit-row">
+          <button class="btn-primary" id="postReviewBtn" type="button">Post review</button>
+          <span class="form-status" id="formStatus"></span>
+        </div>
+      </div>
+
+      <div class="staff-tools" id="staffTools">
+        <button class="staff-toggle" id="staffToggle" type="button" aria-expanded="false">
+          <span class="staff-badge">Staff only</span> Bulk AI reply tools
+          <span class="staff-chevron">&#9656;</span>
+        </button>
+        <div class="staff-body" id="staffBody">
+          <p class="staff-intro">Draft replies for every un-answered review in one pass, or export the batch and run it through a real LLM instead of this page's rule-based drafts &mdash; the exported <code>reviews_export.json</code> matches the schema a companion Colab notebook expects, and its output imports straight back in. Bring back an approved batch and it publishes across the feed instantly.</p>
+          <div class="staff-actions">
+            <button class="btn-staff" id="bulkDraftBtn" type="button">&#10024; Draft AI replies for all reviews</button>
+            <button class="btn-staff btn-staff-outline" id="exportBtn" type="button">Download reviews + replies (JSON)</button>
+            <label class="btn-staff btn-staff-outline" for="importFile" style="margin:0;">Import replies (JSON)</label>
+            <input type="file" id="importFile" accept="application/json" hidden>
+            <a class="btn-staff btn-staff-outline" href="bobabean-sample-replies.json" download>Download a sample import file</a>
+          </div>
+          <span class="staff-status" id="staffStatus"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="credit">bobabean &middot; a personal Figma-practice concept by Uma Ramanathan</div>
+      <p class="disclosure">This page is a portfolio demo of an AI-powered review management concept extending the bobabean case study. It runs entirely client-side: sentiment tagging uses a transparent rating + keyword heuristic, and the "AI reply" drafts are template-based, standing in for what a production sentiment-classification and generation pipeline would do. <a href="bobabean.html">&larr; Read the full case study</a></p>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  var CUP_ICON = '<img class="cup-icon" src="../images/BobaBean cafe/layered-cup-icon.png" alt="" loading="lazy">';
+
+  var COFFEES = [
+    { id: "espresso", name: "BB Espresso", price: 3.08, rating: 4.5, desc: "Aromatic mixture of our strongest blend, pulled short and steamed with milk of your choice." },
+    { id: "cappuccino", name: "BB Cappuccino", price: 5.50, rating: 3.5, desc: "Our signature cup — fresh-ground blend, steamed milk, and a flavor shot layered your way." },
+    { id: "latte", name: "BB Latte", price: 4.25, rating: 4.0, desc: "Silky steamed milk over a double shot, finished with your pick of syrup." },
+    { id: "mocha", name: "BB Mocha", price: 4.75, rating: 4.5, desc: "Dark chocolate and espresso layered under steamed milk and foam." },
+    { id: "coldbrew", name: "BB Cold Brew", price: 4.00, rating: 4.0, desc: "Slow-steeped for 18 hours, served over ice with oat milk." },
+    { id: "chai", name: "BB Chai Latte", price: 3.75, rating: 3.0, desc: "House-spiced chai blended with steamed milk of your choice." }
+  ];
+
+  var SEED_REVIEWS = [
+    { id: 1, name: "Tanya B.", date: "2026-08-24", coffee: "cappuccino", rating: 5, title: "This is my order every single morning now", text: "The BB Cappuccino is silky and the oat milk option never tastes chalky like other cafes. Staff remembered my usual after two visits." },
+    { id: 2, name: "Varun K.", date: "2026-08-22", coffee: "espresso", rating: 2, title: "Good espresso, painfully slow pickup", text: "Espresso was rich and properly pulled, but pickup was painfully slow — 20 minutes past my pickup time with no update on the app." },
+    { id: 3, name: "Simran O.", date: "2026-08-21", coffee: "mocha", rating: 5, title: "Dessert in a cup", text: "Dark chocolate up front, espresso underneath, and the foam held up the whole way home. Worth the price." },
+    { id: 4, name: "Yash D.", date: "2026-08-19", coffee: "chai", rating: 3, title: "Fine, a little sweet for me", text: "Nice spice blend but the normal sugar setting was too much for my taste. Ambience is lovely though." },
+    { id: 5, name: "Naina P.", date: "2026-08-18", coffee: "coldbrew", rating: 4, title: "Smooth and not bitter", text: "18-hour steep really shows, no bitterness even black. Would love a bigger size option." },
+    { id: 6, name: "Rahul T.", date: "2026-08-16", coffee: "latte", rating: 1, title: "Wrong milk, twice", text: "Ordered soy milk both times through the app customization screen and got regular milk. Frustrating when you're avoiding dairy." },
+    { id: 7, name: "Pooja S.", date: "2026-08-15", coffee: "espresso", rating: 5, title: "Best espresso in the neighborhood", text: "Strong, aromatic, and the crema is perfect. The tablet menu in-store is a lovely touch too." },
+    { id: 8, name: "Aryan M.", date: "2026-08-13", coffee: "cappuccino", rating: 2, title: "Overpriced for the portion", text: "Tasted fine but felt small for the price. The app's customization screens are genuinely fun though." },
+    { id: 9, name: "Lakshmi R.", date: "2026-08-11", coffee: "mocha", rating: 4, title: "Great weekend treat", text: "A little too sweet on the high sugar setting but easy to fix next time since it remembers my picks." },
+    { id: 10, name: "Dev N.", date: "2026-08-09", coffee: "chai", rating: 5, title: "Cozy and consistent", text: "Same great cup every time, and the pickup QR code makes grabbing it on my way to work effortless." },
+    { id: 11, name: "Shreya J.", date: "2026-08-07", coffee: "coldbrew", rating: 2, title: "Uncollected order notice came late", text: "Got the pending order nudge only after I had already left the counter area. Coffee itself was decent when I finally got it." },
+    { id: 12, name: "Manav G.", date: "2026-08-05", coffee: "latte", rating: 4, title: "Solid daily driver", text: "Consistent every time, friendly counter staff, and the layered cup icon on the receipt is a nice detail." },
+    { id: 13, name: "Ritika A.", date: "2026-08-02", coffee: "espresso", rating: 3, title: "Average visit", text: "Nothing wrong, nothing exceptional. The blend selection screen in the app was a nice touch though." },
+    { id: 14, name: "Siddharth L.", date: "2026-07-30", coffee: "cappuccino", rating: 1, title: "Cold, and remade wrong", text: "First cup arrived cold, and the remade one still wasn't the blend I picked in the app. Staff was apologetic at least." },
+    { id: 15, name: "Anjali W.", date: "2026-08-25", coffee: "mocha", rating: 5, title: "Worth every rupee", text: "Rich chocolate, balanced sweetness, and the foam art on top made my day. Ordering ahead through the app meant zero wait." },
+    { id: 16, name: "Vivek C.", date: "2026-08-14", coffee: "latte", rating: 3, title: "Decent but inconsistent", text: "Had this twice this week — one cup was perfect, the other was over-milked. Hoping the blend selection screen helps standardize this." },
+    { id: 17, name: "Nandini H.", date: "2026-08-10", coffee: "coldbrew", rating: 5, title: "My go-to summer order", text: "Never bitter, always smooth, and I love that the app remembers I always pick oat milk without asking twice." },
+    { id: 18, name: "Harsh Y.", date: "2026-08-06", coffee: "chai", rating: 2, title: "Too sweet even on low sugar", text: "Asked for low sugar in the app but it still came out wrong — way too sweet. Nice spice mix otherwise." },
+    { id: 19, name: "Sneha B.", date: "2026-08-03", coffee: "espresso", rating: 4, title: "Reliable and quick", text: "Same great shot every visit, and the pickup QR code at the counter makes grabbing it painless." },
+    { id: 20, name: "Om V.", date: "2026-07-28", coffee: "cappuccino", rating: 3, title: "Good coffee, forgettable service", text: "The cappuccino itself was well made, but nobody at the counter mentioned my order was ready — I only noticed the badge on my phone." }
+  ];
+
+  var POS_WORDS = ["love","best","perfect","amazing","smooth","great","cozy","consistent","effortless","silky","rich","favorite","worth","nice","solid"];
+  var NEG_WORDS = ["slow","wrong","cold","rude","overpriced","frustrating","mistake","late","disappoint","uncollected","small","bitter"];
+  var THEMES = [
+    { keys: ["slow", "late", "uncollected", "pickup"], label: "Pickup timing" },
+    { keys: ["wrong", "milk", "customization"], label: "Order accuracy" },
+    { keys: ["cold", "remade", "quality"], label: "Quality control" },
+    { keys: ["overpriced", "expensive", "small", "portion"], label: "Pricing / portion" }
+  ];
+
+  function keywordScore(text) {
+    var t = text.toLowerCase(), score = 0;
+    POS_WORDS.forEach(function (w) { if (t.indexOf(w) !== -1) score++; });
+    NEG_WORDS.forEach(function (w) { if (t.indexOf(w) !== -1) score--; });
+    return score;
+  }
+
+  function classify(rating, text) {
+    var combined = (rating - 3) * 1.5 + keywordScore(text) * 0.5;
+    if (combined >= 1.5) return "Positive";
+    if (combined <= -1.5) return "Negative";
+    return "Neutral";
+  }
+
+  function coffeeName(id) {
+    var c = COFFEES.filter(function (x) { return x.id === id; })[0];
+    return c ? c.name : id;
+  }
+
+  function initials(name) {
+    return name.split(" ").map(function (p) { return p[0]; }).join("").slice(0, 2).toUpperCase();
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function starString(rating) {
+    var full = Math.round(rating);
+    return "&#9733;".repeat(full) + '<span class="empty">' + "&#9733;".repeat(5 - full) + '</span>';
+  }
+
+  function draftReply(review) {
+    var first = review.name.split(" ")[0];
+    var coffee = coffeeName(review.coffee);
+    var t = review.text.toLowerCase();
+    var opener, body;
+    if (review.sentiment === "Positive") {
+      opener = "Hi " + first + ", thank you for the kind words about the " + coffee + "!";
+      body = " We'll pass this along to the team who made your cup. Hope to see you again soon.";
+    } else if (review.sentiment === "Neutral") {
+      opener = "Hi " + first + ", thanks for the honest take on the " + coffee + ".";
+      body = " We'd love to get it exactly right next time — let the counter know your preferred sugar and milk settings and we'll remember them for your next visit.";
+    } else {
+      opener = "Hi " + first + ", we're sorry the " + coffee + " didn't land the way it should have.";
+      if (t.indexOf("slow") !== -1 || t.indexOf("late") !== -1 || t.indexOf("uncollected") !== -1) {
+        body = " Pickup timing is on us to fix — we're tightening up our order-ready notifications so this doesn't happen again.";
+      } else if (t.indexOf("wrong") !== -1 || t.indexOf("milk") !== -1) {
+        body = " Getting your customization right is the whole point of the app, and we missed it — we're double-checking every order against the ticket before handoff now.";
+      } else if (t.indexOf("cold") !== -1 || t.indexOf("remade") !== -1) {
+        body = " That's a quality-control miss on our end, and it won't happen again on your next order.";
+      } else {
+        body = " We'd really like the chance to make this right — please reach out through the app or at the counter.";
+      }
+    }
+    return opener + body + " — Team bobabean";
+  }
+
+  var reviews = SEED_REVIEWS.map(function (r) {
+    return Object.assign({}, r, { sentiment: classify(r.rating, r.text) });
+  });
+  var activeFilter = "all";
+  var expanded = false;
+  var openReplies = {};
+
+  function replyLabel(r) {
+    if (r.replySource === "Imported") return "Imported reply";
+    if (r.replySource === "AI (bulk)") return "AI-drafted reply (bulk)";
+    return "AI-drafted reply";
+  }
+
+  function $(id) { return document.getElementById(id); }
+
+  function renderMenu() {
+    $("menuGrid").innerHTML = COFFEES.map(function (c) {
+      return '<div class="coffee-card">' +
+        '<div class="row-top">' + CUP_ICON + '<span class="price">$' + c.price.toFixed(2) + '</span></div>' +
+        '<h3>' + esc(c.name) + '</h3>' +
+        '<p>' + esc(c.desc) + '</p>' +
+        '<div><span class="stars">' + starString(c.rating) + '</span><span class="rating-num">' + c.rating.toFixed(1) + '</span></div>' +
+        '</div>';
+    }).join("");
+
+    var sel = $("fCoffee");
+    sel.innerHTML = COFFEES.map(function (c) { return '<option value="' + c.id + '">' + esc(c.name) + '</option>'; }).join("");
+  }
+
+  function computeInsights() {
+    var n = reviews.length;
+    var avg = reviews.reduce(function (s, r) { return s + r.rating; }, 0) / n;
+    var counts = { Positive: 0, Neutral: 0, Negative: 0 };
+    reviews.forEach(function (r) { counts[r.sentiment]++; });
+
+    var byCoffee = {};
+    reviews.forEach(function (r) {
+      byCoffee[r.coffee] = byCoffee[r.coffee] || { sum: 0, n: 0 };
+      byCoffee[r.coffee].sum += r.rating;
+      byCoffee[r.coffee].n++;
+    });
+    var topCoffeeId = null, topAvg = -1;
+    Object.keys(byCoffee).forEach(function (id) {
+      var a = byCoffee[id].sum / byCoffee[id].n;
+      if (a > topAvg) { topAvg = a; topCoffeeId = id; }
+    });
+
+    var themeCounts = {};
+    reviews.filter(function (r) { return r.sentiment === "Negative"; }).forEach(function (r) {
+      var t = r.text.toLowerCase();
+      var matched = THEMES.filter(function (th) { return th.keys.some(function (k) { return t.indexOf(k) !== -1; }); })[0];
+      if (matched) themeCounts[matched.label] = (themeCounts[matched.label] || 0) + 1;
+    });
+    var topTheme = null, topThemeCount = 0;
+    Object.keys(themeCounts).forEach(function (label) {
+      if (themeCounts[label] > topThemeCount) { topTheme = label; topThemeCount = themeCounts[label]; }
+    });
+
+    return { n: n, avg: avg, counts: counts, topCoffeeId: topCoffeeId, topAvg: topAvg, topTheme: topTheme, topThemeCount: topThemeCount };
+  }
+
+  function renderInsights() {
+    var ins = computeInsights();
+    $("heroAvg").textContent = ins.avg.toFixed(1) + " ★";
+    $("heroCount").textContent = ins.n + " reviews";
+
+    var posPct = Math.round(ins.counts.Positive / ins.n * 100);
+    var neuPct = Math.round(ins.counts.Neutral / ins.n * 100);
+    var negPct = 100 - posPct - neuPct;
+
+    $("insightStrip").innerHTML =
+      '<div class="insight"><div class="k">Average rating</div><div class="v">' + ins.avg.toFixed(1) + ' <small>' + ins.n + ' reviews</small></div></div>' +
+      '<div class="insight"><div class="k">Sentiment split</div><div class="v">' + posPct + '% positive' +
+        '<div class="sent-bar"><span style="width:' + posPct + '%;background:#5f9c78"></span><span style="width:' + neuPct + '%;background:#c9a86c"></span><span style="width:' + negPct + '%;background:#c9634a"></span></div>' +
+      '</div></div>' +
+      '<div class="insight"><div class="k">Best-loved drink</div><div class="v">' + esc(coffeeName(ins.topCoffeeId)) + ' <small>' + ins.topAvg.toFixed(1) + '★ avg</small></div></div>' +
+      '<div class="insight"><div class="k">Top recurring issue</div><div class="v">' + (ins.topTheme ? esc(ins.topTheme) : "None flagged") + (ins.topTheme ? ' <small>' + ins.topThemeCount + ' mention' + (ins.topThemeCount === 1 ? "" : "s") + '</small>' : '') + '</div></div>';
+
+    var counts = ins.counts;
+    $("filterRow").innerHTML = [
+      { key: "all", label: "All", n: ins.n },
+      { key: "positive", label: "Positive", n: counts.Positive },
+      { key: "neutral", label: "Neutral", n: counts.Neutral },
+      { key: "negative", label: "Negative", n: counts.Negative }
+    ].map(function (f) {
+      return '<button class="pill' + (activeFilter === f.key ? " active" : "") + '" data-filter="' + f.key + '">' + f.label + '<span class="cnt">' + f.n + '</span></button>';
+    }).join("");
+
+    $("filterRow").querySelectorAll(".pill").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activeFilter = btn.getAttribute("data-filter");
+        expanded = false;
+        renderInsights();
+        renderReviews();
+      });
+    });
+  }
+
+  function renderReviews() {
+    var filtered = reviews.filter(function (r) {
+      return activeFilter === "all" || r.sentiment.toLowerCase() === activeFilter;
+    }).sort(function (a, b) { return b.id - a.id; });
+
+    var shown = expanded ? filtered : filtered.slice(0, 6);
+
+    $("reviewList").innerHTML = shown.map(function (r) {
+      var hasReply = !!r.reply;
+      var isOpen = !!openReplies[r.id];
+      return '<article class="review-card" data-id="' + r.id + '">' +
+        '<div class="review-head">' +
+          '<div class="person"><div class="avatar">' + esc(initials(r.name)) + '</div><div><div class="name">' + esc(r.name) + '</div><div class="date">' + esc(r.date) + '</div></div></div>' +
+          '<div class="stars">' + "&#9733;".repeat(r.rating) + '<span class="empty">' + "&#9733;".repeat(5 - r.rating) + '</span></div>' +
+        '</div>' +
+        '<div class="review-title">' + esc(r.title) + '</div>' +
+        '<p class="review-text">' + esc(r.text) + '</p>' +
+        '<div class="tag-row">' +
+          '<span class="tag sent-' + r.sentiment.toLowerCase() + '">' + esc(r.sentiment) + '</span>' +
+          '<span class="tag">' + esc(coffeeName(r.coffee)) + '</span>' +
+          (hasReply ? '<span class="tag reply-source">' + esc(replyLabel(r)) + '</span>' : '') +
+        '</div>' +
+        '<button class="ai-reply-btn" data-id="' + r.id + '" type="button">' + (hasReply ? '&#128172; View / edit reply' : '&#10024; Draft an AI reply') + '</button>' +
+        '<div class="reply-box' + (isOpen ? ' shown' : '') + '" id="reply-' + r.id + '"><div class="label">' + esc(replyLabel(r)) + ' &middot; edit before sending</div><textarea data-id="' + r.id + '">' + esc(r.reply || "") + '</textarea></div>' +
+      '</article>';
+    }).join("");
+
+    $("loadMoreBtn").hidden = filtered.length <= 6;
+    $("loadMoreBtn").textContent = expanded ? "Show fewer reviews" : "Show all " + filtered.length + " reviews";
+
+    $("reviewList").querySelectorAll(".ai-reply-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = Number(btn.getAttribute("data-id"));
+        var review = reviews.filter(function (r) { return r.id === id; })[0];
+        if (!review.reply) {
+          review.reply = draftReply(review);
+          review.replySource = "AI (individual)";
+        }
+        openReplies[id] = !openReplies[id];
+        renderReviews();
+      });
+    });
+
+    $("reviewList").querySelectorAll(".reply-box textarea").forEach(function (ta) {
+      ta.addEventListener("input", function () {
+        var id = Number(ta.getAttribute("data-id"));
+        var review = reviews.filter(function (r) { return r.id === id; })[0];
+        review.reply = ta.value;
+      });
+    });
+  }
+
+  $("loadMoreBtn").addEventListener("click", function () {
+    expanded = !expanded;
+    renderReviews();
+  });
+
+  var starPicker = $("fStars");
+  var currentRating = 5;
+  function renderStarPicker() {
+    starPicker.innerHTML = [1, 2, 3, 4, 5].map(function (i) {
+      return '<button type="button" data-v="' + i + '" class="' + (i <= currentRating ? "on" : "") + '">&#9733;</button>';
+    }).join("");
+    starPicker.querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        currentRating = Number(b.getAttribute("data-v"));
+        renderStarPicker();
+      });
+    });
+  }
+  renderStarPicker();
+
+  $("postReviewBtn").addEventListener("click", function () {
+    var name = $("fName").value.trim();
+    var title = $("fTitle").value.trim();
+    var text = $("fText").value.trim();
+    var status = $("formStatus");
+
+    if (!name || !title || !text) {
+      status.textContent = "Please fill in your name, a title, and a review.";
+      status.className = "form-status error";
+      return;
+    }
+    if (text.length < 15) {
+      status.textContent = "Please write at least 15 characters so the AI has something to work with.";
+      status.className = "form-status error";
+      return;
+    }
+
+    var sentiment = classify(currentRating, text);
+    reviews.push({
+      id: Math.max.apply(null, reviews.map(function (r) { return r.id; })) + 1,
+      name: name,
+      date: new Date().toISOString().slice(0, 10),
+      coffee: $("fCoffee").value,
+      rating: currentRating,
+      title: title,
+      text: text,
+      sentiment: sentiment
+    });
+
+    $("fName").value = ""; $("fTitle").value = ""; $("fText").value = ""; currentRating = 5; renderStarPicker();
+    activeFilter = "all"; expanded = false;
+    renderInsights();
+    renderReviews();
+    status.textContent = "Review added — the AI classified it as " + sentiment + ".";
+    status.className = "form-status";
+    $("reviews").scrollIntoView({ behavior: "smooth" });
+  });
+
+  function download(name, data) {
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  $("staffToggle").addEventListener("click", function () {
+    var open = $("staffBody").classList.toggle("open");
+    $("staffToggle").setAttribute("aria-expanded", open);
+  });
+
+  $("bulkDraftBtn").addEventListener("click", function () {
+    var drafted = 0;
+    reviews.forEach(function (r) {
+      if (!r.reply) {
+        r.reply = draftReply(r);
+        r.replySource = "AI (bulk)";
+        drafted++;
+      }
+    });
+    renderReviews();
+    var status = $("staffStatus");
+    status.textContent = drafted
+      ? "Drafted " + drafted + " new AI repl" + (drafted === 1 ? "y" : "ies") + ". " + reviews.filter(function (r) { return r.reply; }).length + " of " + reviews.length + " reviews now have a reply."
+      : "Every review already has a reply drafted.";
+    status.className = "staff-status";
+  });
+
+  $("exportBtn").addEventListener("click", function () {
+    // Field names match what the "Build with AI.ipynb" Colab notebook expects
+    // when it loads this file as /content/reviews_export.json (review_id, review_text,
+    // reviewer_name, product_category, review_title, rating, sentiment) and writes
+    // manager_response back on export — so this file can be fed straight into it.
+    var payload = reviews.map(function (r) {
+      return {
+        review_id: r.id,
+        reviewer_name: r.name,
+        date: r.date,
+        product_category: coffeeName(r.coffee),
+        rating: r.rating,
+        sentiment: r.sentiment,
+        review_title: r.title,
+        review_text: r.text,
+        manager_response: r.reply || null,
+        reply_source: r.replySource || null
+      };
+    });
+    download("reviews_export.json", payload);
+    $("staffStatus").textContent = "Downloaded " + payload.length + " reviews as reviews_export.json — upload this directly into the Colab notebook's /content/ folder.";
+    $("staffStatus").className = "staff-status";
+  });
+
+  $("importFile").addEventListener("change", function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var status = $("staffStatus");
+      try {
+        var data = JSON.parse(reader.result);
+        if (!Array.isArray(data)) throw new Error("Expected a JSON array of {review_id, reply} objects.");
+        var matched = 0;
+        data.forEach(function (x) {
+          var id = x.review_id != null ? x.review_id : x.id;
+          var replyText = x.reply || x.manager_response || x.response;
+          var review = reviews.filter(function (r) { return String(r.id) === String(id); })[0];
+          if (review && replyText) {
+            review.reply = String(replyText);
+            review.replySource = "Imported";
+            matched++;
+          }
+        });
+        renderReviews();
+        status.textContent = "Imported " + matched + " repl" + (matched === 1 ? "y" : "ies") + " from " + file.name + ".";
+        status.className = "staff-status";
+      } catch (err) {
+        status.textContent = "Could not import file: " + err.message;
+        status.className = "staff-status error";
+      }
+      $("importFile").value = "";
+    };
+    reader.readAsText(file);
+  });
+
+  renderMenu();
+  renderInsights();
+  renderReviews();
+})();
+</script>
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>

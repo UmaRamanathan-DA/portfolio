@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+reviews_export.json
+manager_responses.json
