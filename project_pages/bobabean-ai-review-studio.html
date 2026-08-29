@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bobabean AI Review Studio — AI Review Management Concept</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --risk:#a3402f;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+      --risk:#e2857a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    --risk:#e2857a;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{ max-width:760px; margin:0 auto; padding:56px 28px 72px; }
+
+  .top-links{ display:flex; flex-wrap:wrap; gap:10px; margin:0 0 28px; }
+  .top-link{
+    font-family:var(--font-mono); font-size:12px; text-decoration:none;
+    color:var(--ink-soft); border:1px solid var(--line); padding:8px 14px;
+  }
+  .top-link:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+  .top-link.accent{ background:var(--accent); color:var(--paper); border-color:var(--accent); }
+  .top-link.accent:hover{ background:var(--accent-ink); border-color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin:0 0 18px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1.headline{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px); line-height:1.22; letter-spacing:-0.01em;
+    margin:0 0 20px; text-wrap:balance; max-width:28ch;
+  }
+  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 16px; }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+  p.note{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
+    max-width:62ch; line-height:1.5; margin:0 0 28px;
+  }
+
+  .triad{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; padding-top:22px; border-top:1px solid var(--line); }
+  .triad .k{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .triad .v{ display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:4px; line-height:1.35; }
+  .triad .d{ font-size:13px; color:var(--ink-soft); line-height:1.5; }
+
+  section{ margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
+  h2.label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; font-weight:500; }
+
+  .friction-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .friction-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:16px 18px; }
+  .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .friction-card strong{ display:block; font-family:var(--font-display); font-size:17px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+
+  .problem-list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .problem-list li{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:10px 14px; font-size:14.5px; font-weight:500; color:var(--ink); }
+
+  ul.changes{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  ul.changes li{ padding-left:16px; border-left:2px solid var(--resolved); }
+  ul.changes strong{ display:block; font-size:15.5px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+  ul.changes span{ font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+
+  .shot{ background:var(--surface); border:1px solid var(--line); padding:10px 10px 12px; margin-bottom:16px; }
+  .shot img{ width:100%; display:block; border:1px solid var(--line); cursor:zoom-in; }
+  .shot figcaption{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); line-height:1.4; }
+
+  .stat-strip{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .stat{ background:var(--surface); padding:20px 18px 18px; }
+  .stat .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:clamp(22px, 3.4vw, 28px); font-weight:500; color:var(--resolved); letter-spacing:-0.01em; }
+  .stat .desc{ margin-top:6px; font-size:13.5px; color:var(--ink); font-weight:500; line-height:1.4; }
+  .stat .raw{ margin-top:8px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+  .impact-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .impact-list li{ padding-left:16px; border-left:2px solid var(--resolved); font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+
+  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:46ch; text-wrap:balance; }
+
+  footer{ margin-top:44px; padding-top:24px; border-top:1px solid var(--line); }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .friction-grid{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+
+  /* ---- lightbox ---- */
+  .lightbox{ position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; background:rgba(17,26,32,0.94); padding:28px 64px 56px; }
+  .lightbox.is-open{ display:flex; }
+  .lightbox img{ max-width:min(96vw, 1400px); max-height:calc(100vh - 96px); width:auto; height:auto; object-fit:contain; box-shadow:0 18px 48px rgba(0,0,0,0.45); background:var(--surface); }
+  .lightbox-close{ position:absolute; top:16px; right:16px; width:40px; height:40px; appearance:none; background:transparent; border:1px solid rgba(238,241,238,0.28); color:#eef1ee; cursor:pointer; font-family:var(--font-mono); font-size:22px; line-height:1; }
+  .lightbox-close:hover{ border-color:#dd9a4d; color:#f0b878; }
+  body.lightbox-open{ overflow:hidden; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="top-links">
+    <a class="top-link" href="bobabean.html">&larr; bobabean UX case study</a>
+    <a class="top-link accent" href="bobabean-app.html" target="_blank" rel="noopener">Live webshop &amp; AI Review Studio &rarr;</a>
+  </div>
+
+  <p class="eyebrow">Concept Extension &middot; AI Product Design &middot; bobabean</p>
+  <h1 class="headline">Every café collects star ratings. Almost none turn them into a decision.</h1>
+  <p class="subhead">bobabean's ordering app already shows a star score on every drink card — but a rating sitting on a menu is decoration, not intelligence. I designed a review-management layer for the café owner: every review is auto-tagged by sentiment the instant it's posted, a reply is drafted for the specific situation instead of a blank box, and an insight strip surfaces which drink is winning and which complaint keeps repeating. <strong>I built this as a live, interactive demo, plus a real Claude-based pipeline as a companion script</strong> — the same interaction design, a swappable brain underneath.</p>
+  <p class="note">Concept extension to the bobabean case study &middot; illustrative portfolio project &middot; the demo's sentiment tagging and reply drafts are rule-based, standing in for the production ML/LLM pipeline described below.</p>
+
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">The café owner, not the customer</span>
+      <span class="d">No data team, no time to read two hundred reviews one at a time.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Reviews sorted, tagged, answered</span>
+      <span class="d">Sentiment on arrival, a drafted reply on click, trends on the surface.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">Feedback is a decision, not decor</span>
+      <span class="d">A star score changes nothing on its own — knowing what to fix does.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Problems</h2>
+    <ul class="problem-list">
+      <li>A rating with no reasoning behind it</li>
+      <li>Replies typed from a blank box, every time</li>
+      <li>No visibility into what keeps recurring</li>
+      <li>Bulk work with no bulk tools</li>
+      <li>No path from "demo" to "real model"</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">What today looks like</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>3.4 stars tells you nothing</strong>
+        <p>An average rating says something's off, not what — not which drink, not which part of the visit, not whether it's getting better or worse.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Every reply starts from zero</strong>
+        <p>No template, no memory of the last ten replies you wrote to the same complaint — just a blank box and whatever tone you're in that morning.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What I designed</h2>
+    <ul class="changes">
+      <li><strong>Sentiment tagged on arrival</strong><span>Every review is classified the instant it's posted — a transparent rating + keyword rule today, designed to slot in a real classifier without touching the UI.</span></li>
+      <li><strong>Replies drafted for the situation</strong><span>A pickup delay, a wrong order, and a quality miss each get a different, specific line — not one generic "we apologize for any inconvenience."</span></li>
+      <li><strong>An insight strip, not just a feed</strong><span>Best-loved drink, top recurring issue, and the sentiment split sit above the reviews themselves — the business answer, not just the raw data.</span></li>
+      <li><strong>Staff tools, deliberately separate</strong><span>Bulk actions live behind their own gold-bannered, collapsible panel — visually distinct from the customer-facing review feed, not blended into it.</span></li>
+      <li><strong>A real pipeline behind the demo</strong><span>A companion Python script calls Claude with a prompt that analyzes aspect-level sentiment and drafts the reply in one call; the demo's export file matches its schema exactly.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Product artifacts</h2>
+    <figure class="shot">
+      <button type="button" data-src="../images/bobabean AI review/feature1.png" style="all:unset;cursor:zoom-in;display:block;">
+        <img src="../images/bobabean AI review/feature1.png" alt="AI Review Studio — insight strip, filter pills, and a review card with a Draft an AI reply button">
+      </button>
+      <figcaption>The review feed — sentiment tags, filter pills, and an insight strip surfacing the best-loved drink and the top recurring complaint.</figcaption>
+    </figure>
+    <figure class="shot">
+      <button type="button" data-src="../images/bobabean AI review/feature2.png" style="all:unset;cursor:zoom-in;display:block;">
+        <img src="../images/bobabean AI review/feature2.png" alt="Staff Tools panel — bulk draft, export, and import AI replies, styled in a distinct gold banner">
+      </button>
+      <figcaption>Staff Tools, kept deliberately separate — a gold-bannered, collapsible panel for bulk actions, distinct from the customer-facing feed above it.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <p class="tagline">The five-star rating was the easy part. Turning twenty of them into next week's menu decision is the product.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What it changes</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">1 click</div>
+        <div class="desc">From unread backlog to drafted replies</div>
+        <div class="raw">bulk-draft fills every gap, skips what's already answered</div>
+      </div>
+      <div class="stat">
+        <div class="num">2</div>
+        <div class="desc">Named, actionable levers per view</div>
+        <div class="raw">best-loved drink to promote, top complaint to fix</div>
+      </div>
+      <div class="stat">
+        <div class="num">0</div>
+        <div class="desc">UI changes needed to go live</div>
+        <div class="raw">swap the rule-based classifier for Claude, same interaction design</div>
+      </div>
+    </div>
+    <ul class="impact-list">
+      <li>An owner sees "order accuracy is the recurring issue," not "3.4 stars" — the insight strip names the lever to pull, not just the average</li>
+      <li>A wrong-order complaint and a slow-pickup complaint get different, specific replies — not the same apology copy-pasted twenty times</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="credit">Uma Ramanathan &middot; AI Product Design &amp; Product Strategy</div>
+  </footer>
+
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full screen image">
+  <button type="button" class="lightbox-close" aria-label="Close full screen">&times;</button>
+  <img alt="">
+</div>
+
+<script>
+(function () {
+  var box = document.getElementById("lightbox");
+  var img = box.querySelector("img");
+  var closeBtn = box.querySelector(".lightbox-close");
+
+  function open(src, alt) {
+    img.src = src;
+    img.alt = alt || "";
+    box.classList.add("is-open");
+    box.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+  }
+  function close() {
+    box.classList.remove("is-open");
+    box.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    img.removeAttribute("src");
+  }
+
+  document.querySelectorAll("[data-src]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      open(el.getAttribute("data-src"), el.querySelector("img") ? el.querySelector("img").alt : "");
+    });
+  });
+  closeBtn.addEventListener("click", close);
+  box.addEventListener("click", function (e) { if (e.target === box) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (box.classList.contains("is-open") && e.key === "Escape") close();
+  });
+})();
+</script>
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>
