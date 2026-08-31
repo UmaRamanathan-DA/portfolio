@@ -130,6 +130,23 @@
   .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:0; }
   .flow-step{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--resolved); padding:9px 12px; font-size:13px; color:var(--ink); line-height:1.4; max-width:190px; }
   .flow-arrow{ padding:0 6px; color:var(--ink-soft); font-family:var(--font-mono); font-size:14px; }
+  .onboard-note{ margin:16px 0 10px; font-size:13px; color:var(--ink-soft); line-height:1.55; }
+
+  /* booking mechanics timeline */
+  .timeline{ display:grid; grid-template-columns:64px 1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .timeline .t{ background:var(--paper); font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); padding:12px 8px; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .timeline .cell{ background:var(--surface); padding:12px 14px; font-size:13.5px; color:var(--ink); line-height:1.5; }
+  .timeline .cell.head{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-ink); font-weight:600; }
+  .timeline-caption{ margin:14px 0 0; font-size:13px; color:var(--ink-soft); font-style:italic; line-height:1.5; }
+
+  /* pricing */
+  .fee-breakdown{ background:var(--surface); border:1px solid var(--line); padding:16px 20px; max-width:340px; margin-top:14px; }
+  .fee-breakdown .row{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:13px; padding:7px 0; border-bottom:1px solid var(--line); }
+  .fee-breakdown .row span:first-child{ color:var(--ink-soft); }
+  .fee-breakdown .row:last-child{ border-bottom:none; padding-top:9px; font-weight:600; }
+  .fee-breakdown .row:last-child span:first-child{ color:var(--ink); }
+  .fee-breakdown .row:last-child span:last-child{ color:var(--resolved); }
+  .menu-note{ margin:14px 0 0; font-size:13px; color:var(--ink-soft); line-height:1.55; }
 
   /* monetization */
   .revenue-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
@@ -173,6 +190,8 @@
     .stat-strip{ grid-template-columns:1fr; }
     .analytics-grid{ grid-template-columns:1fr; }
     .artifact-grid{ grid-template-columns:1fr 1fr; }
+    .timeline{ grid-template-columns:1fr; }
+    .timeline .t{ justify-content:flex-start; padding:10px 14px 0; }
     .page{ padding:40px 20px 56px; }
   }
 
@@ -268,7 +287,7 @@
         <li><strong>A full day mapped, not a to-do list</strong><span>Feed, walk, meds, bath, and grooming each sit on an hourly timeline, so a gap in the day is visible, not forgotten.</span></li>
         <li><strong>A real profile, with a paid bioschedule</strong><span>Name, age, birthday, gender by default; a breed-specific feeding &amp; care schedule as a paid unlock once a parent is invested in the profile.</span></li>
         <li><strong>Adoption becomes an ongoing relationship</strong><span>"My Buddies" keeps every adopted pet's posts and updates in view long after the swipe that found them.</span></li>
-        <li><strong>Providers become bookable, not just listed</strong><span>Groomers, vets, sitters, and boarders get a profile, availability, and a booking calendar &mdash; the marketplace half of the app.</span></li>
+        <li><strong>Providers become bookable, not just listed</strong><span>Onboarding, a searchable profile, a request/accept booking flow, two-way reviews, and provider-set pricing &mdash; the marketplace half of the app.</span></li>
         <li><strong>Conversational search finds the right provider</strong><span>"Grooming within 5km, this weekend, under $60, here's my dog" &mdash; parsed into a ranked match, the way Apple/Google Maps handle a spoken query.</span></li>
       </ul>
       <figure class="exhibit">
@@ -317,7 +336,7 @@
     <div class="model-diagram">
       <div class="model-node">Providers<br>(groomers, vets, sitters, boarders)</div>
       <div class="model-arrow">⇄</div>
-      <div class="model-node platform">PetMe<br>search · booking · commission</div>
+      <div class="model-node platform">PetMe<br>search · booking · trust · commission</div>
       <div class="model-arrow">⇄</div>
       <div class="model-node">Pet parents<br>(demand)</div>
     </div>
@@ -325,7 +344,92 @@
   </section>
 
   <section>
-    <h2 class="label">Sample journeys</h2>
+    <h2 class="label">How a provider gets listed &amp; found</h2>
+    <div class="flow-block">
+      <p class="flow-title">Provider onboarding</p>
+      <div class="flow">
+        <div class="flow-step">Applies as a provider: business name, service type (groomer / vet / sitter / boarder)</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Verifies credentials: vet license, groomer certification, or sitter background check &amp; insurance</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Builds a service menu with fixed prices</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Sets availability, service radius &amp; blackout dates</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Goes live in search, carrying a "New" badge until 3 completed bookings</div>
+      </div>
+    </div>
+    <p class="onboard-note">What a parent can filter or ask for, on the other side of that same listing:</p>
+    <ul class="problem-list">
+      <li>Service type</li>
+      <li>Radius (km)</li>
+      <li>Date range</li>
+      <li>Budget ceiling</li>
+      <li>Minimum rating</li>
+      <li>Verified only</li>
+      <li>Species / breed specialty</li>
+      <li>Available today</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">How a booking actually happens</h2>
+    <p class="section-note">Not one flowchart line &mdash; two sides seeing two different, synchronized views of the same event.</p>
+    <div class="timeline">
+      <div class="t"></div><div class="cell head">Pet parent</div><div class="cell head">Provider</div>
+      <div class="t">T+0</div><div class="cell">Sends a request: Sat 10am, full groom</div><div class="cell">New request appears in the booking inbox</div>
+      <div class="t">0&ndash;12h</div><div class="cell">Sees "Pending &mdash; provider has 12h to respond"</div><div class="cell">Accepts, declines, or proposes a different time</div>
+      <div class="t">On accept</div><div class="cell">Payment authorized; confirmation &amp; contact unlocked</div><div class="cell">Slot auto-blocked on their calendar</div>
+      <div class="t">T&minus;2h</div><div class="cell">Reminder, with the pet's bioschedule attached</div><div class="cell">Same reminder, same bioschedule attached</div>
+      <div class="t">Day of</div><div class="cell">Sees status: in progress</div><div class="cell">Marks the service complete</div>
+      <div class="t">After</div><div class="cell">Prompted to rate the provider</div><div class="cell">Payout releases minus PetMe's fee; prompted to rate the parent</div>
+    </div>
+    <p class="timeline-caption">If a request is declined or the 12h window expires, the parent is shown the next-ranked match automatically &mdash; no dead end.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Trust &amp; reviews</h2>
+    <div class="revenue-grid">
+      <div class="revenue-card">
+        <span class="tag">Parent rates</span>
+        <strong>The provider</strong>
+        <p>Punctuality, communication, whether the pet's bioschedule was actually followed, and would-book-again.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag">Provider rates</span>
+        <strong>The parent</strong>
+        <p>Accuracy of the pet info provided, pickup/drop-off punctuality, and communication &mdash; a two-way loop, the same shape as Airbnb host &harr; guest reviews.</p>
+      </div>
+    </div>
+    <p class="onboard-note">Both sides submit their rating before either one is revealed, so neither is written in retaliation for the other's.</p>
+    <ul class="problem-list">
+      <li>Licensed vet</li>
+      <li>Certified groomer</li>
+      <li>Insured sitter / boarder</li>
+      <li>Background-checked</li>
+      <li>50+ bookings completed</li>
+    </ul>
+    <p class="onboard-note">Rating average, completed-booking count, and response rate feed directly into search and conversational-match ranking &mdash; the free ranking signal that sits alongside, not replaced by, paid featured placement.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Pricing</h2>
+    <p class="section-note">Providers set their own price per service &mdash; PetMe doesn't set rates, it takes a cut of them.</p>
+    <ul class="problem-list">
+      <li>Full groom &mdash; $45</li>
+      <li>Basic wash &mdash; $25</li>
+      <li>Overnight boarding &mdash; $30/night</li>
+      <li>Vet consult &mdash; $60</li>
+      <li>Vaccination visit &mdash; $40</li>
+      <li>Dog walk (30 min) &mdash; $18</li>
+    </ul>
+    <p class="menu-note">Example: a parent books a full groom.</p>
+    <div class="fee-breakdown">
+      <div class="row"><span>Service price</span><span>$45.00</span></div>
+      <div class="row"><span>PetMe fee (12%)</span><span>&minus;$5.40</span></div>
+      <div class="row"><span>Provider payout</span><span>$39.60</span></div>
+    </div>
+    <p class="menu-note">The parent pays exactly the listed price &mdash; PetMe's fee comes out of the provider's payout, not as a separate consumer charge. Dynamic pricing (peak dates, last-minute discounts) is a logical next layer here, but isn't designed yet.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Sample journey</h2>
     <div class="flow-block">
       <p class="flow-title">Pet parent — conversational search to booking</p>
       <div class="flow">
@@ -338,17 +442,6 @@
         <div class="flow-step">Service happens, parent rates the provider</div>
       </div>
     </div>
-    <div class="flow-block">
-      <p class="flow-title">Care provider — from listing to payout</p>
-      <div class="flow">
-        <div class="flow-step">Creates profile, sets availability, radius &amp; pricing</div><div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">Booking request arrives with the pet's bioschedule attached</div><div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">Accepts or declines</div><div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">Delivers the service</div><div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">Payment settles, minus PetMe's commission</div><div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">Parent rates the booking, rating strengthens future ranking</div>
-      </div>
-    </div>
   </section>
 
   <section>
@@ -357,7 +450,7 @@
       <div class="revenue-card">
         <span class="tag">Core</span>
         <strong>Booking commission</strong>
-        <p>A percentage of every completed grooming, vet, sitting, or boarding booking &mdash; the same take-rate mechanic that makes the Airbnb model work.</p>
+        <p>A 12% fee taken from the provider's payout on every completed grooming, vet, sitting, or boarding booking &mdash; no separate charge to the parent, the same take-rate mechanic that makes the Airbnb model work.</p>
       </div>
       <div class="revenue-card">
         <span class="tag">Content</span>
@@ -378,7 +471,7 @@
   </section>
 
   <section>
-    <p class="tagline">PetMe isn't an app that helps you find a pet. It's the system &mdash; adoption, daily care, and every provider in between &mdash; that helps you keep it, all in one place.</p>
+    <p class="tagline">PetMe isn't just an app that helps you find a pet. It's the system &mdash; adoption, daily care, and every provider in between &mdash; that helps you keep it, all in one place.</p>
   </section>
 
   <section>
