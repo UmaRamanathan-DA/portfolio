@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PetMe — Designed for What Happens After You Adopt</title>
+<title>PetMe — One App for Every Pet Need</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -61,9 +61,9 @@
   h1.headline{
     font-family:var(--font-display); font-weight:500;
     font-size:clamp(26px, 3.6vw, 34px); line-height:1.22; letter-spacing:-0.01em;
-    margin:0 0 20px; text-wrap:balance; max-width:30ch;
+    margin:0 0 20px; text-wrap:balance; max-width:32ch;
   }
-  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 16px; }
+  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:66ch; margin:0 0 16px; }
   p.subhead strong{ color:var(--ink); font-weight:600; }
   p.note{
     font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
@@ -77,11 +77,12 @@
 
   section{ margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
   h2.label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; font-weight:500; }
+  p.section-note{ margin:-8px 0 18px; font-size:13px; color:var(--ink-soft); font-style:italic; line-height:1.5; max-width:62ch; }
 
-  .friction-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .friction-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
   .friction-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:16px 18px; }
   .friction-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
-  .friction-card strong{ display:block; font-family:var(--font-display); font-size:17px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .friction-card strong{ display:block; font-family:var(--font-display); font-size:16.5px; font-weight:500; color:var(--ink); margin-bottom:6px; }
 
   .problem-list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
   .problem-list li{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:10px 14px; font-size:14.5px; font-weight:500; color:var(--ink); }
@@ -106,15 +107,58 @@
   .artifact-card .k{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink); padding:12px 12px 4px; font-weight:500; }
   .artifact-card .n{ font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); padding:0 12px 12px; }
 
+  /* personas */
+  .persona-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .persona-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:18px 20px; }
+  .persona-card .role{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:8px; }
+  .persona-card h3{ font-family:var(--font-display); font-size:19px; font-weight:500; margin:0 0 12px; }
+  .persona-card dt{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-top:12px; }
+  .persona-card dt:first-of-type{ margin-top:0; }
+  .persona-card dd{ margin:3px 0 0; font-size:14px; color:var(--ink); line-height:1.55; }
+  .persona-note{ margin:14px 0 0; font-size:13px; color:var(--ink-soft); line-height:1.55; font-style:italic; }
+
+  /* platform model diagram */
+  .model-diagram{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; padding:28px 18px; background:var(--surface); border:1px solid var(--line); }
+  .model-node{ border:1px solid var(--line-strong); padding:14px 18px; text-align:center; font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); background:var(--paper); }
+  .model-node.platform{ border-color:var(--accent); color:var(--accent-ink); font-weight:600; background:var(--accent-soft); }
+  .model-arrow{ font-family:var(--font-mono); color:var(--ink-soft); font-size:16px; white-space:nowrap; }
+  .model-caption{ margin:14px 0 0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  /* flows */
+  .flow-block + .flow-block{ margin-top:26px; }
+  .flow-title{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-ink); margin:0 0 10px; }
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:0; }
+  .flow-step{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--resolved); padding:9px 12px; font-size:13px; color:var(--ink); line-height:1.4; max-width:190px; }
+  .flow-arrow{ padding:0 6px; color:var(--ink-soft); font-family:var(--font-mono); font-size:14px; }
+
+  /* monetization */
+  .revenue-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .revenue-card{ background:var(--surface); border:1px solid var(--line); padding:16px 18px; }
+  .revenue-card .tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--resolved); background:var(--resolved-soft); padding:2px 8px; margin-bottom:8px; }
+  .revenue-card .tag.future{ color:var(--ink-soft); background:var(--line); }
+  .revenue-card strong{ display:block; font-family:var(--font-display); font-size:16.5px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .revenue-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
   .stat-strip{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
   .stat{ background:var(--surface); padding:20px 18px 18px; }
   .stat .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:clamp(22px, 3.4vw, 28px); font-weight:500; color:var(--resolved); letter-spacing:-0.01em; }
   .stat .desc{ margin-top:6px; font-size:13.5px; color:var(--ink); font-weight:500; line-height:1.4; }
   .stat .raw{ margin-top:8px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
-  .impact-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
-  .impact-list li{ padding-left:16px; border-left:2px solid var(--resolved); font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
 
-  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:46ch; text-wrap:balance; }
+  .mech-label, .scale-label{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-ink); margin:0 0 10px; }
+  .scale-label{ margin-top:28px; }
+
+  .analytics-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .analytics-tile{ background:var(--surface); padding:18px 16px 16px; }
+  .analytics-tile .tag{ display:inline-block; font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft); padding:2px 7px; margin-bottom:10px; }
+  .analytics-tile .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:clamp(19px, 2.8vw, 23px); font-weight:500; color:var(--resolved); letter-spacing:-0.01em; display:block; }
+  .analytics-tile .label{ margin-top:6px; font-size:13px; color:var(--ink); font-weight:500; line-height:1.4; }
+
+  .detail-list{ list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .detail-list li{ padding-left:16px; border-left:2px solid var(--resolved); font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+  .detail-list strong{ color:var(--ink); font-weight:600; }
+
+  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:48ch; text-wrap:balance; }
 
   footer{ margin-top:44px; padding-top:24px; border-top:1px solid var(--line); }
   .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
@@ -124,7 +168,10 @@
     .friction-grid{ grid-template-columns:1fr; }
     .change-layout{ grid-template-columns:1fr; }
     .exhibit-images{ grid-template-columns:1fr; }
+    .persona-grid{ grid-template-columns:1fr; }
+    .revenue-grid{ grid-template-columns:1fr; }
     .stat-strip{ grid-template-columns:1fr; }
+    .analytics-grid{ grid-template-columns:1fr; }
     .artifact-grid{ grid-template-columns:1fr 1fr; }
     .page{ padding:40px 20px 56px; }
   }
@@ -156,42 +203,31 @@
 
 <div class="page">
 
-  <p class="eyebrow">Personal Project &middot; Mobile UX &middot; Figma Practice &middot; Rapid Prototyping</p>
-  <h1 class="headline">Finding a pet takes one swipe. PetMe helps you keep it alive and well with best practices on feeding, grooming and vaccinations.</h1>
-  <p class="subhead">Pet parenting is scattered by design: adoption listings live on one site, grooming gets booked by phone, and feeding, walks, and vaccinations get tracked nowhere but memory. <strong>I designed PetMe to unify discovery, a full daily care schedule, and a real profile per pet into one app</strong> — from the adoption swipe to the vaccination reminder.</p>
-  <p class="note">Personal project &middot; Figma practice &middot; UI concept exploration for pet adoption &amp; care management.</p>
+  <p class="eyebrow">Personal Project &middot; Mobile UX &middot; Two-Sided Marketplace Design</p>
+  <h1 class="headline">There's no one-stop solution for pet needs. PetMe is designed to be one.</h1>
+  <p class="subhead">Adoption listings live on one site, vaccinations get tracked nowhere but memory, and every groomer, vet, sitter, and pet business gets found by word of mouth and booked by phone. <strong>PetMe is a mobile app and two-sided marketplace</strong> that puts discovery, a full daily care schedule, a real profile per pet, and every provider a parent needs into one search and one calendar &mdash; with providers listed and bookable the way Airbnb lists and books a place to stay.</p>
+  <p class="note">Personal project &middot; Figma UI concept (2021) extended with a two-sided marketplace &amp; monetization model (2026).</p>
 
   <div class="triad">
     <div>
       <span class="k">Who</span>
-      <span class="v">Pet parents, before and after</span>
-      <span class="d">People adopting a pet, and people already keeping one alive and well.</span>
+      <span class="v">Two sides, one platform</span>
+      <span class="d">Pet parents adopting and caring for a pet, and the groomers, vets, sitters, and shelters they depend on &mdash; currently disconnected.</span>
     </div>
     <div>
       <span class="k">What</span>
-      <span class="v">One app, not five systems</span>
-      <span class="d">Discovery, a daily care schedule, and a pet profile, all in one place.</span>
+      <span class="v">One app, not a dozen systems</span>
+      <span class="d">Discovery, daily care, and every provider a pet parent needs, unified into a single two-sided marketplace.</span>
     </div>
     <div>
       <span class="k">Why</span>
-      <span class="v">A missed reminder isn't minor</span>
-      <span class="d">A forgotten feeding is an inconvenience. A forgotten vaccination is a vet bill.</span>
+      <span class="v">Fragmentation has a cost</span>
+      <span class="d">A forgotten vaccination becomes a vet bill. A groomer nobody could find in time becomes a no-show.</span>
     </div>
   </div>
 
   <section>
-    <h2 class="label">Problems</h2>
-    <ul class="problem-list">
-      <li>Adoption listings scattered across sites</li>
-      <li>No single view of a pet's daily care</li>
-      <li>Grooming and vet visits booked by phone</li>
-      <li>No real profile per pet</li>
-      <li>No shared visibility for sitters or family</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2 class="label">What today looks like</h2>
+    <h2 class="label">What's broken today</h2>
     <div class="friction-grid">
       <div class="friction-card">
         <strong>Adoption is a scavenger hunt</strong>
@@ -199,9 +235,29 @@
       </div>
       <div class="friction-card">
         <strong>Care lives in your head</strong>
-        <p>Feeding times, walk schedules, vaccination dates — most of it is memory, a sticky note, or a reminder that never got set.</p>
+        <p>Feeding times, walk schedules, vaccination dates &mdash; most of it is memory, a sticky note, or a reminder that never got set.</p>
+      </div>
+      <div class="friction-card">
+        <strong>Providers are found by luck</strong>
+        <p>A groomer, sitter, or vet clinic gets found through a phone book or an Instagram DM &mdash; never through a real search with location, date, and budget filters.</p>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2 class="label">What's inside</h2>
+    <ul class="problem-list">
+      <li>Adoption &amp; rehoming</li>
+      <li>Vaccination centers</li>
+      <li>Vet clinics &amp; vets</li>
+      <li>Groomers &amp; sitters / boarding</li>
+      <li>Pet food &amp; retail</li>
+      <li>Pet restaurants &amp; locations</li>
+      <li>Pet events</li>
+      <li>Pet profiles &amp; bioschedules</li>
+      <li>Shared care calendar</li>
+      <li>AI conversational provider search</li>
+    </ul>
   </section>
 
   <section>
@@ -210,8 +266,10 @@
       <ul class="changes">
         <li><strong>Species to specific pet, in one flow</strong><span>Dogs &rarr; Beagles &rarr; "Tough, 1yr, available for free, 10km away" in three taps, not three websites.</span></li>
         <li><strong>A full day mapped, not a to-do list</strong><span>Feed, walk, meds, bath, and grooming each sit on an hourly timeline, so a gap in the day is visible, not forgotten.</span></li>
-        <li><strong>Every pet gets a real profile</strong><span>Name, age, birthday, gender — one place that actually answers "how old is she again?"</span></li>
+        <li><strong>A real profile, with a paid bioschedule</strong><span>Name, age, birthday, gender by default; a breed-specific feeding &amp; care schedule as a paid unlock once a parent is invested in the profile.</span></li>
         <li><strong>Adoption becomes an ongoing relationship</strong><span>"My Buddies" keeps every adopted pet's posts and updates in view long after the swipe that found them.</span></li>
+        <li><strong>Providers become bookable, not just listed</strong><span>Groomers, vets, sitters, and boarders get a profile, availability, and a booking calendar &mdash; the marketplace half of the app.</span></li>
+        <li><strong>Conversational search finds the right provider</strong><span>"Grooming within 5km, this weekend, under $60, here's my dog" &mdash; parsed into a ranked match, the way Apple/Google Maps handle a spoken query.</span></li>
       </ul>
       <figure class="exhibit">
         <div class="exhibit-images">
@@ -222,37 +280,144 @@
             <img src="../images/PetMe/page4.png" alt="PetMe care schedule — grooming, walks, and bath tasks mapped to times">
           </button>
         </div>
-        <figcaption>Discovery and daily care, side by side — the two problems PetMe was designed to close. Click to view full screen.</figcaption>
+        <figcaption>Discovery and daily care, side by side &mdash; the pet-parent half of PetMe that's built as screens today. Click to view full screen.</figcaption>
       </figure>
     </div>
   </section>
 
   <section>
-    <p class="tagline">A pet doesn't need an app that helps you find it. It needs one that helps you keep it.</p>
+    <h2 class="label">Two sides of one marketplace</h2>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <span class="role">Demand side</span>
+        <h3>The Pet Parent</h3>
+        <dt>Goal</dt>
+        <dd>Book trustworthy care &mdash; right provider, right radius, right dates, right budget &mdash; without redoing the research every time.</dd>
+        <dt>Frustration</dt>
+        <dd>Juggles search engines, Instagram DMs, and phone calls per provider type; re-explains the pet's breed, allergies, and temperament to every new provider.</dd>
+        <dt>Gets from PetMe</dt>
+        <dd>One search across every provider type, a pet profile that travels with the booking, one calendar for every care task and appointment.</dd>
+      </div>
+      <div class="persona-card">
+        <span class="role">Supply side</span>
+        <h3>The Care Provider</h3>
+        <dt>Goal</dt>
+        <dd>Fill the calendar with bookings without paying for ads on five different apps, and cut down on no-shows from clients who vanish after a DM.</dd>
+        <dt>Frustration</dt>
+        <dd>Relies on word-of-mouth and social media for new clients; takes a booking with zero context on the pet; rebuilds trust from zero every time.</dd>
+        <dt>Gets from PetMe</dt>
+        <dd>A discoverable profile matched by location, date, and budget; a booking calendar; the client's pet bioschedule delivered with every request.</dd>
+      </div>
+    </div>
+    <p class="persona-note">Restaurants, retail, and pet events plug into the same app as a discovery layer &mdash; useful to parents, but not yet part of the booking-and-commission loop these two personas transact through.</p>
   </section>
 
   <section>
-    <h2 class="label">What it produced</h2>
-    <div class="stat-strip">
-      <div class="stat">
-        <div class="num">3 taps</div>
-        <div class="desc">From species to a specific, adoptable pet</div>
-        <div class="raw">species &rarr; breed &rarr; distance &amp; price, not five sites</div>
-      </div>
-      <div class="stat">
-        <div class="num">1 timeline</div>
-        <div class="desc">Every recurring care task, one day view</div>
-        <div class="raw">feed, walk, meds, bath &amp; grooming, hour by hour</div>
-      </div>
-      <div class="stat">
-        <div class="num">1 profile</div>
-        <div class="desc">Per pet, not scattered across notes</div>
-        <div class="raw">name, age, birthday, gender, one place</div>
+    <h2 class="label">The platform model: two-sided marketplace</h2>
+    <div class="model-diagram">
+      <div class="model-node">Providers<br>(groomers, vets, sitters, boarders)</div>
+      <div class="model-arrow">⇄</div>
+      <div class="model-node platform">PetMe<br>search · booking · commission</div>
+      <div class="model-arrow">⇄</div>
+      <div class="model-node">Pet parents<br>(demand)</div>
+    </div>
+    <p class="model-caption">The same network effect Airbnb runs on: more providers listed makes search results better, better results bring more parents to book, more bookings attract more providers.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Sample journeys</h2>
+    <div class="flow-block">
+      <p class="flow-title">Pet parent — conversational search to booking</p>
+      <div class="flow">
+        <div class="flow-step">Opens PetMe</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Asks: "grooming within 5km, this weekend, under $60, here's my dog's profile"</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">PetMe parses location, dates, budget &amp; pet profile</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Ranked provider matches returned</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Compares 2&ndash;3 profiles, picks a slot &amp; pays</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Booking lands on the pet's care calendar</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Service happens, parent rates the provider</div>
       </div>
     </div>
-    <ul class="impact-list">
-      <li>Adoption stops being a one-time swipe — "My Buddies" keeps every adopted pet's updates and posts in view afterward, closing the loop the old flow dropped</li>
-      <li>A missed feeding or vaccination becomes a visible gap on the schedule instead of a forgotten mental note, directly answering the reminder problem the project set out to solve</li>
+    <div class="flow-block">
+      <p class="flow-title">Care provider — from listing to payout</p>
+      <div class="flow">
+        <div class="flow-step">Creates profile, sets availability, radius &amp; pricing</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Booking request arrives with the pet's bioschedule attached</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Accepts or declines</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Delivers the service</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Payment settles, minus PetMe's commission</div><div class="flow-arrow">&rarr;</div>
+        <div class="flow-step">Parent rates the booking, rating strengthens future ranking</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">How it monetizes</h2>
+    <div class="revenue-grid">
+      <div class="revenue-card">
+        <span class="tag">Core</span>
+        <strong>Booking commission</strong>
+        <p>A percentage of every completed grooming, vet, sitting, or boarding booking &mdash; the same take-rate mechanic that makes the Airbnb model work.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag">Content</span>
+        <strong>Paid bioschedules</strong>
+        <p>Breed-specific feeding, care, and vaccination schedules are a paid download per pet; general breed grooming videos stay free.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag">Funnel</span>
+        <strong>Freemium content hook</strong>
+        <p>Free general content builds habit and trust; the paid, personalized bioschedule is the upgrade moment once a parent is already invested in the pet's profile.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag future">Not yet designed</span>
+        <strong>Featured provider placement</strong>
+        <p>A standard lever for this model &mdash; providers pay to rank higher in search and conversational-match results &mdash; flagged as a logical next step, not a finished mechanic.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">PetMe isn't an app that helps you find a pet. It's the system &mdash; adoption, daily care, and every provider in between &mdash; that helps you keep it, all in one place.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What PetMe is built to enable</h2>
+    <p class="section-note">PetMe is a concept-stage design project, not a shipped product &mdash; there's no live traffic behind these numbers. What follows is the analytics PetMe's own dashboard is designed to produce once it is live, not measured results.</p>
+
+    <p class="mech-label">Signature mechanics</p>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">9 species</div>
+        <div class="desc">Covered from one search, not nine sites</div>
+        <div class="raw">dogs, cats, parrots, hamsters, fish, rabbits, squirrels, tortoises, other birds &mdash; from the screens above</div>
+      </div>
+      <div class="stat">
+        <div class="num">92%</div>
+        <div class="desc">Conversational searches resolve straight to a booked provider</div>
+        <div class="raw">location + dates + budget + pet profile, one query &middot; illustrative</div>
+      </div>
+      <div class="stat">
+        <div class="num">68%</div>
+        <div class="desc">Paid bioschedules get shared into a sitter's calendar</div>
+        <div class="raw">a single purchase, a second use &middot; illustrative</div>
+      </div>
+    </div>
+
+    <p class="scale-label">Volume, illustrative</p>
+    <div class="analytics-grid">
+      <div class="analytics-tile"><span class="tag">Illustrative</span><span class="num">1,200+ / yr</span><div class="label">Pets adopted or rehomed</div></div>
+      <div class="analytics-tile"><span class="tag">Illustrative</span><span class="num">300+ / yr</span><div class="label">At-risk pets connected to rescue or foster</div></div>
+      <div class="analytics-tile"><span class="tag">Illustrative</span><span class="num">4,500+ / yr</span><div class="label">Grooming &amp; sitting bookings completed</div></div>
+      <div class="analytics-tile"><span class="tag">Illustrative</span><span class="num">6,000+ / yr</span><div class="label">Vet visits &amp; vaccinations tracked</div></div>
+      <div class="analytics-tile"><span class="tag">Illustrative</span><span class="num">250+</span><div class="label">Provider partners onboarded</div></div>
+      <div class="analytics-tile"><span class="tag">Illustrative</span><span class="num">2,000+</span><div class="label">Bioschedules downloaded</div></div>
+    </div>
+
+    <ul class="detail-list">
+      <li><strong>1 in 3 parents book more than one provider type in the same month</strong> &mdash; the one-stop-shop pitch showing up in behavior, not just in the feature list.</li>
+      <li><strong>Highly-rated providers get rebooked roughly 3&times; more often by the same parent</strong> &mdash; the rating loop compounding trust instead of resetting it every booking.</li>
+      <li><strong>Vaccination and feeding gaps get flagged before they're missed, not after</strong> &mdash; the daily-care timeline doing the job memory used to do.</li>
     </ul>
   </section>
 

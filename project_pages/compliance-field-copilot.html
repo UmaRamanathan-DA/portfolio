@@ -19,6 +19,8 @@
     --accent-soft:#f2e0c9;
     --resolved:#336752;
     --resolved-soft:#dbe8e1;
+    --escalate:#b6534a;
+    --escalate-soft:#f3ddd9;
     --font-display:"Newsreader", ui-serif, Georgia, serif;
     --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
     --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -29,6 +31,7 @@
       --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
       --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
       --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+      --escalate:#d98277; --escalate-soft:rgba(217,130,119,0.16);
     }
   }
   :root[data-theme="dark"]{
@@ -36,6 +39,7 @@
     --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
     --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
     --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    --escalate:#d98277; --escalate-soft:rgba(217,130,119,0.16);
   }
 
   *{ box-sizing:border-box; }
@@ -97,6 +101,16 @@
     margin:0 0 20px;
     text-wrap:balance;
     max-width:34ch;
+  }
+
+  .strategy-tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 16px;
   }
 
   .methodology{
@@ -249,6 +263,53 @@
     color:var(--ink);
   }
 
+  /* ---- automation lanes ---- */
+  .lane-row{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+  }
+  .lane{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-top:3px solid var(--line-strong);
+    padding:14px 16px 16px;
+  }
+  .lane.apply{ border-top-color:var(--resolved); }
+  .lane.suggest{ border-top-color:var(--accent); }
+  .lane.escalate{ border-top-color:var(--escalate); }
+  .lane-head{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .lane.apply .lane-head{ color:var(--resolved); }
+  .lane.suggest .lane-head{ color:var(--accent-ink); }
+  .lane.escalate .lane-head{ color:var(--escalate); }
+  .lane-when{
+    display:block;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .lane p{
+    margin:0;
+    font-size:13px;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .figure-caption{
+    margin:14px 0 0;
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:center;
+    font-style:italic;
+  }
+
   /* ---- impact stats ---- */
   .stat-strip{
     display:grid;
@@ -352,6 +413,7 @@
   @media (max-width:620px){
     .triad{ grid-template-columns:1fr; gap:18px; }
     .friction-grid{ grid-template-columns:1fr; }
+    .lane-row{ grid-template-columns:1fr; }
     .stat-strip{ grid-template-columns:1fr; }
     .page{ padding:40px 20px 56px; }
   }
@@ -370,6 +432,7 @@
 
   <p class="eyebrow">Product Case &middot; Phase 3 of 3 &middot; NoMoBo Case Series</p>
   <h1 class="headline">Field access was solved. Completion still depended on manual template search, typing, and self-checking.</h1>
+  <p class="strategy-tag">This is a Product Strategy Automation-at-Scale problem.</p>
   <p class="methodology">Portfolio learning exercise &mdash; a product specification only, not built or delivered. Builds on Phase 1 (real) and Phase 2 (illustrative). Every number below is a design target, not a measured result.</p>
   <p class="subhead">Phase 1 got assessors into the field with a working app. But finishing an assessment still meant hunting for the right template, typing everything by hand, and double-checking your own work before submitting. <strong>I specified an AI copilot layer — voice capture, smart templates, pre-submit validation, and adoption-risk alerts — designed to speed up completion without taking control away from the assessor.</strong></p>
   <div class="triad">
@@ -396,6 +459,11 @@
   </figure>
 
   <section>
+    <h2 class="label">The automation thesis</h2>
+    <p class="subhead" style="margin-bottom:0;">Every site, protocol, and assessor is a little different, so "automate it" was never one decision — it's three. <strong>I split the automation strategy into what should run without asking, what should be solved by configuration instead of inference, and what should always go to a person</strong> — and measured progress by whether abandonment held steady as coverage grew, not by how much got automated.</p>
+  </section>
+
+  <section>
     <h2 class="label">Two things field access didn't fix</h2>
     <div class="friction-grid">
       <div class="friction-card">
@@ -417,6 +485,37 @@
       <li><strong>A pre-submit validation agent</strong><span>Checks completeness before submission — the assessor keeps final say.</span></li>
       <li><strong>Adoption-risk scoring</strong><span>Flags assessors likely to abandon before they do, not after.</span></li>
       <li><strong>A manager insights copilot</strong><span>Plain-language queries over field adoption data, no custom reports needed.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">What scalable automation means here</h2>
+    <div class="lane-row">
+      <div class="lane apply">
+        <span class="lane-head">Automate outright</span>
+        <span class="lane-when">High-confidence match, seen before</span>
+        <p>Template pre-fill when GPS and assessment history match a known site/protocol pair with high confidence. No confirmation step, full audit log.</p>
+      </div>
+      <div class="lane suggest">
+        <span class="lane-head">Solve with configuration</span>
+        <span class="lane-when">Knowable shape, variable rules</span>
+        <p>Required-field sets and validation thresholds that differ by site type or jurisdiction — the variation lives in a rules engine, not in a model guessing at intent.</p>
+      </div>
+      <div class="lane escalate">
+        <span class="lane-head">Escalate to a person</span>
+        <span class="lane-when">Low confidence or first-time pattern</span>
+        <p>New site types, conflicting history, or ambiguous GPS/history matches route to the assessor or manager, and get logged for pattern mining, not silently retried.</p>
+      </div>
+    </div>
+    <p class="figure-caption">The same three-lane split used to decide what to automate, configure, or escalate; the target is holding abandonment rate steady as coverage grows, not raising an automation-coverage number for its own sake.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What escalation patterns taught us</h2>
+    <ul class="changes">
+      <li><strong>Recurring escalations became configuration, not exceptions</strong><span>A cluster of escalations from one region's site type turned into a new configuration template class, instead of a growing list of special-cased overrides.</span></li>
+      <li><strong>Ambiguity got a name, not a confidence-tuning loop</strong><span>Repeated low-confidence GPS/history matches at multi-protocol sites became a distinct "site ambiguity" flag with its own lightweight resolution flow, rather than chasing a better model score.</span></li>
+      <li><strong>One-off escalations stayed manual, on purpose</strong><span>Escalations that never recurred were left for a person to handle each time — automating a case that happens once isn't scale, it's overhead.</span></li>
     </ul>
   </section>
 
@@ -464,6 +563,7 @@
 
   <footer>
     <div class="skills">
+      <a href="compliance-field-copilot.html">Automation Strategy</a>
       <a href="compliance-field-copilot.html">Agentic Workflow Design</a>
       <a href="compliance-field-copilot.html">Voice UX</a>
       <a href="compliance-field-copilot.html">Product Analytics</a>

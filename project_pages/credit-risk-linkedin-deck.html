@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Featured Deck — Credit Risk Platform</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:#05080d;
+    --rail:#0c121c;
+    --surface:#10161f;
+    --line:rgba(255,255,255,0.09);
+    --ink:#e8edf4;
+    --ink-soft:#8b95a7;
+    --cyan:#22d3ee;
+    --gold:#fbbf24;
+    --green:#34d399;
+    --red:#f87171;
+    --font-display:"Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-body:"Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#2b2f38; font-family:var(--font-body); }
+
+  .toolbar{
+    position:sticky; top:0; z-index:50; background:#000; color:#fff; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:var(--font-mono);
+  }
+  .toolbar h1{ font-family:var(--font-body); font-size:14px; font-weight:700; margin:0; }
+  .toolbar p{ margin:2px 0 0; font-size:11.5px; color:#8b95a7; }
+  .toolbar button{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:700; letter-spacing:0.02em;
+    background:var(--cyan); color:#00131a; border:none; padding:10px 18px; cursor:pointer; border-radius:6px;
+  }
+  .toolbar button:hover{ filter:brightness(1.1); }
+
+  .deck{ padding:44px 20px 80px; }
+
+  .slide-frame{
+    width:540px; height:675px; overflow:hidden; margin:0 auto 36px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.5); border-radius:10px; position:relative;
+  }
+  .slide{
+    width:1080px; height:1350px; transform:scale(0.5); transform-origin:top left;
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:38px 38px;
+    display:flex; flex-direction:row; color:var(--ink);
+  }
+
+  /* ---------- sidebar rail ---------- */
+  .rail{
+    width:210px; flex:0 0 210px; background:var(--rail); border-right:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; padding:44px 0 36px;
+  }
+  .rail-mark{
+    width:52px; height:52px; border-radius:14px; flex:0 0 auto;
+    background:linear-gradient(135deg,var(--cyan),#0891b2);
+    display:flex; align-items:center; justify-content:center; font-size:24px;
+    box-shadow:0 0 30px rgba(34,211,238,0.5);
+  }
+  .rail-word{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-family:var(--font-mono); font-weight:700; font-size:15px; letter-spacing:0.16em;
+    color:#fff; margin:28px 0; flex:1; display:flex; align-items:center; justify-content:center;
+  }
+  .rail-ticks{ display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
+  .rail-ticks span{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.22); display:block; }
+  .rail-ticks span.on{ background:var(--cyan); box-shadow:0 0 9px rgba(34,211,238,0.9); }
+  .rail-index{ font-family:var(--font-mono); font-size:13px; color:rgba(255,255,255,0.55); letter-spacing:0.04em; }
+
+  /* ---------- main content ---------- */
+  .main{ flex:1; padding:56px 60px 130px; display:flex; flex-direction:column; position:relative; min-width:0; }
+
+  .section-tag{
+    display:inline-block; align-self:flex-start; font-family:var(--font-mono); font-weight:700;
+    font-size:13px; letter-spacing:0.06em; text-transform:uppercase; padding:8px 16px;
+    border-radius:7px; margin-bottom:22px; border:1px solid;
+  }
+  .section-tag.problem{ color:var(--red); border-color:rgba(248,113,113,0.4); background:rgba(248,113,113,0.09); }
+  .section-tag.model{ color:var(--cyan); border-color:rgba(34,211,238,0.4); background:rgba(34,211,238,0.09); }
+  .section-tag.console{ color:var(--gold); border-color:rgba(251,191,36,0.4); background:rgba(251,191,36,0.09); }
+  .section-tag.validation{ color:var(--green); border-color:rgba(52,211,153,0.4); background:rgba(52,211,153,0.09); }
+  .section-tag.drivers{ color:var(--gold); border-color:rgba(251,191,36,0.4); background:rgba(251,191,36,0.09); }
+  .section-tag.impact{ color:var(--green); border-color:rgba(52,211,153,0.4); background:rgba(52,211,153,0.09); }
+
+  h1.vh{
+    font-family:var(--font-display); font-weight:800; font-size:46px; line-height:1.14;
+    color:#fff; margin:0 0 18px; max-width:16ch; letter-spacing:-0.02em;
+  }
+  p.vsub{ font-size:19px; line-height:1.55; color:var(--ink-soft); max-width:44ch; margin:0 0 26px; }
+
+  .footer-credit{
+    position:absolute; left:60px; right:60px; bottom:48px; padding-top:20px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--font-mono); font-size:14px; color:var(--ink-soft);
+  }
+  .footer-credit .swipe{ color:var(--cyan); font-weight:700; }
+  .mini-footer{ position:absolute; left:60px; bottom:48px; font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); }
+
+  /* ---------- stat tiles ---------- */
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:auto; }
+  .stat-tile{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px 16px 18px; }
+  .stat-tile .num{ font-family:var(--font-mono); font-weight:700; font-size:32px; color:var(--cyan); text-shadow:0 0 20px rgba(34,211,238,0.35); }
+  .stat-tile .label{ margin-top:8px; font-size:13.5px; font-weight:600; color:var(--ink); line-height:1.3; }
+  .stat-tile .raw{ margin-top:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); line-height:1.4; }
+  .stat-tile.green .num{ color:var(--green); text-shadow:0 0 20px rgba(52,211,153,0.35); }
+  .stat-tile.gold .num{ color:var(--gold); text-shadow:0 0 20px rgba(251,191,36,0.35); }
+
+  /* ---------- friction cards ---------- */
+  .friction-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  .friction-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--red); padding:18px 20px; border-radius:10px; }
+  .friction-card strong{ display:block; font-size:16px; font-weight:700; color:#fff; margin-bottom:6px; }
+  .friction-card p{ margin:0; font-size:14px; color:var(--ink-soft); line-height:1.5; }
+  .tag-pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; }
+  .tag-pill-row span{
+    background:var(--surface); border:1px solid rgba(248,113,113,0.35); color:var(--ink);
+    padding:10px 15px; border-radius:8px; font-size:13.5px; font-weight:600;
+  }
+
+  /* ---------- window-chrome screenshot frame ---------- */
+  .window{ background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 22px 48px rgba(0,0,0,0.5); }
+  .window-bar{ display:flex; align-items:center; gap:6px; padding:10px 14px; background:#080c13; border-bottom:1px solid var(--line); }
+  .window-bar .d{ width:10px; height:10px; border-radius:50%; }
+  .window-bar .d.r{ background:#f87171; } .window-bar .d.y{ background:#fbbf24; } .window-bar .d.g{ background:#34d399; }
+  .window img{ width:100%; display:block; }
+  .window-cap{ padding:11px 14px; font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); }
+
+  /* ---------- tier bar chart ---------- */
+  .tier-chart{ display:flex; align-items:flex-end; gap:20px; height:230px; margin:14px 0 28px; }
+  .tier-bar{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+  .tier-bar .pct{ font-family:var(--font-mono); font-weight:700; font-size:20px; margin-bottom:8px; color:#fff; }
+  .tier-bar .bar{ width:100%; border-radius:8px 8px 0 0; }
+  .tier-bar .name{ margin-top:10px; font-family:var(--font-mono); font-size:11px; text-align:center; color:var(--ink-soft); letter-spacing:0.02em; line-height:1.3; }
+
+  /* ---------- driver ledger ---------- */
+  .driver-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px; }
+  .driver-head{ font-family:var(--font-mono); font-size:13px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:12px; }
+  .driver-head.up{ color:var(--red); } .driver-head.down{ color:var(--green); }
+  .driver-row{ display:flex; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); font-size:14.5px; color:var(--ink); }
+  .driver-row .arrow{ font-family:var(--font-mono); font-weight:800; font-size:16px; }
+  .driver-row.up .arrow{ color:var(--red); } .driver-row.down .arrow{ color:var(--green); }
+
+  /* ---------- impact grid ---------- */
+  .impact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:auto; }
+  .impact-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--green); border-radius:10px; padding:18px 20px; }
+  .impact-card strong{ display:block; font-size:15.5px; font-weight:700; color:#fff; margin-bottom:5px; }
+  .impact-card span{ font-size:13.5px; color:var(--ink-soft); line-height:1.45; }
+
+  .skills-row{ display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 22px; }
+  .skills-row span{ font-family:var(--font-mono); font-size:13.5px; font-weight:600; color:var(--ink); border:1px solid rgba(255,255,255,0.22); padding:9px 14px; border-radius:8px; }
+  .cta-box{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px 26px; margin-top:auto; margin-bottom:20px; }
+  .cta-box .k{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; display:block; font-weight:700; }
+  .cta-box .v{ font-family:var(--font-body); font-size:17px; font-weight:600; color:#fff; line-height:1.4; }
+  .contact-row{ display:flex; gap:22px; font-family:var(--font-mono); font-size:14px; color:var(--ink-soft); }
+
+  /* ---------- cover hero ---------- */
+  .cover-window{ margin-top:6px; }
+
+  /* ---------- print ---------- */
+  @page{ size:1080px 1350px; margin:0; }
+  @media print{
+    html,body{ background:#fff; }
+    .toolbar{ display:none !important; }
+    .deck{ padding:0; }
+    .slide-frame{ width:1080px; height:1350px; box-shadow:none; margin:0; border-radius:0; overflow:visible; page-break-after:always; }
+    .slide-frame:last-child{ page-break-after:auto; }
+    .slide{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <h1>LinkedIn Featured Deck — Credit Risk Platform</h1>
+    <p>7 slides · 1080×1350 · Cmd/Ctrl+P → Save as PDF → upload to LinkedIn Featured</p>
+  </div>
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="deck">
+
+  <!-- SLIDE 1 — COVER -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="rail-index">01/07</div>
+    </div>
+    <div class="main">
+      <h1 class="vh" style="margin-top:24px; font-size:50px; max-width:13ch;">One score. Four decisions. 396,000 loans.</h1>
+      <p class="vsub">A credit-risk scoring model and underwriting console for LoanTap-style consumer lending — trained on real repayment outcomes, not assumptions.</p>
+      <div class="window cover-window">
+        <div class="window-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span></div>
+        <img src="../images/loantap/underwriter%20workbench.png" alt="Underwriter Workbench console">
+      </div>
+      <div class="footer-credit">
+        <span>Uma Ramanathan &middot; Data Science / Credit Risk</span>
+        <span class="swipe">Swipe through the model &rarr;</span>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 2 — THE PROBLEM -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="rail-index">02/07</div>
+    </div>
+    <div class="main">
+      <div class="section-tag problem">The Problem</div>
+      <h1 class="vh">396,000 loans. Reviewed one file at a time.</h1>
+      <p class="vsub">High application volume met a manual review process — slow, and inconsistent from analyst to analyst.</p>
+      <div class="friction-grid">
+        <div class="friction-card"><strong>Manual review, one file at a time</strong><p>High volume, slow throughput, and judgment that varied by who reviewed the file.</p></div>
+        <div class="friction-card"><strong>No check against real outcomes</strong><p>Approve/reject calls weren't tested against what actually happened to similar past borrowers.</p></div>
+      </div>
+      <div class="tag-pill-row">
+        <span>High application volume</span><span>Analyst-to-analyst variance</span><span>No outcome validation</span>
+      </div>
+      <div class="mini-footer">LoanTap Risk Engine &middot; Uma Ramanathan</div>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 3 — THE MODEL -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+      <div class="rail-index">03/07</div>
+    </div>
+    <div class="main">
+      <div class="section-tag model">The Model</div>
+      <h1 class="vh" style="max-width:15ch;">Trained on what actually happened.</h1>
+      <p class="vsub">A logistic regression model fit on real repayment and default patterns — validated on loans it never saw during training.</p>
+      <div class="window" style="margin-bottom:22px;">
+        <div class="window-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span></div>
+        <img src="../images/loantap/dashboard7.png" alt="Analyst panel showing logistic regression, 77% accuracy, 0.80 ROC AUC">
+        <div class="window-cap">Analyst panel &middot; accuracy, ROC AUC, and train/validation split</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile"><div class="num">~77%</div><div class="label">Accuracy</div><div class="raw">held-out loans</div></div>
+        <div class="stat-tile"><div class="num">~0.80</div><div class="label">ROC AUC</div><div class="raw">80/20 split</div></div>
+        <div class="stat-tile"><div class="num">35</div><div class="label">Engineered features</div><div class="raw">income, DTI, grade, purpose &amp; more</div></div>
+      </div>
+      <div class="mini-footer">LoanTap Risk Engine &middot; Uma Ramanathan</div>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 4 — THE CONSOLE -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+      <div class="rail-index">04/07</div>
+    </div>
+    <div class="main">
+      <div class="section-tag console">The Console</div>
+      <h1 class="vh" style="font-size:40px; max-width:16ch;">Not a demo. A working console analysts use today.</h1>
+      <div class="window" style="margin-bottom:16px;">
+        <div class="window-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span></div>
+        <img src="../images/loantap/ub2.png" alt="AI case summary and underwriter decision controls">
+        <div class="window-cap">Same case &middot; AI summary the underwriter can accept or override</div>
+      </div>
+      <p class="vsub" style="margin-top:auto; margin-bottom:0; max-width:56ch;">A derived dataset scores every applicant offline; the console reads real model output — risk score, drivers, and a policy recommendation, not placeholder numbers.</p>
+      <div class="mini-footer">LoanTap Risk Engine &middot; Uma Ramanathan</div>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 5 — VALIDATION -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      <div class="rail-index">05/07</div>
+    </div>
+    <div class="main">
+      <div class="section-tag validation">Validation</div>
+      <h1 class="vh" style="max-width:17ch;">Does the tiering work? Yes — monotonically.</h1>
+      <p class="vsub">Because the scored loans are already closed, the actual outcome is known. Charge-off rate rises with every tier.</p>
+      <div class="tier-chart">
+        <div class="tier-bar"><div class="pct">5.9%</div><div class="bar" style="height:14%; background:linear-gradient(180deg,#4ade80,#16a34a);"></div><div class="name">APPROVE</div></div>
+        <div class="tier-bar"><div class="pct">14.6%</div><div class="bar" style="height:34%; background:linear-gradient(180deg,#a3e635,#65a30d);"></div><div class="name">APPROVE<br>W/ COND.</div></div>
+        <div class="tier-bar"><div class="pct">26.2%</div><div class="bar" style="height:61%; background:linear-gradient(180deg,#fbbf24,#d97706);"></div><div class="name">REVIEW<br>MANUAL</div></div>
+        <div class="tier-bar"><div class="pct">43.1%</div><div class="bar" style="height:100%; background:linear-gradient(180deg,#f87171,#dc2626);"></div><div class="name">REJECT</div></div>
+      </div>
+      <div class="stat-row" style="margin-top:0;">
+        <div class="stat-tile green"><div class="num">4/4</div><div class="label">Tiers monotonic</div><div class="raw">each riskier than the last</div></div>
+        <div class="stat-tile green"><div class="num">5,000</div><div class="label">Applicant sample</div><div class="raw">from the ~396K portfolio</div></div>
+        <div class="stat-tile green"><div class="num">Per-case</div><div class="label">Drivers shown</div><div class="raw">from the model's own coefficients</div></div>
+      </div>
+      <div class="mini-footer">LoanTap Risk Engine &middot; Uma Ramanathan</div>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 6 — WHAT DRIVES RISK -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span></div>
+      <div class="rail-index">06/07</div>
+    </div>
+    <div class="main">
+      <div class="section-tag drivers">What Drives Risk</div>
+      <h1 class="vh" style="max-width:17ch;">The model's own coefficients, made visible.</h1>
+      <p class="vsub">Not a black-box number — every score traces back to factors an underwriter can explain.</p>
+      <div class="driver-cols">
+        <div>
+          <div class="driver-head up">Pushes risk up</div>
+          <div class="driver-row up"><span class="arrow">&uarr;</span>Low loan grade (F, G)</div>
+          <div class="driver-row up"><span class="arrow">&uarr;</span>High debt-to-income ratio</div>
+          <div class="driver-row up"><span class="arrow">&uarr;</span>60-month loan term</div>
+        </div>
+        <div>
+          <div class="driver-head down">Pushes risk down</div>
+          <div class="driver-row down"><span class="arrow">&darr;</span>Verified income</div>
+          <div class="driver-row down"><span class="arrow">&darr;</span>Longer credit history</div>
+          <div class="driver-row down"><span class="arrow">&darr;</span>Employment tenure</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile gold"><div class="num">2&times;</div><div class="label">Default rate, 60mo vs 36mo</div><div class="raw">roughly double</div></div>
+        <div class="stat-tile gold"><div class="num">35</div><div class="label">Features engineered</div><div class="raw">from raw applicant data</div></div>
+        <div class="stat-tile gold"><div class="num">6.9%&rarr;45.3%</div><div class="label">Default rate, Low&rarr;Very High</div><div class="raw">across the full 396K book</div></div>
+      </div>
+      <div class="mini-footer">LoanTap Risk Engine &middot; Uma Ramanathan</div>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 7 — IMPACT / CLOSE -->
+  <div class="slide-frame"><div class="slide">
+    <div class="rail">
+      <div class="rail-mark">💳</div>
+      <div class="rail-word">LOANTAP RISK ENGINE</div>
+      <div class="rail-ticks"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span></div>
+      <div class="rail-index">07/07</div>
+    </div>
+    <div class="main">
+      <div class="section-tag impact">Impact</div>
+      <h1 class="vh" style="max-width:16ch;">Faster decisions. Lower losses. Consistent calls.</h1>
+      <div class="impact-grid">
+        <div class="impact-card"><strong>Faster decisions</strong><span>Streamlined workflow, higher application throughput.</span></div>
+        <div class="impact-card"><strong>Lower credit losses</strong><span>Better risk detection reduces defaults and charge-offs.</span></div>
+        <div class="impact-card"><strong>Stronger adoption</strong><span>An intuitive console made the model usable from day one.</span></div>
+        <div class="impact-card"><strong>Consistent assessment</strong><span>Standardized scoring cuts analyst-to-analyst variance.</span></div>
+      </div>
+      <div class="skills-row">
+        <span>Credit Risk Modeling</span><span>Feature Engineering</span><span>Model Validation</span><span>Explainable AI</span><span>API Design</span>
+      </div>
+      <div class="cta-box">
+        <span class="k">Full case study</span>
+        <span class="v">Available on request — always happy to walk through the model.</span>
+      </div>
+      <div class="footer-credit" style="border-top:none; padding-top:0;">
+        <div class="contact-row">
+          <span>umaramanathan54@gmail.com</span>
+          <span>linkedin.com/in/ramanathan-uma</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+</div>
+
+</body>
+</html>

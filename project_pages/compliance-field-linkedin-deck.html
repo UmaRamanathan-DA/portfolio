@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Featured Deck — Compliance Field Copilot</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ink:#181825;
+    --ink-soft:#5b5b74;
+    --surface:#ffffff;
+    --p1:#0369a1;
+    --p2:#7c3aed;
+    --p3:#0f766e;
+    --coral:#f97316;
+    --font-display:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-body:"Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#d7d7de; font-family:var(--font-body); }
+
+  /* ---------- screen chrome (hidden on print) ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:50;
+    background:#181825; color:#fff;
+    padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px;
+    font-family:var(--font-mono);
+  }
+  .toolbar h1{ font-family:var(--font-body); font-size:14px; font-weight:700; margin:0; }
+  .toolbar p{ margin:2px 0 0; font-size:11.5px; color:#b7b7c9; }
+  .toolbar button{
+    font-family:var(--font-mono);
+    font-size:12.5px; font-weight:700; letter-spacing:0.02em;
+    background:linear-gradient(135deg,#f97316,#ec4899);
+    color:#fff; border:none; padding:10px 18px; cursor:pointer; border-radius:8px;
+  }
+  .toolbar button:hover{ filter:brightness(1.08); }
+
+  .deck{ padding:44px 20px 80px; }
+
+  .slide-frame{
+    width:540px; height:675px; overflow:hidden; margin:0 auto 36px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.32); border-radius:14px; position:relative;
+  }
+  .slide{
+    width:1080px; height:1350px; transform:scale(0.5); transform-origin:top left;
+    position:relative; padding:64px 72px 150px; display:flex; flex-direction:column;
+    color:#fff;
+  }
+  .slide.cover, .slide.close{ background:linear-gradient(150deg,#4f46e5 0%,#9333ea 55%,#ec4899 100%); }
+  .slide.p1-before{ background:linear-gradient(150deg,#6b7280 0%,#3f4654 100%); }
+  .slide.p1-after{ background:linear-gradient(150deg,#0284c7 0%,#0891b2 55%,#22d3ee 100%); }
+  .slide.p2{ background:linear-gradient(150deg,#7c3aed 0%,#c026d3 60%,#e879f9 100%); }
+  .slide.p3-story{ background:linear-gradient(150deg,#047857 0%,#0d9488 55%,#14b8a6 100%); }
+  .slide.p3-impact{ background:linear-gradient(150deg,#0f766e 0%,#0891b2 55%,#38bdf8 100%); }
+
+  /* ---------- shared slide chrome ---------- */
+  .slide-index{
+    position:absolute; top:36px; right:56px;
+    font-family:var(--font-mono); font-size:16px; letter-spacing:0.06em; color:rgba(255,255,255,0.75);
+  }
+  .dots{ position:absolute; top:40px; left:72px; display:flex; gap:8px; }
+  .dots span{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.3); display:block; }
+  .dots span.on{ background:#fff; }
+
+  /* ---------- persistent product badge ---------- */
+  .brand-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.4);
+    padding:7px 18px 7px 7px; border-radius:999px; margin:60px 0 26px; align-self:flex-start;
+  }
+  .brand-badge .mark{
+    width:32px; height:32px; border-radius:9px; background:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+  }
+  .brand-badge .word{ font-family:var(--font-display); font-weight:700; font-size:16px; color:#fff; letter-spacing:-0.01em; }
+
+  .phase-pill{
+    display:inline-block; background:#fff; font-family:var(--font-mono); font-weight:700;
+    font-size:14px; letter-spacing:0.05em; text-transform:uppercase; padding:9px 18px;
+    border-radius:999px; margin:0 0 20px;
+  }
+  .phase-pill.p1{ color:var(--p1); }
+  .phase-pill.p2{ color:var(--p2); }
+  .phase-pill.p3{ color:var(--p3); }
+
+  .info-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.3);
+    font-family:var(--font-mono); font-style:italic; font-size:14px; color:#fff;
+    padding:9px 16px; border-radius:12px; margin:0 0 22px; max-width:56ch; line-height:1.45;
+  }
+
+  h1.vh{
+    font-family:var(--font-display); font-weight:700; font-size:52px; line-height:1.1;
+    color:#fff; margin:0 0 16px; max-width:19ch; letter-spacing:-0.02em;
+  }
+  p.vsub{ font-size:21px; line-height:1.5; color:rgba(255,255,255,0.9); max-width:38ch; margin:0 0 28px; }
+
+  .footer-credit{
+    position:absolute; left:72px; right:72px; bottom:52px;
+    padding-top:20px; border-top:1px solid rgba(255,255,255,0.25);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--font-mono); font-size:14.5px; color:rgba(255,255,255,0.85);
+  }
+  .footer-credit .swipe{ color:#fde047; font-weight:700; }
+  .mini-footer{
+    position:absolute; left:72px; bottom:52px;
+    font-family:var(--font-mono); font-size:13.5px; color:rgba(255,255,255,0.75);
+  }
+
+  /* ---------- glass card ---------- */
+  .glass{ background:#fff; border-radius:22px; padding:22px 24px; box-shadow:0 18px 40px rgba(0,0,0,0.2); }
+
+  /* ---------- stat row ---------- */
+  .vstat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:auto; }
+  .vstat{ background:#fff; border-radius:20px; padding:22px 18px 20px; box-shadow:0 16px 36px rgba(0,0,0,0.2); }
+  .vstat .num{ font-family:var(--font-display); font-weight:700; font-size:40px; line-height:1; letter-spacing:-0.01em; }
+  .vstat .label{ margin-top:10px; font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.3; }
+  .vstat .raw{ margin-top:6px; font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); }
+  .vstat.p1 .num{ color:var(--p1); } .vstat.p2 .num{ color:var(--p2); } .vstat.p3 .num{ color:var(--p3); }
+
+  /* ---------- journey infographic (phase openers) ---------- */
+  .journey-row{ display:flex; gap:10px; margin:6px 0 22px; }
+  .journey-node{ flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .journey-icon{
+    width:64px; height:64px; border-radius:50%; background:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:28px;
+    box-shadow:0 12px 26px rgba(0,0,0,0.22); margin-bottom:10px;
+  }
+  .journey-arrow{ color:rgba(255,255,255,0.55); font-size:20px; align-self:center; margin-top:22px; }
+  .journey-cap{ font-family:var(--font-body); font-weight:700; font-size:12.5px; color:#fff; line-height:1.3; }
+  .journey-pain{
+    margin-top:6px; font-family:var(--font-mono); font-size:10.5px; color:#fff;
+    background:rgba(0,0,0,0.28); padding:3px 8px; border-radius:6px; line-height:1.3;
+  }
+
+  .callout-split{ display:flex; gap:16px; margin-top:auto; margin-bottom:22px; }
+  .callout{ flex:1; border-radius:20px; padding:20px 20px 18px; }
+  .callout.dim{ background:rgba(0,0,0,0.22); border:1px dashed rgba(255,255,255,0.4); }
+  .callout.bright{ background:#fff; box-shadow:0 16px 36px rgba(0,0,0,0.22); }
+  .callout .num{ font-family:var(--font-display); font-weight:700; font-size:38px; }
+  .callout.dim .num{ color:#fff; } .callout.bright .num{ color:var(--p1); }
+  .callout .desc{ margin-top:6px; font-size:13.5px; font-weight:600; }
+  .callout.dim .desc{ color:rgba(255,255,255,0.85); } .callout.bright .desc{ color:var(--ink); }
+
+  /* ---------- phone frames ---------- */
+  .phone-row{ display:flex; gap:36px; justify-content:center; align-items:flex-end; margin:6px 0 26px; }
+  .phone-frame{
+    width:230px; border-radius:26px; border:9px solid #10151d; overflow:hidden;
+    box-shadow:0 24px 48px rgba(0,0,0,0.35); background:#10151d;
+  }
+  .phone-frame img{ width:100%; display:block; }
+  .phone-cap{ text-align:center; font-family:var(--font-mono); font-size:13px; color:#fff; margin-top:10px; }
+  .phone-col{ display:flex; flex-direction:column; align-items:center; }
+
+  .cover-hero{ position:absolute; right:40px; bottom:190px; display:flex; }
+  .cover-hero .phone-frame:first-child{ transform:rotate(-7deg) translateY(10px); width:210px; z-index:1; }
+  .cover-hero .phone-frame:last-child{ transform:rotate(5deg) translateX(-42px); width:210px; z-index:2; }
+  .cover-word{ font-family:var(--font-display); font-weight:700; font-size:68px; line-height:1.02; letter-spacing:-0.02em; margin:0 0 18px; max-width:11ch; }
+
+  /* ---------- story timeline ---------- */
+  .story-timeline{ position:relative; padding-left:0; display:flex; flex-direction:column; gap:14px; }
+  .story-beat{
+    display:flex; gap:18px; align-items:flex-start; background:#fff; border-radius:20px;
+    padding:16px 20px 16px 16px; box-shadow:0 14px 32px rgba(0,0,0,0.18);
+  }
+  .story-node{
+    flex:0 0 auto; width:52px; height:52px; border-radius:50%;
+    background:linear-gradient(135deg,#0d9488,#0891b2);
+    display:flex; align-items:center; justify-content:center; font-size:24px;
+  }
+  .story-body{ flex:1; }
+  .story-scene{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--p3); margin:2px 0 6px; font-weight:700; }
+  .story-quote{ font-family:var(--font-display); font-weight:600; font-size:18px; color:var(--ink); margin:0 0 6px; line-height:1.3; }
+  .story-ai{ font-size:14.5px; color:var(--ink-soft); line-height:1.4; }
+  .story-ai .tag{
+    font-family:var(--font-mono); font-size:10.5px; font-weight:700; letter-spacing:0.03em; text-transform:uppercase;
+    background:#ccfbf1; color:var(--p3); padding:3px 7px; border-radius:5px; margin-right:7px;
+  }
+  .story-tagline{
+    font-family:var(--font-display); font-style:normal; font-weight:600; font-size:19px;
+    color:#fff; line-height:1.4; max-width:44ch; margin-top:auto; padding-top:18px;
+  }
+
+  /* ---------- capability chips + lanes (phase 3 impact) ---------- */
+  .cap-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
+  .cap-chip{
+    display:flex; align-items:center; gap:9px; background:rgba(255,255,255,0.94);
+    border-radius:999px; padding:10px 16px 10px 10px; box-shadow:0 10px 22px rgba(0,0,0,0.16);
+  }
+  .cap-chip .ic{ width:32px; height:32px; border-radius:50%; background:var(--p3); color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .cap-chip .tx{ font-size:13.5px; font-weight:700; color:var(--ink); }
+
+  .lane-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .lane{ background:#fff; border-radius:18px; padding:16px 16px 18px; box-shadow:0 12px 28px rgba(0,0,0,0.16); }
+  .lane-head{ display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.03em; text-transform:uppercase; font-weight:700; margin-bottom:8px; }
+  .lane-head .dot{ width:10px; height:10px; border-radius:50%; }
+  .lane.apply .dot{ background:#16a34a; } .lane.apply .lane-head{ color:#16a34a; }
+  .lane.suggest .dot{ background:#f59e0b; } .lane.suggest .lane-head{ color:#b45309; }
+  .lane.escalate .dot{ background:#e11d48; } .lane.escalate .lane-head{ color:#e11d48; }
+  .lane p{ margin:0; font-size:13.5px; color:var(--ink); line-height:1.45; }
+
+  /* ---------- close slide ---------- */
+  .skills-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
+  .skills-row span{
+    font-family:var(--font-mono); font-size:14px; font-weight:600; color:#fff;
+    border:1px solid rgba(255,255,255,0.45); padding:9px 14px; border-radius:999px;
+  }
+  .cta-box{
+    background:rgba(255,255,255,0.98); border-radius:20px; color:var(--ink);
+    padding:26px 28px; margin-top:auto; margin-bottom:20px; box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  }
+  .cta-box .k{ font-family:var(--font-mono); font-size:13px; letter-spacing:0.05em; text-transform:uppercase; color:var(--p2); margin-bottom:8px; display:block; font-weight:700; }
+  .cta-box .v{ font-family:var(--font-body); font-size:18px; font-weight:600; line-height:1.4; }
+  .contact-row{ display:flex; gap:22px; font-family:var(--font-mono); font-size:15px; color:rgba(255,255,255,0.9); }
+
+  /* ---------- print ---------- */
+  @page{ size:1080px 1350px; margin:0; }
+  @media print{
+    html,body{ background:#fff; }
+    .toolbar{ display:none !important; }
+    .deck{ padding:0; }
+    .slide-frame{ width:1080px; height:1350px; box-shadow:none; margin:0; border-radius:0; overflow:visible; page-break-after:always; }
+    .slide-frame:last-child{ page-break-after:auto; }
+    .slide{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <h1>LinkedIn Featured Deck — Compliance Field Copilot</h1>
+    <p>7 slides · 1080×1350 · Cmd/Ctrl+P → Save as PDF → upload to LinkedIn Featured</p>
+  </div>
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="deck">
+
+  <!-- SLIDE 1 — COVER -->
+  <div class="slide-frame"><div class="slide cover">
+    <div class="slide-index">01/07</div>
+    <div class="brand-badge" style="margin-top:36px;"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <h1 class="cover-word">Paper to AI Copilot.</h1>
+    <p class="vsub" style="max-width:26ch;">A 3-phase product case: a broken paper workflow → a proven mobile redesign → what AI does next.</p>
+    <div class="cover-hero">
+      <div class="phone-frame"><img src="../images/Assessments/UI/mobile-1.png" alt="Redesigned field capture screen"></div>
+      <div class="phone-frame"><img src="../images/Assessments/UI/mobile-2.png" alt="Redesigned draft and sync screen"></div>
+    </div>
+    <div class="footer-credit">
+      <span>Uma Ramanathan &middot; Product Strategy, UX &amp; Data</span>
+      <span class="swipe">Swipe for the full arc &rarr;</span>
+    </div>
+  </div></div>
+
+  <!-- SLIDE 2 — PHASE 1 OPENER: THE OLD WAY (journey infographic) -->
+  <div class="slide-frame"><div class="slide p1-before">
+    <div class="slide-index">02/07</div>
+    <div class="dots"><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="brand-badge"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <div class="phase-pill" style="background:#fff; color:#374151;">Before Phase 1 &middot; The Old Way</div>
+    <h1 class="vh">Paper couldn't keep up with the field.</h1>
+    <div class="journey-row">
+      <div class="journey-node"><div class="journey-icon">🚶</div><div class="journey-cap">Arrives on site</div><div class="journey-pain">no offline app</div></div>
+      <div class="journey-node"><div class="journey-icon">📝</div><div class="journey-cap">Scribbles notes</div><div class="journey-pain">handwritten</div></div>
+      <div class="journey-node"><div class="journey-icon">🚗</div><div class="journey-cap">Drives back</div><div class="journey-pain">2&ndash;3 day lag</div></div>
+      <div class="journey-node"><div class="journey-icon">⌨️</div><div class="journey-cap">Retypes at desk</div><div class="journey-pain">transcription errors</div></div>
+      <div class="journey-node"><div class="journey-icon">😮‍💨</div><div class="journey-cap">Details faded</div><div class="journey-pain">compliance risk</div></div>
+    </div>
+    <div class="callout-split">
+      <div class="callout dim"><div class="num">21%</div><div class="desc">Completed on-site</div></div>
+      <div class="callout dim"><div class="num">62 min</div><div class="desc">To first submission</div></div>
+      <div class="callout dim"><div class="num">49</div><div class="desc">Usability score (Poor)</div></div>
+    </div>
+    <div class="mini-footer">Compliance Field Copilot &middot; Uma Ramanathan</div>
+  </div></div>
+
+  <!-- SLIDE 3 — PHASE 1 RESULT (real, vibrant) -->
+  <div class="slide-frame"><div class="slide p1-after">
+    <div class="slide-index">03/07</div>
+    <div class="dots"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    <div class="brand-badge"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <div class="phase-pill p1">Phase 1 of 3 &middot; The Redesign</div>
+    <h1 class="vh" style="font-size:44px; max-width:24ch;">Built for zero signal, one hand, total trust.</h1>
+    <div class="phone-row">
+      <div class="phone-col"><div class="phone-frame"><img src="../images/Assessments/UI/mobile-1.png" alt="Capture view"></div><div class="phone-cap">Capture view</div></div>
+      <div class="phone-col"><div class="phone-frame"><img src="../images/Assessments/UI/mobile-2.png" alt="Draft and sync view"></div><div class="phone-cap">Draft &amp; sync view</div></div>
+    </div>
+    <div class="vstat-row">
+      <div class="vstat p1"><div class="num">2.6&times;</div><div class="label">Completion rate</div><div class="raw">21% &rarr; 55%</div></div>
+      <div class="vstat p1"><div class="num">55%</div><div class="label">Faster to submit</div><div class="raw">62 &rarr; 28 min</div></div>
+      <div class="vstat p1"><div class="num">81</div><div class="label">Usability (Excellent)</div><div class="raw">up from 49</div></div>
+    </div>
+    <div class="mini-footer">Compliance Field Copilot &middot; Uma Ramanathan</div>
+  </div></div>
+
+  <!-- SLIDE 4 — PHASE 2: DID IT STICK (funnel infographic, illustrative) -->
+  <div class="slide-frame"><div class="slide p2">
+    <div class="slide-index">04/07</div>
+    <div class="dots"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+    <div class="brand-badge"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <div class="phase-pill p2">Phase 2 of 3 &middot; Did It Stick?</div>
+    <div class="info-chip">ℹ️ Portfolio learning exercise — illustrative data, built on the real Phase 1 redesign.</div>
+    <h1 class="vh" style="font-size:42px;">A better score isn't proof it stuck.</h1>
+    <div class="journey-row">
+      <div class="journey-node"><div class="journey-icon">📲</div><div class="journey-cap">Access</div><div class="journey-pain">100%</div></div>
+      <div class="journey-node"><div class="journey-icon">🔓</div><div class="journey-cap">Login</div><div class="journey-pain">91%</div></div>
+      <div class="journey-node"><div class="journey-icon">📂</div><div class="journey-cap">Open form</div><div class="journey-pain">78%</div></div>
+      <div class="journey-node"><div class="journey-icon">✍️</div><div class="journey-cap">Enter data</div><div class="journey-pain">64%</div></div>
+      <div class="journey-node"><div class="journey-icon">✅</div><div class="journey-cap">Submit</div><div class="journey-pain">21%&rarr;55%</div></div>
+    </div>
+    <div class="vstat-row" style="margin-top:0; margin-bottom:22px;">
+      <div class="vstat p2"><div class="num">4&times;</div><div class="label">Activation rate</div><div class="raw">21% &rarr; 55%</div></div>
+      <div class="vstat p2"><div class="num">3.8&times;</div><div class="label">90-day retention</div><div class="raw">17% &rarr; 64%</div></div>
+      <div class="vstat p2"><div class="num">83%</div><div class="label">Offline adoption</div><div class="raw">by week 8, from 41%</div></div>
+    </div>
+    <div class="mini-footer">Compliance Field Copilot &middot; Uma Ramanathan</div>
+  </div></div>
+
+  <!-- SLIDE 5 — PHASE 3 STORY: MEET ADAM -->
+  <div class="slide-frame"><div class="slide p3-story">
+    <div class="slide-index">05/07</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
+    <div class="brand-badge"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <div class="phase-pill p3">Phase 3 of 3 &middot; The AI Copilot</div>
+    <div class="info-chip">ℹ️ A narrative walkthrough of the design — not a built product.</div>
+    <h1 class="vh" style="font-size:38px; max-width:22ch; margin-bottom:20px;">A day with the AI copilot.</h1>
+    <div class="story-timeline">
+      <div class="story-beat">
+        <div class="story-node">📍</div>
+        <div class="story-body">
+          <div class="story-scene">Arrives at a new site</div>
+          <p class="story-quote">&ldquo;Which form do I even need for this one?&rdquo;</p>
+          <div class="story-ai"><span class="tag">Copilot</span>Suggests the right template by GPS + history.</div>
+        </div>
+      </div>
+      <div class="story-beat">
+        <div class="story-node">🎙️</div>
+        <div class="story-body">
+          <div class="story-scene">Logs what he sees</div>
+          <p class="story-quote">&ldquo;Cracked valve, north tank &mdash; urgent.&rdquo;</p>
+          <div class="story-ai"><span class="tag">Copilot</span>Maps his spoken words into structured fields.</div>
+        </div>
+      </div>
+      <div class="story-beat">
+        <div class="story-node">🤝</div>
+        <div class="story-body">
+          <div class="story-scene">Hits a tricky finding</div>
+          <p class="story-quote">&ldquo;Not sure how to categorize this one&hellip;&rdquo;</p>
+          <div class="story-ai"><span class="tag">Copilot</span>Notices the pause, offers a tip before he gives up.</div>
+        </div>
+      </div>
+      <div class="story-beat">
+        <div class="story-node">✅</div>
+        <div class="story-body">
+          <div class="story-scene">Before he submits</div>
+          <p class="story-quote">&ldquo;Did I cover everything?&rdquo;</p>
+          <div class="story-ai"><span class="tag">Copilot</span>Flags one missing photo. He fixes it, submits sure.</div>
+        </div>
+      </div>
+    </div>
+    <p class="story-tagline">Every suggestion stays optional. Adam always keeps the final say.</p>
+    <div class="mini-footer">Compliance Field Copilot &middot; Uma Ramanathan</div>
+  </div></div>
+
+  <!-- SLIDE 6 — PHASE 3 IMPACT: WHAT IT'S BUILT TO DO (no architecture diagram) -->
+  <div class="slide-frame"><div class="slide p3-impact">
+    <div class="slide-index">06/07</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span></div>
+    <div class="brand-badge"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <div class="phase-pill p3">Phase 3 of 3 &middot; What It's Built To Do</div>
+    <div class="info-chip">ℹ️ Product specification only. Every number is a design target.</div>
+    <h1 class="vh" style="font-size:40px; max-width:22ch;">Smart enough to help. Humble enough to ask.</h1>
+    <div class="cap-row">
+      <div class="cap-chip"><span class="ic">🧭</span><span class="tx">Template recommender</span></div>
+      <div class="cap-chip"><span class="ic">🎙️</span><span class="tx">Voice-to-form</span></div>
+      <div class="cap-chip"><span class="ic">✅</span><span class="tx">Pre-submit check</span></div>
+      <div class="cap-chip"><span class="ic">🔔</span><span class="tx">Adoption-risk alerts</span></div>
+      <div class="cap-chip"><span class="ic">💬</span><span class="tx">Manager insights</span></div>
+    </div>
+    <div class="lane-row">
+      <div class="lane apply"><div class="lane-head"><span class="dot"></span>Automate</div><p>High-confidence template pre-fill, seen before. Full audit log.</p></div>
+      <div class="lane suggest"><div class="lane-head"><span class="dot"></span>Configure</div><p>Rules that vary by site live in a rules engine, not a guess.</p></div>
+      <div class="lane escalate"><div class="lane-head"><span class="dot"></span>Escalate</div><p>Low confidence or first-time patterns route to a person.</p></div>
+    </div>
+    <div class="vstat-row">
+      <div class="vstat p3"><div class="num">15&ndash;20%</div><div class="label">Targeted activation lift</div><div class="raw">design target</div></div>
+      <div class="vstat p3"><div class="num">&le;7%</div><div class="label">Targeted abandonment</div><div class="raw">vs. 74% baseline</div></div>
+      <div class="vstat p3"><div class="num">100%</div><div class="label">Human-in-the-loop</div><div class="raw">on every suggestion</div></div>
+    </div>
+    <div class="mini-footer">Compliance Field Copilot &middot; Uma Ramanathan</div>
+  </div></div>
+
+  <!-- SLIDE 7 — CLOSE / CTA -->
+  <div class="slide-frame"><div class="slide close">
+    <div class="slide-index">07/07</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span></div>
+    <div class="brand-badge"><span class="mark">📋</span><span class="word">Compliance Field Copilot</span></div>
+    <h1 class="vh" style="font-size:44px; max-width:20ch;">One workflow. Three phases. A complete product argument.</h1>
+    <div class="skills-row">
+      <span>UX Research</span><span>Product Strategy</span><span>Metrics &amp; Retention Analysis</span><span>Agentic Workflow Design</span><span>Guardrails &amp; Governance</span>
+    </div>
+    <div class="cta-box">
+      <span class="k">Full case study</span>
+      <span class="v">Available on request — always happy to walk through the details.</span>
+    </div>
+    <div class="footer-credit" style="border-top:none; padding-top:0;">
+      <div class="contact-row">
+        <span>umaramanathan54@gmail.com</span>
+        <span>linkedin.com/in/ramanathan-uma</span>
+      </div>
+    </div>
+  </div></div>
+
+</div>
+
+</body>
+</html>

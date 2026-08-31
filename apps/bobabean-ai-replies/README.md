@@ -46,3 +46,16 @@ Useful flags:
 ## Why this is a separate script, not wired into the page live
 
 `bobabean-app.html` is a static page with no backend — there's nowhere to hold an API key that wouldn't be visible to anyone viewing the page source. This script is the honest boundary: the browser demo shows the *interaction design* (bulk-draft, export, import, review), and this script is where a real model actually runs, offline, with a key that never touches the client. Wiring a live "click and it just happens" version would mean standing up a small backend (or a serverless function) to hold the key and proxy the request — a natural next step, not done here on purpose.
+
+## `langgraph_version/` — the same job, rebuilt as a small multi-agent graph
+
+`generate_replies.py` above makes one Claude call per review. `langgraph_version/` rebuilds that as four small agents wired together with [LangGraph](https://github.com/langchain-ai/langgraph) — triage (skip AI entirely for anything unsafe to auto-reply to), analyst (the same sentiment extraction), drafter, and a critic that can reject a draft and send it back for revision (max 2 tries) before escalating to a human:
+
+```
+triage --> analyst --> drafter <--> critic --> ship
+   |                                   |
+   v                                   v
+escalate                           escalate
+```
+
+`Build_with_LangGraph.ipynb` builds and tests each agent one at a time — start there if you want to see the framework's core ideas (state, nodes, conditional edges) explained as you go. `generate_replies_langgraph.py` is the same logic converted into a batch CLI, a drop-in alternative to `generate_replies.py` with the same `reviews_export.json` in / `manager_responses.json` out shape (plus a `status` field: `shipped` or `escalated`).
