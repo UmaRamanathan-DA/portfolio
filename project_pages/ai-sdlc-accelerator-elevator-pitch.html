@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-SDLC Accelerator — Elevator Pitch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+  a{ color:inherit; }
+
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding:64px 28px 80px;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 20px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(28px, 4.6vw, 40px);
+    line-height:1.16;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+  }
+  .subhead{
+    font-size:16px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:64ch;
+    margin:0;
+  }
+  .subhead strong{ color:var(--ink); font-weight:600; }
+
+  .demo-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-top:22px;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--accent-ink);
+    background:var(--accent-soft);
+    border:1px solid var(--line-strong);
+    padding:10px 16px;
+    text-decoration:none;
+  }
+  .demo-cta:hover, .demo-cta:focus-visible{ border-color:var(--accent-ink); outline:none; }
+
+  .triad{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .triad-cell{
+    background:var(--surface);
+    padding:16px 16px 18px;
+  }
+  .triad-cell h5{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 8px;
+    font-weight:600;
+  }
+  .triad-cell p{
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--ink);
+    margin:0;
+  }
+
+  section{
+    margin-top:44px;
+    padding-top:36px;
+    border-top:1px solid var(--line);
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(21px, 2.8vw, 25px);
+    letter-spacing:-0.01em;
+    margin:0 0 18px;
+  }
+
+  .friction-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .friction-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:16px 17px;
+  }
+  .friction-card h4{
+    font-family:var(--font-body);
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .friction-card p{
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .change-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .change-list li{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:2px solid var(--resolved);
+    padding:14px 17px;
+    font-size:14px;
+    line-height:1.6;
+  }
+  .change-list li strong{
+    display:block;
+    font-size:14.5px;
+    margin-bottom:3px;
+    color:var(--ink);
+  }
+  .change-list li span{
+    color:var(--ink-soft);
+  }
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat-tile{
+    background:var(--surface);
+    padding:22px 16px 18px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--resolved);
+    margin:0 0 6px;
+    line-height:1;
+  }
+  .stat-label{
+    font-size:12.5px;
+    color:var(--ink);
+    margin:0 0 8px;
+    line-height:1.4;
+  }
+  .stat-raw{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+
+  .status-note{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin:16px 0 0;
+  }
+
+  /* ---- metrics framework ---- */
+  .section-lede{
+    font-size:14px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .nsm-box{
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-left:3px solid var(--accent);
+    padding:20px 22px;
+    margin-bottom:28px;
+  }
+  .nsm-eyebrow{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 8px;
+    font-weight:600;
+  }
+  .nsm-box h4{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:19px;
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  .nsm-box p{
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .nsm-box p + p{ margin-top:8px; }
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:20px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .legend span{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .legend .dot{
+    width:8px; height:8px;
+    display:inline-block;
+  }
+  .legend .dot.measured{ background:var(--resolved); }
+  .legend .dot.target{ background:none; border:1px dashed var(--ink-soft); }
+
+  .metric-stage{
+    margin-bottom:22px;
+  }
+  .metric-stage:last-child{ margin-bottom:0; }
+  .metric-stage h5{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .metric-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .metric-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:10px 14px;
+    font-size:13px;
+    line-height:1.5;
+  }
+  .metric-item.measured{
+    border-left:3px solid var(--resolved);
+  }
+  .metric-item.target{
+    border-left:3px dashed var(--line-strong);
+    color:var(--ink-soft);
+  }
+  .metric-name{ color:var(--ink); }
+  .metric-item.target .metric-name{ color:var(--ink-soft); }
+  .metric-name code{
+    font-family:var(--font-mono);
+    font-size:0.92em;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:1px 4px;
+  }
+  .metric-chip{
+    font-family:var(--font-mono);
+    font-size:9.5px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    padding:3px 7px;
+    border:1px solid;
+  }
+  .metric-chip.measured{
+    color:var(--resolved);
+    border-color:var(--resolved);
+    background:var(--resolved-soft);
+  }
+  .metric-chip.target{
+    color:var(--ink-soft);
+    border-color:var(--line-strong);
+    border-style:dashed;
+    background:none;
+  }
+
+  .tagline{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(18px, 2.6vw, 22px);
+    color:var(--ink);
+    text-align:center;
+    max-width:52ch;
+    margin:0 auto;
+    line-height:1.45;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:16px;
+  }
+  .skill-tags span{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border:1px solid var(--line-strong);
+    padding:4px 9px;
+  }
+  .credit{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:600px){
+    .page{ padding:48px 20px 64px; }
+    .triad{ grid-template-columns:1fr; }
+    .friction-grid{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <p class="eyebrow">Product Build &middot; AI Developer Tooling</p>
+
+  <h1>Every dev team is already using AI in their pipeline informally — almost none of them can show you the governance behind it.</h1>
+
+  <p class="subhead">Copilot suggestions and ad hoc ChatGPT use get code written faster, but leave no audit trail, no cost visibility, and no shared pattern the next engineer can reuse. <strong>The AI-SDLC Accelerator is a small, working tool that fixes that</strong> — a governed AI code-review and test-generation bot a team can plug into a pipeline they already have, in a day.</p>
+
+  <a class="demo-cta" href="ai-sdlc-accelerator-demo.html">&#9654; Watch it run &mdash; live demo</a>
+
+  <div class="triad">
+    <div class="triad-cell">
+      <h5>Who</h5>
+      <p>Dev teams already using AI coding tools ad hoc, and the engineering leads who have to sign off on making it official.</p>
+    </div>
+    <div class="triad-cell">
+      <h5>What</h5>
+      <p>Get AI code review, test generation, and docs into CI — without giving up governance or cost visibility.</p>
+    </div>
+    <div class="triad-cell">
+      <h5>Why</h5>
+      <p>One lightweight accelerator a team can adopt in a day, with the audit trail and model choice already built in.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="section-title">Two workarounds, both broken</h2>
+    <div class="friction-grid">
+      <div class="friction-card">
+        <h4>Everyone's already using AI — quietly</h4>
+        <p>Engineers paste code into ChatGPT or Copilot on their own. No shared pattern, no audit trail, no way to tell whether it's actually saving time or quietly leaking proprietary code to a public API.</p>
+      </div>
+      <div class="friction-card">
+        <h4>Governance stalls the rest</h4>
+        <p>Security and compliance teams block AI tooling because nobody has shown them what "safe" looks like in practice — so pilots stay pilots and never become department-wide process.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">What it's built to do</h2>
+    <ul class="change-list">
+      <li><strong>Reusable prompt-pattern library</strong><span>Versioned YAML/JSON templates for code review, test generation, and doc generation — not one-off prompts nobody else can reuse or improve.</span></li>
+      <li><strong>CI-wired review and test generation</strong><span>A GitHub Action that runs an AI code review and drafts unit tests for changed functions on every pull request — inside the pipeline a team already has.</span></li>
+      <li><strong>Model evaluation harness</strong><span>Runs the same task through 2–3 models and logs quality, cost, and latency side by side — so tool choice is a decision, not a default.</span></li>
+      <li><strong>Guardrails and audit trail</strong><span>Redacts AWS/API keys and email addresses out of code before it reaches an LLM, and logs every model call — the responsible-AI proof an enterprise security review actually asks for. Full breakdown below.</span></li>
+      <li><strong>Deployed as a real service</strong><span>A lightweight Azure Function or AWS Lambda behind an API, in its own repo with CI/CD — not a script on someone's laptop.</span></li>
+      <li><strong>An onboarding playbook, not a README</strong><span>Architecture diagram, a "how a team adopts this in a day" guide, and a one-page leadership summary — so another team can adopt it without the builder in the room.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">Inside the governance layer</h2>
+    <p class="section-lede">"Guardrails and audit trail" was doing a lot of hand-waving in one bullet. Here's exactly what's caught and logged today, versus what a real production rollout would add next.</p>
+
+    <div class="legend">
+      <span><i class="dot measured"></i>Built and running</span>
+      <span><i class="dot target"></i>Production roadmap</span>
+    </div>
+
+    <div class="metric-stage">
+      <h5>Built and running now</h5>
+      <ul class="metric-list">
+        <li class="metric-item measured"><span class="metric-name">Secret keys — AWS access keys, Stripe-style API keys, and generic <code>password=</code> / <code>secret=</code> / <code>token=</code> / <code>api_key=</code> assignments — redacted before the prompt is even built</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item measured"><span class="metric-name">Email addresses (PII) redacted the same way, before anything reaches Claude or another LLM</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item measured"><span class="metric-name">Every model call logged to an audit trail — model, prompt version, what was redacted, tokens, cost, latency</span><span class="metric-chip measured">Measured</span></li>
+      </ul>
+    </div>
+
+    <div class="metric-stage">
+      <h5>Production roadmap — what a real rollout would add</h5>
+      <ul class="metric-list">
+        <li class="metric-item target"><span class="metric-name">Broader PII coverage — phone numbers, physical addresses, national IDs, card numbers</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">File/path deny-list — never send <code>.pem</code>, <code>.key</code>, <code>.env*</code>, or <code>secrets/**</code> to any model, redacted or not</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Model allow-list — only approved models and providers can be called from this pipeline at all</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Per-team budget &amp; quota enforcement, with rate limits so a runaway agent loop can't burn a month's spend in an afternoon</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Chargeback reporting — spend attributed to the team/repo that generated it, not lumped into shared IT cost</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Human-in-the-loop gate — AI suggestions never auto-merge; a person always approves before anything ships</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Escalation path — a caught secret pages the team that leaked it, instead of a silent redaction nobody sees</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Tamper-evident, write-once audit log for compliance-grade retention</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">License/provenance scanning on AI-generated code, to catch verbatim copies of restrictively-licensed snippets</span><span class="metric-chip target">Production target</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">What it delivers</h2>
+    <div class="stat-strip">
+      <div class="stat-tile">
+        <p class="stat-num">3-in-1</p>
+        <p class="stat-label">pillars wired into one pipeline</p>
+        <p class="stat-raw">prompt library + CI review/test-gen + governance layer</p>
+      </div>
+      <div class="stat-tile">
+        <p class="stat-num">2–3</p>
+        <p class="stat-label">models benchmarked side by side</p>
+        <p class="stat-raw">quality &middot; cost &middot; latency, logged per task</p>
+      </div>
+      <div class="stat-tile">
+        <p class="stat-num">1 day</p>
+        <p class="stat-label">target onboarding time for a new team</p>
+        <p class="stat-raw">playbook designed for handoff, no builder in the room</p>
+      </div>
+    </div>
+    <p class="status-note">Status: in active build — this pitch describes the scope being delivered, not a finished case study yet.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">How success gets measured</h2>
+    <p class="section-lede">A pure usage number would look great even if ungoverned; a pure governance number would look great even with zero adoption. The North Star has to move both at once — everything under it is what proves the North Star is real, not asserted.</p>
+
+    <div class="nsm-box">
+      <p class="nsm-eyebrow">North Star Metric &middot; one compound metric, not a set</p>
+      <h4>Governed AI Actions Delivered per Week</h4>
+      <p>The count of AI-assisted actions — reviews, test-gens, doc-gens — that ran in CI, passed the guardrails layer, <em>and</em> were accepted (merged without material rework). It can't rise from usage alone, and it can't rise from governance alone.</p>
+      <p>This is a production-scale metric — it only means something with real weekly traffic across teams, so this solo build doesn't have a live number to report against it yet.</p>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot measured"></i>Measured in this build</span>
+      <span><i class="dot target"></i>Production target, not yet measured</span>
+    </div>
+
+    <div class="metric-stage">
+      <h5>Experimentation</h5>
+      <ul class="metric-list">
+        <li class="metric-item measured"><span class="metric-name">Cost-per-request &amp; cost-per-successful-outcome, per model</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item measured"><span class="metric-name">Latency p50 / p95, per model</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item measured"><span class="metric-name">Acceptance rate per model (self-graded on eval harness sample tasks)</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item target"><span class="metric-name">Model win-rate by task type, at volume</span><span class="metric-chip target">Production target</span></li>
+      </ul>
+    </div>
+
+    <div class="metric-stage">
+      <h5>Deployment</h5>
+      <ul class="metric-list">
+        <li class="metric-item measured"><span class="metric-name">Time-to-first-value: install &rarr; first successful run on a demo repo</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item target"><span class="metric-name">Coverage &mdash; % of PRs in onboarded repos triggering the bot</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Acceptance rate on real production traffic</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Cost per team per week, vs. an all-frontier-model baseline</span><span class="metric-chip target">Production target</span></li>
+      </ul>
+    </div>
+
+    <div class="metric-stage">
+      <h5>Governance</h5>
+      <ul class="metric-list">
+        <li class="metric-item measured"><span class="metric-name">Guardrail catch rate (redaction test suite: known secrets/PII in, catch rate out)</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item measured"><span class="metric-name">Audit coverage &mdash; % of test-run actions with a complete log entry</span><span class="metric-chip measured">Measured</span></li>
+        <li class="metric-item target"><span class="metric-name">Zero-incident rate at production scale</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Budget adherence &mdash; % of team-weeks within quota</span><span class="metric-chip target">Production target</span></li>
+        <li class="metric-item target"><span class="metric-name">Chargeback visibility &mdash; % of spend attributable to a specific team/repo</span><span class="metric-chip target">Production target</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">"AI in the SDLC shouldn't mean choosing between speed and governance — it should ship with both."</p>
+  </section>
+
+  <footer>
+    <div class="skill-tags">
+      <span>GenAI</span>
+      <span>AI SDLC</span>
+      <span>Prompt Engineering</span>
+      <span>CI/CD</span>
+      <span>Responsible AI</span>
+      <span>Model Evaluation</span>
+    </div>
+    <p class="credit">Uma Ramanathan &middot; Product Build</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
