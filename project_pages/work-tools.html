@@ -309,17 +309,6 @@
 
     .prop-tag.green { background: #dbeddb; color: #2d5a2d; }
 
-    .demo-slot {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 16px;
-      border-radius: 10px;
-      background: var(--paper-2);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
     .tool-output {
       background: var(--ink);
       color: var(--paper);
@@ -475,23 +464,25 @@
             </div>
           </div>
 
-          <div class="demo-slot">🎥 Demo video here</div>
+          <p>An AI agent that runs my daily job search for me. Every morning it checks LinkedIn, Naukri, Indeed, and Glassdoor, scores each posting against my profile, filters out anything I've already seen, and writes a ranked shortlist straight into a Google Sheet — no manual searching, no re-checking the same four tabs.</p>
 
-          <p>An AI agent that automates my daily job search — it checks LinkedIn, Naukri, Indeed, and Glassdoor every morning, scores each posting against my profile, filters out duplicates from past runs, and saves a ranked shortlist to Google Drive along with an email digest, all without any manual searching. I built it end-to-end using Claude as a single AI agent (no separate tools like Zapier or extra AI models) that runs on a daily schedule, reads its own past results to avoid repeats, and works within real constraints — like sourcing only from public search results (not logins, to respect site rules) and drafting rather than auto-sending emails so a human still reviews before anything goes out. The result: a five-minute morning review replaces what used to be repetitive manual searching across four different job sites.</p>
+          <p>It's built entirely on Claude, with no separate automation platform (no Zapier, no extra AI models) — one agent doing sourcing, scoring, and writing. It reaches its own tools through MCP connectors: web search for sourcing, the Google Drive connector to read yesterday's results (for dedup) and write today's, and the Gmail connector to draft — not send — a same-morning digest so a human still reviews before anything goes out. A daily schedule kicks the whole run off unattended.</p>
+
+          <p><strong>Outcome:</strong> a ranked, deduplicated shortlist landing in Drive every morning, turning a repetitive manual search across four sites into a five-minute review.</p>
         </div>
 
         <div class="tool-output">
-          <h5>What it produces</h5>
+          <h5>How it's built</h5>
           <div class="metric">
             <div class="label">Morning review</div>
             <div class="value">5 min</div>
           </div>
-          <p class="small">Each run:</p>
+          <p class="small">Sources checked daily:</p>
           <span class="tag">LinkedIn</span>
           <span class="tag">Naukri</span>
           <span class="tag">Indeed</span>
           <span class="tag">Glassdoor</span>
-          <p class="mono" style="margin-top:14px">Scores each posting against my profile · drops duplicates from past runs · writes a ranked shortlist to Google Drive · drafts an email digest for human review.</p>
+          <p class="mono" style="margin-top:14px">Claude (agent) · MCP connectors · Google Drive (storage + dedup) · Gmail (draft digest) · daily schedule trigger.</p>
         </div>
       </div>
 

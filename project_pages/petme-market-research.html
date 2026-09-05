@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetMe — Market Research &amp; Product-Market Fit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --risk:#a3402f;
+    --risk-soft:#f3ddd7;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+      --risk:#e2857a; --risk-soft:rgba(226,133,122,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    --risk:#e2857a; --risk-soft:rgba(226,133,122,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{ max-width:760px; margin:0 auto; padding:56px 28px 72px; }
+
+  a.back-link{
+    display:inline-flex; align-items:center; gap:6px; margin:0 0 20px;
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.03em;
+    color:var(--ink-soft); text-decoration:none;
+  }
+  a.back-link:hover, a.back-link:focus-visible{ color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin:0 0 18px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1.headline{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(25px, 3.4vw, 32px); line-height:1.26; letter-spacing:-0.01em;
+    margin:0 0 20px; text-wrap:balance; max-width:34ch;
+  }
+  .strategy-tag{
+    display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--ink-soft); margin:0 0 16px;
+  }
+  .methodology{
+    margin:0 0 18px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);
+    line-height:1.6; max-width:66ch;
+  }
+  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 18px; }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .triad{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; padding-top:22px; border-top:1px solid var(--line); }
+  .triad .k{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .triad .v{ display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:4px; line-height:1.35; }
+  .triad .d{ font-size:13px; color:var(--ink-soft); line-height:1.5; }
+
+  section{ margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
+  h2.label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; font-weight:500; }
+  p.section-note{ margin:-8px 0 18px; font-size:13px; color:var(--ink-soft); font-style:italic; line-height:1.5; max-width:62ch; }
+  p.source-note{ margin:14px 0 0; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); line-height:1.6; }
+  p.source-note a{ color:inherit; }
+
+  .stat-strip{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .stat{ background:var(--surface); padding:20px 18px 18px; }
+  .stat .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:clamp(20px, 3vw, 26px); font-weight:500; color:var(--resolved); letter-spacing:-0.01em; }
+  .stat .desc{ margin-top:6px; font-size:13.5px; color:var(--ink); font-weight:500; line-height:1.4; }
+  .stat .raw{ margin-top:8px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+
+  /* competitive landscape */
+  .comp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .comp-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:16px 18px; }
+  .comp-card h3{ font-family:var(--font-display); font-size:16.5px; font-weight:500; color:var(--ink); margin:0 0 10px; }
+  .comp-card dt{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-ink); margin-top:10px; }
+  .comp-card dt:first-of-type{ margin-top:0; }
+  .comp-card dd{ margin:3px 0 0; font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
+  .comp-card dd.gap{ color:var(--ink); }
+
+  /* persona / JTBD */
+  .persona-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .persona-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--resolved); padding:18px 20px; }
+  .persona-card .role{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--resolved); display:block; margin-bottom:8px; }
+  .persona-card h3{ font-family:var(--font-display); font-size:17px; font-weight:500; margin:0 0 10px; }
+  .persona-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  .wedge-box{ margin-top:18px; background:var(--accent-soft); border:1px solid var(--line); padding:18px 20px; }
+  .wedge-box .k{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:8px; }
+  .wedge-box p{ margin:0; font-size:14.5px; color:var(--ink); line-height:1.6; }
+
+  /* framework list */
+  ol.framework{ list-style:none; counter-reset:step; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  ol.framework li{ counter-increment:step; position:relative; padding-left:38px; }
+  ol.framework li::before{
+    content:counter(step); position:absolute; left:0; top:0;
+    font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--surface);
+    background:var(--resolved); width:24px; height:24px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  ol.framework strong{ display:block; font-size:15.5px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  ol.framework span{ font-size:14px; color:var(--ink-soft); line-height:1.55; }
+
+  .metric-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
+  .metric-card{ background:var(--surface); border:1px solid var(--line); padding:14px 16px; }
+  .metric-card .tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--resolved); background:var(--resolved-soft); padding:2px 8px; margin-bottom:8px; }
+  .metric-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+  .metric-card strong{ color:var(--ink); }
+
+  /* risks */
+  .risk-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .risk-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--risk); padding:16px 18px; }
+  .risk-card strong{ display:block; font-family:var(--font-display); font-size:16px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .risk-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:48ch; text-wrap:balance; }
+
+  footer{ margin-top:44px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; }
+  .skills{ display:flex; flex-wrap:wrap; gap:8px; max-width:56ch; }
+  .skills a{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.03em; color:var(--ink-soft); border:1px solid var(--line-strong); padding:4px 9px; text-decoration:none; transition:color 0.15s ease, border-color 0.15s ease; }
+  .skills a:hover, .skills a:focus-visible{ color:var(--accent-ink); border-color:var(--accent-ink); }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .comp-grid{ grid-template-columns:1fr; }
+    .persona-grid{ grid-template-columns:1fr; }
+    .metric-grid{ grid-template-columns:1fr; }
+    .risk-grid{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <a class="back-link" href="petme.html">&larr; PetMe: One App for Every Pet Need</a>
+
+  <p class="eyebrow">Personal Project &middot; Market Research &amp; Product-Market Fit &middot; Concept Validation</p>
+  <h1 class="headline">PetMe's screens prove the flows work. They don't prove pet parents would switch.</h1>
+  <p class="strategy-tag">This is a market-sizing &amp; product-market-fit validation problem.</p>
+  <p class="methodology">Portfolio learning exercise &mdash; desk research using public industry data (cited inline), not primary customer interviews. Extends the PetMe UX concept (2021 Figma UI, 2026 marketplace model) with the market-validation pass a real go/no-go decision would need before any backend gets built.</p>
+  <p class="subhead">PetMe's UI shows a two-sided marketplace that unifies adoption, daily care, and provider booking into one app. But "nobody has built this exact combination" isn't evidence that pet parents want it enough to switch off the apps they already use. <strong>I sized the market PetMe would enter, mapped who already owns each piece of the problem, and built the wedge-and-validation plan a real team would run before writing a line of backend code.</strong></p>
+
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">A market with incumbents in every slice</span>
+      <span class="d">Rover and Wag already own booking; Petfinder owns adoption; PetDesk owns the vet's side of scheduling.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">Is unification a wedge, or a distraction?</span>
+      <span class="d">Test which single job to prove first, instead of validating nine features and three verticals at once.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">Small, fast-growing, and already contested</span>
+      <span class="d">Pet services is the smallest major slice of a $158B market, but it's growing the fastest &mdash; and Blackstone just paid $2.3B for the incumbent.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">Sizing the market PetMe would enter</h2>
+    <p class="section-note">PetMe doesn't compete for all $158B &mdash; food, retail, and most of veterinary spend sit outside what the app touches. Its addressable slice is services (booking) plus the scheduling/tracking layer of vet and daily care.</p>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">$158B</div>
+        <div class="desc">Total US pet industry, 2025</div>
+        <div class="raw">+3.7% YoY &middot; APPA</div>
+      </div>
+      <div class="stat">
+        <div class="num">$14.3B</div>
+        <div class="desc">Pet services segment &mdash; PetMe's core wedge</div>
+        <div class="raw">grooming, boarding, insurance &middot; +8% YoY, the fastest-growing slice</div>
+      </div>
+      <div class="stat">
+        <div class="num">$41B</div>
+        <div class="desc">Veterinary care &mdash; where the bioschedule &amp; vaccination tracking layer sits</div>
+        <div class="raw">25.9% of total spend &middot; APPA</div>
+      </div>
+    </div>
+    <p class="source-note">Source: <a href="https://americanpetproducts.org/news/u.s.-pet-industry-reaches-158-billion-in-2025-poised-for-continued-growth-in-2026" target="_blank" rel="noopener">American Pet Products Association, "U.S. Pet Industry Reaches $158 Billion in 2025"</a>. Adoption/rehoming carries no comparable industry revenue line &mdash; it's a discovery and retention driver for PetMe, not a monetizable segment on its own.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Competitive landscape: where the white space actually is</h2>
+    <p class="section-note">Nobody currently sells "adoption + daily care + every provider" as one product &mdash; but that's because each piece already has a well-capitalized specialist, not because nobody's thought of it.</p>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h3>Rover &amp; Wag</h3>
+        <dt>Own</dt>
+        <dd>Sitting, walking, and boarding bookings; Rover generated $230M revenue in 2024 and was acquired by Blackstone for $2.3B in Feb 2025 &mdash; the liquidity and trust layer is already built and well-funded.</dd>
+        <dt>Don't do</dt>
+        <dd class="gap">Adoption, vet/vaccination tracking, or a shared pet profile that travels across provider types.</dd>
+      </div>
+      <div class="comp-card">
+        <h3>Petfinder &amp; Adopt-a-Pet</h3>
+        <dt>Own</dt>
+        <dd>Adoption discovery across shelters and rescues nationwide &mdash; the default first stop for a new pet parent.</dd>
+        <dt>Don't do</dt>
+        <dd class="gap">Anything after the adopted pet gets home: no care schedule, no provider booking, no ongoing relationship with the listing.</dd>
+      </div>
+      <div class="comp-card">
+        <h3>PetDesk &amp; Vetstoria</h3>
+        <dt>Own</dt>
+        <dd>Practice-management scheduling sold into vet clinics &mdash; the software the clinic uses, not the app the pet parent opens.</dd>
+        <dt>Don't do</dt>
+        <dd class="gap">Cross-provider discovery, groomer/sitter booking, or anything the parent controls directly.</dd>
+      </div>
+      <div class="comp-card">
+        <h3>Chewy &amp; pet retail</h3>
+        <dt>Own</dt>
+        <dd>Food, supplies, and pharmacy &mdash; the largest single spend category at $68.3B, run on a retail/subscription model.</dd>
+        <dt>Don't do</dt>
+        <dd class="gap">Services at all &mdash; no booking, no daily-care schedule, no provider marketplace.</dd>
+      </div>
+    </div>
+    <p class="source-note">Sources: <a href="https://www.raftlabs.com/blog/how-to-build-app-like-rover" target="_blank" rel="noopener">Rover 2024 revenue &amp; Blackstone acquisition</a>; industry take-rate benchmarks for pet-sitting marketplaces cited at 18&ndash;25%, consistent with Rover's sitter fee (20%, 25% in California) plus an 11% capped booking fee charged to the parent.</p>
+  </section>
+
+  <section>
+    <h2 class="label">Jobs to be done &mdash; and which one to prove first</h2>
+    <p class="section-note">PetMe's own persona work already names the two sides transacting. The market-research question isn't whether these jobs are real &mdash; it's whether they're real enough to prove one at a time, or only as a bundle.</p>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <span class="role">Demand-side job</span>
+        <h3>"Get this exact groomer booked, this weekend, without redoing my research"</h3>
+        <p>A recurring, transactional job with a clear willingness to pay &mdash; the same job Rover already monetizes at scale.</p>
+      </div>
+      <div class="persona-card">
+        <span class="role">Supply-side job</span>
+        <h3>"Fill my calendar without paying for ads on five different apps"</h3>
+        <p>A provider's job is liquidity, not features &mdash; they'll list wherever bookings actually show up, which is the hardest thing for a new entrant to prove first.</p>
+      </div>
+    </div>
+    <div class="wedge-box">
+      <span class="k">The wedge decision</span>
+      <p>Adoption and bioschedules are strong retention and content hooks, but they're not where the booking liquidity problem gets solved or falsified. The classic single-sided-first playbook (Uber, Airbnb) argues for validating <strong>grooming + sitting bookings in one dense metro</strong> before touching adoption, vet tracking, or the other seven species &mdash; treating the "one app for everything" pitch as the expansion story, not the first thing pet parents are asked to trust.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">How PMF would actually get tested</h2>
+    <p class="section-note">A framework for the sequence, not just the screens &mdash; each step designed to falsify the concept cheaply before the next one costs more to run.</p>
+    <ol class="framework">
+      <li><strong>Problem-solution interviews, both sides</strong><span>15&ndash;20 pet parents and 15&ndash;20 groomers/sitters in the target metro, testing whether the booking friction described on PetMe's own page is felt as acutely as designed for, before any screen is shown.</span></li>
+      <li><strong>Concierge / Wizard-of-Oz pilot</strong><span>Match parents to providers by hand &mdash; a form plus WhatsApp or phone &mdash; before building a booking engine, to test real demand and real provider response without the cost of the marketplace software.</span></li>
+      <li><strong>Sean Ellis PMF survey</strong><span>Ask pilot users "how would you feel if you could no longer use this?" &mdash; the standard &ge;40% "very disappointed" threshold is the quantitative gate before investing in build-out.</span></li>
+      <li><strong>Landing-page smoke test</strong><span>Two separate landing pages &mdash; "book a groomer near you" vs. "the one app for every pet need" &mdash; to see which framing actually converts signups, rather than assuming the unified pitch is the stronger one.</span></li>
+      <li><strong>Single-metro liquidity pilot</strong><span>Only after the concierge pilot and survey clear their bars: build the real booking flow for one city, one service category, and measure the metrics below before expanding to a second metro or a second vertical.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="label">The leading indicators that would separate PMF from a nice demo</h2>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <span class="tag">Supply-side</span>
+        <p><strong>Provider response rate</strong> to booking requests, and <strong>time-to-first-booking</strong> after listing &mdash; a marketplace with no side is a directory, not a platform.</p>
+      </div>
+      <div class="metric-card">
+        <span class="tag">Supply-side</span>
+        <p><strong>Re-listing rate after first booking</strong> &mdash; a provider who fills the calendar once and doesn't renew their availability is a signal the liquidity story hasn't held.</p>
+      </div>
+      <div class="metric-card">
+        <span class="tag">Demand-side</span>
+        <p><strong>Repeat booking rate within 60 days</strong>, same provider or a new one &mdash; the number that would actually validate "get this exact groomer booked" as a recurring job, not a one-time trial.</p>
+      </div>
+      <div class="metric-card">
+        <span class="tag">Demand-side</span>
+        <p><strong>Multi-service attach rate</strong> &mdash; PetMe's own illustrative page cites 1 in 3 parents booking more than one provider type in a month. That's the metric that would justify expanding past the single-service wedge, not the one to chase on day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">Open risks a market-research pass surfaces</h2>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <strong>Cold-start, every metro, every side</strong>
+        <p>A two-sided marketplace with zero providers has zero parents, and zero parents keeps providers from listing &mdash; the concierge pilot exists specifically to de-risk this before the real engine gets built.</p>
+      </div>
+      <div class="risk-card">
+        <strong>An entrenched, well-funded incumbent</strong>
+        <p>Rover isn't a scrappy startup to out-execute &mdash; it's a $2.3B Blackstone asset with existing liquidity in most major metros. "Also does adoption" has to be a real switching reason, not a feature-list line.</p>
+      </div>
+      <div class="risk-card">
+        <strong>Trust &amp; safety cost, before scale</strong>
+        <p>Background checks, insurance verification, and license checks for vets and groomers are a real cost per provider onboarded &mdash; a cost the 12% commission has to cover well before volume makes it trivial.</p>
+      </div>
+      <div class="risk-card">
+        <strong>Adoption may be a hook, not a wedge</strong>
+        <p>Adoption has no direct revenue line and no incumbent monetizing it well either &mdash; valuable for top-of-funnel and retention, but the research plan above deliberately doesn't lead with it as the thing being proven.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">The UI answers "can this be built." Market research answers the harder question: is there anyone waiting for it.</p>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a href="">Market Sizing</a>
+      <a href="">Competitive Analysis</a>
+      <a href="">JTBD Segmentation</a>
+      <a href="">PMF Validation Framework</a>
+      <a href="">Go-to-Market Strategy</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Product Strategy</div>
+  </footer>
+
+</div>
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>
