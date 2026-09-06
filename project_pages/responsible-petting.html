@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsible Petting — A Breed-Specific Care Brand, Spun Out of PetMe</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --risk:#a3402f;
+    --risk-soft:#f3ddd7;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+      --risk:#e2857a; --risk-soft:rgba(226,133,122,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    --risk:#e2857a; --risk-soft:rgba(226,133,122,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{ max-width:760px; margin:0 auto; padding:56px 28px 72px; }
+
+  .top-links{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px; }
+  .top-links a{
+    font-family:var(--font-mono); font-size:12px; color:var(--accent-ink);
+    border:1px solid var(--line); padding:8px 14px; text-decoration:none; display:inline-block;
+  }
+  .top-links a:hover, .top-links a:focus-visible{ border-color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin:0 0 18px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1.headline{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(26px, 3.6vw, 34px); line-height:1.22; letter-spacing:-0.01em;
+    margin:0 0 20px; text-wrap:balance; max-width:32ch;
+  }
+  p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:66ch; margin:0 0 16px; }
+  p.subhead strong{ color:var(--ink); font-weight:600; }
+  p.note{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
+    max-width:62ch; line-height:1.5; margin:0 0 28px;
+  }
+
+  .triad{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; padding-top:22px; border-top:1px solid var(--line); }
+  .triad .k{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .triad .v{ display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:4px; line-height:1.35; }
+  .triad .d{ font-size:13px; color:var(--ink-soft); line-height:1.5; }
+
+  section{ margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
+  h2.label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; font-weight:500; }
+  p.section-note{ margin:-8px 0 18px; font-size:13px; color:var(--ink-soft); font-style:italic; line-height:1.5; max-width:62ch; }
+
+  .philosophy-box{ background:var(--accent-soft); border:1px solid var(--line); padding:22px 24px; }
+  .philosophy-box p{ margin:0; font-size:15.5px; color:var(--ink); line-height:1.65; }
+  .philosophy-box p + p{ margin-top:12px; }
+
+  .persona-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .persona-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:18px 20px; }
+  .persona-card .role{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:8px; }
+  .persona-card h3{ font-family:var(--font-display); font-size:17px; font-weight:500; margin:0 0 10px; }
+  .persona-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  .wedge-box{ margin-top:18px; background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--resolved); padding:18px 20px; }
+  .wedge-box .k{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--resolved); margin-bottom:8px; }
+  .wedge-box p{ margin:0; font-size:14.5px; color:var(--ink); line-height:1.6; }
+
+  .detail-list{ list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .detail-list li{ padding-left:16px; border-left:2px solid var(--resolved); font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+  .detail-list strong{ color:var(--ink); font-weight:600; }
+
+  .revenue-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .revenue-card{ background:var(--surface); border:1px solid var(--line); padding:16px 18px; }
+  .revenue-card .tag{ display:inline-block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--resolved); background:var(--resolved-soft); padding:2px 8px; margin-bottom:8px; }
+  .revenue-card .tag.future{ color:var(--ink-soft); background:var(--line); }
+  .revenue-card strong{ display:block; font-family:var(--font-display); font-size:16.5px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .revenue-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  .problem-list{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .problem-list li{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); padding:10px 14px; font-size:14.5px; font-weight:500; color:var(--ink); }
+
+  .stat-strip{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .stat{ background:var(--surface); padding:20px 18px 18px; }
+  .stat .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:clamp(20px, 3vw, 26px); font-weight:500; color:var(--resolved); letter-spacing:-0.01em; }
+  .stat .desc{ margin-top:6px; font-size:13.5px; color:var(--ink); font-weight:500; line-height:1.4; }
+  .stat .raw{ margin-top:8px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+
+  .risk-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .risk-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--risk); padding:16px 18px; }
+  .risk-card strong{ display:block; font-family:var(--font-display); font-size:16px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .risk-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  .tagline{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(19px, 2.6vw, 23px); line-height:1.4; color:var(--ink); max-width:48ch; text-wrap:balance; }
+
+  footer{ margin-top:44px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; }
+  .skills{ display:flex; flex-wrap:wrap; gap:8px; max-width:56ch; }
+  .skills a{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.03em; color:var(--ink-soft); border:1px solid var(--line-strong); padding:4px 9px; text-decoration:none; }
+  .skills a:hover, .skills a:focus-visible{ color:var(--accent-ink); border-color:var(--accent-ink); }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+
+  @media (max-width:620px){
+    .triad{ grid-template-columns:1fr; gap:18px; }
+    .persona-grid{ grid-template-columns:1fr; }
+    .revenue-grid{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr; }
+    .risk-grid{ grid-template-columns:1fr; }
+    .page{ padding:40px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <p class="top-links">
+    <a href="petme.html">&larr; PetMe: One App for Every Pet Need</a>
+    <a href="petme-market-research.html">PetMe: Market Research &amp; PMF &rarr;</a>
+  </p>
+
+  <p class="eyebrow">Personal Project &middot; Content &amp; Licensing Brand &middot; Concept Extension of PetMe</p>
+  <h1 class="headline">The day you bring a pet home, you don't know what you don't know. Responsible Petting is the trustworthy starting point.</h1>
+  <p class="subhead">PetMe's own monetization model already includes a paid, breed-specific bioschedule at the point a parent is invested in a pet's profile. <strong>Responsible Petting takes that single feature and gives it its own name, its own philosophy, and its own distribution path</strong> &mdash; a breed-specific care bio, pre-loaded with feeding, vaccination, seasonal-disease, and care guidance, sold at the exact moment a new owner needs it most: the day of adoption.</p>
+  <p class="note">Personal project &middot; concept extension (2026) of PetMe's existing "paid bioschedule" mechanic, explored here as a standalone content-and-licensing brand. Concept only &mdash; not built, not monetized, not tested.</p>
+
+  <div class="triad">
+    <div>
+      <span class="k">Who</span>
+      <span class="v">New owners, at the moment of adoption</span>
+      <span class="d">The single most anxious, least-informed moment in pet ownership &mdash; and the moment every free pet-care blog arrives too late to shape.</span>
+    </div>
+    <div>
+      <span class="k">What</span>
+      <span class="v">A breed-specific bio, not a generic guide</span>
+      <span class="d">Feeding, vaccination schedule, seasonal disease watch-list, and care notes &mdash; pre-loaded for this exact breed, not a search result.</span>
+    </div>
+    <div>
+      <span class="k">Why</span>
+      <span class="v">A moral framing, not a paywall</span>
+      <span class="d">"Responsible Petting" reframes the purchase as the last step of adopting responsibly, not an upsell.</span>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="label">The core philosophy</h2>
+    <div class="philosophy-box">
+      <p>You didn't just adopt a pet &mdash; you took on the job of caring for it responsibly. Responsible Petting is the tool that makes sure you actually can, starting the same day.</p>
+      <p>The brand's job isn't to compete with free pet-care content on breadth. It's to be the one trustworthy, breed-specific starting point handed to an owner at the single moment they're most receptive to it &mdash; before they've had to go looking for anything themselves.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">Jobs to be done, across every stakeholder</h2>
+    <p class="section-note">The same JTBD lens applied to PetMe's marketplace, applied here to a content-and-licensing business instead of a booking one.</p>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <span class="role">Demand side &mdash; the new owner</span>
+        <h3>"Tell me how to care for this exact pet"</h3>
+        <p>Tell me exactly how to responsibly care for this specific breed, right now, before I make a mistake I don't yet know I'm capable of making.</p>
+      </div>
+      <div class="persona-card">
+        <span class="role">Distribution side &mdash; shelters, breeders, retailers</span>
+        <h3>"Hand off care, not just the pet"</h3>
+        <p>Give every family I hand a pet to a trustworthy, ready-made care foundation &mdash; without me having to build or maintain that content myself.</p>
+      </div>
+    </div>
+    <div class="wedge-box">
+      <span class="k">The adoption-moment insight</span>
+      <p>This isn't "learn pet care" in general &mdash; that's a vitamin: low urgency, freely available, easy to postpone. It's "resolve my acute anxiety about this exact pet, right now" &mdash; a painkiller, tied to a real trigger event. That distinction is the entire reason this is sold at adoption, not marketed as a guide to be found later.</p>
+    </div>
+    <ul class="detail-list">
+      <li><strong>A fourth, lighter job (retention):</strong> remind me what my pet needs, and when, across the seasons, so I don't have to remember or re-research it myself &mdash; the basis for a possible future reminder layer, not part of the core one-time purchase.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">How it monetizes</h2>
+    <div class="revenue-grid">
+      <div class="revenue-card">
+        <span class="tag">Core</span>
+        <strong>One-time bioschedule purchase</strong>
+        <p>A single paid download per adopted pet &mdash; breed-specific feeding, vaccination, seasonal-disease, and care content &mdash; sold at or immediately after adoption.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag">Licensing</span>
+        <strong>Shelter, breeder &amp; retailer partnerships</strong>
+        <p>White-labeled or co-branded distribution to organizations handing off pets directly &mdash; a buyer independent of whether that owner ever uses the PetMe app at all.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag future">Not yet designed</span>
+        <strong>Seasonal reminders &amp; vet sync</strong>
+        <p>A lightweight recurring layer on top of the one-time purchase &mdash; notifications and vaccination-tracking sync &mdash; flagged as a logical next step, not a finished mechanic.</p>
+      </div>
+      <div class="revenue-card">
+        <span class="tag future">Not yet designed</span>
+        <strong>Multi-pet / aging-pet subscription</strong>
+        <p>A possible subscription tier for households managing more than one pet, or ongoing content updates as a pet ages &mdash; a future expansion, not part of the v1 bet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What's in v1, for initial market sizing</h2>
+    <p class="section-note">Deliberately narrow, the same wedge-first discipline used to sequence PetMe's own marketplace validation.</p>
+    <ul class="problem-list">
+      <li>Static breed-specific bioschedule</li>
+      <li>Feeding guidelines</li>
+      <li>Vaccination schedule</li>
+      <li>Seasonal disease watch-list</li>
+      <li>Breed-specific care notes</li>
+      <li>Delivered at/after adoption</li>
+      <li>One-time purchase</li>
+      <li>Works standalone, no app required</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">What's left to come</h2>
+    <ul class="detail-list">
+      <li><strong>Willingness-to-pay validation</strong> &mdash; the open question this concept doesn't yet answer: will owners pay for this rather than research it for free.</li>
+      <li><strong>Shelter / breeder / retailer partnerships</strong> &mdash; the licensing distribution model that would make this a business independent of PetMe's own user base.</li>
+      <li><strong>Seasonal reminder notifications</strong> &mdash; turning a one-time purchase into an ongoing relationship.</li>
+      <li><strong>Vet-integration for vaccination sync</strong> &mdash; connecting the bioschedule to a real clinical record instead of a static document.</li>
+      <li><strong>A decision on brand structure</strong> &mdash; standalone brand "from the team behind PetMe" vs. a product line inside PetMe itself, depending on how much of the buyer base sits outside PetMe's own marketplace.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Open risks a market-research pass would surface</h2>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <strong>Free-content competition</strong>
+        <p>Breed care information is widely available for free from breeders, vets, and pet communities &mdash; the real test is whether the adoption-moment trigger is strong enough to convert that into a purchase.</p>
+      </div>
+      <div class="risk-card">
+        <strong>Vitamin, not painkiller, risk</strong>
+        <p>If new-owner anxiety turns out to be mild enough that "good enough" free research satisfies it, this is a nice-to-have, not the urgent job the philosophy assumes.</p>
+      </div>
+      <div class="risk-card">
+        <strong>Focus dilution from PetMe's core wedge</strong>
+        <p>PetMe's own validation plan deliberately narrows to grooming-and-sitting bookings first; a second, differently-shaped business competes for the same limited validation attention unless sequenced deliberately.</p>
+      </div>
+      <div class="risk-card">
+        <strong>Brand-structure ambiguity</strong>
+        <p>Spinning this out as its own brand only pays off if the licensing buyer (shelters, breeders, retailers) is genuinely reachable independent of PetMe &mdash; otherwise it's added complexity for no real distribution gain.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">PetMe answers how to find and book care. Responsible Petting answers the question that comes first: does this new owner even know what their pet needs?</p>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a href="">Jobs to be Done</a>
+      <a href="">Brand Strategy</a>
+      <a href="">Monetization Design</a>
+      <a href="">Go-to-Market Strategy</a>
+      <a href="">Commercial Judgment</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Product Strategy</div>
+  </footer>
+
+</div>
+<script src="../assets/analytics-config.js"></script>
+<script src="../assets/analytics.js"></script>
+</body>
+</html>
