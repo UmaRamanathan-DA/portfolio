@@ -99,6 +99,26 @@
   }
   p.subhead strong{ color:var(--ink); font-weight:600; }
 
+  a.proto-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 28px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--accent-ink);
+    text-decoration:none;
+    border:1px solid var(--line-strong);
+    padding:7px 12px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  a.proto-link:hover,
+  a.proto-link:focus-visible{
+    color:var(--ink);
+    border-color:var(--accent-ink);
+  }
+
   .triad{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -197,6 +217,119 @@
     color:var(--ink-soft);
     line-height:1.5;
   }
+
+  /* ---- three funding questions ---- */
+  .question-intro{
+    margin:18px 0 14px;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:64ch;
+  }
+  ol.questions{
+    list-style:none; counter-reset:qstep; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  ol.questions li{
+    counter-increment:qstep; position:relative; padding-left:40px;
+    background:var(--surface); border:1px solid var(--line); padding:14px 16px 14px 48px;
+  }
+  ol.questions li::before{
+    content:counter(qstep);
+    position:absolute; left:14px; top:14px;
+    font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--paper);
+    background:var(--accent); width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  ol.questions strong{ display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  ol.questions span{ font-size:13.5px; color:var(--ink-soft); line-height:1.5; }
+  ol.questions li.open{ border-left:3px solid var(--line-strong); border-color:var(--line); }
+  ol.questions li.open strong::after{
+    content:"Not yet answered";
+    display:inline-block; margin-left:8px; font-family:var(--font-mono); font-size:9.5px;
+    font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft);
+    background:var(--paper); border:1px solid var(--line-strong); padding:2px 6px; vertical-align:middle;
+  }
+
+  /* ---- exhibit ---- */
+  .exhibit{
+    margin:18px 0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:12px 12px 14px;
+  }
+  .exhibit img{
+    width:100%;
+    display:block;
+    border:1px solid var(--line);
+  }
+  .exhibit figcaption{
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+
+  /* ---- SROI calculation flow ---- */
+  .flow-note{
+    margin:-8px 0 18px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:64ch;
+  }
+  .calc-chain{ display:flex; flex-direction:column; }
+  .calc-stage{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--line-strong);
+    padding:16px 20px;
+  }
+  .calc-stage.derived{ border-left-color:var(--accent); }
+  .calc-stage.output{ border-left-color:var(--resolved); background:var(--resolved-soft); }
+  .calc-stage .stage-tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin-bottom:6px;
+  }
+  .calc-stage.output .stage-tag{ color:var(--resolved); }
+  .calc-stage strong{
+    display:block;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .calc-stage p{
+    margin:0;
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .calc-stage .formula{
+    display:block;
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px 10px;
+  }
+  .calc-arrow{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 20px;
+    color:var(--ink-soft);
+    font-family:var(--font-mono);
+    font-size:12px;
+  }
+  .calc-arrow .line{ flex:0 0 auto; }
 
   /* ---- impact stats ---- */
   .stat-strip{
@@ -301,101 +434,189 @@
 <div class="page">
 
   <p class="eyebrow">Product Case &middot; Performance Management Strategy</p>
-  <h1 class="headline">Arctic search-and-rescue missions are life-or-death — and NSAR had no way to tell which of its training, resourcing, or community efforts actually helped.</h1>
+  <h1 class="headline">NSAR needed more funding — but had no evidence its programs were working, and no case to ask for it.</h1>
   <p class="strategy-tag">This is a Product Strategy Org Building problem.</p>
-  <p class="methodology">Academic strategic analysis project completed with the NSAR Project Team at the University of Strathclyde (Oct&ndash;Dec 2024), applied to Nunavut Search and Rescue's real Arctic SAR operations.</p>
-  <p class="subhead">NSAR had years of SAR intervention data and community knowledge, but no structure linking day-to-day activities to the outcomes they were meant to produce — no way to see where effort was working, or where it wasn't. <strong>I designed six pathway-specific logic models, a hierarchical KPI framework, and causal maps connecting inputs to impact — giving NSAR a structure to evaluate performance, not just record it.</strong></p>
+  <p class="methodology">Academic strategic analysis project with the NSAR Project Team, University of Strathclyde (Oct&ndash;Dec 2024), scoped around Nunavut Search and Rescue's real funding and evaluation problem. No NSAR operational data was available to the project team &mdash; every figure on this page and in the linked prototype is a clearly-flagged sample, not a measured result.</p>
+  <p class="subhead">NSAR runs Arctic search-and-rescue on grants and volunteer hours, and had already made real interventions with them &mdash; new GPS units, joint training with partner agencies, a mental-health and wellbeing program for volunteers. Leadership believed these were working, from what search leads reported informally. <strong>But belief isn't a funding case, and NSAR had never connected a dollar of past funding to a measured result</strong> &mdash; so when it needed to ask funders for more, there was nothing to point to. The real finding wasn't a missing dashboard: it was that the underlying data mostly doesn't exist inside NSAR at all. I worked through how those specific interventions are supposed to connect to outcomes, then built a working prototype &mdash; the Impact &amp; Funding Ledger &mdash; that turns real numbers, once collected, directly into the case for the next grant.</p>
+  <a class="proto-link" href="../assets/nsar/nsar-impact-ledger.html" target="_blank" rel="noopener">Open the Impact &amp; Funding Ledger &rarr;</a>
   <div class="triad">
     <div>
       <span class="k">Who</span>
-      <span class="v">NSAR leadership and SAR program managers</span>
-      <span class="d">Oversee training, resourcing, and incident response across Arctic search-and-rescue operations.</span>
+      <span class="v">NSAR leadership and its funders</span>
+      <span class="d">NSAR believed its GPS, training, and wellbeing investments were working; funders needed evidence, not belief, before granting more.</span>
     </div>
     <div>
       <span class="k">What</span>
-      <span class="v">See whether activities are producing outcomes</span>
-      <span class="d">Trace a straight line from what NSAR does to what it actually achieves, pathway by pathway.</span>
+      <span class="v">Turn "we think it's working" into a case</span>
+      <span class="d">A structure and a tool that convert real numbers into "here's the return on the next dollar" &mdash; not a report built on invented ones.</span>
     </div>
     <div>
       <span class="k">Why</span>
-      <span class="v">6 pathways, one connected system</span>
-      <span class="d">Recruitment, training, and incident response each traced from input to impact, not measured in isolation.</span>
+      <span class="v">The gap was the finding</span>
+      <span class="d">Most of the data this needs sits with NSAR's parent emergency-management body, not with NSAR itself.</span>
     </div>
   </div>
 
   <section>
-    <h2 class="label">Key challenges &amp; solutions</h2>
+    <h2 class="label">The problem, as NSAR framed it</h2>
     <div class="friction-grid">
       <div class="friction-card">
         <span class="tag">Challenge</span>
-        <p>Aligning metrics across diverse SAR operational activities.</p>
-        <span class="tag solved">Solution</span>
-        <p class="solution-text">Modular logic models tailored to each SAR pathway, instead of one generic scorecard.</p>
+        <p>NSAR needed to ask its funders for more money — and every funding ask needs a case: did the GPS units, the training, the mental-health programming actually change outcomes?</p>
+        <span class="tag solved">Reality</span>
+        <p class="solution-text">Nobody at NSAR had ever connected a grant to a result. There was no case to make the ask with — accountability for the last grant and the pitch for the next one were blocked by the same gap.</p>
       </div>
       <div class="friction-card">
         <span class="tag">Challenge</span>
-        <p>No centralized performance data.</p>
-        <span class="tag solved">Solution</span>
-        <p class="solution-text">An integrated data collection strategy combining community feedback with SAR logs.</p>
-      </div>
-      <div class="friction-card">
-        <span class="tag">Challenge</span>
-        <p>Balancing traditional knowledge with modern analytics.</p>
-        <span class="tag solved">Solution</span>
-        <p class="solution-text">Inuit knowledge embedded directly into environmental-adaptation and training metrics.</p>
-      </div>
-      <div class="friction-card">
-        <span class="tag">Challenge</span>
-        <p>Anticipating future risk from climate change.</p>
-        <span class="tag solved">Solution</span>
-        <p class="solution-text">A proposed Bayesian Network to model environmental variables against SAR readiness.</p>
+        <p>Build a performance-measurement system for a volunteer search-and-rescue operation.</p>
+        <span class="tag solved">Reality</span>
+        <p class="solution-text">The operational, incident-level data that would answer that question mostly doesn't sit with NSAR — it sits with the parent emergency-management body NSAR responds under, which the project team didn't have access to.</p>
       </div>
     </div>
+
+    <p class="question-intro">"Prove the funding is working" isn't one question — it's three, at three different levels of granularity, and each needs a different answer:</p>
+    <ol class="questions">
+      <li><strong>Is NSAR's funding working at all?</strong><span>The organization-wide question a funder asks before renewing anything: across all four pillars combined, does $1 given back more than $1 in value? Answered by the blended SROI ratio below.</span></li>
+      <li><strong>Should we keep funding this specific program?</strong><span>E.g. the wellbeing program on its own — is it paying for itself, isolated from the other three pillars, not diluted into one organization-wide number? Answered by a program-specific SROI, walked through below.</span></li>
+      <li class="open"><strong>How much should we invest in each pillar going forward?</strong><span>E.g. how many more GPS units, how much more joint training — a marginal-return question about where the next dollar does the most good. This needs cost curves per pillar (what the 15th GPS unit buys that the 14th didn't), which a single year of sample figures can't support yet — flagged here as the natural next question, not answered by this prototype.</span></li>
+    </ol>
   </section>
 
   <section>
-    <h2 class="label">What we changed</h2>
+    <h2 class="label">Making sense of the system before the data existed</h2>
+    <p class="methodology">This is analysis and modeling work — done in Miro, Figma, and Excel, not software — not a live, queryable system. It's presented here as the reasoning behind the ledger below, not as separately reviewable artifacts.</p>
     <ul class="changes">
-      <li><strong>Mapped 6 pathways end-to-end</strong><span>Logic models tracing inputs and activities through to outcomes and long-term impact, not a single scorecard.</span></li>
-      <li><strong>Built a metric hierarchy, not a flat list</strong><span>Core, Inferred, Composite, and Impact metrics, so leverage points are visible instead of buried.</span></li>
-      <li><strong>Visualized how metrics influence each other</strong><span>Metric Causal Maps showing the decision-making levers across pathways.</span></li>
-      <li><strong>Combined two data sources into one strategy</strong><span>Primary community feedback and secondary SAR logs merged into a single collection plan.</span></li>
+      <li><strong>Causal mapping, as reasoning, not measurement</strong><span>With no data to test relationships statistically, the best available domain reasoning was mapped instead: GPS/equipment investment is believed to speed up time-to-locate; joint training is believed to improve inter-agency coordination; wellbeing programming is believed to reduce volunteer burnout. Assumptions to test once real data exists, not proven links.</span></li>
+      <li><strong>Narrowed years of activity to four trackable pathways</strong><span>GPS &amp; navigation technology, search equipment, inter-agency training, and mental-health/wellbeing programming — the four funded pillars the rest of this model is built around.</span></li>
+      <li><strong>Stakeholder mapping shaped what got prioritized</strong><span>Funders wanted efficiency and outcome evidence; NSAR leadership wanted volunteer retention and wellbeing visible too. Prioritizing one over the other would have missed half the audience — both are built into the same tiered model instead.</span></li>
+      <li><strong>Landed on three tiers, not an abstract hierarchy</strong><span>Operational (activity) &rarr; Strategic (performance) &rarr; Impact (outcomes), each rolling into the next — simple enough for a funder to read cold, without a briefing.</span></li>
     </ul>
   </section>
 
   <section>
-    <p class="tagline">The deliverable wasn't a metric or a dashboard — it was the structure connecting activities to outcomes.</p>
+    <p class="tagline">This isn't a finished measurement system — it's the structure and the tool NSAR needs before one can exist, built because the real data doesn't yet.</p>
   </section>
 
   <section>
-    <h2 class="label">What it moved</h2>
-    <div class="stat-strip">
-      <div class="stat">
-        <div class="num">6 pathways</div>
-        <div class="desc">Mapped end-to-end, input to impact</div>
-        <div class="raw">recruitment, training, engagement, interagency trust, resources, incidents</div>
+    <h2 class="label">From structure to a working tool</h2>
+    <p class="methodology">The NSAR Impact &amp; Funding Ledger &mdash; a live, editable prototype built on the reasoning above, not a separate exercise. Every figure inside loads as a clearly-flagged sample.</p>
+    <ul class="changes">
+      <li><strong>A visual theory of change</strong><span>Inputs &rarr; Activities &rarr; Outputs &rarr; Outcomes &rarr; Impact, tracing the four funded pillars through to the outcomes funders read first.</span></li>
+      <li><strong>Three live metric tiers</strong><span>Operational, Strategic, and Impact &mdash; each editable, each tier rolling into the next.</span></li>
+      <li><strong>A funding breakdown across all four pillars</strong><span>Editable grant and donor figures per pillar, visualized as a live bar chart with a running total.</span></li>
+      <li><strong>Funder-ready, without a rebuild</strong><span>NSAR can drop in its own numbers in place of the samples and print a funder-ready report directly from the browser.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">How the SROI number is actually built</h2>
+    <p class="flow-note">The exact chain the ledger computes, top to bottom &mdash; and read bottom to top, it's the traceability check: every headline number can be walked back to the specific metric that produced it, using the ledger's own sample figures.</p>
+    <figure class="exhibit">
+      <img src="../assets/nsar/SROI.png" alt="NSAR Impact & Funding Ledger — SROI calculator showing search cost avoided, turnover cost avoided, and the resulting $0.57 SROI ratio">
+      <figcaption>The live calculator, not a mockup &mdash; open the ledger above and these are the same editable fields, producing the same numbers walked through below.</figcaption>
+    </figure>
+    <div class="calc-chain">
+      <div class="calc-stage">
+        <span class="stage-tag">Operational metrics &middot; assumed drivers</span>
+        <strong>GPS units in service, mobilization time, training sessions, partner agencies</strong>
+        <p>Believed to influence the strategic metrics below &mdash; a domain assumption carried into the model, not a statistically measured relationship. No incident-level data exists yet to test it.</p>
       </div>
-      <div class="stat">
-        <div class="num">4 metric tiers</div>
-        <div class="desc">A hierarchy, not a flat KPI list</div>
-        <div class="raw">Core, Inferred, Composite, Impact</div>
+      <div class="calc-arrow"><span class="line">&darr;</span> believed to influence, not measured</div>
+      <div class="calc-stage">
+        <span class="stage-tag">Strategic metrics &middot; the two that feed the formula</span>
+        <strong>Time-to-locate: 9.5h &rarr; 6.2h &middot; 4 volunteers retained by the wellbeing program</strong>
+        <p>These are the only two strategic figures the SROI calculation actually consumes directly &mdash; the rest of the strategic tier (search success rate, coordination score) informs the narrative but isn't in this formula.</p>
       </div>
-      <div class="stat">
-        <div class="num">2 data sources merged</div>
-        <div class="desc">One collection strategy, not two records</div>
-        <div class="raw">primary community feedback + secondary SAR logs</div>
+      <div class="calc-arrow"><span class="line">&darr;</span> plugged directly into</div>
+      <div class="calc-stage derived">
+        <span class="stage-tag">The calculation</span>
+        <strong>Search cost avoided</strong>
+        <span class="formula">3.3h saved &times; $260/search-hour &times; 19 searches/yr = $16,302/yr</span>
+        <strong style="margin-top:10px;">Turnover cost avoided</strong>
+        <span class="formula">4 volunteers &times; $3,650 replacement cost = $14,600/yr</span>
+        <strong style="margin-top:10px;">Total social value</strong>
+        <span class="formula">$16,302 + $14,600 (+ $0 lives-saved, off by default) = $30,902/yr</span>
+      </div>
+      <div class="calc-arrow"><span class="line">&darr;</span> divided by total funding invested ($54,500 across all 4 pillars)</div>
+      <div class="calc-stage output">
+        <span class="stage-tag">Impact / SROI output</span>
+        <strong>$30,902 &divide; $54,500 = $0.57 of social value per $1 invested</strong>
+        <p>Plus cost per person assisted ($54,500 &divide; 21 &asymp; $2,595) and cost per life saved, an estimate ($54,500 &divide; 5 = $10,900). All using the ledger's sample figures &mdash; open the ledger to change any input and watch every downstream number recompute.</p>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2 class="label">Tracking &amp; ROI for one intervention: the mental-health program</h2>
+    <p class="flow-note">The blended SROI above answers "is NSAR's funding working overall." A funder deciding whether to renew <em>this specific</em> program needs a narrower question answered: does the wellbeing program itself pay for itself. That needs its own tracking plan, its own attribution step, and its own ratio &mdash; not a slice of the blended one.</p>
+    <div class="calc-chain">
+      <div class="calc-stage">
+        <span class="stage-tag">Track &middot; operational data this program needs</span>
+        <strong>Session attendance, enrollment rate, and a repeated wellbeing survey</strong>
+        <p>Mental-health/peer-support sessions delivered per volunteer, wellbeing program enrollment as a share of the roster, and a standardized survey (e.g. WHO-5) run before enrollment and again at a fixed interval after &mdash; not a one-time score.</p>
+      </div>
+      <div class="calc-arrow"><span class="line">&darr;</span> requires a comparison group, not just a program-wide average</div>
+      <div class="calc-stage">
+        <span class="stage-tag">Attribute &middot; isolating the program's effect</span>
+        <strong>Retention rate, enrolled vs. not enrolled</strong>
+        <p>The number that matters isn't "our retention rate this year" &mdash; it's the <em>gap</em> between the retention rate of volunteers enrolled in the program and volunteers who weren't, over the same period. That gap, not the raw roster number, is what can honestly be attributed to the program.</p>
+      </div>
+      <div class="calc-arrow"><span class="line">&darr;</span> the attributed gap, not a guess, becomes the input below</div>
+      <div class="calc-stage derived">
+        <span class="stage-tag">The calculation</span>
+        <strong>Turnover cost avoided, attributable to this program</strong>
+        <span class="formula">Attributable volunteers retained (the enrolled&ndash;not-enrolled gap) &times; $3,650 replacement cost</span>
+        <p style="margin-top:8px;">Using the ledger's sample figure of 4 attributable volunteers: 4 &times; $3,650 = <strong style="color:var(--ink);">$14,600/yr</strong> &mdash; the same figure the blended calculation uses, but now the number a funder asking specifically about this program would actually want.</p>
+      </div>
+      <div class="calc-arrow"><span class="line">&darr;</span> divided by funding invested in this pillar alone ($15,000, not the full $54,500)</div>
+      <div class="calc-stage output">
+        <span class="stage-tag">Program-specific SROI</span>
+        <strong>$14,600 &divide; $15,000 = $0.97 of social value per $1 invested in this program</strong>
+        <p>Notably higher than the org-wide $0.57 &mdash; because it isn't diluted by the other three pillars' funding. This is the number that actually answers "should we keep funding the wellbeing program specifically," which the blended ratio can't.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What NSAR would need to ask its parent body for</h2>
+    <p class="methodology">Most of the data this model needs isn't inside NSAR &mdash; it sits with the parent emergency-management authority NSAR responds under. This is the same list the ledger itself surfaces as its data roadmap, organized by which tier it unlocks.</p>
+    <ul class="changes">
+      <li><strong>Operational &mdash; unlocks everything above it</strong><span>Callout/incident logs (date, location, duration, personnel, equipment used), equipment inventory &amp; maintenance records, training and joint-exercise attendance logs.</span></li>
+      <li><strong>Strategic &mdash; NSAR's own records, still uncollected</strong><span>A volunteer roster with join/leave dates for retention tracking, a repeated wellbeing survey run before and after program changes, a partner-agency coordination rating collected per joint exercise.</span></li>
+      <li><strong>Impact &mdash; needs a process, not just a dataset</strong><span>A consistent case-review process for assigning lives-saved attribution (search-lead judgment, not an automated count), and a funding/expenditure ledger reconciled annually against the four pillars.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">What this actually produced</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">1 working prototype</div>
+        <div class="desc">Open, editable, funder-ready today</div>
+        <div class="raw">not a mockup &mdash; a live SROI calculator you can put real numbers into right now</div>
+      </div>
+      <div class="stat">
+        <div class="num">3 tiers, 1 formula</div>
+        <div class="desc">Operational &rarr; Strategic &rarr; Impact, one auditable chain</div>
+        <div class="raw">every output traceable back to the specific inputs that produced it</div>
+      </div>
+      <div class="stat">
+        <div class="num">9 records identified</div>
+        <div class="desc">The concrete data ask, not a vague "more data" note</div>
+        <div class="raw">across incident logs, rosters, surveys, and a funding ledger &mdash; see above</div>
+      </div>
+    </div>
+    <p class="methodology">What this isn't: a measured evaluation of NSAR's actual impact, or a funding proposal ready to send. No NSAR operational data was available to build either. What it is: the structure that both need, and a tool that turns real numbers &mdash; once collected &mdash; directly into the next funding ask, not just a retrospective report.</p>
   </section>
 
   <footer>
     <div class="skills">
       <a href="nsar-operations.html">Performance Metrics</a>
-      <a href="nsar-operations.html">Strategic Analysis</a>
-      <a href="nsar-operations.html">Logic Models</a>
-      <a href="nsar-operations.html">Causal Maps</a>
-      <a href="nsar-operations.html">Bayesian Networks</a>
-      <a href="nsar-operations.html">Data Modeling</a>
+      <a href="nsar-operations.html">Theory of Change</a>
+      <a href="nsar-operations.html">Stakeholder Prioritization</a>
+      <a href="nsar-operations.html">Causal Reasoning</a>
+      <a href="nsar-operations.html">Data Strategy</a>
+      <a href="../assets/nsar/nsar-impact-ledger.html" target="_blank" rel="noopener">SROI Modeling</a>
     </div>
     <div class="credit">Uma Ramanathan &middot; Business Analyst / Researcher</div>
   </footer>

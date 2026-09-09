@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairness &amp; Adverse-Impact Audit — Workforce Attrition Analytics</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ink:#16222c;
+    --ink-soft:#4a5964;
+    --paper:#eef1ee;
+    --surface:#ffffff;
+    --line:rgba(22,34,44,0.14);
+    --line-strong:rgba(22,34,44,0.28);
+    --accent:#b25e18;
+    --accent-ink:#7a3f0f;
+    --accent-soft:#f2e0c9;
+    --resolved:#336752;
+    --resolved-soft:#dbe8e1;
+    --risk:#a3402f;
+    --risk-soft:#f3ddd7;
+    --font-display:"Newsreader", ui-serif, Georgia, serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+      --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+      --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+      --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+      --risk:#e2857a; --risk-soft:rgba(226,133,122,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1ee; --ink-soft:#aab6bc; --paper:#111a20; --surface:#17222a;
+    --line:rgba(238,241,238,0.14); --line-strong:rgba(238,241,238,0.26);
+    --accent:#dd9a4d; --accent-ink:#f0b878; --accent-soft:rgba(221,154,77,0.16);
+    --resolved:#68ab8f; --resolved-soft:rgba(104,171,143,0.14);
+    --risk:#e2857a; --risk-soft:rgba(226,133,122,0.14);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  .page{ max-width:760px; margin:0 auto; padding:48px 28px 72px; }
+
+  a.back-link{
+    display:inline-flex; align-items:center; gap:6px; margin:0 0 28px;
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.03em;
+    color:var(--ink-soft); text-decoration:none;
+  }
+  a.back-link:hover, a.back-link:focus-visible{ color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.09em;
+    text-transform:uppercase; color:var(--accent-ink);
+    display:flex; align-items:center; gap:10px; margin:0 0 16px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(26px, 3.6vw, 33px); line-height:1.22; letter-spacing:-0.01em;
+    margin:0 0 22px; text-wrap:balance; max-width:30ch;
+  }
+
+  p.lede{ font-size:15.5px; line-height:1.65; color:var(--ink-soft); margin:0 0 16px; max-width:64ch; }
+  p.lede strong{ color:var(--ink); font-weight:600; }
+  p.methodology{
+    margin:0 0 18px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);
+    line-height:1.6; max-width:66ch;
+  }
+
+  section{ margin-top:36px; padding-top:32px; border-top:1px solid var(--line); }
+  h2.label{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-soft); margin:0 0 16px; font-weight:500;
+  }
+
+  .method-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .method-list li{ padding-left:16px; border-left:2px solid var(--resolved); font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .method-list strong{ color:var(--ink); font-weight:600; }
+
+  /* results table */
+  .audit-table{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  .audit-table th{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--ink-soft); text-align:left; padding:10px 12px; border-bottom:2px solid var(--line-strong);
+  }
+  .audit-table td{ padding:12px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink); }
+  .audit-table tr:last-child td{ border-bottom:none; }
+  .audit-table .rates{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); line-height:1.6; }
+  .verdict{
+    display:inline-block; font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+    letter-spacing:0.04em; text-transform:uppercase; padding:3px 9px;
+  }
+  .verdict.pass{ color:var(--resolved); background:var(--resolved-soft); }
+  .verdict.fail{ color:var(--risk); background:var(--risk-soft); }
+  .audit-table tr.flagged td{ background:var(--risk-soft); }
+  .table-wrap{ overflow-x:auto; }
+
+  .finding-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
+  .finding-card{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--risk); padding:16px 18px; }
+  .finding-card.ok{ border-left-color:var(--resolved); }
+  .finding-card strong{ display:block; font-family:var(--font-display); font-size:16px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+  .finding-card p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  .next-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .next-list li{ padding-left:16px; border-left:2px solid var(--accent); font-size:14.5px; color:var(--ink-soft); line-height:1.55; }
+  .next-list strong{ color:var(--ink); font-weight:600; }
+
+  .tagline{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:clamp(18px, 2.4vw, 21px); line-height:1.4; color:var(--ink); max-width:48ch; text-wrap:balance;
+  }
+
+  footer{ margin-top:40px; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; }
+  .skills{ display:flex; flex-wrap:wrap; gap:8px; max-width:56ch; }
+  .skills a{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.03em; color:var(--ink-soft); border:1px solid var(--line-strong); padding:4px 9px; text-decoration:none; }
+  .skills a:hover, .skills a:focus-visible{ color:var(--accent-ink); border-color:var(--accent-ink); }
+  .credit{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+
+  @media (max-width:620px){
+    .finding-grid{ grid-template-columns:1fr; }
+    .page{ padding:36px 20px 56px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .page{ animation:rise 0.5s ease-out; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <a class="back-link" href="workforce-attrition.html">&larr; Workforce Attrition Analytics</a>
+
+  <p class="eyebrow">Fairness Audit &middot; People Analytics</p>
+  <h1>A model that flags who might leave can't be allowed to flag one group more than another without anyone checking</h1>
+  <p class="lede">A risk score is only usable in HR if it's defensible. <strong>I ran a disparate-impact audit on the same 294 held-out employees behind the live prototype</strong> — a chi-square test of independence plus the EEOC's four-fifths rule, across the three demographic fields the dataset provides. Gender passes clean. Age doesn't, and that's reported here rather than left out.</p>
+  <p class="methodology">Computed directly from the scored held-out set embedded in the <a href="../assets/peopleops/Attrition_Risk_Intervention_Prototype.html" target="_blank" rel="noopener" style="color:inherit;">live intervention prototype</a> (n=294), not a separate or re-run sample &mdash; the same 84 flagged employees referenced throughout this case study.</p>
+
+  <section>
+    <h2 class="label">Method</h2>
+    <ul class="method-list">
+      <li><strong>Chi-square test of independence</strong> &mdash; tests whether being flagged as at-risk is statistically independent of group membership (gender, age band, marital status). A low p-value means the flag rate really does differ by group, not by chance.</li>
+      <li><strong>Four-fifths (80%) rule</strong> &mdash; the EEOC's standard adverse-impact screen: if any group's selection rate falls below 80% of the highest-selected group's rate, that's a flag for review, independent of statistical significance.</li>
+      <li><strong>Age band split at 40</strong> &mdash; the standard cut used under the U.S. Age Discrimination in Employment Act (ADEA), not an arbitrary threshold.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">Results</h2>
+    <div class="table-wrap">
+      <table class="audit-table">
+        <thead>
+          <tr><th>Attribute</th><th>Flag rate by group</th><th>&chi;&sup2;</th><th>p-value</th><th>4/5ths ratio</th><th>Verdict</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gender</td>
+            <td class="rates">Male 27.5% (n=178)<br>Female 30.2% (n=116)</td>
+            <td>0.13</td>
+            <td>0.720</td>
+            <td>0.912</td>
+            <td><span class="verdict pass">Pass</span></td>
+          </tr>
+          <tr class="flagged">
+            <td>Age band</td>
+            <td class="rates">40+ 14.9% (n=101)<br>Under 40 35.8% (n=193)</td>
+            <td>13.19</td>
+            <td>&lt;0.001</td>
+            <td>0.415</td>
+            <td><span class="verdict fail">Adverse impact</span></td>
+          </tr>
+          <tr class="flagged">
+            <td>Marital status</td>
+            <td class="rates">Divorced 12.5% (n=64)<br>Married 24.8% (n=133)<br>Single 44.3% (n=97)</td>
+            <td>20.82</td>
+            <td>&lt;0.001</td>
+            <td>0.282</td>
+            <td><span class="verdict fail">Adverse impact</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="tagline">Passing on gender doesn't make the model fair — it makes it fair on the one dimension that happened to pass. The other two needed to be looked at, not assumed away.</p>
+  </section>
+
+  <section>
+    <h2 class="label">What this means</h2>
+    <div class="finding-grid">
+      <div class="finding-card ok">
+        <strong>Gender: clean</strong>
+        <p>Flag rate is nearly identical (27.5% vs. 30.2%), the difference isn't statistically significant (p=0.72), and the adverse-impact ratio (0.912) sits comfortably above the 0.80 threshold. No action needed here.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Age: a real disparity</strong>
+        <p>Employees under 40 are flagged at more than double the rate of employees 40+ (35.8% vs. 14.9%), and it's not noise (p&lt;0.001). An adverse-impact ratio of 0.415 is well below the 0.80 line — this is exactly the pattern the four-fifths rule exists to catch.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Likely driver, not proof of bias</strong>
+        <p>This dataset's real attrition is itself concentrated in early-tenure, early-career employees — a well-documented pattern, not unique to this model. The score is likely picking up a genuine signal (tenure, career stage) that correlates with age, rather than using age as a feature directly.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Correlation doesn't remove the obligation</strong>
+        <p>Disparate impact is a statistical fact, not an intent test — a legitimate underlying driver doesn't exempt a flagging system from disproportionately affecting a protected group. That's precisely why this is reported as a finding, not reasoned away.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">What I'd do next with this finding</h2>
+    <ul class="next-list">
+      <li><strong>Trace the drivers, not just the outcome.</strong> The live prototype already surfaces a per-employee, SHAP-style contribution breakdown &mdash; the next step is aggregating those top factors specifically for the under-40 flagged group to see whether age-correlated features (tenure, total working years, number of companies worked) are doing most of the work.</li>
+      <li><strong>Keep the human-in-the-loop guardrail non-negotiable for this exact reason.</strong> The model was already designed to flag, not decide &mdash; this finding is the concrete argument for why that boundary matters, not just a principle.</li>
+      <li><strong>Re-run this audit before any expansion in scope.</strong> If this score ever fed anything beyond an HRBP check-in prompt &mdash; comp, promotion, or workforce-planning decisions &mdash; this exact test would need to pass, with legal counsel involved, before that expansion happens.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="skills">
+      <a href="">Fairness Testing</a>
+      <a href="">Disparate Impact Analysis</a>
+      <a href="">Chi-Square Testing</a>
+      <a href="">EEOC Four-Fifths Rule</a>
+      <a href="">Responsible AI</a>
+    </div>
+    <div class="credit">Uma Ramanathan &middot; Data &amp; Analytics</div>
+  </footer>
+
+</div>
+</body>
+</html>

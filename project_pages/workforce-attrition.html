@@ -283,10 +283,68 @@
     max-width:66ch;
   }
 
+  /* ---- prioritization matrix ---- */
+  .matrix-intro{
+    margin:-8px 0 18px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:64ch;
+  }
+  .matrix-axes{
+    display:flex;
+    justify-content:space-between;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 8px;
+  }
+  .matrix-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .matrix-cell{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--line-strong);
+    padding:16px 18px;
+  }
+  .matrix-cell.priority{
+    border-left-color:var(--accent);
+    background:var(--accent-soft);
+  }
+  .matrix-cell .cell-axes{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .matrix-cell.priority .cell-axes{ color:var(--accent-ink); }
+  .matrix-cell strong{
+    display:block;
+    font-family:var(--font-display);
+    font-size:16px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .matrix-cell p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
   /* ---- explore cards ---- */
   .explore-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(2, 1fr);
     gap:16px;
   }
   .explore-card{
@@ -412,6 +470,7 @@
     .friction-grid{ grid-template-columns:1fr; }
     ul.changes{ grid-template-columns:1fr; }
     .stat-strip{ grid-template-columns:1fr; }
+    .matrix-grid{ grid-template-columns:1fr; }
     .explore-grid{ grid-template-columns:1fr; }
     .page{ padding:40px 20px 56px; }
   }
@@ -484,6 +543,36 @@
     </figure>
   </section>
 
+  <section>
+    <h2 class="label">How interventions get prioritized</h2>
+    <p class="matrix-intro">A risk score alone doesn't tell HR who to act on first — a junior individual contributor and a hard-to-replace senior engineer can carry the same risk score but very different consequences if they leave. <strong>Prioritization runs on a Risk &times; Impact matrix</strong> — the standard framework for allocating limited attention under constraint, adapted here to flight-risk score &times; role/replacement value, instead of treating every flagged employee the same.</p>
+    <div class="matrix-axes">
+      <span>&darr; Flight risk</span>
+      <span>Business impact of loss &rarr;</span>
+    </div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <span class="cell-axes">Low risk &middot; Standard-impact role</span>
+        <strong>Monitor</strong>
+        <p>No action. Logged for quarterly trend tracking so a slow drift doesn't go unnoticed.</p>
+      </div>
+      <div class="matrix-cell">
+        <span class="cell-axes">Low risk &middot; High-impact role</span>
+        <strong>Quiet check-in</strong>
+        <p>A light, proactive touch even without a strong signal — the role is too costly to lose to justify waiting for one.</p>
+      </div>
+      <div class="matrix-cell">
+        <span class="cell-axes">High risk &middot; Standard-impact role</span>
+        <strong>Retention conversation</strong>
+        <p>A real conversation within two weeks. The human still makes the call on what's offered.</p>
+      </div>
+      <div class="matrix-cell priority">
+        <span class="cell-axes">High risk &middot; High-impact role</span>
+        <strong>Escalate to manager + HRBP</strong>
+        <p>Risk and value are both high at once — the costliest miss to allow, so it's routed to both immediately, not queued.</p>
+      </div>
+    </div>
+  </section>
 
   <section>
     <p class="tagline">The model flags the risk. A person decides whether to intervene — before the decision to leave becomes final.</p>
@@ -538,6 +627,13 @@
         <strong>Workforce Analytics</strong>
         <span class="preview">$290K&ndash;$1.1M &middot; 47 leavers, 4 scenarios</span>
         <p>How the flagged group breaks into four real outcomes, and what each one costs or saves.</p>
+        <span class="arrow">Read the full breakdown &rarr;</span>
+      </a>
+      <a class="explore-card" href="workforce-attrition-fairness-audit.html">
+        <span class="k">Responsible AI</span>
+        <strong>Fairness &amp; Adverse-Impact Audit</strong>
+        <span class="preview">Gender passes &middot; age fails the 4/5ths rule</span>
+        <p>A chi-square test on the flagged population — clean on gender, a real disparate impact on age.</p>
         <span class="arrow">Read the full breakdown &rarr;</span>
       </a>
     </div>
