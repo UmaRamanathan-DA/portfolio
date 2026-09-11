@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agentic Airline Recovery — Elevator Pitch</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -92,6 +93,23 @@
     color:var(--ink-soft);
     line-height:1.6;
     max-width:66ch;
+  }
+
+  .product-name{
+    display:flex; flex-direction:column; gap:4px;
+    margin:0 0 24px; padding:18px 22px;
+    background:var(--accent-soft); border-left:3px solid var(--accent);
+  }
+  .product-name .pn-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .product-name .pn-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--accent-ink); letter-spacing:-0.01em; margin:0; line-height:1.15;
+  }
+  .product-name .pn-desc{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin:2px 0 0;
   }
 
   p.subhead{
@@ -320,6 +338,13 @@
 
   <p class="eyebrow">Product Case &middot; Agentic AI Design</p>
   <h1 class="headline">A major airline's contact center saw inbound volume spike 400&ndash;600% within 90 minutes of every disruption — with almost no way to absorb it but more phone agents.</h1>
+
+  <div class="product-name">
+    <span class="pn-label">The answer</span>
+    <h2 class="pn-title">Agentic Airline Recovery</h2>
+    <p class="pn-desc">An AI agent system designed to absorb 400&ndash;600% contact-center surges during flight disruptions.</p>
+  </div>
+
   <p class="methodology">Self-directed case study exercise, not a real client engagement &mdash; a Product Analyst design exploration of agentic AI architecture for airline IROPS (irregular operations) recovery, using a fictional airline (SkyWave) and illustrative figures throughout.</p>
   <p class="subhead">During weather delays, mechanical issues, or crew shortages, an all-human contact model couldn't keep up with the surge — hold times stretched to 47 minutes and customers defected to self-help. <strong>I designed an end-to-end agentic AI system: discovery, decision logic, systems integration, and conversation behavior, all the way through to a test plan.</strong></p>
   <a class="proto-link" href="../assets/agentic-ai-orch/executive-presentation.pdf" target="_blank" rel="noopener">Executive presentation (PDF)</a>

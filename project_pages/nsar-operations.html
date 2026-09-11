@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NSAR Performance Management System — Elevator Pitch</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -79,6 +80,23 @@
     text-transform:uppercase;
     color:var(--ink-soft);
     margin:0 0 16px;
+  }
+
+  .product-name{
+    display:flex; flex-direction:column; gap:4px;
+    margin:0 0 24px; padding:18px 22px;
+    background:var(--accent-soft); border-left:3px solid var(--accent);
+  }
+  .product-name .pn-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .product-name .pn-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--accent-ink); letter-spacing:-0.01em; margin:0; line-height:1.15;
+  }
+  .product-name .pn-desc{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin:2px 0 0;
   }
 
   .methodology{
@@ -435,6 +453,13 @@
 
   <p class="eyebrow">Product Case &middot; Performance Management Strategy</p>
   <h1 class="headline">NSAR needed more funding — but had no evidence its programs were working, and no case to ask for it.</h1>
+
+  <div class="product-name">
+    <span class="pn-label">The answer</span>
+    <h2 class="pn-title">NSAR Performance Management System</h2>
+    <p class="pn-desc">Logic models, a metric hierarchy, and a live Impact &amp; Funding Ledger.</p>
+  </div>
+
   <p class="strategy-tag">This is a Product Strategy Org Building problem.</p>
   <p class="methodology">Academic strategic analysis project with the NSAR Project Team, University of Strathclyde (Oct&ndash;Dec 2024), scoped around Nunavut Search and Rescue's real funding and evaluation problem. No NSAR operational data was available to the project team &mdash; every figure on this page and in the linked prototype is a clearly-flagged sample, not a measured result.</p>
   <p class="subhead">NSAR runs Arctic search-and-rescue on grants and volunteer hours, and had already made real interventions with them &mdash; new GPS units, joint training with partner agencies, a mental-health and wellbeing program for volunteers. Leadership believed these were working, from what search leads reported informally. <strong>But belief isn't a funding case, and NSAR had never connected a dollar of past funding to a measured result</strong> &mdash; so when it needed to ask funders for more, there was nothing to point to. The real finding wasn't a missing dashboard: it was that the underlying data mostly doesn't exist inside NSAR at all. I worked through how those specific interventions are supposed to connect to outcomes, then built a working prototype &mdash; the Impact &amp; Funding Ledger &mdash; that turns real numbers, once collected, directly into the case for the next grant.</p>

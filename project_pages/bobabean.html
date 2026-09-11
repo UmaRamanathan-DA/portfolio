@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>bobabean — Coffee Customization Ritual &amp; AI Review Management</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -77,6 +78,23 @@
   }
   p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:64ch; margin:0 0 16px; }
   p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .product-name{
+    display:flex; flex-direction:column; gap:4px;
+    margin:0 0 24px; padding:18px 22px;
+    background:var(--accent-soft); border-left:3px solid var(--accent);
+  }
+  .product-name .pn-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .product-name .pn-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--accent-ink); letter-spacing:-0.01em; margin:0; line-height:1.15;
+  }
+  .product-name .pn-desc{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin:2px 0 0;
+  }
   p.note{
     font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
     max-width:62ch; line-height:1.5; margin:0 0 28px;
@@ -204,6 +222,13 @@
 
   <p class="eyebrow">Personal Project &middot; Mobile &amp; Tablet UX &middot; Figma Practice</p>
   <h1 class="headline">Coffee App with Retro In-store experience - Most coffee apps reduce your order to two taps. bobabean turns it back into a ritual.</h1>
+
+  <div class="product-name">
+    <span class="pn-label">The answer</span>
+    <h2 class="pn-title">bobabean</h2>
+    <p class="pn-desc">A tactile coffee ordering ritual, mobile &amp; in-store, with an AI review-management layer.</p>
+  </div>
+
   <p class="subhead">Size, then "sweet or not" — that's most in-app coffee customization. A boutique café ritual deserves better: blend, size, milk, sugar, and flavor, each its own tactile moment instead of a buried settings menu. <strong>I designed the full ordering ritual end-to-end across mobile and tablet, from splash to pickup QR code</strong> — then extended the concept with an AI-powered review management layer so the café can turn scattered star ratings into a business decision.</p>
   <p class="note">Personal project &middot; Figma practice &middot; UI exploration for a boutique vegan caf&eacute; concept.</p>
 

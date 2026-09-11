@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Field Assessment Redesign</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -107,6 +108,32 @@
     margin:0 0 28px;
   }
   p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .methodology{
+    margin:0 0 18px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:66ch;
+  }
+
+  .product-name{
+    display:flex; flex-direction:column; gap:4px;
+    margin:0 0 24px; padding:18px 22px;
+    background:var(--accent-soft); border-left:3px solid var(--accent);
+  }
+  .product-name .pn-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .product-name .pn-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--accent-ink); letter-spacing:-0.01em; margin:0; line-height:1.15;
+  }
+  .product-name .pn-desc{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin:2px 0 0;
+  }
 
   .triad{
     display:grid;
@@ -491,7 +518,15 @@
 
   <p class="eyebrow">Product Case &middot; Field Operations &middot; Product Strategy - Optimisation Problem</p>
   <h1 class="headline">Field assessors could not complete compliance assessments onsite due to network and device unavailability.</h1>
-  <p class="subhead">Assessors visiting remote sites had no working app to log what they found — so they scribbled notes on paper and retyped everything back at a desk, hours or days later, by which point details had faded and the record no longer matched what actually happened. <strong>I redesigned the field experience so assessors could finish the job on the spot — completion rates rose 2.6&times;, from 21% to 55%.</strong></p>
+
+  <div class="product-name">
+    <span class="pn-label">The answer</span>
+    <h2 class="pn-title">Compliance Management System</h2>
+    <p class="pn-desc">Offline-first field assessment redesign for NoMoBo &mdash; phase 1 of 3.</p>
+  </div>
+
+  <p class="methodology">Freelance engagement for NoMoBo, a mobile app development startup (May&ndash;Nov 2021) &mdash; a full UX process, research through a built, interactive prototype, delivered to the client. Not deployed into NoMoBo's production app, and no usability testing was conducted: every completion-rate, time, and performance figure on this page is an illustrative target, not a measured result.</p>
+  <p class="subhead">Assessors visiting remote sites had no working app to log what they found — so they scribbled notes on paper and retyped everything back at a desk, hours or days later, by which point details had faded and the record no longer matched what actually happened. <strong>I redesigned the field experience so assessors could finish the job on the spot — designed to raise completion 2.6&times;, from an illustrative 21% to 55%.</strong></p>
   <div class="triad">
     <div>
       <span class="k">Who</span>
@@ -505,8 +540,8 @@
     </div>
     <div>
       <span class="k">Why</span>
-      <span class="v">2.6&times; more finished on-site</span>
-      <span class="d">Completion rose from 21% to 55%, cutting paper workarounds and compliance risk.</span>
+      <span class="v">2.6&times; more finished on-site, targeted</span>
+      <span class="d">Designed to raise completion from an illustrative 21% to 55% &mdash; a design target, not a measured result.</span>
     </div>
   </div>
 
@@ -563,26 +598,27 @@
   </section>
 
   <section>
-    <h2 class="label">What it moved</h2>
+    <h2 class="label">What it's designed to move</h2>
+    <p class="methodology">A built, interactive prototype &mdash; not deployed into production, and no usability testing was carried out. Every figure below is an illustrative target this redesign was aimed at, not a measured outcome.</p>
     <div class="stat-strip">
       <div class="stat">
         <div class="num">2.6&times;</div>
-        <div class="desc">Increase in field assessment completion</div>
-        <div class="raw">21% &rarr; 55%</div>
+        <div class="desc">Targeted increase in field assessment completion</div>
+        <div class="raw">illustrative 21% &rarr; 55% &middot; design target, not measured</div>
       </div>
       <div class="stat">
         <div class="num">55%</div>
-        <div class="desc">Reduction in time to first submission</div>
-        <div class="raw">62 min &rarr; 28 min</div>
+        <div class="desc">Targeted reduction in time to first submission</div>
+        <div class="raw">illustrative 62 min &rarr; 28 min &middot; design target, not measured</div>
       </div>
       <div class="stat">
-        <div class="num">65%</div>
-        <div class="desc">Improvement in usability score</div>
-        <div class="raw">SUS 49 (Poor) &rarr; 81 (Excellent)</div>
+        <div class="num">3 surfaces</div>
+        <div class="desc">One consistent design system</div>
+        <div class="raw">desktop, iPad, and mobile &mdash; same interaction patterns throughout</div>
       </div>
     </div>
     <ul class="impact-list">
-      <li>Fewer manual errors and compliance gaps from paper workarounds</li>
+      <li>Designed to cut manual errors and compliance gaps from paper workarounds</li>
       <li>Consistent, field-native experience across desktop, iPad, and mobile</li>
     </ul>
   </section>
@@ -617,7 +653,7 @@
       </a>
       <a class="artifact-card" href="../images/Assessments/Feedback%20Grid.png" data-gallery="usability">
         <img src="../images/Assessments/Feedback Grid.png" alt="Stakeholder feedback grid">
-        <span class="k">Usability Testing</span>
+        <span class="k">Stakeholder Feedback</span>
       </a>
       <a class="artifact-card" href="../images/Assessments/experience%20based%20road%20map.png" data-gallery="strategy">
         <img src="../images/Assessments/experience based road map.png" alt="Experience-based roadmap">

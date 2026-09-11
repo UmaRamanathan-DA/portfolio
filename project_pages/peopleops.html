@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PeopleOps &amp; Legal Intelligence Hub — Elevator Pitch</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -106,6 +107,23 @@
     color:var(--ink-soft);
     line-height:1.6;
     max-width:66ch;
+  }
+
+  .product-name{
+    display:flex; flex-direction:column; gap:4px;
+    margin:0 0 24px; padding:18px 22px;
+    background:var(--accent-soft); border-left:3px solid var(--accent);
+  }
+  .product-name .pn-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .product-name .pn-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--accent-ink); letter-spacing:-0.01em; margin:0; line-height:1.15;
+  }
+  .product-name .pn-desc{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin:2px 0 0;
   }
 
   p.subhead{
@@ -490,6 +508,13 @@
 
   <p class="eyebrow">Product Case &middot; Data &amp; AI Product Strategy</p>
   <h1 class="headline">HR and Legal sit on the same fragmented-data problem — just with different symptoms.</h1>
+
+  <div class="product-name">
+    <span class="pn-label">The answer</span>
+    <h2 class="pn-title">PeopleOps &amp; Legal Intelligence Hub</h2>
+    <p class="pn-desc">One governed semantic layer over Workday, Agiloft, SFDC, and ServiceNow.</p>
+  </div>
+
   <p class="strategy-tag">This is a Product Strategy 0&ndash;1 statement.</p>
   <p class="methodology">Self-directed portfolio project (2026), not a live enterprise deployment. Metrics and targets on this page are illustrative, built to show product judgment, not reported as measured results.</p>
   <p class="subhead">HR couldn't see attrition risk until it showed up in an exit interview. Legal couldn't see contract bottlenecks or missed obligations until someone asked. Both ran on manual, spreadsheet-stitched reporting from systems that were never built to talk to each other. <strong>I designed one governed semantic layer serving both functions — with lineage, provenance, and a review-lane model so AI outputs get flagged or suggested, never decided unsupervised.</strong></p>

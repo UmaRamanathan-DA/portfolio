@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PetMe — One App for Every Pet Need</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
@@ -65,6 +66,23 @@
   }
   p.subhead{ font-size:17px; line-height:1.6; color:var(--ink-soft); max-width:66ch; margin:0 0 16px; }
   p.subhead strong{ color:var(--ink); font-weight:600; }
+
+  .product-name{
+    display:flex; flex-direction:column; gap:4px;
+    margin:0 0 24px; padding:18px 22px;
+    background:var(--accent-soft); border-left:3px solid var(--accent);
+  }
+  .product-name .pn-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-ink);
+  }
+  .product-name .pn-title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(24px, 3.4vw, 30px);
+    color:var(--accent-ink); letter-spacing:-0.01em; margin:0; line-height:1.15;
+  }
+  .product-name .pn-desc{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin:2px 0 0;
+  }
   p.note{
     font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); font-style:italic;
     max-width:62ch; line-height:1.5; margin:0 0 28px;
@@ -225,6 +243,13 @@
   <p class="eyebrow">Personal Project &middot; Mobile UX &middot; Two-Sided Marketplace Design</p>
   <p class="top-links" style="margin:0 0 18px;"><a href="petme-market-research.html" style="font-family:var(--font-mono); font-size:12px; color:var(--accent-ink); border:1px solid var(--line); padding:8px 14px; text-decoration:none; display:inline-block;">Market research &amp; product-market fit &rarr;</a></p>
   <h1 class="headline">There's no one-stop solution for pet needs. PetMe is designed to be one.</h1>
+
+  <div class="product-name">
+    <span class="pn-label">The answer</span>
+    <h2 class="pn-title">PetMe</h2>
+    <p class="pn-desc">One app for adoption, daily care, and every provider a pet parent needs.</p>
+  </div>
+
   <p class="subhead">Adoption listings live on one site, vaccinations get tracked nowhere but memory, and every groomer, vet, sitter, and pet business gets found by word of mouth and booked by phone. <strong>PetMe is a mobile app and two-sided marketplace</strong> that puts discovery, a full daily care schedule, a real profile per pet, and every provider a parent needs into one search and one calendar &mdash; with providers listed and bookable the way Airbnb lists and books a place to stay.</p>
   <p class="note">Personal project &middot; Figma UI concept (2021) extended with a two-sided marketplace &amp; monetization model (2026).</p>
 
