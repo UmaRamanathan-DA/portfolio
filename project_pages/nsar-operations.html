@@ -349,6 +349,34 @@
   }
   .calc-arrow .line{ flex:0 0 auto; }
 
+  /* ---- formula / metrics / outcome ---- */
+  .formula-box{
+    background:var(--surface); border:1.5px solid var(--accent);
+    padding:20px 24px; margin:18px 0; text-align:center;
+  }
+  .formula-box .formula-label{
+    display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px;
+  }
+  .formula-box .formula-main{
+    font-family:var(--font-mono); font-size:16px; font-weight:600; color:var(--ink); line-height:1.5;
+  }
+  .formula-box .formula-sub{
+    margin-top:8px; font-family:var(--font-mono); font-size:13px; color:var(--ink-soft);
+  }
+  .metric-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin:18px 0; }
+  .metric-tile{ background:var(--surface); border:1px solid var(--line); padding:14px 16px; }
+  .metric-tile .mt-label{ display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .metric-tile .mt-value{ display:block; font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:22px; font-weight:600; color:var(--ink); }
+  .metric-tile .mt-note{ display:block; margin-top:4px; font-size:12px; color:var(--ink-soft); }
+  .outcome-box{
+    background:var(--resolved-soft); border-left:3px solid var(--resolved);
+    padding:20px 24px; margin:18px 0;
+  }
+  .outcome-box .outcome-label{ display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--resolved); margin-bottom:8px; }
+  .outcome-box .outcome-value{ font-family:var(--font-display); font-weight:600; font-size:clamp(22px, 3vw, 28px); color:var(--ink); margin:0 0 8px; }
+  .outcome-box p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+
   /* ---- impact stats ---- */
   .stat-strip{
     display:grid;
@@ -438,6 +466,7 @@
     .friction-grid{ grid-template-columns:1fr; }
     ul.changes{ grid-template-columns:1fr; }
     .stat-strip{ grid-template-columns:1fr; }
+    .metric-grid{ grid-template-columns:1fr; }
     .page{ padding:40px 20px 56px; }
   }
 
@@ -481,6 +510,28 @@
       <span class="d">Most of the data this needs sits with NSAR's parent emergency-management body, not with NSAR itself.</span>
     </div>
   </div>
+
+  <section>
+    <h2 class="label">What this actually produced</h2>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">1 working prototype</div>
+        <div class="desc">Open, editable, funder-ready today</div>
+        <div class="raw">not a mockup &mdash; a live SROI calculator you can put real numbers into right now</div>
+      </div>
+      <div class="stat">
+        <div class="num">$0.57 &rarr; $0.97</div>
+        <div class="desc">SROI, org-wide vs. the wellbeing program alone</div>
+        <div class="raw">illustrative &mdash; the targeted program returns nearly 2&times; the blended rate</div>
+      </div>
+      <div class="stat">
+        <div class="num">$14,600</div>
+        <div class="desc">Turnover cost avoided, wellbeing program</div>
+        <div class="raw">illustrative &mdash; against $15,000 invested in that pillar alone</div>
+      </div>
+    </div>
+    <p class="methodology">What this isn't: a measured evaluation of NSAR's actual impact, or a funding proposal ready to send. No NSAR operational data was available to build either. What it is: the structure that both need, and a tool that turns real numbers &mdash; once collected &mdash; directly into the next funding ask, not just a retrospective report.</p>
+  </section>
 
   <section>
     <h2 class="label">The problem, as NSAR framed it</h2>
@@ -573,32 +624,52 @@
 
   <section>
     <h2 class="label">Tracking &amp; ROI for one intervention: the mental-health program</h2>
-    <p class="flow-note">The blended SROI above answers "is NSAR's funding working overall." A funder deciding whether to renew <em>this specific</em> program needs a narrower question answered: does the wellbeing program itself pay for itself. That needs its own tracking plan, its own attribution step, and its own ratio &mdash; not a slice of the blended one.</p>
-    <div class="calc-chain">
-      <div class="calc-stage">
-        <span class="stage-tag">Track &middot; operational data this program needs</span>
-        <strong>Session attendance, enrollment rate, and a repeated wellbeing survey</strong>
-        <p>Mental-health/peer-support sessions delivered per volunteer, wellbeing program enrollment as a share of the roster, and a standardized survey (e.g. WHO-5) run before enrollment and again at a fixed interval after &mdash; not a one-time score.</p>
+    <p class="flow-note">The blended SROI above answers "is NSAR's funding working overall." A funder deciding whether to renew <em>this specific</em> program needs a narrower question answered: does the wellbeing program pay for itself, on its own. <strong>The calculation below &mdash; the formula, the real inputs, and the resulting business outcome &mdash; is the actual deliverable.</strong></p>
+
+    <div class="friction-grid">
+      <div class="friction-card">
+        <strong>What gets tracked</strong>
+        <p>Session attendance, enrollment rate, and a repeated wellbeing survey &mdash; run before enrollment and again at a fixed interval after, not a one-time score.</p>
       </div>
-      <div class="calc-arrow"><span class="line">&darr;</span> requires a comparison group, not just a program-wide average</div>
-      <div class="calc-stage">
-        <span class="stage-tag">Attribute &middot; isolating the program's effect</span>
-        <strong>Retention rate, enrolled vs. not enrolled</strong>
-        <p>The number that matters isn't "our retention rate this year" &mdash; it's the <em>gap</em> between the retention rate of volunteers enrolled in the program and volunteers who weren't, over the same period. That gap, not the raw roster number, is what can honestly be attributed to the program.</p>
+      <div class="friction-card">
+        <strong>How the effect gets isolated</strong>
+        <p>The retention-rate <em>gap</em> between enrolled and not-enrolled volunteers, not the program-wide average &mdash; that gap is what's honestly attributable to the program.</p>
       </div>
-      <div class="calc-arrow"><span class="line">&darr;</span> the attributed gap, not a guess, becomes the input below</div>
-      <div class="calc-stage derived">
-        <span class="stage-tag">The calculation</span>
-        <strong>Turnover cost avoided, attributable to this program</strong>
-        <span class="formula">Attributable volunteers retained (the enrolled&ndash;not-enrolled gap) &times; $3,650 replacement cost</span>
-        <p style="margin-top:8px;">Using the ledger's sample figure of 4 attributable volunteers: 4 &times; $3,650 = <strong style="color:var(--ink);">$14,600/yr</strong> &mdash; the same figure the blended calculation uses, but now the number a funder asking specifically about this program would actually want.</p>
+    </div>
+
+    <div class="formula-box">
+      <span class="formula-label">The formula</span>
+      <div class="formula-main">Program SROI &nbsp;=&nbsp; Turnover Cost Avoided &divide; Program Funding</div>
+      <div class="formula-sub">Turnover Cost Avoided &nbsp;=&nbsp; Attributable Volunteers Retained &times; Replacement Cost per Volunteer</div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-tile">
+        <span class="mt-label">Attributable volunteers retained</span>
+        <span class="mt-value">4</span>
+        <span class="mt-note">the enrolled&ndash;not-enrolled retention gap</span>
       </div>
-      <div class="calc-arrow"><span class="line">&darr;</span> divided by funding invested in this pillar alone ($15,000, not the full $54,500)</div>
-      <div class="calc-stage output">
-        <span class="stage-tag">Program-specific SROI</span>
-        <strong>$14,600 &divide; $15,000 = $0.97 of social value per $1 invested in this program</strong>
-        <p>Notably higher than the org-wide $0.57 &mdash; because it isn't diluted by the other three pillars' funding. This is the number that actually answers "should we keep funding the wellbeing program specifically," which the blended ratio can't.</p>
+      <div class="metric-tile">
+        <span class="mt-label">Replacement cost, per volunteer</span>
+        <span class="mt-value">$3,650</span>
+        <span class="mt-note">recruiting, onboarding, and training a replacement</span>
       </div>
+      <div class="metric-tile">
+        <span class="mt-label">Turnover cost avoided</span>
+        <span class="mt-value">$14,600</span>
+        <span class="mt-note">4 &times; $3,650</span>
+      </div>
+      <div class="metric-tile">
+        <span class="mt-label">Program funding (wellbeing pillar)</span>
+        <span class="mt-value">$15,000</span>
+        <span class="mt-note">the slice of the $54,500 total tied to this program alone</span>
+      </div>
+    </div>
+
+    <div class="outcome-box">
+      <span class="outcome-label">Business outcome</span>
+      <div class="outcome-value">$0.97 returned per $1 invested</div>
+      <p>$14,600 in avoided volunteer-replacement cost from a $15,000 program &mdash; nearly break-even on turnover savings alone, before counting the harder-to-measure value of a less-burned-out search team. That's <strong>almost 2&times; the org-wide blended ratio of $0.57</strong> &mdash; the actual, decision-ready answer to "should we keep funding the wellbeing program specifically."</p>
     </div>
   </section>
 
@@ -610,28 +681,6 @@
       <li><strong>Strategic &mdash; NSAR's own records, still uncollected</strong><span>A volunteer roster with join/leave dates for retention tracking, a repeated wellbeing survey run before and after program changes, a partner-agency coordination rating collected per joint exercise.</span></li>
       <li><strong>Impact &mdash; needs a process, not just a dataset</strong><span>A consistent case-review process for assigning lives-saved attribution (search-lead judgment, not an automated count), and a funding/expenditure ledger reconciled annually against the four pillars.</span></li>
     </ul>
-  </section>
-
-  <section>
-    <h2 class="label">What this actually produced</h2>
-    <div class="stat-strip">
-      <div class="stat">
-        <div class="num">1 working prototype</div>
-        <div class="desc">Open, editable, funder-ready today</div>
-        <div class="raw">not a mockup &mdash; a live SROI calculator you can put real numbers into right now</div>
-      </div>
-      <div class="stat">
-        <div class="num">3 tiers, 1 formula</div>
-        <div class="desc">Operational &rarr; Strategic &rarr; Impact, one auditable chain</div>
-        <div class="raw">every output traceable back to the specific inputs that produced it</div>
-      </div>
-      <div class="stat">
-        <div class="num">9 records identified</div>
-        <div class="desc">The concrete data ask, not a vague "more data" note</div>
-        <div class="raw">across incident logs, rosters, surveys, and a funding ledger &mdash; see above</div>
-      </div>
-    </div>
-    <p class="methodology">What this isn't: a measured evaluation of NSAR's actual impact, or a funding proposal ready to send. No NSAR operational data was available to build either. What it is: the structure that both need, and a tool that turns real numbers &mdash; once collected &mdash; directly into the next funding ask, not just a retrospective report.</p>
   </section>
 
   <footer>
