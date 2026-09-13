@@ -20,6 +20,9 @@
     --accent-soft:#f2e0c9;
     --resolved:#336752;
     --resolved-soft:#dbe8e1;
+    --notice:#7a3f0f;
+    --notice-ink:#5c2f0c;
+    --notice-soft:#f4e8d4;
     --font-display:"Newsreader", ui-serif, Georgia, serif;
     --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
     --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -37,6 +40,9 @@
       --accent-soft:rgba(221,154,77,0.16);
       --resolved:#68ab8f;
       --resolved-soft:rgba(104,171,143,0.14);
+      --notice:#f0b878;
+      --notice-ink:#f0b878;
+      --notice-soft:rgba(221,154,77,0.14);
     }
   }
   :root[data-theme="dark"]{
@@ -51,6 +57,9 @@
     --accent-soft:rgba(221,154,77,0.16);
     --resolved:#68ab8f;
     --resolved-soft:rgba(104,171,143,0.14);
+    --notice:#f0b878;
+    --notice-ink:#f0b878;
+    --notice-soft:rgba(221,154,77,0.14);
   }
 
   *{ box-sizing:border-box; }
@@ -285,6 +294,42 @@
     color:var(--ink-soft);
     line-height:1.4;
   }
+
+  /* ---- confidentiality disclaimer ---- */
+  .disclaimer{
+    margin:0 0 16px;
+    padding:14px 16px 14px 15px;
+    background:var(--notice-soft);
+    border:1px dashed var(--line-strong);
+    border-left:3px solid var(--notice);
+  }
+  .disclaimer .d-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--notice-ink);
+    font-weight:500;
+    margin:0 0 6px;
+  }
+  .disclaimer .d-label::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--notice);
+    display:inline-block;
+    flex-shrink:0;
+  }
+  .disclaimer p{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--ink-soft);
+  }
+  .disclaimer p strong{ color:var(--ink); font-weight:600; }
+  .exhibit .disclaimer{ margin:0 0 12px; }
 
   /* ---- prototype video ---- */
   .proto{
@@ -580,6 +625,10 @@
         <li><strong>Always shows it saved</strong><span>A persistent status bar removes the guesswork about whether the record went through.</span></li>
       </ul>
       <figure class="exhibit">
+        <aside class="disclaimer" role="note">
+          <p class="d-label">Disclaimer</p>
+          <p>These screenshots are <strong>not the real work produced for the client</strong>. Visuals have been changed to protect confidential material.</p>
+        </aside>
         <div class="exhibit-images">
           <button type="button" data-gallery="ui" data-index="0" aria-label="View capture screen full screen">
             <img src="../images/Assessments/UI/mobile-1.png" alt="Redesigned field assessment screen — capture view">
@@ -638,6 +687,10 @@
 
   <section>
     <h2 class="label">Project artifacts</h2>
+    <aside class="disclaimer" role="note">
+      <p class="d-label">Disclaimer</p>
+      <p>These screenshots are <strong>not the real work produced for the client</strong>. Visuals have been changed to protect confidential material.</p>
+    </aside>
     <div class="artifact-grid">
       <a class="artifact-card" href="../images/Assessments/Persona.png" data-gallery="research">
         <img src="../images/Assessments/Persona.png" alt="Persona — Adam, Field &amp; Survey Officer">
